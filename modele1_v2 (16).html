@@ -217,7 +217,7 @@
 
   /* ========== SECTIONS COMMUNES ========== */
   section.padded { padding: 80px 2rem; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
   .section-label {
     font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.18em; color: var(--brown); margin-bottom: 0.8rem;
@@ -491,7 +491,13 @@
 
   /* ========== AGENDA ========== */
   .agenda-section { background: var(--beige); }
-  .agenda-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; }
+  .agenda-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 2rem; 
+    max-width: 800px;
+    margin: 0 auto;
+  }
   .agenda-card {
     background: var(--white); border-radius: 20px;
     border: 2px solid var(--beige-2); box-shadow: 5px 5px 0 var(--beige-2);
@@ -517,7 +523,12 @@
   }
   .ae-icon { font-size: 2.5rem; }
   .agenda-empty p { font-size: 0.88rem; color: #7a6a50; line-height: 1.65; }
-  @media (max-width: 700px) { .agenda-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { 
+    .agenda-grid { 
+      grid-template-columns: 1fr; 
+      gap: 1.5rem;
+    }
+  }
 
   
 
@@ -558,73 +569,7 @@
     .hbb:nth-child(3),.hbb:nth-child(4),.hbb:nth-child(7),.hbb:nth-child(8) { display:none; }
   }
 
-  /* ========================================= */
-  /* STYLES GALERIE D'ACTIVITÉS (AJOUT)       */
-  /* ========================================= */
-
-  #galerie-animations {
-    padding: 60px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .galerie-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-  }
-
-  .galerie-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    aspect-ratio: 4 / 3;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-  }
-
-  .galerie-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease-in-out, filter 0.4s ease-in-out;
-  }
-
-  .galerie-item:hover img {
-    transform: scale(1.15);
-    filter: brightness(0.5);
-  }
-
-  .overlay-texte {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
-    padding: 20px;
-    box-sizing: border-box;
-    pointer-events: none;
-  }
-
-  .galerie-item:hover .overlay-texte {
-    opacity: 1;
-  }
-
-  .overlay-texte p {
-    margin: 0;
-    font-size: 1.1em;
-    line-height: 1.4;
-    font-weight: 500;
-    font-family: inherit;
-  }
-  /* Stages card — full width horizontal */
+    /* Stages card — full width horizontal */
   .stages-card { grid-column: 1 / -1 !important; }
   .stages-card .stages-row { display:flex; align-items:center; gap:2.5rem; }
   .stages-card .stages-text { flex:1; }
@@ -788,68 +733,6 @@
   </div>
 </section>
 
-<!-- ========== GALERIE D'ACTIVITÉS ========== -->
-<section id="galerie-animations">
-  <div class="galerie-grid">
-
-    <div class="galerie-item">
-      <img src="chemin/vers/votre/photo1.jpg" alt="Amandine présente trois perruches posées sur sa main et son bras à l'intérieur d'une volière.">
-      <div class="overlay-texte">
-        <p>Présentation de trois perruches posées sur la main à l'intérieur d'une volière.</p>
-      </div>
-    </div>
-
-    <div class="galerie-item">
-      <img src="chemin/vers/votre/photo2.jpg" alt="Nourrissage au biberon d'un agneau noir devant un groupe d'enfants.">
-      <div class="overlay-texte">
-        <p>Nourrissage au biberon d'un agneau noir devant un groupe d'enfants.</p>
-      </div>
-    </div>
-
-    <div class="galerie-item">
-      <img src="chemin/vers/votre/photo3.jpg" alt="Observation d'animaux dans les box d'une étable avec un groupe d'enfants.">
-      <div class="overlay-texte">
-        <p>Observation d'animaux dans les box d'une étable avec un groupe d'enfants.</p>
-      </div>
-    </div>
-
-    <div class="galerie-item">
-      <img src="chemin/vers/votre/photo4.jpg" alt="Découverte de chèvres en pâturage derrière une clôture avec un groupe d'enfants.">
-      <div class="overlay-texte">
-        <p>Découverte de chèvres en pâturage derrière une clôture avec un groupe d'enfants.</p>
-      </div>
-    </div>
-
-    <div class="galerie-item">
-      <img src="chemin/vers/votre/photo5.jpg" alt="Distribution de nourriture aux chèvres dans un pré en présence d'enfants.">
-      <div class="overlay-texte">
-        <p>Distribution de nourriture aux chèvres dans un pré en présence d'enfants.</p>
-      </div>
-    </div>
-
-    <div class="galerie-item">
-      <img src="chemin/vers/votre/photo6.jpg" alt="Échange pédagogique avec un groupe d'enfants dans une cour près de bacs de plantation.">
-      <div class="overlay-texte">
-        <p>Échange pédagogique avec un groupe d'enfants près de bacs de plantation.</p>
-      </div>
-    </div>
-
-    <div class="galerie-item">
-      <img src="chemin/vers/votre/photo7.jpg" alt="Séance de manipulation et de contact avec des lapins dans un enclos intérieur.">
-      <div class="overlay-texte">
-        <p>Séance de manipulation et de contact avec des lapins dans un enclos intérieur.</p>
-      </div>
-    </div>
-
-    <div class="galerie-item">
-      <img src="chemin/vers/votre/photo0.jpg" alt="Stand d'exposition de la ferme pédagogique avec tonnelle, bottes de paille et panneaux d'information.">
-      <div class="overlay-texte">
-        <p>Stand d'exposition de la ferme pédagogique avec tonnelle et panneaux d'information.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <!-- ========== DEMARCHE ========== -->
 <section class="padded demarche" id="demarche">
