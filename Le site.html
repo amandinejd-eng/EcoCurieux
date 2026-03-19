@@ -227,31 +227,174 @@
   }
   .section-title span { color: var(--brown); }
 
-  /* ========== SERVICES ========== */
+  /* ========== SERVICES FLIP CARDS ========== */
   .services { background: var(--beige-light); }
-  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-  .service-card {
-    background: var(--white); border-radius: 20px;
+  .services-carousel-container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .service-carousel {
+    width: 200px;
+    height: 380px;
+    perspective: 1000px;
+    position: relative;
+  }
+  
+  .flip-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+  
+  .service-carousel:hover .flip-card {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
     border: 2px solid var(--beige-2);
-    padding: 2rem 1.6rem;
     box-shadow: 5px 5px 0 var(--beige-2);
-    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1.6rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
   }
-  .service-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--beige-2); }
-  .service-card.card-green { background: var(--green); border-color: var(--green-dark); box-shadow: 5px 5px 0 var(--green-dark); }
-  .service-card.card-green:hover { box-shadow: 8px 8px 0 var(--green-dark); }
-  .service-card.card-brown { background: var(--brown); border-color: #8f5228; box-shadow: 5px 5px 0 #8f5228; }
-  .service-card.card-brown:hover { box-shadow: 8px 8px 0 #8f5228; }
+  
+  .flip-card-front {
+    background: var(--white);
+    text-align: center;
+  }
+  
+  .flip-card-back {
+    background: var(--white);
+    transform: rotateY(180deg);
+    text-align: left;
+    overflow-y: auto;
+    padding: 1.5rem;
+  }
+  
+  .service-carousel:hover .flip-card-face {
+    box-shadow: 8px 8px 0 var(--beige-2);
+  }
+  
+  .service-carousel.card-green .flip-card-face {
+    background: var(--green);
+    border-color: var(--green-dark);
+    box-shadow: 5px 5px 0 var(--green-dark);
+  }
+  
+  .service-carousel.card-green:hover .flip-card-face {
+    box-shadow: 8px 8px 0 var(--green-dark);
+  }
+  
+  .service-carousel.card-brown .flip-card-face {
+    background: var(--brown);
+    border-color: #8f5228;
+    box-shadow: 5px 5px 0 #8f5228;
+  }
+  
+  .service-carousel.card-brown:hover .flip-card-face {
+    box-shadow: 8px 8px 0 #8f5228;
+  }
+  
   .service-icon-wrap {
-    width: 56px; height: 56px; border-radius: 14px;
-    background: var(--beige); display: flex; align-items: center; justify-content: center;
-    font-size: 1.7rem; margin-bottom: 1.1rem; box-shadow: 2px 2px 0 var(--beige-2);
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--beige);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    margin-bottom: 1.1rem;
+    box-shadow: 2px 2px 0 var(--beige-2);
   }
-  .card-green .service-icon-wrap, .card-brown .service-icon-wrap { background: rgba(255,255,255,0.18); box-shadow: none; }
-  .service-card h3 { font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--green-dark); margin-bottom: 0.7rem; }
-  .card-green h3, .card-brown h3 { color: var(--white); }
-  .service-card p { font-size: 0.87rem; line-height: 1.72; color: #5a5040; }
-  .card-green p, .card-brown p { color: rgba(255,255,255,0.85); }
+  
+  .card-green .service-icon-wrap,
+  .card-brown .service-icon-wrap {
+    background: rgba(255,255,255,0.18);
+    box-shadow: none;
+  }
+  
+  .service-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--green-dark);
+    margin-bottom: 0.7rem;
+    line-height: 1.3;
+  }
+  
+  .card-green h3,
+  .card-brown h3 {
+    color: var(--white);
+  }
+  
+  .service-card p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #5a5040;
+    margin: 0;
+  }
+  
+  .card-green p,
+  .card-brown p {
+    color: rgba(255,255,255,0.9);
+  }
+  
+  /* Stages nature special handling */
+  .service-carousel:last-child .flip-card-back {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 768px) {
+    .services-carousel-container {
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    
+    .service-carousel {
+      width: 100%;
+      max-width: 350px;
+      height: 320px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .services-carousel-container {
+      gap: 1rem;
+    }
+    
+    .service-carousel {
+      height: 300px;
+    }
+    
+    .service-card h3 {
+      font-size: 0.9rem;
+    }
+    
+    .service-card p {
+      font-size: 0.8rem;
+    }
+  }
 
   /* ========== DEMARCHE ========== */
   .demarche { background: var(--green-dark); }
@@ -688,41 +831,72 @@
   <div class="section-inner">
     <div class="section-label">Ce que je propose</div>
     <div class="section-title">Des animations <span>vivantes</span> et sur mesure</div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon-wrap">🦔</div>
-        <h3>Animations nature & biodiversité</h3>
-        <p>Des séances d'observation et d'expérimentation adaptées à chaque âge, faune, flore, insectes, oiseaux. Le vivant comme terrain de jeu et d'apprentissage.</p>
-      </div>
-      <div class="service-card card-green" id="kits">
-        <div class="service-icon-wrap">🦗</div>
-        <h3>Location de kits pédagogiques</h3>
-        <p>Couveuse pédagogique, kits insectes, petits animaux (cochons d'Inde, lapins), supports pédagogiques. Chaque kit est accompagné de conseils et recommandations pour le bien-être animal.</p>
-      </div>
-      <div class="service-card card-brown">
-        <div class="service-icon-wrap">🏫</div>
-        <h3>Interventions sur site</h3>
-        <p>J'interviens directement dans votre établissement ou sur les lieux d'événements avec tout le matériel. Animations adaptées au contexte, aux participants et à vos objectifs.</p>
-      </div>
-      <div class="service-card" id="projets">
-        <div class="service-icon-wrap">✏️</div>
-        <h3>Projets sur mesure</h3>
-        <p>Vous avez une idée précise ou un besoin particulier ? Je co-construis avec vous un projet pédagogique sur plusieurs séances, adapté à votre public, votre lieu et vos contraintes.</p>
-      </div>
-
-      <!-- Card 5, stages, pleine largeur horizontale -->
-      <div class="service-card card-green stages-card" id="stages">
-        <div class="stages-row">
-          <div class="stages-badge">
-            <span class="sb-icon">📔</span>
-            <span>Stages<br>nature</span>
+    <div class="services-carousel-container">
+      <!-- Flip Card 1 -->
+      <div class="service-carousel">
+        <div class="flip-card">
+          <div class="flip-card-face flip-card-front">
+            <div class="service-icon-wrap">🦔</div>
+            <h3>Animations nature & biodiversité</h3>
           </div>
-          <div class="stages-text">
-            <h3>Stages nature &amp; cahier buissonnier</h3>
+          <div class="flip-card-face flip-card-back">
+            <p>Des séances d'observation et d'expérimentation adaptées à chaque âge, faune, flore, insectes, oiseaux. Le vivant comme terrain de jeu et d'apprentissage.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Flip Card 2 -->
+      <div class="service-carousel card-green">
+        <div class="flip-card">
+          <div class="flip-card-face flip-card-front">
+            <div class="service-icon-wrap">🦗</div>
+            <h3>Location de kits pédagogiques</h3>
+          </div>
+          <div class="flip-card-face flip-card-back">
+            <p>Couveuse pédagogique, kits insectes, petits animaux (cochons d'Inde, lapins), supports pédagogiques. Chaque kit est accompagné de conseils et recommandations pour le bien-être animal.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Flip Card 3 -->
+      <div class="service-carousel card-brown">
+        <div class="flip-card">
+          <div class="flip-card-face flip-card-front">
+            <div class="service-icon-wrap">🏫</div>
+            <h3>Interventions sur site</h3>
+          </div>
+          <div class="flip-card-face flip-card-back">
+            <p>J'interviens directement dans votre établissement ou sur les lieux d'événements avec tout le matériel. Animations adaptées au contexte, aux participants et à vos objectifs.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Flip Card 4 -->
+      <div class="service-carousel">
+        <div class="flip-card">
+          <div class="flip-card-face flip-card-front">
+            <div class="service-icon-wrap">✏️</div>
+            <h3>Projets sur mesure</h3>
+          </div>
+          <div class="flip-card-face flip-card-back">
+            <p>Vous avez une idée précise ou un besoin particulier ? Je co-construis avec vous un projet pédagogique sur plusieurs séances, adapté à votre public, votre lieu et vos contraintes.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Flip Card 5 -->
+      <div class="service-carousel card-green">
+        <div class="flip-card">
+          <div class="flip-card-face flip-card-front">
+            <div class="service-icon-wrap">📔</div>
+            <h3>Stages nature & cahier buissonnier</h3>
+          </div>
+          <div class="flip-card-face flip-card-back">
             <p>Une immersion d'une demi-journée ou d'une journée pour se reconnecter au vivant. Je vous fournis votre carnet de terrain personnel pour explorer la biodiversité locale à travers l'observation et la création : réalisation d'herbiers, inventaires d'insectes ou croquis d'oiseaux. Un mélange ludique de science et de contemplation pour apprendre à lire le paysage, et repartir avec votre précieux carnet illustré par vos soins.</p>
           </div>
         </div>
-      </div></div>
+      </div>
+    </div>
   </div>
 </section>
 
