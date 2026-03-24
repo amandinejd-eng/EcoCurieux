@@ -109,7 +109,7 @@
     transition: background 0.2s, transform 0.15s;
     white-space: nowrap; flex-shrink: 0;
   }
-  .nav-cta:hover { background: #8f5228; transform: scale(1.04); }
+  .nav-cta:hover { background: var(--brown); transform: scale(1.04); }
 
   /* Hamburger */
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
@@ -180,7 +180,7 @@
     text-transform: uppercase; letter-spacing: 0.07em;
     transition: all 0.3s; box-shadow: 0 4px 20px rgba(175,106,50,0.45);
   }
-  .btn-primary:hover { background: #8f5228; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(175,106,50,0.55); }
+  .btn-primary:hover { background: var(--brown); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(175,106,50,0.55); }
   .btn-outline {
     border: 2px solid rgba(243,222,180,0.45); color: var(--beige);
     padding: 12px 26px; border-radius: 40px; text-decoration: none;
@@ -253,6 +253,7 @@
     box-sizing: border-box;
     transition: all 0.3s ease;
     border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 5px 5px 0 var(--beige-2);
   }
   
   /* On force le bloc "Stages" à prendre toute la largeur en bas car il est très long */
@@ -262,12 +263,20 @@
   
   /* Couleurs spécifiques */
   .kits, .stages { 
-    background-color: #5d7c52; 
+    background-color: var(--green); 
     color: #ffffff; 
+    box-shadow: 5px 5px 0 var(--green-dark);
+  }
+  .kits:hover, .stages:hover {
+    box-shadow: 8px 8px 0 var(--green-dark);
   }
   .interventions { 
-    background-color: #a66a3e; 
+    background-color: var(--brown); 
     color: #ffffff; 
+    box-shadow: 5px 5px 0 #8f5228;
+  }
+  .interventions:hover {
+    box-shadow: 8px 8px 0 #8f5228;
   }
   
   /* Style interne */
@@ -315,8 +324,16 @@
   
   /* Effet au survol */
   .bento-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transform: translate(-3px,-3px);
+    box-shadow: 8px 8px 0 var(--beige-2);
+  }
+  
+  /* Hover spécifique pour conserver les ombres colorées */
+  .kits:hover, .stages:hover {
+    box-shadow: 8px 8px 0 var(--green-dark);
+  }
+  .interventions:hover {
+    box-shadow: 8px 8px 0 #8f5228;
   }
   
   /* Mobile : tout sur une colonne */
@@ -376,7 +393,7 @@
   .univers-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--beige-2); }
   .univers-card.u-green { background: var(--green); border-color: var(--green-dark); box-shadow: 5px 5px 0 var(--green-dark); }
   .univers-card.u-green:hover { box-shadow: 8px 8px 0 var(--green-dark); }
-  .univers-card.u-brown { background: var(--brown); border-color: #8f5228; box-shadow: 5px 5px 0 #8f5228; }
+  .univers-card.u-brown { background: var(--brown); border-color: var(--brown); box-shadow: 5px 5px 0 #8f5228; }
   .univers-card.u-brown:hover { box-shadow: 8px 8px 0 #8f5228; }
   .univers-head { padding: 1.5rem 1.5rem 1rem; border-bottom: 1px solid rgba(0,0,0,0.07); }
   .u-green .univers-head, .u-brown .univers-head { border-bottom-color: rgba(255,255,255,0.12); }
@@ -405,7 +422,7 @@
   .atelier-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--beige-2); }
   .atelier-card.ac-green { background: var(--green); border-color: var(--green-dark); box-shadow: 5px 5px 0 var(--green-dark); }
   .atelier-card.ac-green:hover { box-shadow: 8px 8px 0 var(--green-dark); }
-  .atelier-card.ac-brown { background: var(--brown); border-color: #8f5228; box-shadow: 5px 5px 0 #8f5228; }
+  .atelier-card.ac-brown { background: var(--brown); border-color: var(--brown); box-shadow: 5px 5px 0 #8f5228; }
   .atelier-card.ac-brown:hover { box-shadow: 8px 8px 0 #8f5228; }
   .ac-brown .ac-icon-wrap { background: rgba(255,255,255,0.18); box-shadow: none; }
   .ac-brown h3 { color: var(--white); }
@@ -455,7 +472,7 @@
   .garantie-box:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--beige-2); }
   .garantie-box.gb-green { background: var(--green); border-color: var(--green-dark); box-shadow: 5px 5px 0 var(--green-dark); }
   .garantie-box.gb-green:hover { box-shadow: 8px 8px 0 var(--green-dark); }
-  .garantie-box.gb-brown { background: var(--brown); border-color: #8f5228; box-shadow: 5px 5px 0 #8f5228; }
+  .garantie-box.gb-brown { background: var(--brown); border-color: var(--brown); box-shadow: 5px 5px 0 #8f5228; }
   .garantie-box.gb-brown:hover { box-shadow: 8px 8px 0 #8f5228; }
   .garantie-box .gb-icon { font-size: 1.8rem; flex-shrink: 0; }
   .gb-title { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 800; color: var(--green-dark); margin-bottom: 3px; }
@@ -530,7 +547,7 @@
     text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.5rem;
     transition: background 0.2s;
   }
-  .btn-submit:hover { background: #8f5228; }
+  .btn-submit:hover { background: var(--brown); }
 
   /* ========== FOOTER ========== */
   footer {
