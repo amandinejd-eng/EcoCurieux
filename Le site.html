@@ -481,11 +481,12 @@
   .gb-green .gb-sub, .gb-brown .gb-sub { color: rgba(255,255,255,0.72); }
 
   /* ========== CONTACT ========== */
-  .contact { background: var(--green); }
-  .contact .section-title { color: var(--white); }
-  .contact .section-label { color: rgba(255,255,255,0.52); }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2.5rem; }
-  .contact-info p { color: rgba(255,255,255,0.85); line-height: 1.82; margin-bottom: 1.5rem; font-size: 0.97rem; }
+  .contact { background: var(--green); padding-bottom: 120px; }
+  .contact.padded { padding-top: 20px !important; padding-bottom: 180px; }
+  .contact .section-title { color: var(--white); margin-bottom: 0.5rem; }
+  .contact .section-label { color: rgba(255,255,255,0.52); margin-bottom: 1rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 1rem; align-items: start; }
+  .contact-info p { color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 1rem; font-size: 0.97rem; }
   .contact-detail { display: flex; align-items: center; gap: 12px; color: var(--white); margin-bottom: 1rem; font-size: 0.93rem; }
   .contact-detail .icon { font-size: 1.1rem; }
   .rc-badge {
@@ -495,11 +496,11 @@
     font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700;
     color: rgba(255,255,255,0.9);
   }
-  .contact-form { background: rgba(255,255,255,0.1); border-radius: 18px; padding: 2rem; border: 1px solid rgba(255,255,255,0.15); }
+  .contact-form { background: rgba(255,255,255,0.1); border-radius: 18px; padding: 1.8rem; border: 1px solid rgba(255,255,255,0.15); display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 40px; }
 
   /* Audience selector */
-  .form-label { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.62); margin-bottom: 0.7rem; display: block; }
-  .audience-selector { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .form-label { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.62); margin-bottom: 0.4rem; display: block; }
+  .audience-selector { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
   .aud-btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 10px 16px; border-radius: 30px;
@@ -529,7 +530,8 @@
   }
   .aud-btn:hover:not(.active) { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.45); color: rgba(255,255,255,0.9); }
 
-  .form-group { margin-bottom: 1rem; }
+  .form-group { margin-bottom: 0.5rem; }
+  .form-group:last-of-type { margin-bottom: 0.8rem; }
   .form-group label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.62); margin-bottom: 6px; }
   .form-group input, .form-group textarea, .form-group select {
     width: 100%; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
@@ -538,13 +540,13 @@
   }
   .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
   .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--beige); }
-  .form-group textarea { height: 95px; resize: vertical; }
+  .form-group textarea { height: 100px; resize: vertical; }
   .form-group select option { color: #333; background: #fff; }
   .btn-submit {
     width: 100%; background: var(--brown); color: var(--white);
-    padding: 14px; border-radius: 12px; border: none; cursor: pointer;
+    padding: 12px; border-radius: 12px; border: none; cursor: pointer;
     font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.93rem;
-    text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.5rem;
+    text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0;
     transition: background 0.2s;
   }
   .btn-submit:hover { background: var(--brown); }
