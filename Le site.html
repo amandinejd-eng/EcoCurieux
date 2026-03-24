@@ -81,12 +81,7 @@
     border-radius: 12px; min-width: 230px; padding: 0.5rem;
     box-shadow: 0 16px 40px rgba(0,0,0,0.3);
     opacity: 0; pointer-events: none;
-    transition: opacity 0.25s 0.1s, transform 0.25s 0.1s;
-  }
-  .nav-links > li:hover .dropdown,
-  .nav-links > li:focus-within .dropdown {
-    opacity: 1; pointer-events: all;
-    transform: translateX(-50%) translateY(0);
+    transition: opacity 0.25s, transform 0.25s;
   }
   .dropdown a {
     display: flex; align-items: center; gap: 10px;
@@ -97,6 +92,14 @@
   }
   .dropdown a:hover { background: rgba(243,222,180,0.12); color: var(--beige); }
   .dropdown a .dd-icon { font-size: 1rem; flex-shrink: 0; }
+  .dropdown a .dd-icon-mante {
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f3deb4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M9 11h6v2H9zm3-7c-1.66 0-3 1.34-3 3h2c0-.55.45-1 1-1s1 .45 1 1c0 .55-.45 1-1 1H8v2h4c1.66 0 3-1.34 3-3s-1.34-3-3-3z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
   .nav-cta {
     background: var(--brown); color: var(--white);
@@ -286,11 +289,21 @@
   }
   
   .bento-item h3 {
-    font-size: 1.3rem;
-    margin-bottom: 12px;
+    font-size: 1.5rem; /* On grossit un peu le titre */
+    text-transform: uppercase; /* Optionnel : pour un look plus structuré */
+    letter-spacing: 0.5px;
     margin-top: 0;
+    color: inherit; /* Garde la couleur du bloc (blanc ou foncé) */
+    border-bottom: 2px solid rgba(0,0,0,0.1); /* Une petite ligne discrète en dessous */
+    padding-bottom: 10px;
+    margin-bottom: 12px;
     font-weight: 700;
     line-height: 1.2;
+  }
+  
+  /* Si le fond est foncé, on met la ligne en blanc transparent */
+  .kits h3, .interventions h3, .stages h3 {
+    border-bottom: 2px solid rgba(255,255,255,0.2);
   }
   
   .bento-item p {
@@ -644,8 +657,43 @@
       <a href="#kits">Kits pédagogiques <span class="arrow">▼</span></a>
       <div class="dropdown">
         <a href="#kits"><span class="dd-icon">🥚</span>Couveuse pédagogique</a>
-        <a href="#kits"><span class="dd-icon">🦗</span>Kit mante religieuse</a>
-        <a href="#kits"><span class="dd-icon">🪲</span>Kit phasmes</a>
+        <a href="#kits"><svg class="dropdown-icon" viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="130" rx="18" ry="45" fill="#4a7a3a"/>
+          <ellipse cx="100" cy="80" rx="14" ry="20" fill="#5a8f48"/>
+          <path d="M85 62 L100 42 L115 62 Z" fill="#5a8f48"/>
+          <circle cx="91" cy="52" r="6" fill="#2c4f2a"/>
+          <circle cx="109" cy="52" r="6" fill="#2c4f2a"/>
+          <circle cx="92" cy="51" r="2.5" fill="#f3deb4"/>
+          <circle cx="110" cy="51" r="2.5" fill="#f3deb4"/>
+          <path d="M95 44 Q80 20 70 15" stroke="#2c4f2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M105 44 Q120 20 130 15" stroke="#2c4f2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M88 75 L60 60 L55 78" stroke="#4a7a3a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M112 75 L140 60 L145 78" stroke="#4a7a3a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M86 105 L55 115 L45 135" stroke="#3d6b30" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M114 105 L145 115 L155 135" stroke="#3d6b30" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M88 140 L55 155 L40 180" stroke="#3d6b30" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M112 140 L145 155 L160 180" stroke="#3d6b30" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg><span class="dropdown-text">Kit mante religieuse</span></a>
+        <a href="#kits"><svg class="dropdown-icon" viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 45 Q102 90 100 140 Q98 170 100 185" stroke="#8B6914" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <line x1="95" y1="70" x2="105" y2="70" stroke="#7a5c12" stroke-width="1"/>
+          <line x1="95" y1="90" x2="105" y2="90" stroke="#7a5c12" stroke-width="1"/>
+          <line x1="95" y1="110" x2="105" y2="110" stroke="#7a5c12" stroke-width="1"/>
+          <line x1="96" y1="130" x2="104" y2="130" stroke="#7a5c12" stroke-width="1"/>
+          <ellipse cx="100" cy="40" rx="7" ry="9" fill="#8B6914"/>
+          <circle cx="95" cy="38" r="2.5" fill="#5a4510"/>
+          <circle cx="105" cy="38" r="2.5" fill="#5a4510"/>
+          <circle cx="95.5" cy="37.5" r="1" fill="#f3deb4"/>
+          <circle cx="105.5" cy="37.5" r="1" fill="#f3deb4"/>
+          <path d="M96 32 Q80 15 72 10" stroke="#8B6914" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M104 32 Q120 15 128 10" stroke="#8B6914" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M97 60 L62 45 L45 55" stroke="#8B6914" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M103 60 L138 45 L155 55" stroke="#8B6914" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M97 95 L55 90 L35 108" stroke="#8B6914" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M103 95 L145 90 L165 108" stroke="#8B6914" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M97 135 L58 140 L38 168" stroke="#8B6914" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M103 135 L142 140 L162 168" stroke="#8B6914" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg><span class="dropdown-text">Kit phasmes</span></a>
       </div>
     </li>
     <li><a href="#ateliers">Infos pratiques</a></li>
@@ -1068,6 +1116,46 @@
   <p style="margin-top:6px;">© 2026 · Saône-et-Loire · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6e0f030f000a07000b040a2e011b1a02010105400d0103">[email&#160;protected]</a></p>
 </footer>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Gestion des dropdowns du menu navigation
+(function() {
+  const navItems = document.querySelectorAll('.nav-links > li');
+  let closeTimers = new Map();
+  
+  navItems.forEach(function(li) {
+    const dropdown = li.querySelector('.dropdown');
+    if (!dropdown) return;
+    
+    // Quand on entre dans le li (lien + dropdown)
+    li.addEventListener('mouseenter', function() {
+      // Annuler le timer de fermeture s'il existe
+      if (closeTimers.has(li)) {
+        clearTimeout(closeTimers.get(li));
+        closeTimers.delete(li);
+      }
+      // Ouvrir le dropdown
+      dropdown.style.opacity = '1';
+      dropdown.style.pointerEvents = 'all';
+      dropdown.style.transform = 'translateX(-50%) translateY(0)';
+    });
+    
+    // Quand on quitte le li complet
+    li.addEventListener('mouseleave', function(e) {
+      // Vérifier si on va vraiment hors du li (pas juste dans le dropdown)
+      const relatedTarget = e.relatedTarget;
+      if (!li.contains(relatedTarget)) {
+        // Démarrer un timer pour fermer après un délai
+        const timer = setTimeout(function() {
+          dropdown.style.opacity = '0';
+          dropdown.style.pointerEvents = 'none';
+          dropdown.style.transform = 'translateX(-50%) translateY(-8px)';
+          closeTimers.delete(li);
+        }, 300); // 300ms de délai pour permettre la transition
+        closeTimers.set(li, timer);
+      }
+    });
+  });
+})();
+
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
