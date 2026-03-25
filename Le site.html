@@ -480,15 +480,19 @@
   .gb-sub { font-family: 'Montserrat', sans-serif; font-size: 0.73rem; color: #7a6a50; }
   .gb-green .gb-sub, .gb-brown .gb-sub { color: rgba(255,255,255,0.72); }
 
+  #evenements { min-height: 100vh; }
+
   /* ========== CONTACT ========== */
-  .contact { background: var(--green); padding-bottom: 120px; }
+  .contact { background-color: var(--green); padding: 100px 0 300px 0 !important; margin-top: 0 !important; position: relative; z-index: 1; scroll-margin-top: 100px; }
   .contact.padded { padding-top: 20px !important; padding-bottom: 180px; }
   .contact .section-title { color: var(--white); margin-bottom: 0.5rem; }
   .contact .section-label { color: rgba(255,255,255,0.52); margin-bottom: 1rem; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 1rem; align-items: start; }
-  .contact-info p { color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 1rem; font-size: 0.97rem; }
-  .contact-detail { display: flex; align-items: center; gap: 12px; color: var(--white); margin-bottom: 1rem; font-size: 0.93rem; }
-  .contact-detail .icon { font-size: 1.1rem; }
+  .contact-grid { display: flex !important; flex-direction: row !important; justify-content: space-between; align-items: flex-start !important; gap: 50px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .contact-info, .contact-form { flex: 1; min-width: 300px; }
+  .contact-info h2 { margin-top: 0 !important; padding-top: 0 !important; color: white !important; font-size: 32px; }
+  .contact-info p { margin-bottom: 40px !important; color: white !important; }
+  .contact-info, .contact-info ul, .contact-info li, .contact-info a { color: white !important; font-size: 18px !important; }
+  .contact-info li { margin-bottom: 30px !important; font-size: 18px !important; color: white !important; }
   .rc-badge {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
@@ -496,7 +500,7 @@
     font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700;
     color: rgba(255,255,255,0.9);
   }
-  .contact-form { background: rgba(255,255,255,0.1); border-radius: 18px; padding: 1.8rem; border: 1px solid rgba(255,255,255,0.15); display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 40px; }
+  .contact-form { background: rgba(255,255,255,0.1); border-radius: 18px; padding: 1.8rem; border: 1px solid rgba(255,255,255,0.15); display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 15px; margin-top: -20px !important; }
 
   /* Audience selector */
   .form-label { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.62); margin-bottom: 0.4rem; display: block; }
@@ -717,7 +721,6 @@
     </li>
     <li><a href="#ateliers">Infos pratiques</a></li>
     <li><a href="#evenements">Événements</a></li>
-    <li><a href="#contact">Contact</a></li>
   </ul>
 
   <a href="#contact" class="nav-cta">📬 Me contacter</a>
@@ -1079,54 +1082,59 @@
 </section>
 
 <!-- ========== CONTACT ========== -->
-<section class="padded contact" id="contact">
-  <div class="section-inner">
-    <div class="section-label">Parlons de votre projet</div>
-    <div class="section-title">Me <span style="color:var(--beige)">contacter</span></div>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <p>Vous souhaitez en savoir plus, obtenir un devis ou discuter d'un projet ? Contactez-moi directement, je vous réponds personnellement.</p>
-        <div class="contact-detail"><span class="icon">📞</span> 06.69.49.18.23</div>
-        <div class="contact-detail"><span class="icon">✉️</span> <a href="/cdn-cgi/l/email-protection#ceafa3afa0aaa7a0aba4aa8ea1bbbaa2a1a1a5e0ada1a3" style="color:var(--white);text-decoration:none"><span class="__cf_email__" data-cfemail="3d5c505c535954535857597d52484951525256135e5250">[email&#160;protected]</span></a></div>
-        <div class="contact-detail"><span class="icon">📍</span> Saône-et-Loire & alentours</div>
-        <div class="rc-badge">
-          ✅ Assurance Responsabilité Civile Professionnelle
+<section id="contact" style="padding: 120px 0 350px 0 !important; background-color: #6d8c54 !important;">
+    <div style="display: flex !important; flex-direction: row !important; align-items: flex-start !important; gap: 60px; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        
+        <div style="flex: 1; text-align: left;">
+            <h2 style="margin: 0 !important; padding: 0 !important; color: white !important; font-size: 32px; margin-bottom: 30px !important;">Me contacter</h2>
+            <p style="color: white !important; font-size: 18px; line-height: 1.6; margin-bottom: 40px !important;">
+                VOUS SOUHAITEZ EN SAVOIR PLUS, OBTENIR UN DEVIS OU DISCUTER D'UN PROJET ?<br><br>
+                Contactez-moi directement, je vous répondrai personnellement.
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0; text-align: left;">
+                <li style="margin-bottom: 30px !important; font-size: 18px !important; color: white !important;">📞 06.69.49.18.23</li>
+                <li style="margin-bottom: 30px !important; font-size: 18px !important; color: white !important;">✉️ <a href="/cdn-cgi/l/email-protection#ceafa3afa0aaa7a0aba4aa8ea1bbbaa2a1a1a5e0ada1a3" style="color:white !important; text-decoration:none;"><span class="__cf_email__" data-cfemail="3d5c505c535954535857597d52484951525256135e5250">[email&#160;protected]</span></a></li>
+                <li style="margin-bottom: 30px !important; font-size: 18px !important; color: white !important;">📍 Saône-et-Loire (71)</li>
+            </ul>
+            <div style="margin-top: 40px; padding: 15px; border: 2px solid white; display: inline-block; color: white !important;">
+                🛡️ Assurance Responsabilité Civile Professionnelle
+            </div>
         </div>
-      </div>
-      <div class="contact-form">
-        <span class="form-label">Vous êtes :</span>
-        <div class="audience-selector" id="audSelector">
-          <button type="button" class="aud-btn active" data-val="ecole" onclick="selectAud(this)">🏫 École / structure</button>
-          <button type="button" class="aud-btn" data-val="collectivite" onclick="selectAud(this)">🏛 Collectivité</button>
-          <button type="button" class="aud-btn" data-val="particulier" onclick="selectAud(this)">👨‍👩‍👧 Particulier</button>
-          <button type="button" class="aud-btn" data-val="autre" onclick="selectAud(this)">🙋 Autre</button>
+
+        <div style="flex: 1; margin-top: 0 !important;">
+            <span class="form-label">Vous êtes :</span>
+            <div class="audience-selector" id="audSelector">
+              <button type="button" class="aud-btn active" data-val="ecole" onclick="selectAud(this)">🏫 École / structure</button>
+              <button type="button" class="aud-btn" data-val="collectivite" onclick="selectAud(this)">🏛 Collectivité</button>
+              <button type="button" class="aud-btn" data-val="particulier" onclick="selectAud(this)">👨‍👩‍👧 Particulier</button>
+              <button type="button" class="aud-btn" data-val="autre" onclick="selectAud(this)">🙋 Autre</button>
+            </div>
+            <div class="form-group">
+              <label>Votre nom</label>
+              <input type="text" placeholder="Prénom Nom">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="votre@email.fr">
+            </div>
+            <div class="form-group">
+              <label>Type de projet</label>
+              <select>
+                <option>Animation nature</option>
+                <option>Location de kit pédagogique</option>
+                <option>Projet sur mesure</option>
+                <option>Événement / collectivité</option>
+                <option>Anniversaire nature</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Votre message</label>
+              <textarea placeholder="Décrivez votre projet, votre public, vos dates…" style="height: 180px !important;"></textarea>
+            </div>
+            <button class="btn-submit">🌿 Envoyer ma demande</button>
         </div>
-        <div class="form-group">
-          <label>Votre nom</label>
-          <input type="text" placeholder="Prénom Nom">
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="votre@email.fr">
-        </div>
-        <div class="form-group">
-          <label>Type de projet</label>
-          <select>
-            <option>Animation nature</option>
-            <option>Location de kit pédagogique</option>
-            <option>Projet sur mesure</option>
-            <option>Événement / collectivité</option>
-            <option>Anniversaire nature</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Votre message</label>
-          <textarea placeholder="Décrivez votre projet, votre public, vos dates…"></textarea>
-        </div>
-        <button class="btn-submit">🌿 Envoyer ma demande</button>
-      </div>
+
     </div>
-  </div>
 </section>
 
 <!-- ========== FOOTER ========== -->
