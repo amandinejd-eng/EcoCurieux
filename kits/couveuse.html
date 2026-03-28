@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Couveuse pédagogique – Écocurieux</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  .kit-page-hero {
+    background: linear-gradient(160deg, rgba(44,79,42,0.95) 0%, rgba(70,123,67,0.72) 55%, rgba(44,79,42,0.92) 100%);
+    background-color: var(--green-dark);
+    padding: 140px 2rem 80px;
+    text-align: center;
+  }
+  .kit-page-hero .breadcrumb {
+    font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: rgba(243,222,180,0.52); margin-bottom: 1.2rem;
+  }
+  .kit-page-hero .breadcrumb a { color: rgba(243,222,180,0.65); text-decoration: none; }
+  .kit-page-hero .breadcrumb a:hover { color: var(--beige); }
+  .kit-page-hero .kit-icon { font-size: 4.5rem; display: block; margin-bottom: 1rem; }
+  .kit-page-hero h1 {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    color: var(--beige); line-height: 1.08;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  }
+  .kit-page-hero h1 .accent { color: var(--brown); }
+  .kit-page-hero .hero-sub {
+    font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 600;
+    color: rgba(243,222,180,0.68); letter-spacing: 0.06em;
+    margin-bottom: 2rem;
+  }
+  .kit-page-hero .hero-tags { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .hero-tag {
+    background: rgba(243,222,180,0.12); border: 1px solid rgba(243,222,180,0.25);
+    color: rgba(243,222,180,0.82); padding: 6px 16px; border-radius: 30px;
+    font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .kit-content { max-width: 900px; margin: 0 auto; padding: 72px 2rem 80px; }
+  .kit-desc {
+    background: var(--white); border-radius: 22px;
+    border: 2px solid var(--beige-2);
+    box-shadow: 6px 6px 0 var(--beige-2);
+    padding: 2.5rem 3rem;
+    margin-bottom: 2rem;
+  }
+  .kit-desc h2 {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: 1.3rem; color: var(--green-dark);
+    margin-bottom: 1rem; padding-bottom: 0.7rem;
+    border-bottom: 2px solid var(--beige-2);
+  }
+  .kit-desc p { font-size: 0.96rem; line-height: 1.82; color: #5a5040; margin-bottom: 1rem; }
+  .kit-desc p:last-child { margin-bottom: 0; }
+  .kit-included {
+    background: var(--green);
+    border-radius: 22px;
+    padding: 2.5rem 3rem;
+    margin-bottom: 2rem;
+  }
+  .kit-included h2 {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: 1.3rem; color: var(--beige);
+    margin-bottom: 1.2rem; padding-bottom: 0.7rem;
+    border-bottom: 2px solid rgba(243,222,180,0.2);
+  }
+  .kit-included ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+  .kit-included ul li {
+    font-size: 0.92rem; color: rgba(243,222,180,0.88); line-height: 1.6;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .kit-included ul li::before { content: "✅"; flex-shrink: 0; margin-top: 1px; }
+  .kit-infos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 2rem; }
+  .kit-info-box {
+    background: var(--beige-light); border: 2px solid var(--beige-2);
+    border-radius: 16px; padding: 1.4rem 1.8rem;
+    box-shadow: 4px 4px 0 var(--beige-2);
+  }
+  .kit-info-box .info-label {
+    font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em; color: var(--brown); margin-bottom: 0.4rem;
+  }
+  .kit-info-box .info-val {
+    font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: var(--green-dark);
+  }
+  .kit-cta {
+    background: var(--brown);
+    border-radius: 22px;
+    padding: 2.5rem 3rem;
+    text-align: center;
+  }
+  .kit-cta h2 {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: 1.2rem; color: var(--white);
+    margin-bottom: 0.8rem;
+  }
+  .kit-cta p { color: rgba(255,255,255,0.82); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .kit-back {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: rgba(243,222,180,0.62); text-decoration: none;
+    font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-top: 2rem; transition: color 0.2s;
+  }
+  .kit-back:hover { color: var(--beige); }
+  @media (max-width: 700px) {
+    .kit-desc, .kit-included { padding: 1.8rem 1.5rem; }
+    .kit-infos-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-img"><img src="/Logo/logo.png" alt="Écocurieux logo">
+    </div>
+    <div>
+      <div class="nav-logo-name">Écocurieux</div>
+      <div class="nav-logo-sub">Animation nature & biodiversité</div>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li>
+      <a href="/#services">Animations <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <a href="/#services"><span class="dd-icon">🦔</span>Animations nature</a>
+        <a href="/#services"><span class="dd-icon">🏫</span>Interventions sur site</a>
+        <a href="/#stages"><span class="dd-icon">📔</span>Stages nature</a>
+        <a href="/#boite"><span class="dd-icon">💡</span>La boîte à idées</a>
+      </div>
+    </li>
+    <li>
+      <a href="/kits/">Kits pédagogiques <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <a href="/kits/couveuse.html"><span class="dd-icon">🥚</span>Couveuse pédagogique</a>
+        <a href="/kits/mante-religieuse.html"><svg class="dropdown-icon" viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="130" rx="18" ry="45" fill="#6BBF47"/>
+          <ellipse cx="100" cy="80" rx="14" ry="20" fill="#7FD15E"/>
+          <path d="M85 62 L100 42 L115 62 Z" fill="#7FD15E"/>
+          <circle cx="91" cy="52" r="6" fill="#A8E890"/>
+          <circle cx="109" cy="52" r="6" fill="#A8E890"/>
+          <path d="M88 75 L60 60 L55 78" stroke="#7FD15E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M112 75 L140 60 L145 78" stroke="#7FD15E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg><span class="dropdown-text">Kit mante religieuse</span></a>
+        <a href="/kits/phasmes.html"><svg class="dropdown-icon" viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 45 Q102 90 100 140 Q98 170 100 185" stroke="#C4A77D" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <ellipse cx="100" cy="40" rx="7" ry="9" fill="#C4A77D"/>
+          <path d="M97 60 L62 45 L45 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M103 60 L138 45 L155 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg><span class="dropdown-text">Kit phasmes</span></a>
+      </div>
+    </li>
+    <li><a href="/#ateliers">Infos pratiques</a></li>
+    <li><a href="/#evenements">Événements</a></li>
+  </ul>
+
+  <a href="/#contact" class="nav-cta">📬 Me contacter</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mm-head">Animations</span>
+  <a href="/#services" onclick="toggleMenu()"><span>🦔</span> Animations nature</a>
+  <a href="/#boite" onclick="toggleMenu()"><span>💡</span> La boîte à idées</a>
+  <span class="mm-head">Services</span>
+  <a href="/kits/" onclick="toggleMenu()"><span>🥚</span> Kits pédagogiques</a>
+  <span class="mm-head">Informations</span>
+  <a href="/#ateliers" onclick="toggleMenu()"><span>📋</span> Infos pratiques</a>
+  <a href="/#evenements" onclick="toggleMenu()"><span>📅</span> Événements</a>
+  <a href="/#contact" onclick="toggleMenu()"><span>📬</span> Contact</a>
+  <a href="/#contact" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
+</div>
+
+<!-- ========== HERO ========== -->
+<div class="kit-page-hero">
+  <div class="breadcrumb"><a href="/">Accueil</a> &rsaquo; <a href="/kits/">Kits pédagogiques</a> &rsaquo; Couveuse pédagogique</div>
+  <span class="kit-icon">🥚</span>
+  <h1>Couveuse <span class="accent">pédagogique</span></h1>
+  <p class="hero-sub">Observez l'éclosion en direct dans votre classe ou structure</p>
+  <div class="hero-tags">
+    <span class="hero-tag">🏫 Écoles & crèches</span>
+    <span class="hero-tag">🏛 Collectivités</span>
+    <span class="hero-tag">👨‍👩‍👧 Familles</span>
+  </div>
+</div>
+
+<!-- ========== CONTENU ========== -->
+<section style="background: var(--beige-light);">
+  <div class="kit-content">
+
+    <div class="kit-desc">
+      <h2>🐣 Description</h2>
+      <p>La couveuse pédagogique est un kit d'observation fascinant qui permet aux enfants — et aux adultes ! — de suivre l'intégralité du cycle d'éclosion des œufs, du premier jour d'incubation jusqu'aux premières heures des poussins.</p>
+      <p>Idéale pour les projets en classe, les centres de loisirs, les événements familiaux ou les structures d'accueil de la petite enfance. Cette expérience unique crée un lien fort avec le vivant et génère toujours un moment de magie partagée.</p>
+      <p>Je vous accompagne tout au long de la location : conseils, suivi de température, gestion du retournement des œufs et que faire à l'éclosion.</p>
+    </div>
+
+    <div class="kit-included">
+      <h2>📦 Contenu du kit</h2>
+      <ul>
+        <li>La couveuse (avec thermostat et humidimètre intégrés)</li>
+        <li>Les œufs fertilisés (nombre selon formule choisie)</li>
+        <li>Carnet pédagogique de suivi de l'incubation</li>
+        <li>Fiches d'activités pour les enfants</li>
+        <li>Guide d'entretien et conseils bien-être animal</li>
+        <li>Suivi téléphonique / messagerie pendant toute la durée de la location</li>
+      </ul>
+    </div>
+
+    <div class="kit-infos-grid">
+      <div class="kit-info-box">
+        <div class="info-label">Durée de location</div>
+        <div class="info-val">3 semaines (incubation + éclosion)</div>
+      </div>
+      <div class="kit-info-box">
+        <div class="info-label">Public cible</div>
+        <div class="info-val">Dès 2 ans – tous niveaux</div>
+      </div>
+      <div class="kit-info-box">
+        <div class="info-label">Zone de livraison</div>
+        <div class="info-val">Saône-et-Loire & alentours</div>
+      </div>
+      <div class="kit-info-box">
+        <div class="info-label">Tarif</div>
+        <div class="info-val">Sur devis — contactez-moi</div>
+      </div>
+    </div>
+
+    <div class="kit-cta">
+      <h2>Réserver la couveuse pédagogique</h2>
+      <p>Disponibilités limitées. Contactez-moi pour vérifier les dates et recevoir un devis personnalisé selon votre projet.</p>
+      <a href="/#contact" class="btn-primary" style="background: var(--white); color: var(--brown);">📬 Demander un devis</a>
+    </div>
+
+    <a href="/kits/" class="kit-back">← Retour aux kits pédagogiques</a>
+
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <p><strong>Écocurieux</strong> · Animation nature & biodiversité · Amandine Junier-Dubus</p>
+  <p style="margin-top:6px;">© 2026 · Saône-et-Loire · <a href="mailto:amandinejd@gmail.com">amandinejd@gmail.com</a></p>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kits pédagogiques – Écocurieux</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  .kits-hero {
+    background: linear-gradient(160deg, rgba(44,79,42,0.95) 0%, rgba(70,123,67,0.75) 60%, rgba(44,79,42,0.92) 100%);
+    background-color: var(--green-dark);
+    padding: 140px 2rem 80px;
+    text-align: center;
+  }
+  .kits-hero .breadcrumb {
+    font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: rgba(243,222,180,0.52); margin-bottom: 1.2rem;
+  }
+  .kits-hero .breadcrumb a { color: rgba(243,222,180,0.65); text-decoration: none; }
+  .kits-hero .breadcrumb a:hover { color: var(--beige); }
+  .kits-hero h1 {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    color: var(--beige); line-height: 1.05;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  }
+  .kits-hero h1 .accent { color: var(--brown); }
+  .kits-hero p {
+    font-size: 1rem; color: rgba(243,222,180,0.75);
+    max-width: 580px; margin: 0 auto; line-height: 1.8;
+  }
+  .kits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 2rem 80px;
+  }
+  .kit-card {
+    background: var(--white);
+    border-radius: 22px;
+    border: 2px solid var(--beige-2);
+    box-shadow: 6px 6px 0 var(--beige-2);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+  .kit-card:hover { transform: translate(-4px,-4px); box-shadow: 10px 10px 0 var(--beige-2); }
+  .kit-card-head {
+    background: var(--green);
+    padding: 2.2rem 2rem 1.6rem;
+    text-align: center;
+  }
+  .kit-card-icon { font-size: 3.2rem; display: block; margin: 0 auto 0.8rem; }
+  .kit-card-head h2 {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: 1.05rem; color: var(--beige); line-height: 1.2;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .kit-card-body { padding: 1.6rem 1.8rem 2rem; flex: 1; display: flex; flex-direction: column; }
+  .kit-card-body p {
+    font-size: 0.87rem; line-height: 1.75; color: #5a5040;
+    flex: 1; margin-bottom: 1.4rem;
+  }
+  .kit-card-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--brown); color: var(--white);
+    padding: 11px 22px; border-radius: 30px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.82rem;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 14px rgba(175,106,50,0.35);
+    text-decoration: none;
+  }
+  .kit-card:hover .kit-card-cta { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(175,106,50,0.45); }
+  .kits-info {
+    background: var(--green-dark);
+    padding: 50px 2rem;
+    text-align: center;
+  }
+  .kits-info p {
+    font-size: 0.92rem; color: rgba(243,222,180,0.72); line-height: 1.8;
+    max-width: 640px; margin: 0 auto 1.5rem;
+  }
+  .kits-info .info-pills { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
+  .info-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(243,222,180,0.08); border: 1px solid rgba(243,222,180,0.18);
+    border-radius: 30px; padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700;
+    color: rgba(243,222,180,0.85);
+  }
+  @media (max-width: 900px) {
+    .kits-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-img"><img src="/Logo/logo.png" alt="Écocurieux logo">
+    </div>
+    <div>
+      <div class="nav-logo-name">Écocurieux</div>
+      <div class="nav-logo-sub">Animation nature & biodiversité</div>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li>
+      <a href="/#services">Animations <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <a href="/#services"><span class="dd-icon">🦔</span>Animations nature</a>
+        <a href="/#services"><span class="dd-icon">🏫</span>Interventions sur site</a>
+        <a href="/#stages"><span class="dd-icon">📔</span>Stages nature</a>
+        <a href="/#boite"><span class="dd-icon">💡</span>La boîte à idées</a>
+      </div>
+    </li>
+    <li>
+      <a href="/kits/">Kits pédagogiques <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <a href="/kits/couveuse.html"><span class="dd-icon">🥚</span>Couveuse pédagogique</a>
+        <a href="/kits/mante-religieuse.html"><svg class="dropdown-icon" viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="130" rx="18" ry="45" fill="#6BBF47"/>
+          <ellipse cx="100" cy="80" rx="14" ry="20" fill="#7FD15E"/>
+          <path d="M85 62 L100 42 L115 62 Z" fill="#7FD15E"/>
+          <circle cx="91" cy="52" r="6" fill="#A8E890"/>
+          <circle cx="109" cy="52" r="6" fill="#A8E890"/>
+          <circle cx="92" cy="51" r="2.5" fill="#FFFFFF"/>
+          <circle cx="110" cy="51" r="2.5" fill="#FFFFFF"/>
+          <path d="M95 44 Q80 20 70 15" stroke="#A8E890" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M105 44 Q120 20 130 15" stroke="#A8E890" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M88 75 L60 60 L55 78" stroke="#7FD15E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M112 75 L140 60 L145 78" stroke="#7FD15E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M86 105 L55 115 L45 135" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M114 105 L145 115 L155 135" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M88 140 L55 155 L40 180" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M112 140 L145 155 L160 180" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg><span class="dropdown-text">Kit mante religieuse</span></a>
+        <a href="/kits/phasmes.html"><svg class="dropdown-icon" viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 45 Q102 90 100 140 Q98 170 100 185" stroke="#C4A77D" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <line x1="95" y1="70" x2="105" y2="70" stroke="#D4B896" stroke-width="1"/>
+          <line x1="95" y1="90" x2="105" y2="90" stroke="#D4B896" stroke-width="1"/>
+          <line x1="95" y1="110" x2="105" y2="110" stroke="#D4B896" stroke-width="1"/>
+          <line x1="96" y1="130" x2="104" y2="130" stroke="#D4B896" stroke-width="1"/>
+          <ellipse cx="100" cy="40" rx="7" ry="9" fill="#C4A77D"/>
+          <circle cx="95" cy="38" r="2.5" fill="#E8D4B8"/>
+          <circle cx="105" cy="38" r="2.5" fill="#E8D4B8"/>
+          <circle cx="95.5" cy="37.5" r="1" fill="#FFFFFF"/>
+          <circle cx="105.5" cy="37.5" r="1" fill="#FFFFFF"/>
+          <path d="M96 32 Q80 15 72 10" stroke="#D4B896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M104 32 Q120 15 128 10" stroke="#D4B896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M97 60 L62 45 L45 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M103 60 L138 45 L155 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M97 95 L55 90 L35 108" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M103 95 L145 90 L165 108" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M97 135 L58 140 L38 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M103 135 L142 140 L162 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg><span class="dropdown-text">Kit phasmes</span></a>
+      </div>
+    </li>
+    <li><a href="/#ateliers">Infos pratiques</a></li>
+    <li><a href="/#evenements">Événements</a></li>
+  </ul>
+
+  <a href="/#contact" class="nav-cta">📬 Me contacter</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mm-head">Animations</span>
+  <a href="/#services" onclick="toggleMenu()"><span>🦔</span> Animations nature</a>
+  <a href="/#boite" onclick="toggleMenu()"><span>💡</span> La boîte à idées</a>
+  <span class="mm-head">Services</span>
+  <a href="/kits/" onclick="toggleMenu()"><span>🥚</span> Kits pédagogiques</a>
+  <span class="mm-head">Informations</span>
+  <a href="/#ateliers" onclick="toggleMenu()"><span>📋</span> Infos pratiques</a>
+  <a href="/#evenements" onclick="toggleMenu()"><span>📅</span> Événements</a>
+  <a href="/#contact" onclick="toggleMenu()"><span>📬</span> Contact</a>
+  <a href="/#contact" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
+</div>
+
+<!-- ========== HERO ========== -->
+<div class="kits-hero">
+  <div class="breadcrumb"><a href="/">Accueil</a> &rsaquo; Kits pédagogiques</div>
+  <h1>Location de <span class="accent">kits pédagogiques</span></h1>
+  <p>Des kits tout prêts pour accueillir le vivant dans votre classe, structure ou événement. Chaque kit est accompagné de conseils et recommandations pour le bien-être animal.</p>
+</div>
+
+<!-- ========== GRILLE DES KITS ========== -->
+<section style="background: var(--beige-light);">
+  <div class="kits-grid">
+
+    <a href="/kits/couveuse.html" class="kit-card">
+      <div class="kit-card-head">
+        <span class="kit-card-icon">🥚</span>
+        <h2>Couveuse pédagogique</h2>
+      </div>
+      <div class="kit-card-body">
+        <p>Observez l'éclosion des œufs en direct ! Un kit idéal pour les écoles, crèches et centres de loisirs. La couveuse, les œufs, le suivi de l'incubation et un carnet pédagogique sont inclus.</p>
+        <span class="kit-card-cta">Découvrir →</span>
+      </div>
+    </a>
+
+    <a href="/kits/mante-religieuse.html" class="kit-card">
+      <div class="kit-card-head">
+        <svg class="kit-card-icon" viewBox="0 0 200 200" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="130" rx="18" ry="45" fill="#6BBF47"/>
+          <ellipse cx="100" cy="80" rx="14" ry="20" fill="#7FD15E"/>
+          <path d="M85 62 L100 42 L115 62 Z" fill="#7FD15E"/>
+          <circle cx="91" cy="52" r="6" fill="#A8E890"/>
+          <circle cx="109" cy="52" r="6" fill="#A8E890"/>
+          <circle cx="92" cy="51" r="2.5" fill="#FFFFFF"/>
+          <circle cx="110" cy="51" r="2.5" fill="#FFFFFF"/>
+          <path d="M95 44 Q80 20 70 15" stroke="#A8E890" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M105 44 Q120 20 130 15" stroke="#A8E890" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M88 75 L60 60 L55 78" stroke="#7FD15E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M112 75 L140 60 L145 78" stroke="#7FD15E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M86 105 L55 115 L45 135" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M114 105 L145 115 L155 135" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M88 140 L55 155 L40 180" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M112 140 L145 155 L160 180" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h2>Kit mante religieuse</h2>
+      </div>
+      <div class="kit-card-body">
+        <p>Accueillez une ou plusieurs mantes religieuses pour une observation fascinante. Kit complet avec terrarium, nourriture, guide d'entretien et fiches pédagogiques.</p>
+        <span class="kit-card-cta">Découvrir →</span>
+      </div>
+    </a>
+
+    <a href="/kits/phasmes.html" class="kit-card">
+      <div class="kit-card-head">
+        <svg class="kit-card-icon" viewBox="0 0 200 200" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 45 Q102 90 100 140 Q98 170 100 185" stroke="#C4A77D" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <line x1="95" y1="70" x2="105" y2="70" stroke="#D4B896" stroke-width="1"/>
+          <line x1="95" y1="90" x2="105" y2="90" stroke="#D4B896" stroke-width="1"/>
+          <line x1="95" y1="110" x2="105" y2="110" stroke="#D4B896" stroke-width="1"/>
+          <line x1="96" y1="130" x2="104" y2="130" stroke="#D4B896" stroke-width="1"/>
+          <ellipse cx="100" cy="40" rx="7" ry="9" fill="#C4A77D"/>
+          <circle cx="95" cy="38" r="2.5" fill="#E8D4B8"/>
+          <circle cx="105" cy="38" r="2.5" fill="#E8D4B8"/>
+          <circle cx="95.5" cy="37.5" r="1" fill="#FFFFFF"/>
+          <circle cx="105.5" cy="37.5" r="1" fill="#FFFFFF"/>
+          <path d="M96 32 Q80 15 72 10" stroke="#D4B896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M104 32 Q120 15 128 10" stroke="#D4B896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M97 60 L62 45 L45 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M103 60 L138 45 L155 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M97 95 L55 90 L35 108" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M103 95 L145 90 L165 108" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M97 135 L58 140 L38 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M103 135 L142 140 L162 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h2>Kit phasmes</h2>
+      </div>
+      <div class="kit-card-body">
+        <p>Les phasmes, ces insectes maîtres du camouflage, fascinent les enfants comme les adultes. Kit terrarium + insectes + nourriture + fiches pédagogiques.</p>
+        <span class="kit-card-cta">Découvrir →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ========== INFOS PRATIQUES ========== -->
+<div class="kits-info">
+  <p>Tous les kits sont livrés propres et prêts à l'emploi. Un accompagnement téléphonique ou par message est inclus pendant toute la durée de la location.</p>
+  <div class="info-pills">
+    <div class="info-pill">📦 Livraison possible</div>
+    <div class="info-pill">📋 Fiches pédagogiques incluses</div>
+    <div class="info-pill">🐾 Conseils bien-être animal</div>
+    <div class="info-pill">📍 Saône-et-Loire & alentours</div>
+  </div>
+  <a href="/#contact" class="btn-primary">📬 Demander un devis</a>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <p><strong>Écocurieux</strong> · Animation nature & biodiversité · Amandine Junier-Dubus</p>
+  <p style="margin-top:6px;">© 2026 · Saône-et-Loire · <a href="mailto:amandinejd@gmail.com">amandinejd@gmail.com</a></p>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>
