@@ -288,14 +288,15 @@
   .pillier p { font-size: 0.82rem; color: rgba(243,222,180,0.65); line-height: 1.6; }
   .demarche-visual {
     background: rgba(243,222,180,0.06); border-radius: 24px;
-    padding: 2.5rem; border: 1px solid rgba(243,222,180,0.12);
+    padding: 1.6rem; border: 1px solid rgba(243,222,180,0.12);
+    display: flex; flex-direction: column; justify-content: space-between;
   }
   .demarche-visual .big-emoji { font-size: 4rem; display: block; margin-bottom: 1.2rem; text-align: center; }
   .demarche-quote { border-left: 3px solid var(--brown); padding-left: 1.2rem; margin-bottom: 1.5rem; }
   .demarche-quote p { color: rgba(243,222,180,0.75); font-style: italic; font-size: 1rem; line-height: 1.75; }
   .demarche-quote cite { display: block; margin-top: 0.7rem; font-style: normal; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(243,222,180,0.38); }
-  .valeurs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1.5rem; }
-  .valeur { background: rgba(243,222,180,0.07); border-radius: 10px; padding: 1rem; }
+  .valeurs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 0.8rem; }
+  .valeur { background: rgba(243,222,180,0.07); border-radius: 10px; padding: 0.7rem 1rem; }
   .valeur .vi { font-size: 1.3rem; margin-bottom: 0.3rem; }
   .valeur span { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; color: rgba(243,222,180,0.85); }
 
@@ -533,3 +534,11 @@
   .stages-card .stages-badge .sb-icon { font-size:3rem; }
   .stages-card .stages-badge span { font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:700; color:rgba(255,255,255,0.75); text-align:center; text-transform:uppercase; letter-spacing:0.08em; }
   @media(max-width:700px){ .stages-card .stages-row { flex-direction:column; } }
+
+  /* ========== DEMARCHE V2 ========== */
+  .demarche-grid-v2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: stretch; }
+  .demarche-intro {
+    color: rgba(243,222,180,0.65); font-size: 0.85rem; font-style: italic;
+    margin-top: 0.5rem; margin-bottom: 1.2rem;
+  }
+  @media (max-width: 900px) { .demarche-grid-v2 { grid-template-columns: 1fr; gap: 2rem; } }

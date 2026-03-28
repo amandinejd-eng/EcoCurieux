@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -25,8 +25,8 @@
       <a href="#services">Animations <span class="arrow">▼</span></a>
       <div class="dropdown">
         <a href="#services"><span class="dd-icon">🦔</span>Animations nature</a>
-        <a href="#services"><span class="dd-icon">🏫</span>Interventions sur site</a>
         <a href="#stages"><span class="dd-icon">📔</span>Stages nature</a>
+        <a href="#demarche"><span class="dd-icon">🧭</span>Ma démarche</a>
         <a href="#boite"><span class="dd-icon">💡</span>La boîte à idées</a>
       </div>
     </li>
@@ -73,7 +73,7 @@
         </svg><span class="dropdown-text">Kit phasmes</span></a>
       </div>
     </li>
-    <li><a href="#ateliers">Infos pratiques</a></li>
+    <li><a href="#ateliers">Pour qui ?</a></li>
     <li><a href="#evenements">Événements</a></li>
   </ul>
 
@@ -84,11 +84,12 @@
 <div class="mobile-menu" id="mobileMenu">
   <span class="mm-head">Animations</span>
   <a href="#services" onclick="toggleMenu()"><span>🦔</span> Animations nature</a>
+  <a href="#demarche" onclick="toggleMenu()"><span>🧭</span> Ma démarche</a>
   <a href="#boite" onclick="toggleMenu()"><span>💡</span> La boîte à idées</a>
   <span class="mm-head">Services</span>
   <a href="/kits/" onclick="toggleMenu()"><span>🥚</span> Kits pédagogiques</a>
   <span class="mm-head">Informations</span>
-  <a href="#ateliers" onclick="toggleMenu()"><span>📋</span> Infos pratiques</a>
+  <a href="#ateliers" onclick="toggleMenu()"><span>📌</span> Pour qui ?</a>
   <a href="#evenements" onclick="toggleMenu()"><span>📅</span> Événements</a>
   <a href="#contact" onclick="toggleMenu()"><span>📬</span> Contact</a>
   <a href="#contact" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
@@ -184,11 +185,12 @@
         <p>Des séances d'observation et d'expérimentation adaptées à chaque âge, faune, flore, insectes, oiseaux. Le vivant comme terrain de jeu et d'apprentissage.</p>
       </div>
 
-      <div class="bento-item kits">
+      <a href="/kits/" class="bento-item kits" style="text-decoration:none;color:inherit;cursor:pointer;">
         <div class="icon-box">🦗</div>
         <h3>Location de kits pédagogiques</h3>
         <p>Couveuse pédagogique, kits insectes, petits animaux (cochons d'Inde, lapins), supports pédagogiques. Chaque kit est accompagné de conseils et recommandations pour le bien-être animal.</p>
-      </div>
+        <span style="display:inline-block;margin-top:1rem;font-family:'Montserrat',sans-serif;font-size:0.75rem;font-weight:700;color:rgba(255,255,255,0.75);text-transform:uppercase;letter-spacing:0.1em;">Découvrir les kits →</span>
+      </a>
 
       <div class="bento-item interventions">
         <div class="icon-box">🏫</div>
@@ -214,12 +216,18 @@
 <!-- ========== DEMARCHE ========== -->
 <section class="padded demarche" id="demarche">
   <div class="section-inner">
-    <div class="demarche-grid">
+    <!-- En-tête pleine largeur -->
+    <div style="margin-bottom: 2.5rem;">
+      <div class="section-label">Ma démarche</div>
+      <div class="section-title">Une approche unique <span style="color:var(--brown)">pour chaque projet</span></div>
+    </div>
+
+    <!-- 2 colonnes équilibrées -->
+    <div class="demarche-grid-v2">
+
+      <!-- Colonne gauche : les 3 piliers -->
       <div>
-        <div class="section-label">Ma démarche</div>
-        <div class="section-title">Une approche unique <span style="color:var(--brown)">pour chaque projet</span></div>
-        
-        <p style="color:rgba(243,222,180,0.65);font-size:0.85rem;margin-bottom:1.5rem;font-style:italic">Les 3 piliers de mon action :</p>
+        <p class="demarche-intro">Les 3 piliers de mon action :</p>
         <div class="pilliers">
           <div class="pillier">
             <h4>🔬 La Vulgarisation Scientifique</h4>
@@ -235,11 +243,13 @@
           </div>
         </div>
       </div>
+
+      <!-- Colonne droite : logo + citation + valeurs -->
       <div class="demarche-visual">
-        <img src="/Logo/logo.png" alt="Écocurieux" style="width:190px;height:auto;display:block;margin:0 auto 1.5rem;border-radius:14px;">
+        <img src="/Logo/logo.png" alt="Écocurieux" style="width:110px;height:auto;display:block;margin:0 auto 0.8rem;border-radius:14px;">
         <div class="demarche-quote">
           <p>"Parce que la Nature ne se lit pas seulement dans les livres, je vous aide à la vivre au quotidien."</p>
-          <cite>, Amandine Junier-Dubus</cite>
+          <cite>— Amandine Junier-Dubus</cite>
         </div>
         <div class="valeurs-grid">
           <div class="valeur"><div class="vi">🌸</div><span>Pédagogie accessible</span></div>
@@ -248,6 +258,7 @@
           <div class="valeur"><div class="vi">💚</div><span>Sans culpabilisation</span></div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -501,7 +512,7 @@
           <label>Votre message</label>
           <textarea id="userMessage" placeholder="Décrisez votre projet, votre public, vos dates…" style="height: 120px !important;"></textarea>
         </div>
-        <button class="btn-submit" id="contactSubmitBtn" type="button" onclick="sendContactForm()">🌿 Envoyer ma demande</button>
+        <button class="btn-submit" id="contactSubmitBtn" type="button" onclick="sendContactForm()">🧭 Envoyer ma demande</button>
         <div id="contactFormStatus" style="min-height: 18px; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.85);"></div>
       </div>
     </div>
