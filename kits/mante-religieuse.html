@@ -6,113 +6,6 @@
 <title>Kit mante religieuse – Écocurieux</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
-<style>
-  .kit-page-hero {
-    background: linear-gradient(160deg, rgba(44,79,42,0.95) 0%, rgba(70,123,67,0.72) 55%, rgba(44,79,42,0.92) 100%);
-    background-color: var(--green-dark);
-    padding: 140px 2rem 80px;
-    text-align: center;
-  }
-  .kit-page-hero .breadcrumb {
-    font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.14em;
-    color: rgba(243,222,180,0.52); margin-bottom: 1.2rem;
-  }
-  .kit-page-hero .breadcrumb a { color: rgba(243,222,180,0.65); text-decoration: none; }
-  .kit-page-hero .breadcrumb a:hover { color: var(--beige); }
-  .kit-page-hero .kit-icon { font-size: 4.5rem; display: block; margin: 0 auto 1rem; }
-  .kit-page-hero h1 {
-    font-family: 'Nunito', sans-serif; font-weight: 900;
-    font-size: clamp(2rem, 5vw, 3.4rem);
-    color: var(--beige); line-height: 1.08;
-    margin-bottom: 1rem;
-    text-shadow: 0 4px 24px rgba(0,0,0,0.3);
-  }
-  .kit-page-hero h1 .accent { color: var(--brown); }
-  .kit-page-hero .hero-sub {
-    font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 600;
-    color: rgba(243,222,180,0.68); letter-spacing: 0.06em;
-    margin-bottom: 2rem;
-  }
-  .kit-page-hero .hero-tags { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-  .hero-tag {
-    background: rgba(243,222,180,0.12); border: 1px solid rgba(243,222,180,0.25);
-    color: rgba(243,222,180,0.82); padding: 6px 16px; border-radius: 30px;
-    font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.08em;
-  }
-  .kit-content { max-width: 900px; margin: 0 auto; padding: 72px 2rem 80px; }
-  .kit-desc {
-    background: var(--white); border-radius: 22px;
-    border: 2px solid var(--beige-2);
-    box-shadow: 6px 6px 0 var(--beige-2);
-    padding: 2.5rem 3rem;
-    margin-bottom: 2rem;
-  }
-  .kit-desc h2 {
-    font-family: 'Montserrat', sans-serif; font-weight: 900;
-    font-size: 1.3rem; color: var(--green-dark);
-    margin-bottom: 1rem; padding-bottom: 0.7rem;
-    border-bottom: 2px solid var(--beige-2);
-  }
-  .kit-desc p { font-size: 0.96rem; line-height: 1.82; color: #5a5040; margin-bottom: 1rem; }
-  .kit-desc p:last-child { margin-bottom: 0; }
-  .kit-included {
-    background: var(--green);
-    border-radius: 22px;
-    padding: 2.5rem 3rem;
-    margin-bottom: 2rem;
-  }
-  .kit-included h2 {
-    font-family: 'Montserrat', sans-serif; font-weight: 900;
-    font-size: 1.3rem; color: var(--beige);
-    margin-bottom: 1.2rem; padding-bottom: 0.7rem;
-    border-bottom: 2px solid rgba(243,222,180,0.2);
-  }
-  .kit-included ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-  .kit-included ul li {
-    font-size: 0.92rem; color: rgba(243,222,180,0.88); line-height: 1.6;
-    display: flex; align-items: flex-start; gap: 10px;
-  }
-  .kit-included ul li::before { content: "✅"; flex-shrink: 0; margin-top: 1px; }
-  .kit-infos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 2rem; }
-  .kit-info-box {
-    background: var(--beige-light); border: 2px solid var(--beige-2);
-    border-radius: 16px; padding: 1.4rem 1.8rem;
-    box-shadow: 4px 4px 0 var(--beige-2);
-  }
-  .kit-info-box .info-label {
-    font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.14em; color: var(--brown); margin-bottom: 0.4rem;
-  }
-  .kit-info-box .info-val {
-    font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: var(--green-dark);
-  }
-  .kit-cta {
-    background: var(--brown);
-    border-radius: 22px;
-    padding: 2.5rem 3rem;
-    text-align: center;
-  }
-  .kit-cta h2 {
-    font-family: 'Montserrat', sans-serif; font-weight: 900;
-    font-size: 1.2rem; color: var(--white);
-    margin-bottom: 0.8rem;
-  }
-  .kit-cta p { color: rgba(255,255,255,0.82); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; }
-  .kit-back {
-    display: inline-flex; align-items: center; gap: 7px;
-    color: rgba(243,222,180,0.62); text-decoration: none;
-    font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.1em;
-    margin-top: 2rem; transition: color 0.2s;
-  }
-  .kit-back:hover { color: var(--beige); }
-  @media (max-width: 700px) {
-    .kit-desc, .kit-included { padding: 1.8rem 1.5rem; }
-    .kit-infos-grid { grid-template-columns: 1fr; }
-  }
-</style>
 </head>
 <body>
 
@@ -192,8 +85,9 @@
 <div class="mobile-menu" id="mobileMenu">
   <span class="mm-head">Animations</span>
   <a href="/#services" onclick="toggleMenu()"><span>🦔</span> Animations nature</a>
-  <a href="/#boite" onclick="toggleMenu()"><span>💡</span> La boîte à idées</a>
+  <a href="/#stages" onclick="toggleMenu()"><span>�</span> Stages nature</a>
   <a href="/#demarche" onclick="toggleMenu()"><span>🧭</span> Ma démarche</a>
+  <a href="/#boite" onclick="toggleMenu()"><span>💡</span> La boîte à idées</a>
   <span class="mm-head">Services</span>
   <a href="/kits/" onclick="toggleMenu()"><span>🥚</span> Kits pédagogiques</a>
   <span class="mm-head">Informations</span>
@@ -271,6 +165,41 @@
       <div class="kit-info-box">
         <div class="info-label">Tarif</div>
         <div class="info-val">Sur devis — contactez-moi</div>
+      </div>
+    </div>
+
+    <!-- Section photos -->
+    <div class="kit-photos">
+      <h2>📸 Photos du kit</h2>
+      <div class="kit-photos-grid">
+        <div class="kit-photo-placeholder"><div class="ph-icon">📷</div>Photo à venir</div>
+        <div class="kit-photo-placeholder"><div class="ph-icon">📷</div>Photo à venir</div>
+        <div class="kit-photo-placeholder"><div class="ph-icon">📷</div>Photo à venir</div>
+        <div class="kit-photo-placeholder"><div class="ph-icon">📷</div>Photo à venir</div>
+      </div>
+    </div>
+
+    <!-- Section avis clients -->
+    <div class="kit-avis">
+      <div class="kit-avis-header">
+        <h2>⭐ Avis clients</h2>
+        <p>Les premiers avis apparaîtront ici après les premières locations.</p>
+      </div>
+      <div class="kit-avis-grid">
+        <div class="kit-avis-card">
+          <div class="kit-avis-stars">★★★★★</div>
+          <p class="kit-avis-text">« Votre avis ici — les premiers retours s’afficheront ici. »</p>
+          <div class="kit-avis-author">Prénom N. — École / structure</div>
+        </div>
+        <div class="kit-avis-card">
+          <div class="kit-avis-stars">★★★★★</div>
+          <p class="kit-avis-text">« Votre avis ici — les premiers retours s’afficheront ici. »</p>
+          <div class="kit-avis-author">Prénom N. — Collectivité</div>
+        </div>
+      </div>
+      <div class="kit-avis-cta">
+        <p>Vous avez déjà loué ce kit ? Partagez votre expérience !</p>
+        <a href="/#contact" class="btn-primary" style="background:var(--green-dark);color:var(--beige);font-size:0.82rem;padding:10px 22px;">Laisser un avis →</a>
       </div>
     </div>
 
