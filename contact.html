@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Couveuse pédagogique – Écocurieux</title>
+<title>Me contacter – Écocurieux</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -25,7 +25,6 @@
       <a href="/#services">Animations <span class="arrow">▼</span></a>
       <div class="dropdown">
         <a href="/#services"><span class="dd-icon">🦔</span>Animations nature</a>
-        
         <a href="/#stages"><span class="dd-icon">📔</span>Stages nature</a>
         <a href="/#demarche"><span class="dd-icon">🧭</span>Ma démarche</a>
         <a href="/#boite"><span class="dd-icon">💡</span>La boîte à idées</a>
@@ -78,88 +77,101 @@
     <li><a href="/#evenements">Événements</a></li>
   </ul>
 
-  <a href="/contact.html" class="nav-cta">📬 Me contacter</a>
-  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <a href="/contact.html" class="nav-cta" style="opacity: 0.6; pointer-events: none;">📬 Me contacter</a>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
   <span class="mm-head">Animations</span>
   <a href="/#services" onclick="toggleMenu()"><span>🦔</span> Animations nature</a>
-  <a href="/#stages" onclick="toggleMenu()"><span>�</span> Stages nature</a>
+  <a href="/#stages" onclick="toggleMenu()"><span>📔</span> Stages nature</a>
   <a href="/#demarche" onclick="toggleMenu()"><span>🧭</span> Ma démarche</a>
   <a href="/#boite" onclick="toggleMenu()"><span>💡</span> La boîte à idées</a>
-  <span class="mm-head">Services</span>
-  <a href="/kits/" onclick="toggleMenu()"><span>🥚</span> Kits pédagogiques</a>
-  <span class="mm-head">Informations</span>
-  <a href="/#ateliers" onclick="toggleMenu()"><span>📌</span> Pour qui ?</a>
-  <a href="/#evenements" onclick="toggleMenu()"><span>📅</span> Événements</a>
-  <a href="/contact.html" onclick="toggleMenu()"><span>📬</span> Contact</a>
-  <a href="/contact.html" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
+  <span class="mm-head">Kits pédagogiques</span>
+  <a href="/kits/couveuse.html" onclick="toggleMenu()"><span>🥚</span> Couveuse pédagogique</a>
+  <a href="/kits/mante-religieuse.html" onclick="toggleMenu()"><span>🦗</span> Kit mante religieuse</a>
+  <a href="/kits/phasmes.html" onclick="toggleMenu()"><span>🐛</span> Kit phasmes</a>
+  <span class="mm-head">Infos</span>
+  <a href="/#ateliers" onclick="toggleMenu()"><span>👥</span> Pour qui ?</a>
+  <a href="/#evenements" onclick="toggleMenu()"><span>🎪</span> Événements</a>
+  <a href="/contact.html" onclick="toggleMenu()" style="opacity: 0.6;"><span>📬</span> Me contacter</a>
 </div>
 
-<!-- ========== HERO ========== -->
-<div class="kit-page-hero">
-  <div class="breadcrumb"><a href="/">Accueil</a> &rsaquo; <a href="/kits/">Kits pédagogiques</a> &rsaquo; Couveuse pédagogique</div>
-  <span class="kit-icon">🥚</span>
-  <h1>Couveuse <span class="accent">pédagogique</span></h1>
-  <p class="hero-sub">Observez l'éclosion en direct dans votre classe ou structure</p>
-  <div class="hero-tags">
-    <span class="hero-tag">🏫 Écoles & crèches</span>
-    <span class="hero-tag">🏛 Collectivités</span>
-    <span class="hero-tag">👨‍👩‍👧 Familles</span>
-  </div>
-</div>
-
-<!-- ========== CONTENU ========== -->
-<section style="background: var(--beige-light);">
-  <div class="kit-content">
-
-    <div class="kit-desc">
-      <h2>🐣 Description</h2>
-      <p>La couveuse pédagogique est un kit d'observation fascinant qui permet aux enfants — et aux adultes ! — de suivre l'intégralité du cycle d'éclosion des œufs, du premier jour d'incubation jusqu'aux premières heures des poussins.</p>
-      <p>Idéale pour les projets en classe, les centres de loisirs, les événements familiaux ou les structures d'accueil de la petite enfance. Cette expérience unique crée un lien fort avec le vivant et génère toujours un moment de magie partagée.</p>
-      <p>Je vous accompagne tout au long de la location : conseils, suivi de température, gestion du retournement des œufs et que faire à l'éclosion.</p>
-    </div>
-
-    <div class="kit-included">
-      <h2>📦 Contenu du kit</h2>
-      <ul>
-        <li>La couveuse (avec thermostat et humidimètre intégrés)</li>
-        <li>Les œufs fertilisés (nombre selon formule choisie)</li>
-        <li>Carnet pédagogique de suivi de l'incubation</li>
-        <li>Fiches d'activités pour les enfants</li>
-        <li>Guide d'entretien et conseils bien-être animal</li>
-        <li>Suivi téléphonique / messagerie pendant toute la durée de la location</li>
-      </ul>
-    </div>
-
-    <div class="kit-infos-grid">
-      <div class="kit-info-box">
-        <div class="info-label">Durée de location</div>
-        <div class="info-val">3 semaines (incubation + éclosion)</div>
+<!-- ========== CONTACT ========== -->
+<section class="padded contact" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Parlons de votre projet</div>
+    <div class="section-title" style="margin-bottom: 2.5rem;">Me <span style="color:var(--brown)">contacter</span></div>
+    <div class="contact-grid">
+      <div class="contact-info" style="padding: 0;">
+        <p style="font-size: 17px; line-height: 1.3; margin-bottom: 30px; color: white !important;">
+            VOUS SOUHAITEZ EN SAVOIR PLUS, OBTENIR UN DEVIS OU DISCUTER D'UN PROJET ?<br><br>
+            Contactez-moi directement, je vous répondrai personnellement.
+        </p>
+        
+        <!-- QR Codes Compacts -->
+        <div style="display: flex; gap: 3.5rem; align-items: flex-start; margin-bottom: 30px; justify-content: flex-start;">
+            <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0px;">
+                <p style="margin: 0; line-height: 1; font-weight: 800; font-size: 15px; background: linear-gradient(45deg, #0866FF 0%, #00C6FF 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Montserrat', sans-serif;">Facebook</p>
+                <img src="qr code/qr code facebook.png" alt="QR Code Facebook" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; display: block; margin-top: -2px;">
+            </div>
+            <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0px;">
+                <p style="margin: 0; line-height: 1; font-weight: 800; font-size: 15px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Montserrat', sans-serif;">Instagram</p>
+                <img src="qr code/qr code instagram.png" alt="QR Code Instagram" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; display: block; margin-top: -2px;">
+            </div>
+        </div>
+        
+        <div class="contact-detail" style="margin-bottom: 8px;"><span class="icon">📞</span> 06.69.49.18.23</div>
+        <div class="contact-detail" style="margin-bottom: 8px;"><span class="icon">✉️</span> <a href="mailto:amandinejd@gmail.com" style="color:var(--white);text-decoration:none">amandinejd@gmail.com</a></div>
+        <div class="contact-detail" style="margin-bottom: 15px;"><span class="icon">📍</span> Saône-et-Loire & alentours</div>
+        
+        <div class="rc-badge" style="margin-top: 0;">
+          ✅ Assurance Responsabilité Civile Professionnelle
+        </div>
       </div>
-      <div class="kit-info-box">
-        <div class="info-label">Public cible</div>
-        <div class="info-val">Dès 2 ans – tous niveaux</div>
-      </div>
-      <div class="kit-info-box">
-        <div class="info-label">Zone de livraison</div>
-        <div class="info-val">Saône-et-Loire & alentours</div>
-      </div>
-      <div class="kit-info-box">
-        <div class="info-label">Tarif</div>
-        <div class="info-val">Sur devis — contactez-moi</div>
+      <div class="contact-form">
+        <span class="form-label">Vous êtes :</span>
+        <div class="audience-selector" id="audSelector">
+          <button type="button" class="aud-btn active" data-val="ecole" onclick="selectAud(this)">🏫 École / structure</button>
+          <button type="button" class="aud-btn" data-val="collectivite" onclick="selectAud(this)">🏛 Collectivité</button>
+          <button type="button" class="aud-btn" data-val="particulier" onclick="selectAud(this)">👨‍👩‍👧 Particulier</button>
+          <button type="button" class="aud-btn" data-val="autre" onclick="selectAud(this)">🙋 Autre</button>
+        </div>
+        <div class="form-group">
+          <label>Votre nom</label>
+          <input type="text" id="userName" placeholder="Prénom Nom">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="userEmail" placeholder="votre@email.fr">
+        </div>
+        <div class="form-group" style="display:none;">
+          <label>Ne pas remplir</label>
+          <input type="text" id="contactHp" tabindex="-1" autocomplete="off" placeholder="">
+        </div>
+        <div class="form-group">
+          <label>Type de projet</label>
+          <select id="projectType">
+            <option>Animation nature</option>
+            <option>Location de kit pédagogique</option>
+            <option>Projet sur mesure</option>
+            <option>Événement / collectivité</option>
+            <option>Anniversaire nature</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Votre message</label>
+          <textarea id="userMessage" placeholder="Décrisez votre projet, votre public, vos dates…" style="height: 120px !important;"></textarea>
+        </div>
+        <button class="btn-submit" id="contactSubmitBtn" type="button" onclick="sendContactForm()">🧭 Envoyer ma demande</button>
+        <div id="contactFormStatus" style="min-height: 18px; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.85);"></div>
       </div>
     </div>
-
-    <div class="kit-cta">
-      <h2>Réserver la couveuse pédagogique</h2>
-      <p>Disponibilités limitées. Contactez-moi pour vérifier les dates et recevoir un devis personnalisé selon votre projet.</p>
-      <a href="/contact.html" class="btn-primary" style="background: var(--white); color: var(--brown);">📬 Demander un devis</a>
-    </div>
-
-    <a href="/kits/" class="kit-back">← Retour aux kits pédagogiques</a>
-
   </div>
 </section>
 
