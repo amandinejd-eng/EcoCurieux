@@ -106,7 +106,7 @@ function createEventCard(event) {
     : '';
   
   return `
-    <div style="background:var(--beige-light);border-left:5px solid var(--green);border-radius:12px;padding:2rem;margin-bottom:1.5rem;display:flex;gap:2.5rem;align-items:flex-start;transition:all 0.3s ease;flex-wrap:wrap;box-shadow:0 2px 10px rgba(70,123,67,0.08);position:relative;" onmouseover="this.style.boxShadow='0 4px 20px rgba(70,123,67,0.15)';this.style.transform='translateX(5px)';" onmouseout="this.style.boxShadow='0 2px 10px rgba(70,123,67,0.08)';this.style.transform='translateX(0)';">
+    <div style="background:#ffffff;border-left:5px solid var(--green);border-radius:12px;padding:2rem;margin-bottom:1.5rem;display:flex;gap:2.5rem;align-items:flex-start;transition:all 0.3s ease;flex-wrap:wrap;box-shadow:0 4px 15px rgba(70,123,67,0.1);position:relative;" onmouseover="this.style.boxShadow='0 8px 25px rgba(70,123,67,0.18)';this.style.transform='translateX(5px)';" onmouseout="this.style.boxShadow='0 4px 15px rgba(70,123,67,0.1)';this.style.transform='translateX(0)';">
       
       <!-- Date Minimaliste -->
       <div style="text-align:left;min-width:100px;display:flex;flex-direction:column;border-right:3px solid var(--green);padding-right:2rem;">
@@ -135,6 +135,12 @@ function createEventCard(event) {
           <span style="font-size:1rem;">👥</span>
           ${event.audience}
         </span>
+        ${event.price ? `
+        <span style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--beige-2);color:var(--brown);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(175,106,50,0.15);">
+          <span style="font-size:1rem;">🎟️</span>
+          ${event.price}
+        </span>
+        ` : ''}
       </div>
 
     </div>
