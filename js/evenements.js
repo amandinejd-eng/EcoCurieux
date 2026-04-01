@@ -108,9 +108,6 @@ function createEventCard(event) {
   return `
     <div style="background:var(--beige-light);border-left:5px solid var(--green);border-radius:12px;padding:2rem;margin-bottom:1.5rem;display:flex;gap:2.5rem;align-items:flex-start;transition:all 0.3s ease;flex-wrap:wrap;box-shadow:0 2px 10px rgba(70,123,67,0.08);position:relative;" onmouseover="this.style.boxShadow='0 4px 20px rgba(70,123,67,0.15)';this.style.transform='translateX(5px)';" onmouseout="this.style.boxShadow='0 2px 10px rgba(70,123,67,0.08)';this.style.transform='translateX(0)';">
       
-      <!-- Emoticon décoratif -->
-      <span style="position:absolute;top:1rem;right:1rem;font-size:1.8rem;opacity:0.4;">🌱</span>
-      
       <!-- Date Minimaliste -->
       <div style="text-align:left;min-width:100px;display:flex;flex-direction:column;border-right:3px solid var(--green);padding-right:2rem;">
         <div style="font-size:2.8rem;font-weight:900;color:var(--green-dark);line-height:1;font-family:'Montserrat',sans-serif;letter-spacing:-1px;">${event.day}</div>
@@ -145,53 +142,129 @@ function createEventCard(event) {
 }
 
 function createPastEventCard(event) {
-  const photosHtml = event.photos && event.photos.length > 0 ? 
-    `<div style="width:100%;height:220px;overflow:hidden;border-radius:12px;margin-bottom:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.05);">
-      <img src="${event.photos[0]}" alt="${event.title}" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    </div>` 
+  const eventId = event.id || 'event-' + Math.random().toString(36).substr(2, 9);
+  
+  // Photo principale
+  const mainPhotoHtml = event.photos && event.photos.length > 0 ? 
+    (() => {
+      const photo = event.photos[0];
+      const photoUrl = typeof photo === 'string' ? photo : photo.url;
+      const rotation = typeof photo === 'object' && photo.rotation ? photo.rotation : 0;
+      return `<div style="width:100%;height:280px;overflow:hidden;border-radius:12px;margin-bottom:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.08);position:relative;">
+        <img src="${photoUrl}" alt="${event.title}" style="width:100%;height:100%;object-fit:cover;transform:rotate(${rotation}deg);transition:transform 0.4s ease;" onmouseover="this.style.transform='rotate(${rotation}deg) scale(1.05)'" onmouseout="this.style.transform='rotate(${rotation}deg) scale(1)'">
+      </div>`;
+    })()
     : '';
   
-  const recapHtml = event.recap ? 
-    `<div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--beige-2);">
-      <p style="font-family:'Lora',serif;font-size:0.95rem;line-height:1.6;color:#6b5a40;font-style:italic;margin:0;">
-        <span style="color:var(--brown);font-weight:700;font-style:normal;display:flex;align-items:center;gap:0.5rem;margin-bottom:0.6rem;font-family:'Montserrat',sans-serif;font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;">
-          <span style="font-size:1.1rem;">📖</span>
-          Retour sur l'événement
-        </span>
-        "${event.recap}"
-      </p>
-    </div>` 
+  // Galerie photos supplémentaires
+  const galleryHtml = event.photos && event.photos.length > 1 ? 
+    `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:2rem;margin-bottom:1.5rem;">
+      ${event.photos.slice(1).map(photo => {
+        const photoUrl = typeof photo === 'string' ? photo : photo.url;
+        const rotation = typeof photo === 'object' && photo.rotation ? photo.rotation : 0;
+        
+        // Ajuster le style selon si la photo est pivotée ou non
+        let imgStyle = 'width:100%;height:100%;object-fit:contain;transition:transform 0.3s ease;';
+        if (rotation !== 0) {
+          // Pour les photos tournées, on doit tricher un peu avec le scale pour compenser le ratio
+          imgStyle = `width:100%;height:100%;object-fit:contain;transform:rotate(${rotation}deg) scale(1.3);transition:transform 0.3s ease;`;
+        }
+        
+        return `
+        <div style="height:180px;background:#f5efe6;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,0.08);cursor:pointer;overflow:hidden;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.boxShadow='0 6px 15px rgba(0,0,0,0.15)';" onmouseout="this.style.boxShadow='0 3px 10px rgba(0,0,0,0.08)';">
+          <img src="${photoUrl}" alt="${event.title}" style="${imgStyle}" ${rotation === 0 ? `onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"` : `onmouseover="this.style.transform='rotate(${rotation}deg) scale(1.35)'" onmouseout="this.style.transform='rotate(${rotation}deg) scale(1.3)'"`}>
+        </div>
+      `}).join('')}
+    </div>`
     : '';
+  
+  // Programme détaillé
+  const programHtml = event.program && event.program.length > 0 ? 
+    `<div style="margin-top:1.5rem;">
+      <h4 style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:var(--green-dark);margin:0 0 1rem;display:flex;align-items:center;gap:0.5rem;">
+        <span style="font-size:1.2rem;">🎯</span>
+        Au programme
+      </h4>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        ${event.program.map(item => `
+          <div style="background:var(--beige-light);padding:1rem;border-radius:10px;border-left:3px solid var(--brown);transition:all 0.3s ease;" onmouseover="this.style.background='#f9f3e6';" onmouseout="this.style.background='var(--beige-light)';">
+            <div style="display:flex;align-items:flex-start;gap:0.8rem;">
+              <span style="font-size:1.5rem;flex-shrink:0;">${item.emoji}</span>
+              <div>
+                <h5 style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--green-dark);margin:0 0 0.4rem;">${item.title}</h5>
+                <p style="font-family:'Lora',serif;font-size:0.85rem;line-height:1.6;color:#6b5a40;margin:0;">${item.description}</p>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>`
+    : '';
+  
+  // Footer personnalisé
+  const footerHtml = event.footer ?
+    `<div style="margin-top:1.5rem;padding:1rem;background:linear-gradient(135deg, var(--beige-light) 0%, #fef9f0 100%);border-radius:10px;border:1px solid var(--beige-2);">
+      <p style="font-family:'Lora',serif;font-size:0.85rem;line-height:1.6;color:#6b5a40;margin:0;font-style:italic;">
+        <span style="font-size:1rem;margin-right:0.3rem;">✨</span>
+        ${event.footer}
+      </p>
+    </div>`
+    : '';
+  
+  // Bouton CTA
+  const ctaHtml = `
+    <div style="margin-top:1.5rem;text-align:center;">
+      <a href="/contact.html" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--brown);color:var(--white);padding:0.8rem 1.8rem;border-radius:30px;font-family:'Montserrat',sans-serif;font-size:0.85rem;font-weight:700;text-decoration:none;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(175,106,50,0.25);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 18px rgba(175,106,50,0.35)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 12px rgba(175,106,50,0.25)';">
+        <span>💬</span>
+        Organiser un événement similaire
+      </a>
+    </div>
+  `;
+  
+  // Contenu dépliable
+  const expandableContent = `
+    <div id="details-${eventId}" style="max-height:0;overflow:hidden;transition:max-height 0.5s ease-out;">
+      ${galleryHtml}
+      ${event.recap ? `<p style="font-family:'Lora',serif;font-size:0.95rem;line-height:1.7;color:#5a5040;margin:0 0 1rem;font-style:italic;">${event.recap}</p>` : ''}
+      ${programHtml}
+      ${footerHtml}
+      ${ctaHtml}
+    </div>
+  `;
+  
+  // Bouton déployer
+  const toggleButton = `
+    <button onclick="toggleEventDetails('${eventId}')" id="btn-${eventId}" style="margin-top:1rem;width:100%;display:flex;align-items:center;justify-content:center;gap:0.5rem;background:var(--beige-light);color:var(--brown);padding:0.8rem;border:2px solid var(--beige-2);border-radius:10px;font-family:'Montserrat',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.3s ease;" onmouseover="this.style.background='var(--beige-2)';this.style.borderColor='var(--brown)';" onmouseout="this.style.background='var(--beige-light)';this.style.borderColor='var(--beige-2)';">
+      <span id="icon-${eventId}">👇</span>
+      <span id="text-${eventId}">Voir le détail de l'événement</span>
+    </button>
+  `;
   
   return `
-    <div style="background:var(--white);border-top:4px solid var(--brown);border-radius:16px;padding:2rem;box-shadow:0 8px 25px rgba(175,106,50,0.08);display:flex;flex-direction:column;height:100%;transition:all 0.35s ease;position:relative;" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 12px 35px rgba(175,106,50,0.15)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 25px rgba(175,106,50,0.08)';">
+    <div style="background:var(--white);border-top:4px solid var(--brown);border-radius:16px;padding:2rem;box-shadow:0 8px 25px rgba(175,106,50,0.08);display:flex;flex-direction:column;transition:all 0.35s ease;position:relative;" onmouseover="this.style.boxShadow='0 12px 35px rgba(175,106,50,0.15)';" onmouseout="this.style.boxShadow='0 8px 25px rgba(175,106,50,0.08)';">
       
-      <!-- Emoticon décoratif -->
       <span style="position:absolute;top:1rem;right:1rem;font-size:1.8rem;opacity:0.35;">🍃</span>
       
-      ${photosHtml}
+      ${mainPhotoHtml}
       
-      <div style="flex:1;display:flex;flex-direction:column;">
-        <div style="display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem;">
-          <div style="text-align:center;min-width:50px;border-right:3px solid var(--brown);padding-right:1rem;">
-            <div style="font-size:1.7rem;font-weight:900;line-height:1;color:var(--brown);font-family:'Montserrat',sans-serif;">${event.day}</div>
-            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-top:3px;color:var(--brown);font-family:'Montserrat',sans-serif;">${event.month}</div>
-          </div>
-          <div style="flex:1;">
-            <h3 style="font-family:'Montserrat',sans-serif;font-size:1.15rem;font-weight:800;color:var(--green-dark);margin:0 0 0.4rem;line-height:1.3;">${event.title}</h3>
-            <p style="font-size:0.85rem;color:#8a7a60;margin:0;display:flex;align-items:center;gap:0.4rem;">
-              <span style="font-size:1rem;">📍</span>
-              ${event.location}
-            </p>
-          </div>
+      <div style="display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem;">
+        <div style="text-align:center;min-width:50px;border-right:3px solid var(--brown);padding-right:1rem;">
+          <div style="font-size:1.7rem;font-weight:900;line-height:1;color:var(--brown);font-family:'Montserrat',sans-serif;">${event.day}</div>
+          <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-top:3px;color:var(--brown);font-family:'Montserrat',sans-serif;">${event.month}</div>
         </div>
-        
-        <p style="font-family:'Lora',serif;font-size:0.95rem;line-height:1.7;color:#5a5040;margin:0;">${event.description}</p>
-        
-        <div style="flex:1;"></div>
-        
-        ${recapHtml}
+        <div style="flex:1;">
+          <h3 style="font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:var(--green-dark);margin:0 0 0.4rem;line-height:1.3;">${event.title}</h3>
+          <p style="font-size:0.85rem;color:#8a7a60;margin:0;display:flex;align-items:center;gap:0.4rem;">
+            <span style="font-size:1rem;">📍</span>
+            ${event.location}
+          </p>
+        </div>
       </div>
+      
+      <p style="font-family:'Lora',serif;font-size:0.95rem;line-height:1.7;color:#5a5040;margin:0;">${event.description}</p>
+      
+      ${toggleButton}
+      ${expandableContent}
     </div>
   `;
 }
@@ -252,6 +325,25 @@ async function displayPastEvents(containerId) {
   }
   
   container.innerHTML = allPastEvents.map(event => createPastEventCard(event)).join('');
+}
+
+// Fonction pour déployer/replier les détails d'un événement
+function toggleEventDetails(eventId) {
+  const detailsDiv = document.getElementById(`details-${eventId}`);
+  const iconSpan = document.getElementById(`icon-${eventId}`);
+  const textSpan = document.getElementById(`text-${eventId}`);
+  
+  if (detailsDiv.style.maxHeight === '0px' || detailsDiv.style.maxHeight === '') {
+    // Déployer
+    detailsDiv.style.maxHeight = detailsDiv.scrollHeight + 'px';
+    iconSpan.textContent = '👆';
+    textSpan.textContent = 'Masquer les détails';
+  } else {
+    // Replier
+    detailsDiv.style.maxHeight = '0px';
+    iconSpan.textContent = '👇';
+    textSpan.textContent = 'Voir le détail de l\'événement';
+  }
 }
 
 // Auto-initialisation

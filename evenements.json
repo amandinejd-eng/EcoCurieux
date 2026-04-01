@@ -1,18 +1,6 @@
 {
   "upcoming": [
     {
-      "id": "event-001",
-      "date": "2026-03-28",
-      "day": "28",
-      "month": "MARS",
-      "title": "🧪 Journée Portes Ouvertes",
-      "location": "Le Bourg, 71990 Saint-Léger-sous-Beuvray",
-      "description": "Animations exclusives autour des filières porcine et bovine. Venez à notre rencontre !",
-      "details": "",
-      "time": "10h-18h",
-      "audience": "Tout public"
-    },
-    {
       "id": "event-002",
       "date": "2026-06-24",
       "day": "24",
@@ -25,5 +13,67 @@
       "audience": "Tout public"
     }
   ],
-  "past": []
+  "past": [
+    {
+      "id": "past-001",
+      "date": "2026-03-28",
+      "day": "28",
+      "month": "MARS",
+      "title": "Portes Ouvertes — La Toque Fermière",
+      "location": "Le Bourg, 71990 Saint-Léger-sous-Beuvray",
+      "description": "À l'occasion des Portes Ouvertes de La Toque Fermière, Écocurieux a imaginé et animé un stand complet d'animations 100% sur mesure, pensées spécialement pour faire découvrir le monde de l'élevage de façon ludique et interactive.",
+      "photos": [
+        {
+          "url": "/Evénements passé/La Toque Fermière 28 mars 2026/20260328_100435.jpg",
+          "rotation": 0
+        },
+        {
+          "url": "/Evénements passé/La Toque Fermière 28 mars 2026/20260328_121636.jpg",
+          "rotation": -90
+        },
+        {
+          "url": "/Evénements passé/La Toque Fermière 28 mars 2026/20260328_125828.jpg",
+          "rotation": 0
+        },
+        {
+          "url": "/Evénements passé/La Toque Fermière 28 mars 2026/20260328_130816.jpg",
+          "rotation": -90
+        }
+      ],
+      "recap": "Petits et grands curieux ont pu explorer, manipuler, questionner… et repartir avec des connaissances qu'ils n'auraient jamais soupçonnées !",
+      "program": [
+        {
+          "emoji": "🥩",
+          "title": "Le bon morceau au bon endroit — Bœuf",
+          "description": "Un puzzle grandeur nature : replacer chaque morceau de bœuf à sa place sur la silhouette de la vache. Un atelier qui a demandé beaucoup de concentration et quelques fous rires !"
+        },
+        {
+          "emoji": "🐷",
+          "title": "Le bon morceau au bon endroit — Porc",
+          "description": "Même principe, mais cette fois sur la silhouette du cochon ! Filet, jambon, travers… Pas si simple de s'y retrouver !"
+        },
+        {
+          "emoji": "🐷",
+          "title": "Le cochon utile",
+          "description": "Pneu de vélo, dentifrice, bière, médicaments… Quel est leur point commun ? Le cochon entre dans leur fabrication ! Un jeu qui a surpris absolument tout le monde."
+        },
+        {
+          "emoji": "✅",
+          "title": "Vrai ou Faux — Bovin",
+          "description": "Idées reçues, croyances, surprises… Les participants ont testé leurs connaissances sur le bovin à travers une série d'affirmations à démêler. Pas si facile qu'il n'y paraît !"
+        },
+        {
+          "emoji": "🌳",
+          "title": "L'arbre phylogénétique du bovin",
+          "description": "Veau, velle, génisse, taureau, vache… Découverte de la grande famille bovine à travers un support visuel créé pour l'occasion."
+        },
+        {
+          "emoji": "🎡",
+          "title": "La roue des questions",
+          "description": "Pour finir de tester ses connaissances sur l'élevage dans la bonne humeur !"
+        }
+      ],
+      "footer": "Toutes les animations présentées lors de cet événement ont été entièrement conçues et animées par Écocurieux — aucun kit tout fait, tout est créé sur mesure pour coller au thème et au public de chaque événement."
+    }
+  ]
 }
