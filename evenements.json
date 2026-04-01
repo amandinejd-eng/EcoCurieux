@@ -1,0 +1,29 @@
+{
+  "upcoming": [
+    {
+      "id": "event-001",
+      "date": "2026-03-28",
+      "day": "28",
+      "month": "MARS",
+      "title": "🧪 Journée Portes Ouvertes",
+      "location": "Le Bourg, 71990 Saint-Léger-sous-Beuvray",
+      "description": "Animations exclusives autour des filières porcine et bovine. Venez à notre rencontre !",
+      "details": "",
+      "time": "10h-18h",
+      "audience": "Tout public"
+    },
+    {
+      "id": "event-002",
+      "date": "2026-06-24",
+      "day": "24",
+      "month": "JUIN",
+      "title": "🐦 L'Été des Oiseaux",
+      "location": "Port de plaisance 71100 Chalon-sur-Saône",
+      "description": "Plongez dans l'univers mystérieux des oiseaux ! À travers des ateliers ludiques en libre service, découvrez leur anatomie, leurs comportements amoureux (parades), leurs chants et l'art de la nidification. Apprenez également les gestes simples pour les aider chez vous.",
+      "details": "Participez à nos sessions d'initiation à l'ornithologie pour porter un nouveau regard sur le ciel !",
+      "time": "10h-18h",
+      "audience": "Tout public"
+    }
+  ],
+  "past": []
+}

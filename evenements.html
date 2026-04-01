@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pour qui ? – Écocurieux</title>
+<title>Événements – Écocurieux</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -97,64 +97,124 @@
   <a href="/contact.html" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
 </div>
 
-<!-- ========== ATELIERS POUR TOUS ========== -->
-<section class="padded ateliers" id="ateliers">
-  <div class="section-inner">
-    <div class="section-label">Pour qui ?</div>
-    <div class="section-title">Des ateliers <span>pour tous</span></div>
-    <div class="ateliers-grid">
-      <div class="atelier-card">
-        <div class="ac-top">
-          <div class="ac-icon-wrap">🏫</div>
-          <h3>Scolaires & Périscolaires</h3>
-        </div>
-        <p>Séances liées aux programmes (biodiversité, cycles de vie). De l'initiation au projet de classe complet.</p>
-        <div class="atelier-tags">
-          <span class="atelier-tag">Maternelle</span>
-          <span class="atelier-tag">Élémentaire</span>
-          <span class="atelier-tag">Crèches</span>
-          <span class="atelier-tag">ALSH</span>
-        </div>
-      </div>
-      <div class="atelier-card ac-green">
-        <div class="ac-top">
-          <div class="ac-icon-wrap">🎡</div>
-          <h3>Centres de Loisirs & Jeunesse</h3>
-        </div>
-        <p>Apprentissage ludique par l'action, grands jeux nature, ateliers de fabrication, découverte du vivant.</p>
-        <div class="atelier-tags">
-          <span class="atelier-tag">Mercredis</span>
-          <span class="atelier-tag">Vacances scolaires</span>
-          <span class="atelier-tag">Périscolaire</span>
-        </div>
-      </div>
-      <div class="atelier-card ac-brown">
-        <div class="ac-top">
-          <div class="ac-icon-wrap">🏛</div>
-          <h3>Collectivités & Entreprises</h3>
-        </div>
-        <p>Stand interactif et animation flash pour vos événements, fêtes de la nature ou sensibilisation des citoyens.</p>
-        <div class="atelier-tags">
-          <span class="atelier-tag">Communes</span>
-          <span class="atelier-tag">Événements</span>
-          <span class="atelier-tag">Fêtes de la nature</span>
-        </div>
-      </div>
-      <div class="atelier-card">
-        <div class="ac-top">
-          <div class="ac-icon-wrap">👨‍👩‍👧</div>
-          <h3>Particuliers & Familles</h3>
-        </div>
-        <p>Stages thématiques approfondis et anniversaires nature pour découvrir l'environnement autrement.</p>
-        <div class="atelier-tags">
-          <span class="atelier-tag">Anniversaires</span>
-          <span class="atelier-tag">Stages</span>
-          <span class="atelier-tag">Événements privés</span>
-        </div>
-      </div>
+<!-- ========== HERO & SÉLECTEUR (MODERNE) ========== -->
+<div style="background:linear-gradient(135deg, var(--beige-light) 0%, #f8fdf9 100%);padding-top:5rem;padding-bottom:2rem;border-bottom:1px solid var(--beige-2);">
+  <div class="section-inner" style="max-width:900px;text-align:center;position:relative;">
+    
+    <!-- Emoticons décoratifs -->
+    <span style="position:absolute;top:-10px;left:5%;font-size:2rem;opacity:0.7;animation:float 3s ease-in-out infinite;">🌿</span>
+    <span style="position:absolute;top:10px;right:8%;font-size:2rem;opacity:0.6;animation:float 4s ease-in-out infinite 0.5s;">🦋</span>
+    <span style="position:absolute;bottom:20px;left:10%;font-size:1.5rem;opacity:0.5;animation:float 5s ease-in-out infinite 1s;">🌱</span>
+    <span style="position:absolute;bottom:30px;right:12%;font-size:1.5rem;opacity:0.5;animation:float 4.5s ease-in-out infinite 1.5s;">🍃</span>
+    
+    <h1 style="font-size:3rem;color:var(--green-dark);margin-bottom:2rem;line-height:1.2;font-family:'Montserrat',sans-serif;font-weight:900;text-shadow:2px 2px 4px rgba(107,155,122,0.1);">Événements</h1>
+
+    <!-- Sélecteur Pro -->
+    <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;">
+      
+      <!-- Bouton À venir -->
+      <button id="btn-upcoming" onclick="toggleSection('upcoming')" class="btn-active-green active" style="display:flex;align-items:center;gap:0.8rem;padding:0.9rem 2rem;border-radius:12px;background:linear-gradient(135deg, var(--green) 0%, #5a9c6a 100%);border:2px solid var(--green);color:var(--white);font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;box-shadow:0 6px 20px rgba(107,155,122,0.35);transition:all 0.3s ease;text-transform:uppercase;letter-spacing:0.5px;">
+        <span style="font-size:1.3rem;">📅</span>
+        Événements à venir
+      </button>
+
+      <!-- Bouton Passé -->
+      <button id="btn-past" onclick="toggleSection('past')" class="btn-inactive" style="display:flex;align-items:center;gap:0.8rem;padding:0.9rem 2rem;border-radius:12px;background:transparent;border:2px solid var(--beige-2);color:#8a7a60;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;transition:all 0.3s ease;text-transform:uppercase;letter-spacing:0.5px;" onmouseover="if(!this.classList.contains('active')) {this.style.borderColor='var(--brown)';this.style.color='var(--brown)';}" onmouseout="if(!this.classList.contains('active')) {this.style.borderColor='var(--beige-2)';this.style.color='#8a7a60';}">
+        <span style="font-size:1.3rem;">📖</span>
+        Événements passés
+      </button>
+
     </div>
   </div>
-</section>
+</div>
+
+<!-- ========== CONTENU : AGENDA À VENIR ========== -->
+<div id="section-upcoming" style="display:block;animation:fadeIn 0.5s ease;">
+  <section class="padded" style="background:var(--white);padding-top:2rem;padding-bottom:5rem;">
+    <div class="section-inner" style="max-width:900px;">
+      <div id="upcoming-events-container" style="display:flex;flex-direction:column;gap:1.5rem;">
+        <!-- Injecté via JS -->
+        <p style="text-align:center;color:#7a6a50;font-style:italic;">Chargement de l'agenda...</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ========== CONTENU : CARNET DE BORD (PASSÉS) ========== -->
+<div id="section-past" style="display:none;animation:fadeIn 0.5s ease;">
+  <section class="padded" style="background:var(--white);padding-top:2rem;padding-bottom:5rem;">
+    <div class="section-inner">
+      <div id="past-events-container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:1000px;margin:0 auto;">
+        <!-- Injecté via JS -->
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+  }
+
+  /* Styles actifs gérés par JS */
+  .btn-active-green {
+    background: linear-gradient(135deg, var(--green) 0%, #5a9c6a 100%) !important;
+    border-color: var(--green) !important;
+    color: var(--white) !important;
+    box-shadow: 0 6px 20px rgba(107,155,122,0.35) !important;
+  }
+  .btn-active-green span { opacity: 1 !important; }
+
+  .btn-active-brown {
+    background: linear-gradient(135deg, var(--brown) 0%, #b45a28 100%) !important;
+    border-color: var(--brown) !important;
+    color: var(--white) !important;
+    box-shadow: 0 6px 20px rgba(143,82,40,0.35) !important;
+  }
+  .btn-active-brown span { opacity: 1 !important; }
+
+  .btn-inactive {
+    background: transparent !important;
+    border-color: var(--beige-2) !important;
+    color: #8a7a60 !important;
+    box-shadow: none !important;
+  }
+  .btn-inactive span { opacity: 0.7 !important; }
+</style>
+
+<script>
+  // Fonction de bascule esthétique sans scroll
+  function toggleSection(section) {
+    const btnUpcoming = document.getElementById('btn-upcoming');
+    const btnPast = document.getElementById('btn-past');
+    const secUpcoming = document.getElementById('section-upcoming');
+    const secPast = document.getElementById('section-past');
+
+    if (section === 'upcoming') {
+      // Afficher Upcoming
+      secUpcoming.style.display = 'block';
+      secPast.style.display = 'none';
+      
+      // Style boutons
+      btnUpcoming.className = 'btn-active-green active';
+      btnPast.className = 'btn-inactive';
+    } else {
+      // Afficher Past
+      secPast.style.display = 'block';
+      secUpcoming.style.display = 'none';
+      
+      // Style boutons
+      btnPast.className = 'btn-active-brown active';
+      btnUpcoming.className = 'btn-inactive';
+    }
+  }
+</script>
 
 <!-- ========== FOOTER ========== -->
 <footer style="background: var(--green-dark); color: rgba(243,222,180,0.55); padding: 2rem 1rem 3rem; text-align: center;">
@@ -163,5 +223,6 @@
   <p style="font-size:0.75rem;">© 2026 · Saône-et-Loire · <a href="mailto:amandinejd@gmail.com" style="color:rgba(243,222,180,0.85); font-weight:600; text-decoration:none;">amandinejd@gmail.com</a></p>
 </footer>
 <script src="/js/main.js"></script>
+<script src="/js/evenements.js"></script>
 </body>
 </html>
