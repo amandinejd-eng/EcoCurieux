@@ -114,14 +114,13 @@
   </a>
 
   <ul class="nav-links">
+    <li><a href="/">Accueil</a></li>
     <li>
-      <a href="/#services">Animations <span class="arrow">▼</span></a>
+      <a href="/animations.html#animations">Animations <span class="arrow">▼</span></a>
       <div class="dropdown">
-        <a href="/#services"><span class="dd-icon">🦔</span>Animations nature</a>
-        
-        <a href="/#stages"><span class="dd-icon">📔</span>Stages nature</a>
-        <a href="/#demarche"><span class="dd-icon">🧭</span>Ma démarche</a>
-        <a href="/#boite"><span class="dd-icon">💡</span>La boîte à idées</a>
+        <a href="/animations.html#animations"><span class="dd-icon">🦔</span>Animations nature</a>
+        <a href="/animations.html#stages"><span class="dd-icon">📔</span>Stages nature</a>
+        <a href="/animations.html#boite"><span class="dd-icon">💡</span>La boîte à idées</a>
       </div>
     </li>
     <li>
@@ -167,7 +166,7 @@
         </svg><span class="dropdown-text">Kit phasmes</span></a>
       </div>
     </li>
-    <li><a href="/#ateliers">Pour qui ?</a></li>
+    <li><a href="/pour-qui.html">Pour qui ?</a></li>
     <li><a href="/#evenements">Événements</a></li>
   </ul>
 
@@ -176,14 +175,16 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
+  <span class="mm-head">Menu</span>
+  <a href="/" onclick="toggleMenu()"><span>🏠</span> Accueil</a>
   <span class="mm-head">Animations</span>
-  <a href="/#services" onclick="toggleMenu()"><span>🦔</span> Animations nature</a>
-  <a href="/#boite" onclick="toggleMenu()"><span>💡</span> La boîte à idées</a>
-  <a href="/#demarche" onclick="toggleMenu()"><span>🧭</span> Ma démarche</a>
+  <a href="/animations.html#animations" onclick="toggleMenu()"><span>🦔</span> Animations nature</a>
+  <a href="/animations.html#stages" onclick="toggleMenu()"><span>�</span> Stages nature</a>
+  <a href="/animations.html#boite" onclick="toggleMenu()"><span>💡</span> La boîte à idées</a>
   <span class="mm-head">Services</span>
   <a href="/kits/" onclick="toggleMenu()"><span>🥚</span> Kits pédagogiques</a>
+  <a href="/pour-qui.html" onclick="toggleMenu()"><span>📌</span> Pour qui ?</a>
   <span class="mm-head">Informations</span>
-  <a href="/#ateliers" onclick="toggleMenu()"><span>📌</span> Pour qui ?</a>
   <a href="/#evenements" onclick="toggleMenu()"><span>📅</span> Événements</a>
   <a href="/#contact" onclick="toggleMenu()"><span>📬</span> Contact</a>
   <a href="/#contact" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
@@ -280,13 +281,41 @@
     <div class="info-pill">🐾 Conseils bien-être animal</div>
     <div class="info-pill">📍 Saône-et-Loire & alentours</div>
   </div>
-  <a href="/#contact" class="btn-primary">📬 Demander un devis</a>
+  <a href="/contact.html" class="btn-primary">📬 Demander un devis</a>
 </div>
 
-<!-- ========== FOOTER ========== -->
-<footer>
-  <p><strong>Écocurieux</strong> · Animation nature & biodiversité · Amandine Junier-Dubus</p>
-  <p style="margin-top:6px;">© 2026 · Saône-et-Loire · <a href="mailto:amandinejd@gmail.com">amandinejd@gmail.com</a></p>
+<!-- ========== GARANTIES (déplacé sous les kits) ========== -->
+<div class="garanties" style="background:transparent; padding:0 0 2rem 0; margin-top:4rem;">
+  <div class="garanties-inner" style="justify-content:center;">
+    <div class="garantie-box" style="box-shadow: 4px 4px 0 var(--beige-2);">
+      <div class="gb-icon">📋</div>
+      <div>
+        <div class="gb-title">Devis sur demande</div>
+        <div class="gb-sub">Gratuit & sans engagement</div>
+      </div>
+    </div>
+    <div class="garantie-box gb-green" style="box-shadow: 4px 4px 0 var(--green-dark);">
+      <div class="gb-icon">🚗</div>
+      <div>
+        <div class="gb-title">Déplacement possible</div>
+        <div class="gb-sub">Je viens dans votre structure</div>
+      </div>
+    </div>
+    <div class="garantie-box gb-brown" style="box-shadow: 4px 4px 0 #8f5228;">
+      <div class="gb-icon">📍</div>
+      <div>
+        <div class="gb-title">Saône-et-Loire</div>
+        <div class="gb-sub">& départements limitrophes</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FOOTER (Allégé) ========== -->
+<footer style="background: var(--green-dark); color: rgba(243,222,180,0.55); padding: 2rem 1rem 3rem; text-align: center;">
+  <p style="font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:700; color:var(--beige); margin-bottom: 5px;">Écocurieux · Animation nature & biodiversité</p>
+  <p style="font-size:0.8rem; margin-bottom: 10px; color:rgba(243,222,180,0.75);">Amandine Junier-Dubus</p>
+  <p style="font-size:0.75rem;">© 2026 · Saône-et-Loire · <a href="mailto:amandinejd@gmail.com" style="color:rgba(243,222,180,0.85); font-weight:600; text-decoration:none;">amandinejd@gmail.com</a></p>
 </footer>
 <script src="/js/main.js"></script>
 </body>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animations nature – Écocurieux</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-img"><img src="/Logo/logo.png" alt="Écocurieux logo"></div>
+    <div>
+      <div class="nav-logo-name">Écocurieux</div>
+      <div class="nav-logo-sub">Animation nature & biodiversité</div>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/">Accueil</a></li>
+    <li>
+      <a href="/animations.html#animations">Animations <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <a href="/animations.html#animations"><span class="dd-icon">🦔</span>Animations nature</a>
+        <a href="/animations.html#stages"><span class="dd-icon">📔</span>Stages nature</a>
+        <a href="/animations.html#boite"><span class="dd-icon">💡</span>La boîte à idées</a>
+      </div>
+    </li>
+    <li>
+      <a href="/kits/">Kits pédagogiques <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <a href="/kits/couveuse.html"><span class="dd-icon">🥚</span>Couveuse pédagogique</a>
+        <a href="/kits/mante-religieuse.html"><span class="dd-icon">🦗</span>Kit mante religieuse</a>
+        <a href="/kits/phasmes.html"><span class="dd-icon">🐛</span>Kit phasmes</a>
+      </div>
+    </li>
+    <li><a href="/pour-qui.html">Pour qui ?</a></li>
+    <li><a href="/#evenements">Événements</a></li>
+  </ul>
+
+  <a href="/contact.html" class="nav-cta">📬 Me contacter</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mm-head">Menu</span>
+  <a href="/" onclick="toggleMenu()"><span>🏠</span> Accueil</a>
+  <span class="mm-head">Animations</span>
+  <a href="/animations.html#animations" onclick="toggleMenu()"><span>🦔</span> Animations nature</a>
+  <a href="/animations.html#stages" onclick="toggleMenu()"><span>📔</span> Stages nature</a>
+  <a href="/animations.html#boite" onclick="toggleMenu()"><span>💡</span> La boîte à idées</a>
+  <span class="mm-head">Services</span>
+  <a href="/kits/" onclick="toggleMenu()"><span>🥚</span> Kits pédagogiques</a>
+  <a href="/pour-qui.html" onclick="toggleMenu()"><span>📌</span> Pour qui ?</a>
+  <span class="mm-head">Informations</span>
+  <a href="/#evenements" onclick="toggleMenu()"><span>📅</span> Événements</a>
+  <a href="/contact.html" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
+</div>
+
+<section class="padded services" id="animations">
+  <div class="section-inner">
+    <div class="section-label">Ce que je propose</div>
+    <div class="section-title">Des animations <span>vivantes</span> et sur mesure</div>
+    <div class="bento-services">
+      <div class="bento-item animation">
+        <div class="icon-box">🦔</div>
+        <h3>Animations nature & biodiversité</h3>
+        <p>Des séances d'observation et d'expérimentation adaptées à chaque âge, faune, flore, insectes, oiseaux. Le vivant comme terrain de jeu et d'apprentissage.</p>
+      </div>
+
+      <div class="bento-item stages" id="stages">
+        <div class="icon-box">📓</div>
+        <h3>Stages nature & cahier buissonnier</h3>
+        <p>Une immersion d'une demi-journée ou d'une journée pour se reconnecter au vivant. Je vous fournis votre carnet de terrain personnel pour explorer la biodiversité locale : réalisation d'herbiers, inventaires d'insectes ou croquis d'oiseaux. Un mélange ludique de science et de contemplation pour apprendre à lire le paysage.</p>
+      </div>
+
+      <div class="bento-item interventions">
+        <div class="icon-box">🏫</div>
+        <h3>Interventions sur site</h3>
+        <p>J'interviens directement dans votre établissement ou sur les lieux d'événements avec tout le matériel. Animations adaptées au contexte, aux participants et à vos objectifs.</p>
+      </div>
+
+      <div class="bento-item projets">
+        <div class="icon-box">✏️</div>
+        <h3>Projets sur mesure</h3>
+        <p>Vous avez une idée précise ou un besoin particulier ? Je co-construis avec vous un projet pédagogique sur plusieurs séances, adapté à votre public, votre lieu et vos contraintes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="padded boite" id="boite">
+  <div class="section-inner">
+    <div class="section-label">Thématiques disponibles</div>
+    <div class="section-title">La <span>Boîte à idées</span></div>
+    <p style="color:#6b5a40;font-size:0.97rem;line-height:1.75;max-width:650px;margin-bottom:0">Des pistes pour construire votre projet ludique</p>
+    <div class="boite-grid">
+      <div class="univers-card">
+        <div class="univers-head">
+          <div class="u-icon">🦅</div>
+          <h3>L'Univers des Naturalistes</h3>
+        </div>
+        <ul class="univers-list">
+          <li><strong>Ornithologie :</strong> S'initier à l'écoute et à l'identification des oiseaux.</li>
+          <li><strong>Le Petit Peuple de l'Herbe :</strong> Plongée dans le monde des insectes et invertébrés.</li>
+          <li><strong>L'Herbier Créatif :</strong> Science et art pour identifier et conserver les plantes.</li>
+        </ul>
+      </div>
+      <div class="univers-card u-green">
+        <div class="univers-head">
+          <div class="u-icon">🔭</div>
+          <h3>L'Univers des Scientifiques</h3>
+        </div>
+        <ul class="univers-list">
+          <li><strong>Sensibilisation aux différents écosystèmes.</strong></li>
+          <li><strong>Niches Écologiques & Réseaux Trophiques :</strong> "Qui mange quoi ?" et le rôle de chacun.</li>
+          <li><strong>L'Odyssée des Animaux :</strong> Découverte de la faune, de leurs besoins et de leur lien avec l'humain.</li>
+          <li><strong>Labo-Natur :</strong> Expériences de vulgarisation des phénomènes naturels.</li>
+        </ul>
+      </div>
+      <div class="univers-card u-brown">
+        <div class="univers-head">
+          <div class="u-icon">✨</div>
+          <h3>L'Univers des Rêveurs</h3>
+        </div>
+        <ul class="univers-list">
+          <li><strong>Balades Contées :</strong> Quand les savoirs naturalistes rencontrent les légendes.</li>
+          <li><strong>Éveil Sensoriel :</strong> Toucher, sentir, écouter pour se reconnecter au vivant.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER (Allégé) ========== -->
+<footer style="background: var(--green-dark); color: rgba(243,222,180,0.55); padding: 2rem 1rem 3rem; text-align: center;">
+  <p style="font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:700; color:var(--beige); margin-bottom: 5px;">Écocurieux · Animation nature & biodiversité</p>
+  <p style="font-size:0.8rem; margin-bottom: 10px; color:rgba(243,222,180,0.75);">Amandine Junier-Dubus</p>
+  <p style="font-size:0.75rem;">© 2026 · Saône-et-Loire · <a href="mailto:amandinejd@gmail.com" style="color:rgba(243,222,180,0.85); font-weight:600; text-decoration:none;">amandinejd@gmail.com</a></p>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>
