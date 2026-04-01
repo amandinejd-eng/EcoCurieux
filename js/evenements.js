@@ -97,13 +97,16 @@ function isEventPast(eventDate) {
 
 function createEventCard(event) {
   const detailsHtml = event.details ? 
-    `<div style="margin-top:0.8rem;padding:0.6rem 0.8rem;background:var(--beige-light);border-left:3px solid var(--green);border-radius:0 4px 4px 0;">
-      <p style="font-size:0.85rem;line-height:1.5;color:var(--green-dark);margin:0;"><strong style="font-family:'Montserrat',sans-serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;">En plus :</strong> ${event.details}</p>
+    `<div style="margin-top:1rem;">
+      <div style="display:inline-block;background:var(--green);color:var(--white);padding:0.7rem 1.2rem;border-radius:10px;box-shadow:0 3px 10px rgba(70,123,67,0.25);">
+        <span style="font-family:'Montserrat',sans-serif;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;opacity:0.9;">✨ EN PLUS :</span>
+        <span style="font-family:'Lora',serif;font-size:0.9rem;margin-left:0.5rem;">${event.details}</span>
+      </div>
     </div>` 
     : '';
   
   return `
-    <div style="background:#f8fdf9;border-left:5px solid var(--green);border-radius:12px;padding:2rem;margin-bottom:1.5rem;display:flex;gap:2.5rem;align-items:flex-start;transition:all 0.3s ease;flex-wrap:wrap;box-shadow:0 2px 10px rgba(107,155,122,0.08);position:relative;" onmouseover="this.style.boxShadow='0 4px 20px rgba(107,155,122,0.15)';this.style.transform='translateX(5px)';" onmouseout="this.style.boxShadow='0 2px 10px rgba(107,155,122,0.08)';this.style.transform='translateX(0)';">
+    <div style="background:var(--beige-light);border-left:5px solid var(--green);border-radius:12px;padding:2rem;margin-bottom:1.5rem;display:flex;gap:2.5rem;align-items:flex-start;transition:all 0.3s ease;flex-wrap:wrap;box-shadow:0 2px 10px rgba(70,123,67,0.08);position:relative;" onmouseover="this.style.boxShadow='0 4px 20px rgba(70,123,67,0.15)';this.style.transform='translateX(5px)';" onmouseout="this.style.boxShadow='0 2px 10px rgba(70,123,67,0.08)';this.style.transform='translateX(0)';">
       
       <!-- Emoticon décoratif -->
       <span style="position:absolute;top:1rem;right:1rem;font-size:1.8rem;opacity:0.4;">🌱</span>
@@ -127,11 +130,11 @@ function createEventCard(event) {
 
       <!-- Badges Droite -->
       <div style="display:flex;flex-direction:column;gap:0.7rem;min-width:160px;">
-        <span style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg, #6fb87e 0%, #5a9c6a 100%);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(107,155,122,0.25);">
+        <span style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(70,123,67,0.25);">
           <span style="font-size:1rem;">⏰</span>
           ${event.time}
         </span>
-        <span style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg, #e89b5f 0%, #d4834a 100%);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(232,155,95,0.25);">
+        <span style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--brown);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(175,106,50,0.25);">
           <span style="font-size:1rem;">👥</span>
           ${event.audience}
         </span>
@@ -161,7 +164,7 @@ function createPastEventCard(event) {
     : '';
   
   return `
-    <div style="background:#fdfbf8;border-top:4px solid var(--brown);border-radius:16px;padding:2rem;box-shadow:0 8px 25px rgba(143,82,40,0.08);display:flex;flex-direction:column;height:100%;transition:all 0.35s ease;position:relative;" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 12px 35px rgba(143,82,40,0.15)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 25px rgba(143,82,40,0.08)';">
+    <div style="background:var(--white);border-top:4px solid var(--brown);border-radius:16px;padding:2rem;box-shadow:0 8px 25px rgba(175,106,50,0.08);display:flex;flex-direction:column;height:100%;transition:all 0.35s ease;position:relative;" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 12px 35px rgba(175,106,50,0.15)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 25px rgba(175,106,50,0.08)';">
       
       <!-- Emoticon décoratif -->
       <span style="position:absolute;top:1rem;right:1rem;font-size:1.8rem;opacity:0.35;">🍃</span>
@@ -204,7 +207,7 @@ async function displayUpcomingEvents(containerId) {
   
   if (upcomingEvents.length === 0) {
     container.innerHTML = `
-      <div style="text-align:center;padding:4rem 2rem;background:linear-gradient(135deg, var(--beige-light) 0%, #f8fdf9 100%);border-radius:20px;border:2px dashed #d4c4a8;position:relative;overflow:hidden;">
+      <div style="text-align:center;padding:4rem 2rem;background:var(--beige-light);border-radius:20px;border:2px dashed var(--beige-2);position:relative;overflow:hidden;">
         <span style="position:absolute;top:15px;left:20px;font-size:1.8rem;opacity:0.3;">🦗</span>
         <span style="position:absolute;top:20px;right:25px;font-size:1.6rem;opacity:0.3;">🐝</span>
         <span style="position:absolute;bottom:20px;left:30px;font-size:1.5rem;opacity:0.3;">🌸</span>
@@ -235,12 +238,12 @@ async function displayPastEvents(containerId) {
   
   if (allPastEvents.length === 0) {
     container.innerHTML = `
-      <div style="text-align:center;padding:4rem 2rem;background:linear-gradient(135deg, #fdfbf8 0%, var(--beige-light) 100%);border-radius:20px;border:2px dashed #d4c4a8;grid-column:1/-1;position:relative;overflow:hidden;">
+      <div style="text-align:center;padding:4rem 2rem;background:var(--beige-light);border-radius:20px;border:2px dashed var(--beige-2);grid-column:1/-1;position:relative;overflow:hidden;">
         <span style="position:absolute;top:15px;left:20px;font-size:1.8rem;opacity:0.3;">🍃</span>
         <span style="position:absolute;top:20px;right:25px;font-size:1.6rem;opacity:0.3;">🦋</span>
         <span style="position:absolute;bottom:20px;left:30px;font-size:1.5rem;opacity:0.3;">🌿</span>
         <span style="position:absolute;bottom:25px;right:20px;font-size:1.7rem;opacity:0.3;">🌸</span>
-        <div style="font-size:3.5rem;margin-bottom:1rem;">�</div>
+        <div style="font-size:3.5rem;margin-bottom:1rem;">📚</div>
         <p style="font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:700;color:var(--brown);margin:0 0 0.5rem;">Le carnet de bord est encore vide</p>
         <p style="font-family:'Lora',serif;font-size:1rem;color:#7a6a50;margin:0;">Les souvenirs de nos aventures apparaîtront bientôt ici.</p>
       </div>
