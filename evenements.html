@@ -98,14 +98,8 @@
 </div>
 
 <!-- ========== HERO & SÉLECTEUR (MODERNE) ========== -->
-<div style="background:linear-gradient(135deg, var(--beige-light) 0%, #f8fdf9 100%);padding-top:5rem;padding-bottom:2rem;border-bottom:1px solid var(--beige-2);">
+<div style="background:linear-gradient(135deg, var(--beige-light) 0%, #f8fdf9 100%);padding-top:5rem;padding-bottom:2rem;">
   <div class="section-inner" style="max-width:900px;text-align:center;position:relative;">
-    
-    <!-- Emoticons décoratifs nature forte -->
-    <span style="position:absolute;top:5%;left:8%;font-size:2.5rem;opacity:0.75;">🐞</span>
-    <span style="position:absolute;bottom:15%;left:-2%;font-size:2.3rem;opacity:0.7;">🦔</span>
-    <span style="position:absolute;top:15%;right:1%;font-size:2.8rem;opacity:0.65;">🌳</span>
-    <span style="position:absolute;bottom:-34px;right:-20%;font-size:2.2rem;opacity:0.7;z-index:10;">🐿️</span>
     
     <h1 style="font-size:3rem;color:var(--green-dark);margin-bottom:2rem;line-height:1.2;font-family:'Montserrat',sans-serif;font-weight:900;text-shadow:2px 2px 4px rgba(107,155,122,0.1);">Événements</h1>
 
@@ -127,6 +121,326 @@
     </div>
   </div>
 </div>
+
+<!-- ========== BRANCHE AVEC ÉCUREUIL ANIMÉ ========== -->
+<div style="position:relative;height:120px;background:linear-gradient(180deg, #f0f7ec 0%, #e2ebd9 100%);overflow:hidden;">
+  
+  <!-- Branche SVG ultra réaliste -->
+  <svg width="100%" height="120" style="position:absolute;top:0;left:0;pointer-events:none;">
+    <defs>
+      <!-- Texture écorce -->
+      <filter id="barkTexture" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05 0.5" numOctaves="3" result="noise" />
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 0.8 0 0 0  0 0.5 0 0 0  0 0 0 0.3 0" in="noise" result="coloredNoise" />
+        <feBlend in="SourceGraphic" in2="coloredNoise" mode="multiply" />
+      </filter>
+      <!-- Ombre de la branche -->
+      <filter id="branchShadowReal" x="-5%" y="-5%" width="110%" height="150%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+        <feOffset dx="0" dy="5" result="offsetblur" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.4" /></feComponentTransfer>
+        <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+      <!-- Dégradé bois principal -->
+      <linearGradient id="woodGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#4a3219" />
+        <stop offset="30%" stop-color="#6e4b26" />
+        <stop offset="70%" stop-color="#54381c" />
+        <stop offset="100%" stop-color="#362310" />
+      </linearGradient>
+      <!-- Modèle de feuille réaliste -->
+      <g id="leafReal">
+        <path d="M0,0 Q10,-10 20,-2 Q25,2 20,10 Q10,18 0,0" fill="#4a7c2c" stroke="#2e501a" stroke-width="0.5"/>
+        <path d="M0,0 Q10,2 18,3" stroke="#2e501a" stroke-width="1" fill="none"/>
+        <path d="M5,1 L8,-4 M10,2 L14,-3 M6,2 L8,7 M12,3 L15,8" stroke="#3a6021" stroke-width="0.5" fill="none"/>
+      </g>
+    </defs>
+
+    <!-- Branche principale avec ondulations, texture et ombre -->
+    <path d="M -50 70 Q 150 60, 350 75 T 750 65 T 1150 80 T 1550 60 T 1950 75 T 2350 65" 
+          stroke="url(#woodGradient)" stroke-width="22" fill="none" 
+          stroke-linecap="round" filter="url(#branchShadowReal)"/>
+    
+    <!-- Lignes d'écorce (texture supplémentaire) -->
+    <path d="M 0 65 Q 150 55, 350 70 T 750 60 T 1150 75" stroke="#362310" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M 50 75 Q 200 65, 400 80 T 800 70 T 1200 85" stroke="#2a1b0c" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M 100 68 Q 250 58, 450 73 T 850 63 T 1250 78" stroke="#4a3219" stroke-width="3" fill="none" opacity="0.4"/>
+
+    <!-- Ramifications (petites branches) -->
+    <!-- Gauche -->
+    <path d="M 180 66 Q 200 40, 230 25" stroke="url(#woodGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 200 45 Q 185 30, 175 20" stroke="url(#woodGradient)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Centre 1 -->
+    <path d="M 450 72 Q 470 45, 510 30" stroke="url(#woodGradient)" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M 480 50 Q 500 35, 520 25" stroke="url(#woodGradient)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Centre 2 -->
+    <path d="M 820 67 Q 800 40, 760 25" stroke="url(#woodGradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M 780 40 Q 750 30, 730 20" stroke="url(#woodGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <!-- Droite -->
+    <path d="M 1200 78 Q 1230 50, 1280 35" stroke="url(#woodGradient)" stroke-width="7" fill="none" stroke-linecap="round"/>
+
+    <!-- Nœuds de bois / Mousse -->
+    <ellipse cx="300" cy="72" rx="12" ry="5" fill="#362310" opacity="0.8" transform="rotate(-10 300 72)"/>
+    <ellipse cx="300" cy="72" rx="8" ry="3" fill="#2a1b0c" transform="rotate(-10 300 72)"/>
+    <ellipse cx="650" cy="65" rx="15" ry="6" fill="#362310" opacity="0.7" transform="rotate(5 650 65)"/>
+    <ellipse cx="650" cy="65" rx="10" ry="4" fill="#2a1b0c" transform="rotate(5 650 65)"/>
+    <ellipse cx="1000" cy="74" rx="14" ry="5" fill="#362310" opacity="0.8" transform="rotate(-5 1000 74)"/>
+    <ellipse cx="1000" cy="74" rx="9" ry="3" fill="#2a1b0c" transform="rotate(-5 1000 74)"/>
+
+    <!-- Taches de lichen/mousse verte sur l'écorce -->
+    <path d="M 280 68 Q 290 65, 300 69 Q 290 73, 280 68" fill="#5c7a3c" opacity="0.6"/>
+    <path d="M 620 62 Q 635 58, 645 64 Q 630 68, 620 62" fill="#6a8c45" opacity="0.5"/>
+    <path d="M 950 75 Q 960 70, 975 74 Q 965 80, 950 75" fill="#5c7a3c" opacity="0.7"/>
+
+    <!-- Grappes de feuilles -->
+    <!-- Ramif Gauche -->
+    <use href="#leafReal" x="225" y="22" transform="rotate(-30 225 22) scale(1.2)" />
+    <use href="#leafReal" x="230" y="25" transform="rotate(20 230 25) scale(1)" />
+    <use href="#leafReal" x="220" y="28" transform="rotate(70 220 28) scale(0.9)" />
+    <use href="#leafReal" x="175" y="18" transform="rotate(-60 175 18) scale(1.1)" />
+    <use href="#leafReal" x="170" y="22" transform="rotate(-10 170 22) scale(0.8)" />
+    
+    <!-- Ramif Centre 1 -->
+    <use href="#leafReal" x="505" y="28" transform="rotate(-45 505 28) scale(1.3)" />
+    <use href="#leafReal" x="515" y="32" transform="rotate(15 515 32) scale(1.1)" />
+    <use href="#leafReal" x="500" y="35" transform="rotate(60 500 35) scale(0.9)" />
+    <use href="#leafReal" x="520" y="23" transform="rotate(-15 520 23) scale(1)" />
+    <use href="#leafReal" x="525" y="27" transform="rotate(40 525 27) scale(0.8)" />
+
+    <!-- Ramif Centre 2 -->
+    <use href="#leafReal" x="760" y="23" transform="rotate(-140 760 23) scale(1.2)" />
+    <use href="#leafReal" x="750" y="27" transform="rotate(-190 750 27) scale(1)" />
+    <use href="#leafReal" x="765" y="28" transform="rotate(-90 765 28) scale(1.1)" />
+    <use href="#leafReal" x="730" y="18" transform="rotate(-120 730 18) scale(1)" />
+    <use href="#leafReal" x="725" y="22" transform="rotate(-170 725 22) scale(0.9)" />
+
+    <!-- Ramif Droite -->
+    <use href="#leafReal" x="1275" y="33" transform="rotate(-20 1275 33) scale(1.3)" />
+    <use href="#leafReal" x="1285" y="37" transform="rotate(30 1285 37) scale(1.1)" />
+    <use href="#leafReal" x="1270" y="40" transform="rotate(80 1270 40) scale(0.9)" />
+
+    <!-- Quelques feuilles volantes ou tombantes -->
+    <use href="#leafReal" x="350" y="30" transform="rotate(-15 350 30) scale(0.8)" opacity="0.6"/>
+    <use href="#leafReal" x="600" y="25" transform="rotate(45 600 25) scale(0.7)" opacity="0.5"/>
+    <use href="#leafReal" x="900" y="35" transform="rotate(-60 900 35) scale(0.9)" opacity="0.7"/>
+    <use href="#leafReal" x="1050" y="20" transform="rotate(15 1050 20) scale(0.7)" opacity="0.6"/>
+  </svg>
+  
+  <!-- Écureuil Articulé et Animé -->
+  <div class="squirrel-master" style="position:absolute;top:20px;left:-100px;">
+    <div class="squirrel-wrapper">
+      <svg width="80" height="80" viewBox="0 0 100 100" style="filter:drop-shadow(2px 5px 4px rgba(0,0,0,0.3)); overflow:visible;">
+        
+        <!-- Queue (arrière-plan) -->
+        <g class="sq-tail">
+          <!-- Touffe principale -->
+          <path d="M 40 65 C 20 65, 5 35, 15 15 C 25 -5, 50 5, 50 30 C 50 45, 45 55, 40 65 Z" fill="#b0581f" />
+          <!-- Poils extérieurs (plus clairs) -->
+          <path d="M 38 63 C 15 63, 0 32, 12 12 C 24 -8, 52 2, 52 28 C 52 45, 45 55, 38 63 Z" fill="#c46a2a" opacity="0.8" />
+          <!-- Détails des poils -->
+          <path d="M 25 25 Q 15 20, 18 10 M 35 20 Q 30 10, 40 5 M 20 40 Q 10 35, 12 25" stroke="#904515" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+        </g>
+
+        <!-- Patte Arrière Gauche (derrière le corps) -->
+        <g class="sq-leg-bl">
+          <ellipse cx="45" cy="72" rx="5" ry="12" fill="#904515" transform="rotate(15 45 72)"/>
+          <ellipse cx="48" cy="82" rx="7" ry="3" fill="#6e320c"/>
+        </g>
+        
+        <!-- Patte Avant Gauche (derrière le corps) -->
+        <g class="sq-leg-fl">
+          <ellipse cx="65" cy="70" rx="3" ry="10" fill="#904515" transform="rotate(-15 65 70)"/>
+          <ellipse cx="67" cy="78" rx="4" ry="2" fill="#6e320c"/>
+        </g>
+
+        <!-- Corps (rebondit) -->
+        <g class="sq-body">
+          <!-- Tronc -->
+          <path d="M 40 40 C 65 35, 80 50, 75 65 C 70 80, 45 80, 35 65 C 25 50, 30 42, 40 40 Z" fill="#c46a2a" />
+          <!-- Ventre clair -->
+          <path d="M 45 48 C 60 45, 70 55, 68 65 C 66 72, 50 72, 45 65 C 40 55, 40 50, 45 48 Z" fill="#e8ba8c" opacity="0.8" />
+          <!-- Cuisse droite -->
+          <circle cx="48" cy="62" r="10" fill="#b0581f"/>
+        </g>
+
+        <!-- Tête (tourne) -->
+        <g class="sq-head">
+          <!-- Crâne -->
+          <ellipse cx="75" cy="40" rx="14" ry="12" fill="#c46a2a" transform="rotate(15 75 40)"/>
+          <!-- Museau -->
+          <path d="M 85 35 Q 98 38, 95 45 Q 90 50, 80 48 Z" fill="#c46a2a" />
+          <!-- Menton clair -->
+          <path d="M 85 42 Q 95 43, 93 47 Q 88 50, 80 48 Z" fill="#e8ba8c" />
+          <!-- Nez noir -->
+          <circle cx="96" cy="42" r="2.5" fill="#1a1109"/>
+          <!-- Œil -->
+          <circle cx="82" cy="35" r="4" fill="#1a1109"/>
+          <circle cx="83" cy="34" r="1.5" fill="#ffffff"/> <!-- Reflet -->
+          <!-- Oreille Droite (devant) -->
+          <path d="M 70 30 Q 68 18, 75 20 Q 78 25, 75 32 Z" fill="#b0581f" />
+          <!-- Oreille Gauche (derrière) -->
+          <path d="M 65 32 Q 62 22, 68 25 Q 70 28, 68 33 Z" fill="#904515" />
+          <!-- Joue (détail pelage) -->
+          <path d="M 72 45 Q 78 50, 70 52 Z" fill="#d8823e" />
+        </g>
+
+        <!-- Patte Arrière Droite (devant le corps) -->
+        <g class="sq-leg-br">
+          <!-- Cuisse -->
+          <path d="M 45 55 Q 55 60, 50 75 Q 40 70, 45 55 Z" fill="#c46a2a" />
+          <!-- Pied -->
+          <ellipse cx="53" cy="80" rx="8" ry="3.5" fill="#b0581f"/>
+          <!-- Doigts -->
+          <line x1="58" y1="78" x2="62" y2="79" stroke="#6e320c" stroke-width="1"/>
+          <line x1="58" y1="80" x2="62" y2="81" stroke="#6e320c" stroke-width="1"/>
+        </g>
+
+        <!-- Patte Avant Droite (devant le corps) -->
+        <g class="sq-leg-fr">
+          <!-- Bras -->
+          <path d="M 68 55 Q 75 65, 70 75 Q 65 65, 68 55 Z" fill="#c46a2a" />
+          <!-- Main -->
+          <ellipse cx="72" cy="78" rx="5" ry="2.5" fill="#b0581f" transform="rotate(-15 72 78)"/>
+        </g>
+
+      </svg>
+    </div>
+  </div>
+</div>
+
+<style>
+/* 
+  CHORÉGRAPHIE GLOBALE (20 secondes)
+  - 0%   : Hors écran gauche
+  - 10%  : Court jusqu'à 25% (Pause 1)
+  - 25%  : Fin de la pause 1
+  - 35%  : Court jusqu'à 50% (Pause 2)
+  - 50%  : Fin de la pause 2
+  - 60%  : Court jusqu'à 80% (Pause 3)
+  - 75%  : Fin de la pause 3
+  - 85%  : Court jusqu'à la fin de l'écran (110%)
+  - 86%  : Retournement
+  - 95%  : Retour ultra rapide pour boucler (ou on refait le même cycle en sens inverse)
+*/
+
+/* DEPLACEMENT DU CONTENEUR MAITRE (TRANSLATION X) */
+@keyframes masterMovement {
+  0%   { left: -100px; transform: scaleX(1) translateY(-15px); }
+  10%  { left: 20%;    transform: scaleX(1) translateY(0px); }
+  20%  { left: 20%;    transform: scaleX(1) translateY(0px); }  /* PAUSE 1 */
+  30%  { left: 50%;    transform: scaleX(1) translateY(5px); }
+  40%  { left: 50%;    transform: scaleX(1) translateY(5px); }  /* PAUSE 2 */
+  50%  { left: 80%;    transform: scaleX(1) translateY(0px); }
+  60%  { left: 80%;    transform: scaleX(1) translateY(0px); }  /* PAUSE 3 */
+  70%  { left: calc(100% + 50px); transform: scaleX(1) translateY(-10px); }
+  72%  { left: calc(100% + 50px); transform: scaleX(-1) translateY(-10px); } /* DEMI-TOUR */
+  80%  { left: 60%;    transform: scaleX(-1) translateY(2px); }
+  85%  { left: 60%;    transform: scaleX(-1) translateY(2px); } /* PAUSE RETOUR */
+  95%  { left: -100px; transform: scaleX(-1) translateY(-10px); }
+  100% { left: -100px; transform: scaleX(1) translateY(-15px); }
+}
+
+.squirrel-master {
+  animation: masterMovement 16s ease-in-out infinite;
+}
+
+/* ANIMATION DES PATTES (Uniquement pendant les phases de mouvement) */
+@keyframes legRunFront {
+  0%, 10% { transform: rotate(0deg); }
+  /* Course 1 */
+  12% { transform: rotate(30deg); } 14% { transform: rotate(-20deg); } 16% { transform: rotate(30deg); } 18% { transform: rotate(-20deg); }
+  20%, 30% { transform: rotate(0deg); }
+  /* Course 2 */
+  32% { transform: rotate(30deg); } 34% { transform: rotate(-20deg); } 36% { transform: rotate(30deg); } 38% { transform: rotate(-20deg); }
+  40%, 50% { transform: rotate(0deg); }
+  /* Course 3 */
+  52% { transform: rotate(30deg); } 54% { transform: rotate(-20deg); } 56% { transform: rotate(30deg); } 58% { transform: rotate(-20deg); }
+  60%, 70% { transform: rotate(0deg); }
+  /* Course 4 (sortie écran) */
+  72% { transform: rotate(30deg); } 75% { transform: rotate(-20deg); } 78% { transform: rotate(30deg); }
+  80%, 85% { transform: rotate(0deg); }
+  /* Course 5 (retour) */
+  87% { transform: rotate(30deg); } 89% { transform: rotate(-20deg); } 91% { transform: rotate(30deg); } 93% { transform: rotate(-20deg); }
+  95%, 100% { transform: rotate(0deg); }
+}
+
+@keyframes legRunBack {
+  0%, 10% { transform: rotate(0deg); }
+  /* Course 1 */
+  12% { transform: rotate(-25deg); } 14% { transform: rotate(20deg); } 16% { transform: rotate(-25deg); } 18% { transform: rotate(20deg); }
+  20%, 30% { transform: rotate(0deg); }
+  /* Course 2 */
+  32% { transform: rotate(-25deg); } 34% { transform: rotate(20deg); } 36% { transform: rotate(-25deg); } 38% { transform: rotate(20deg); }
+  40%, 50% { transform: rotate(0deg); }
+  /* Course 3 */
+  52% { transform: rotate(-25deg); } 54% { transform: rotate(20deg); } 56% { transform: rotate(-25deg); } 58% { transform: rotate(20deg); }
+  60%, 70% { transform: rotate(0deg); }
+  /* Course 4 */
+  72% { transform: rotate(-25deg); } 75% { transform: rotate(20deg); } 78% { transform: rotate(-25deg); }
+  80%, 85% { transform: rotate(0deg); }
+  /* Course 5 */
+  87% { transform: rotate(-25deg); } 89% { transform: rotate(20deg); } 91% { transform: rotate(-25deg); } 93% { transform: rotate(20deg); }
+  95%, 100% { transform: rotate(0deg); }
+}
+
+.sq-leg-fr { transform-origin: 68px 55px; animation: legRunFront 16s infinite; }
+.sq-leg-fl { transform-origin: 65px 55px; animation: legRunFront 16s infinite; animation-delay: -0.2s; }
+.sq-leg-br { transform-origin: 45px 55px; animation: legRunBack 16s infinite; }
+.sq-leg-bl { transform-origin: 45px 55px; animation: legRunBack 16s infinite; animation-delay: -0.2s; }
+
+/* REBOND DU CORPS ET DE LA TÊTE PENDANT LA COURSE */
+@keyframes bodyBounce {
+  0%, 10% { transform: translateY(0); }
+  11%, 13%, 15%, 17%, 19% { transform: translateY(-3px); }
+  12%, 14%, 16%, 18% { transform: translateY(2px); }
+  20%, 30% { transform: translateY(0); }
+  31%, 33%, 35%, 37%, 39% { transform: translateY(-3px); }
+  32%, 34%, 36%, 38% { transform: translateY(2px); }
+  40%, 50% { transform: translateY(0); }
+  51%, 53%, 55%, 57%, 59% { transform: translateY(-3px); }
+  52%, 54%, 56%, 58% { transform: translateY(2px); }
+  60%, 70% { transform: translateY(0); }
+  72%, 75%, 78% { transform: translateY(-3px); }
+  80%, 85% { transform: translateY(0); }
+  86%, 88%, 90%, 92%, 94% { transform: translateY(-3px); }
+  87%, 89%, 91%, 93% { transform: translateY(2px); }
+  95%, 100% { transform: translateY(0); }
+}
+.sq-body, .sq-head { animation: bodyBounce 16s infinite; }
+
+/* BALANCEMENT DE LA QUEUE */
+@keyframes tailWave {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
+.sq-tail {
+  transform-origin: 40px 65px;
+  animation: tailWave 1.5s ease-in-out infinite;
+}
+
+/* MOUVEMENT DE LA TÊTE PENDANT LES PAUSES */
+@keyframes headLook {
+  0%, 10% { transform: rotate(0deg); }
+  12%, 18% { transform: rotate(-5deg); }
+  20% { transform: rotate(0deg); }
+  22% { transform: rotate(15deg); } /* Regarde en haut */
+  26% { transform: rotate(-10deg); } /* Regarde en bas */
+  29% { transform: rotate(0deg); }
+  30%, 40% { transform: rotate(-5deg); }
+  42% { transform: rotate(-15deg); } /* Renifle */
+  48% { transform: rotate(5deg); }
+  50%, 60% { transform: rotate(-5deg); }
+  62% { transform: rotate(20deg); } /* Aux aguets */
+  65% { transform: rotate(0deg); }
+  68% { transform: rotate(15deg); }
+  70%, 100% { transform: rotate(0deg); }
+}
+.sq-head {
+  transform-origin: 75px 40px;
+  animation: headLook 16s infinite;
+}
+</style>
 
 <!-- ========== CONTENU : AGENDA À VENIR ========== -->
 <div id="section-upcoming" style="display:block;animation:fadeIn 0.5s ease;">
