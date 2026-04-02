@@ -51,10 +51,12 @@ function createEventCard(event) {
 
       <!-- Badges Droite -->
       <div style="display:flex;flex-direction:column;gap:0.7rem;min-width:160px;">
+        ${event.time ? `
         <span style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(70,123,67,0.25);">
           <span style="font-size:1rem;">⏰</span>
           ${event.time}
         </span>
+        ` : ''}
         <span style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--brown);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(175,106,50,0.25);">
           <span style="font-size:1rem;">👥</span>
           ${event.audience}
