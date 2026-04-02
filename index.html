@@ -257,22 +257,24 @@
 </section>
 
 <!-- ========== ÉVÉNEMENTS À VENIR ========== -->
-<section class="padded" style="background:var(--beige-light);border-top:2px solid var(--beige-2);padding-bottom:3rem;" id="evenements">
-  <div class="section-inner">
-    <div class="section-label">Prochaines dates</div>
-    <div class="section-title">Événements à <span style="color:var(--brown)">venir</span></div>
-    
-    <div id="upcoming-events-container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem;">
-      <!-- Les événements seront chargés automatiquement depuis evenements.json -->
-      <p style="text-align:center;color:#7a6a50;font-style:italic;">Chargement des événements...</p>
+<section class="events-preview-section" style="padding:5rem 10%;background-color:var(--beige-light);position:relative;border-top:2px solid var(--beige-2);" id="evenements">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <span style="display:inline-block;background:var(--green-light);color:var(--green-dark);padding:0.5rem 1.5rem;border-radius:20px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:1rem;">AGENDA</span>
+      <h2 style="font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:800;color:var(--brown);margin:0;">Événements à venir</h2>
+      <p style="font-family:'Lora',serif;font-size:1.1rem;color:#6b5a40;max-width:600px;margin:1rem auto 0;">Ne manquez pas nos prochaines rencontres et ateliers ludiques autour de la nature.</p>
     </div>
     
-    <div style="text-align:center;margin-top:2.5rem;margin-bottom:3rem;">
-      <p style="font-style:italic;font-size:0.85rem;color:#8a7a60;">📅 D'autres dates s'ajoutent régulièrement - Contactez-moi pour organiser un événement sur mesure</p>
+    <div id="upcoming-events-container-home" style="display:flex;flex-direction:column;gap:1.5rem;">
+      <!-- Les événements à venir seront injectés ici par JavaScript -->
+    </div>
+    
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="/evenements.html" class="btn" style="display:inline-block;padding:1rem 2rem;background:var(--green);color:white;font-family:'Montserrat',sans-serif;font-weight:700;border-radius:30px;text-decoration:none;box-shadow:0 4px 15px rgba(70,123,67,0.3);transition:transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 6px 20px rgba(70,123,67,0.4)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(70,123,67,0.3)';">Voir tous les événements</a>
     </div>
 
-    <!-- ========== GARANTIES (déplacé sous événements) ========== -->
-    <div class="garanties" style="background:var(--beige-light); padding:0 0 2rem 0; margin-top:0.5rem;">
+    <!-- ========== GARANTIES ========== -->
+    <div class="garanties" style="padding:4rem 0 0 0;">
       <div class="garanties-inner" style="justify-content:center;">
         <div class="garantie-box" style="box-shadow: 4px 4px 0 var(--beige-2);">
           <div class="gb-icon">📋</div>
@@ -297,11 +299,10 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ========== FOOTER (Allégé) ========== -->
+<!-- ========== FOOTER COMPACT ========== -->
 <footer style="background: var(--green-dark); color: rgba(243,222,180,0.55); padding: 2rem 1rem 3rem; text-align: center;">
   <p style="font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:700; color:var(--beige); margin-bottom: 5px;">Écocurieux · Animation nature & biodiversité</p>
   <p style="font-size:0.8rem; margin-bottom: 10px; color:rgba(243,222,180,0.75);">Amandine Junier-Dubus</p>

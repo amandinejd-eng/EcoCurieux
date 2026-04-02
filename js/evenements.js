@@ -20,83 +20,6 @@ function isEventPast(eventDate) {
 
 function createEventCard(event) {
   const detailsHtml = event.details ? 
-    `<p style="font-size:0.87rem;line-height:1.6;color:#5a5040;margin:0.5rem 0 0;"><strong style="color:var(--green-dark);">Inédit :</strong> ${event.details}</p>` 
-    : '';
-  
-  return `
-    <div class="service-card" style="background:var(--white);border:2px solid var(--beige-2);border-radius:20px;padding:1.5rem;box-shadow:5px 5px 0 var(--beige-2);">
-      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-        <div style="background:var(--green);color:var(--white);padding:0.5rem 1rem;border-radius:10px;font-weight:700;text-align:center;min-width:60px;">
-          <div style="font-size:1.2rem;line-height:1;">${event.day}</div>
-          <div style="font-size:0.7rem;">${event.month}</div>
-        </div>
-        <div>
-          <h3 style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--green-dark);margin:0;">${event.title}</h3>
-          <p style="font-size:0.85rem;color:#7a6a50;margin:0.2rem 0 0;">${event.location}</p>
-        </div>
-      </div>
-      <p style="font-size:0.87rem;line-height:1.6;color:#5a5040;margin:0;">${event.description}</p>
-      ${detailsHtml}
-      <div style="margin-top:0.8rem;">
-        <span style="display:inline-block;background:var(--beige);border:1px solid var(--beige-2);color:var(--green-dark);padding:3px 10px;border-radius:20px;font-family:'Montserrat',sans-serif;font-size:0.72rem;font-weight:700;margin-right:0.3rem;">🕐 ${event.time}</span>
-        <span style="display:inline-block;background:var(--beige);border:1px solid var(--beige-2);color:var(--green-dark);padding:3px 10px;border-radius:20px;font-family:'Montserrat',sans-serif;font-size:0.72rem;font-weight:700;">👨‍👩‍👧‍👦 ${event.audience}</span>
-      </div>
-    </div>
-  `;
-}
-
-function createPastEventCard(event) {
-  const photosHtml = event.photos && event.photos.length > 0 ? 
-    `<div style="margin-bottom:1rem;">
-      <img src="${event.photos[0]}" alt="${event.title}" style="width:100%;height:200px;object-fit:cover;border-radius:15px;">
-    </div>` 
-    : '';
-  
-  const recapHtml = event.recap ? 
-    `<p style="font-size:0.9rem;line-height:1.6;color:#5a5040;margin-top:0.8rem;font-style:italic;">${event.recap}</p>` 
-    : '';
-  
-  return `
-    <div class="service-card" style="background:var(--white);border:2px solid var(--beige-2);border-radius:20px;padding:1.5rem;box-shadow:5px 5px 0 rgba(143,82,40,0.3);">
-      ${photosHtml}
-      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-        <div style="background:var(--brown);color:var(--white);padding:0.5rem 1rem;border-radius:10px;font-weight:700;text-align:center;min-width:60px;opacity:0.85;">
-          <div style="font-size:1.2rem;line-height:1;">${event.day}</div>
-          <div style="font-size:0.7rem;">${event.month}</div>
-        </div>
-        <div>
-          <h3 style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--green-dark);margin:0;">${event.title}</h3>
-          <p style="font-size:0.85rem;color:#7a6a50;margin:0.2rem 0 0;">${event.location}</p>
-        </div>
-      </div>
-      <p style="font-size:0.87rem;line-height:1.6;color:#5a5040;margin:0;">${event.description}</p>
-      ${recapHtml}
-    </div>
-  `;
-}
-
-// Gestion automatique des événements
-async function loadEvents() {
-  try {
-    const response = await fetch('/evenements.json');
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Erreur lors du chargement des événements:', error);
-    return { upcoming: [], past: [] };
-  }
-}
-
-function isEventPast(eventDate) {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const event = new Date(eventDate);
-  event.setHours(0, 0, 0, 0);
-  return event < today;
-}
-
-function createEventCard(event) {
-  const detailsHtml = event.details ? 
     `<div style="margin-top:1rem;">
       <div style="display:inline-block;background:var(--green);color:var(--white);padding:0.7rem 1.2rem;border-radius:10px;box-shadow:0 3px 10px rgba(70,123,67,0.25);">
         <span style="font-family:'Montserrat',sans-serif;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;opacity:0.9;">✨ EN PLUS :</span>
@@ -112,6 +35,7 @@ function createEventCard(event) {
       <div style="text-align:left;min-width:100px;display:flex;flex-direction:column;border-right:3px solid var(--green);padding-right:2rem;">
         <div style="font-size:2.8rem;font-weight:900;color:var(--green-dark);line-height:1;font-family:'Montserrat',sans-serif;letter-spacing:-1px;">${event.day}</div>
         <div style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--green);text-transform:uppercase;margin-top:0.2rem;letter-spacing:1px;">${event.month}</div>
+        ${event.year ? `<div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--beige-2);margin-top:0.3rem;">${event.year}</div>` : ''}
       </div>
       
       <!-- Contenu Central -->
@@ -136,7 +60,7 @@ function createEventCard(event) {
           ${event.audience}
         </span>
         ${event.price ? `
-        <span style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--beige-2);color:var(--brown);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(175,106,50,0.15);">
+        <span style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--beige-light);border:1px solid var(--beige-2);color:var(--brown);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(175,106,50,0.15);">
           <span style="font-size:1rem;">🎟️</span>
           ${event.price}
         </span>
@@ -169,10 +93,8 @@ function createPastEventCard(event) {
         const photoUrl = typeof photo === 'string' ? photo : photo.url;
         const rotation = typeof photo === 'object' && photo.rotation ? photo.rotation : 0;
         
-        // Ajuster le style selon si la photo est pivotée ou non
         let imgStyle = 'width:100%;height:100%;object-fit:contain;transition:transform 0.3s ease;';
         if (rotation !== 0) {
-          // Pour les photos tournées, on doit tricher un peu avec le scale pour compenser le ratio
           imgStyle = `width:100%;height:100%;object-fit:contain;transform:rotate(${rotation}deg) scale(1.3);transition:transform 0.3s ease;`;
         }
         
@@ -257,6 +179,7 @@ function createPastEventCard(event) {
         <div style="text-align:center;min-width:50px;border-right:3px solid var(--brown);padding-right:1rem;">
           <div style="font-size:1.7rem;font-weight:900;line-height:1;color:var(--brown);font-family:'Montserrat',sans-serif;">${event.day}</div>
           <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-top:3px;color:var(--brown);font-family:'Montserrat',sans-serif;">${event.month}</div>
+          ${event.year ? `<div style="font-size:0.9rem;font-weight:800;color:var(--beige-2);margin-top:2px;font-family:'Montserrat',sans-serif;">${event.year}</div>` : ''}
         </div>
         <div style="flex:1;">
           <h3 style="font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:var(--green-dark);margin:0 0 0.4rem;line-height:1.3;">${event.title}</h3>
@@ -284,6 +207,9 @@ async function displayUpcomingEvents(containerId) {
   // Filtrer les événements à venir
   const upcomingEvents = data.upcoming.filter(event => !isEventPast(event.date));
   
+  // Trier par date croissante (le plus proche en premier)
+  upcomingEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+  
   if (upcomingEvents.length === 0) {
     container.innerHTML = `
       <div style="text-align:center;padding:4rem 2rem;background:var(--beige-light);border-radius:20px;border:2px dashed var(--beige-2);position:relative;overflow:hidden;">
@@ -308,7 +234,7 @@ async function displayPastEvents(containerId) {
   
   if (!container) return;
   
-  // Récupérer tous les événements passés
+  // Récupérer tous les événements passés (ceux dans "past" + ceux dans "upcoming" qui sont passés)
   const pastEventsFromUpcoming = data.upcoming.filter(event => isEventPast(event.date));
   const allPastEvents = [...data.past, ...pastEventsFromUpcoming];
   
@@ -348,7 +274,7 @@ function toggleEventDetails(eventId) {
     // Replier
     detailsDiv.style.maxHeight = '0px';
     iconSpan.textContent = '👇';
-    textSpan.textContent = 'Voir le détail de l\'événement';
+    textSpan.textContent = "Voir le détail de l'événement";
   }
 }
 
@@ -360,4 +286,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('past-events-container')) {
     displayPastEvents('past-events-container');
   }
+  if (document.getElementById('upcoming-events-container-home')) {
+    displayUpcomingEvents('upcoming-events-container-home');
+  }
 });
+

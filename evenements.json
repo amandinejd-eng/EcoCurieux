@@ -1,10 +1,25 @@
 {
   "upcoming": [
     {
+      "id": "event-003",
+      "date": "2026-04-11",
+      "day": "11",
+      "month": "AVRIL",
+      "year": "2026",
+      "title": "🦕 Mais à qui appartient cet œuf ?",
+      "location": "Particulier",
+      "description": "Pour l'anniversaire d'un enfant de 5 ans, Écocurieux a été mandatée pour créer une animation 100% sur mesure autour des dinosaures. Pendant 2h, 6 petits scientifiques en herbe devront résoudre le mystère d'un œuf mystérieux sauvé d'une attaque de T-Rex !",
+      "details": "Épreuves, fouilles, élixir magique… et un diplôme d'explorateur à la clé !",
+      "time": "2h",
+      "audience": "Animation anniversaire — 5 ans",
+      "price": "Sur devis"
+    },
+    {
       "id": "event-002",
       "date": "2026-06-24",
       "day": "24",
       "month": "JUIN",
+      "year": "2026",
       "title": "🐦 L'Été des Oiseaux",
       "location": "Port de plaisance 71100 Chalon-sur-Saône",
       "description": "Plongez dans l'univers mystérieux des oiseaux ! À travers des ateliers ludiques en libre service, découvrez leur anatomie, leurs comportements amoureux (parades), leurs chants et l'art de la nidification. Apprenez également les gestes simples pour les aider chez vous.",
@@ -20,24 +35,25 @@
       "date": "2026-03-28",
       "day": "28",
       "month": "MARS",
+      "year": "2026",
       "title": "Portes Ouvertes — La Toque Fermière",
       "location": "Le Bourg, 71990 Saint-Léger-sous-Beuvray",
       "description": "À l'occasion des Portes Ouvertes de La Toque Fermière, Écocurieux a imaginé et animé un stand complet d'animations 100% sur mesure, pensées spécialement pour faire découvrir le monde de l'élevage de façon ludique et interactive.",
       "photos": [
         {
-          "url": "/Evénements passé/La Toque Fermière 28 mars 2026/20260328_100435.jpg",
+          "url": "/evenements-passes/La Toque Fermière 28 mars 2026/20260328_100435.jpg",
           "rotation": 0
         },
         {
-          "url": "/Evénements passé/La Toque Fermière 28 mars 2026/20260328_121636.jpg",
+          "url": "/evenements-passes/La Toque Fermière 28 mars 2026/20260328_121636.jpg",
           "rotation": -90
         },
         {
-          "url": "/Evénements passé/La Toque Fermière 28 mars 2026/20260328_125828.jpg",
+          "url": "/evenements-passes/La Toque Fermière 28 mars 2026/20260328_125828.jpg",
           "rotation": 0
         },
         {
-          "url": "/Evénements passé/La Toque Fermière 28 mars 2026/20260328_130816.jpg",
+          "url": "/evenements-passes/La Toque Fermière 28 mars 2026/20260328_130816.jpg",
           "rotation": -90
         }
       ],
