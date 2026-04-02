@@ -103,10 +103,20 @@
   <!-- Overlay très léger pour laisser les couleurs vives de l'image transparaître -->
   <div style="position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0, 0, 0, 0.15); backdrop-filter: saturate(1.2) contrast(1.05); z-index:1;"></div>
 
-  <!-- Contenu centré (Titre professionnel) -->
-  <div style="position:relative; z-index:10; text-align:center; max-width:800px; margin-top:-20px;">
-    <!-- Titre principal style site -->
-    <h1 style="font-family:'Montserrat', sans-serif; font-size:clamp(2.5rem, 5vw, 3.8rem); color:#2c4f2a; margin-bottom:0; font-weight:900; line-height:1.08; text-shadow: 2px 2px 0 rgba(243,222,180,0.7), 0 4px 18px rgba(0,0,0,0.3);">Événements</h1>
+  <!-- Contenu centré (Titre épuré) -->
+  <div style="position:relative; z-index:10; text-align:center; max-width:800px; margin-top:10px; display:flex; flex-direction:column; align-items:center;">
+    <!-- Ligne décorative supérieure -->
+    <div style="width:60px; height:3px; background:linear-gradient(90deg, transparent, #467b43, transparent); margin-bottom:15px; border-radius:2px;"></div>
+    
+    <!-- Titre principal minimaliste -->
+    <h1 style="font-family:'Montserrat', sans-serif; font-size:clamp(2.5rem, 5vw, 3.8rem); color:#2c4f2a; margin:0 0 15px 0; font-weight:800; line-height:1.1; letter-spacing:0.05em; text-shadow: 1px 1px 0 rgba(243,222,180,0.5), 0 3px 15px rgba(0,0,0,0.2);">Événements</h1>
+    
+    <!-- Petite feuille stylisée avec ligne décorative inférieure -->
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div style="width:30px; height:2px; background:linear-gradient(90deg, transparent, rgba(70,123,67,0.6)); border-radius:2px;"></div>
+      <div style="width:12px; height:18px; background:#467b43; border-radius:50% 0 50% 0; transform:rotate(45deg); opacity:0.75;"></div>
+      <div style="width:30px; height:2px; background:linear-gradient(90deg, rgba(70,123,67,0.6), transparent); border-radius:2px;"></div>
+    </div>
   </div>
   
   <!-- Boutons alignés sur le bord bas -->

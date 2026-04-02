@@ -164,7 +164,7 @@ function createPastEventCard(event) {
   
   // Galerie photos supplémentaires
   const galleryHtml = event.photos && event.photos.length > 1 ? 
-    `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:2rem;margin-bottom:1.5rem;">
+    `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,200px));justify-content:center;gap:1rem;width:fit-content;max-width:100%;margin:2rem auto 1.5rem;padding-left:2rem;box-sizing:border-box;">
       ${event.photos.slice(1).map(photo => {
         const photoUrl = typeof photo === 'string' ? photo : photo.url;
         const rotation = typeof photo === 'object' && photo.rotation ? photo.rotation : 0;
