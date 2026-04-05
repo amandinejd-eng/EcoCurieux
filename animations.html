@@ -1,181 +1,288 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animations nature – Écocurieux</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animations nature - Écocurieux</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-paper: #f4efe8;
+            --text-dark: #2c3e2d;
+            --green-dark: #3a5a3b;
+            --green-light: #527053;
+            --terracotta: #b36a4b;
+            --card-light: #fffdf9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            /* Texture papier subtile */
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.5;
+            padding: 40px 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Caveat', cursive;
+        }
+
+        /* --- HEADER --- */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            color: var(--text-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .page-header h1::before {
+            content: '🐦'; /* Remplace par ton icône d'oiseau */
+            font-size: 2.5rem;
+        }
+
+        /* --- MAIN GRID LAYOUT --- */
+        .animations-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.5fr;
+            grid-template-rows: auto auto;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- CARDS COMMON STYLES --- */
+        .leaf-card {
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 8px 12px 20px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            transition: transform 0.3s ease;
+        }
+
+        .leaf-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .leaf-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            z-index: 2;
+            text-transform: uppercase;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .leaf-card p {
+            z-index: 2;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            z-index: 2;
+            background-color: var(--terracotta);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: var(--terracotta);
+            border-color: var(--terracotta);
+        }
+
+        /* --- SPECIFIC CARDS --- */
+        
+        /* 1. Nature & Biodiversité (En haut à gauche) */
+        .card-biodiv {
+            grid-column: 1 / 2;
+            border-radius: 90px 20px 90px 20px;
+            color: white;
+            background: linear-gradient(rgba(82, 112, 83, 0.8), rgba(82, 112, 83, 0.9)), url('https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=800&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 2. Stages Nature (En haut à droite, plus large) */
+        .card-stages {
+            grid-column: 2 / 4;
+            border-radius: 20px 150px 20px 90px;
+            color: white;
+            background: linear-gradient(rgba(58, 90, 59, 0.85), rgba(58, 90, 59, 0.9)), url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding-right: 100px; /* Plus d'espace à droite pour la pointe de la feuille */
+        }
+
+        /* 3. Interventions (En bas à gauche) */
+        .card-interventions {
+            grid-column: 1 / 2;
+            border-radius: 20px 90px 20px 90px;
+            color: white;
+            background: linear-gradient(rgba(179, 106, 75, 0.85), rgba(179, 106, 75, 0.9)), url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .card-interventions .btn {
+            background-color: white;
+            color: var(--terracotta);
+        }
+        .card-interventions .btn:hover {
+            background-color: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        /* 4. Projets sur mesure (En bas au milieu) */
+        .card-projets {
+            grid-column: 2 / 3;
+            border-radius: 90px 20px 90px 20px;
+            background-color: var(--card-light);
+            color: var(--text-dark);
+            border: 2px solid #e0d5c1;
+            box-shadow: 4px 6px 15px rgba(0,0,0,0.08);
+        }
+
+        /* --- BOÎTE À IDÉES --- */
+        .boite-idees-section {
+            grid-column: 3 / 4;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 10px;
+        }
+
+        .boite-idees-title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--green-dark);
+        }
+
+        .idees-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .idee-mini-card {
+            background-color: var(--card-light);
+            border-radius: 15px;
+            padding: 15px 20px;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #e0d5c1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .idee-mini-card:hover {
+            transform: translateX(5px);
+            border-color: var(--green-light);
+        }
+
+        .idee-mini-card h3 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 900px) {
+            .animations-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            .card-biodiv, .card-stages, .card-interventions, .card-projets, .boite-idees-section {
+                grid-column: 1 / -1;
+                border-radius: 30px; /* On simplifie les formes sur mobile */
+                padding: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- ========== NAV ========== -->
-<nav>
-  <a href="/" class="nav-logo">
-    <div class="nav-logo-img"><img src="/logo/logo.png" alt="Écocurieux logo"></div>
-    <div>
-      <div class="nav-logo-name">Écocurieux</div>
-      <div class="nav-logo-sub">Animation nature & biodiversité</div>
-    </div>
-  </a>
+    <header class="page-header">
+        <h1>Des animations vivantes et sur mesure</h1>
+    </header>
 
-  <ul class="nav-links">
-    <li><a href="/">Accueil</a></li>
-    <li>
-      <a href="/animations.html#animations">Animations <span class="arrow">▼</span></a>
-      <div class="dropdown">
-        <a href="/animations.html#animations"><span class="dd-icon">🦔</span>Animations nature</a>
-        <a href="/animations.html#stages"><span class="dd-icon">📔</span>Stages nature</a>
-        <a href="/animations.html#boite"><span class="dd-icon">💡</span>La boîte à idées</a>
-      </div>
-    </li>
-    <li>
-      <a href="/kits/">Kits pédagogiques <span class="arrow">▼</span></a>
-      <div class="dropdown">
-        <a href="/kits/couveuse.html"><span class="dd-icon">🥚</span>Couveuse pédagogique</a>
-        <a href="/kits/mante-religieuse.html"><svg class="dropdown-icon" viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="100" cy="130" rx="18" ry="45" fill="#6BBF47"/>
-          <ellipse cx="100" cy="80" rx="14" ry="20" fill="#7FD15E"/>
-          <path d="M85 62 L100 42 L115 62 Z" fill="#7FD15E"/>
-          <circle cx="91" cy="52" r="6" fill="#A8E890"/>
-          <circle cx="109" cy="52" r="6" fill="#A8E890"/>
-          <circle cx="92" cy="51" r="2.5" fill="#FFFFFF"/>
-          <circle cx="110" cy="51" r="2.5" fill="#FFFFFF"/>
-          <path d="M95 44 Q80 20 70 15" stroke="#A8E890" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M105 44 Q120 20 130 15" stroke="#A8E890" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M88 75 L60 60 L55 78" stroke="#7FD15E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M112 75 L140 60 L145 78" stroke="#7FD15E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M86 105 L55 115 L45 135" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M114 105 L145 115 L155 135" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M88 140 L55 155 L40 180" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M112 140 L145 155 L160 180" stroke="#6BBF47" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg><span class="dropdown-text">Kit mante religieuse</span></a>
-        <a href="/kits/phasmes.html"><svg class="dropdown-icon" viewBox="0 0 200 200" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-          <path d="M100 45 Q102 90 100 140 Q98 170 100 185" stroke="#C4A77D" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <line x1="95" y1="70" x2="105" y2="70" stroke="#D4B896" stroke-width="1"/>
-          <line x1="95" y1="90" x2="105" y2="90" stroke="#D4B896" stroke-width="1"/>
-          <line x1="95" y1="110" x2="105" y2="110" stroke="#D4B896" stroke-width="1"/>
-          <line x1="96" y1="130" x2="104" y2="130" stroke="#D4B896" stroke-width="1"/>
-          <ellipse cx="100" cy="40" rx="7" ry="9" fill="#C4A77D"/>
-          <circle cx="95" cy="38" r="2.5" fill="#E8D4B8"/>
-          <circle cx="105" cy="38" r="2.5" fill="#E8D4B8"/>
-          <circle cx="95.5" cy="37.5" r="1" fill="#FFFFFF"/>
-          <circle cx="105.5" cy="37.5" r="1" fill="#FFFFFF"/>
-          <path d="M96 32 Q80 15 72 10" stroke="#D4B896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <path d="M104 32 Q120 15 128 10" stroke="#D4B896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <path d="M97 60 L62 45 L45 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M103 60 L138 45 L155 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M97 95 L55 90 L35 108" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M103 95 L145 90 L165 108" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M97 135 L58 140 L38 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M103 135 L142 140 L162 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg><span class="dropdown-text">Kit phasmes</span></a>
-      </div>
-    </li>
-    <li><a href="/pour-qui.html">Pour qui ?</a></li>
-    <li><a href="/evenements.html">Événements</a></li>
-  </ul>
+    <main class="animations-grid">
+        
+        <article class="leaf-card card-biodiv">
+            <h2>Animations Nature & Biodiversité</h2>
+            <p>Des séances d'observations et d'expérimentations adaptées à chaque âge. Écouter, flâner, imaginer, creuser la vérité, comme les détails jeu et d'apprentissage.</p>
+            <a href="#" class="btn">Découvrir le catalogue</a>
+        </article>
 
-  <a href="/contact.html" class="nav-cta">📬 Me contacter</a>
-  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-</nav>
+        <article class="leaf-card card-stages">
+            <h2>Stages Nature & Cahier Buissonnier</h2>
+            <p>Une immersion d'une demi-journée ou d'une journée pour se reconnecter au vivant. Je vous fournis votre carnet de terrain personnel pour explorer la biodiversité locale : réalisation d'herbiers, inventaires d'insectes ou croquis d'oiseaux. Un mélange ludique de science et de contemplation pour apprendre à lire le paysage.</p>
+            <a href="#" class="btn">S'inscrire à un stage</a>
+        </article>
 
-<div class="mobile-menu" id="mobileMenu">
-  <span class="mm-head">Menu</span>
-  <a href="/" onclick="toggleMenu()"><span>🏠</span> Accueil</a>
-  <span class="mm-head">Animations</span>
-  <a href="/animations.html#animations" onclick="toggleMenu()"><span>🦔</span> Animations nature</a>
-  <a href="/animations.html#stages" onclick="toggleMenu()"><span>📔</span> Stages nature</a>
-  <a href="/animations.html#boite" onclick="toggleMenu()"><span>💡</span> La boîte à idées</a>
-  <span class="mm-head">Services</span>
-  <a href="/kits/" onclick="toggleMenu()"><span>🥚</span> Kits pédagogiques</a>
-  <a href="/pour-qui.html" onclick="toggleMenu()"><span>📌</span> Pour qui ?</a>
-  <span class="mm-head">Informations</span>
-  <a href="/evenements.html" onclick="toggleMenu()"><span>📅</span> Événements</a>
-  <a href="/contact.html" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
-</div>
+        <article class="leaf-card card-interventions">
+            <h2>Interventions sur site</h2>
+            <p>Intervention directement dans votre établissement ou sur les lieux d'événements avec tout le matériel. Animations adaptées au contexte, aux participants et à vos objectifs.</p>
+            <a href="#" class="btn">Demander un devis</a>
+        </article>
 
-<section class="padded services" id="animations">
-  <div class="section-inner">
-    <div class="section-label">Ce que je propose</div>
-    <div class="section-title">Des animations <span>vivantes</span> et sur mesure</div>
-    <div class="bento-services">
-      <div class="bento-item animation">
-        <div class="icon-box">🦔</div>
-        <h3>Animations nature & biodiversité</h3>
-        <p>Des séances d'observation et d'expérimentation adaptées à chaque âge, faune, flore, insectes, oiseaux. Le vivant comme terrain de jeu et d'apprentissage.</p>
-      </div>
+        <article class="leaf-card card-projets">
+            <h2>Projets sur mesure</h2>
+            <p>Vous avez une idée précise ou un besoin particulier ? Je co-construis avec vous un projet pédagogique sur plusieurs séances, adapté à votre public, votre lieu et vos contraintes.</p>
+            <a href="#" class="btn">En savoir plus</a>
+        </article>
 
-      <div class="bento-item stages" id="stages">
-        <div class="icon-box">📓</div>
-        <h3>Stages nature & cahier buissonnier</h3>
-        <p>Une immersion d'une demi-journée ou d'une journée pour se reconnecter au vivant. Je vous fournis votre carnet de terrain personnel pour explorer la biodiversité locale : réalisation d'herbiers, inventaires d'insectes ou croquis d'oiseaux. Un mélange ludique de science et de contemplation pour apprendre à lire le paysage.</p>
-      </div>
+        <section class="boite-idees-section">
+            <h2 class="boite-idees-title">La Boîte à idées</h2>
+            <div class="idees-container">
+                <div class="idee-mini-card">
+                    <span>🐜</span>
+                    <h3>Les ondes des fourmis</h3>
+                </div>
+                <div class="idee-mini-card">
+                    <span>🪹</span>
+                    <h3>Les histoires des nids</h3>
+                </div>
+                <div class="idee-mini-card">
+                    <span>🤝</span>
+                    <h3>Ateliers de coopération</h3>
+                </div>
+            </div>
+        </section>
 
-      <div class="bento-item interventions">
-        <div class="icon-box">🏫</div>
-        <h3>Interventions sur site</h3>
-        <p>J'interviens directement dans votre établissement ou sur les lieux d'événements avec tout le matériel. Animations adaptées au contexte, aux participants et à vos objectifs.</p>
-      </div>
+    </main>
 
-      <div class="bento-item projets">
-        <div class="icon-box">✏️</div>
-        <h3>Projets sur mesure</h3>
-        <p>Vous avez une idée précise ou un besoin particulier ? Je co-construis avec vous un projet pédagogique sur plusieurs séances, adapté à votre public, votre lieu et vos contraintes.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="padded boite" id="boite">
-  <div class="section-inner">
-    <div class="section-label">Thématiques disponibles</div>
-    <div class="section-title">La <span>Boîte à idées</span></div>
-    <p style="color:#6b5a40;font-size:0.97rem;line-height:1.75;max-width:650px;margin-bottom:0">Des pistes pour construire votre projet ludique</p>
-    <div class="boite-grid">
-      <div class="univers-card">
-        <div class="univers-head">
-          <div class="u-icon">🦅</div>
-          <h3>L'Univers des Naturalistes</h3>
-        </div>
-        <ul class="univers-list">
-          <li><strong>Ornithologie :</strong> S'initier à l'écoute et à l'identification des oiseaux.</li>
-          <li><strong>Le Petit Peuple de l'Herbe :</strong> Plongée dans le monde des insectes et invertébrés.</li>
-          <li><strong>L'Herbier Créatif :</strong> Science et art pour identifier et conserver les plantes.</li>
-        </ul>
-      </div>
-      <div class="univers-card u-green">
-        <div class="univers-head">
-          <div class="u-icon">🔭</div>
-          <h3>L'Univers des Scientifiques</h3>
-        </div>
-        <ul class="univers-list">
-          <li><strong>Sensibilisation aux différents écosystèmes.</strong></li>
-          <li><strong>Niches Écologiques & Réseaux Trophiques :</strong> "Qui mange quoi ?" et le rôle de chacun.</li>
-          <li><strong>L'Odyssée des Animaux :</strong> Découverte de la faune, de leurs besoins et de leur lien avec l'humain.</li>
-          <li><strong>Labo-Natur :</strong> Expériences de vulgarisation des phénomènes naturels.</li>
-        </ul>
-      </div>
-      <div class="univers-card u-brown">
-        <div class="univers-head">
-          <div class="u-icon">✨</div>
-          <h3>L'Univers des Rêveurs</h3>
-        </div>
-        <ul class="univers-list">
-          <li><strong>Balades Contées :</strong> Quand les savoirs naturalistes rencontrent les légendes.</li>
-          <li><strong>Éveil Sensoriel :</strong> Toucher, sentir, écouter pour se reconnecter au vivant.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== FOOTER (Allégé) ========== -->
-<footer style="background: var(--green-dark); color: rgba(243,222,180,0.55); padding: 2rem 1rem 3rem; text-align: center;">
-  <p style="font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:700; color:var(--beige); margin-bottom: 5px;">Écocurieux · Animation nature & biodiversité</p>
-  <p style="font-size:0.8rem; margin-bottom: 10px; color:rgba(243,222,180,0.75);">Amandine Junier-Dubus</p>
-  <p style="font-size:0.75rem;">© 2026 · Saône-et-Loire · <a href="mailto:amandinejd@gmail.com" style="color:rgba(243,222,180,0.85); font-weight:600; text-decoration:none;">amandinejd@gmail.com</a></p>
-</footer>
-<script src="/js/main.js"></script>
 </body>
 </html>
