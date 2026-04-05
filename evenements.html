@@ -98,36 +98,24 @@
 </div>
 
 <!-- ========== EN-TÊTE ÉVÉNEMENTS (NOUVELLE IMAGE ET DESIGN BLANC) ========== -->
-<div class="events-hero" style="position:relative; width:100%; height:260px; background: url('./images-creation-de-site/Gemini_Generated_Image_vimqduvimqduvimq.png') center 25%/cover no-repeat; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+<div class="events-hero" style="position:relative; width:100%; height:280px; background: url('/images-creation-de-site/Fond evenement.png') center 15px/100% auto no-repeat; background-color: #f7f3ec; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
   
-  <!-- Overlay très léger pour laisser les couleurs vives de l'image transparaître -->
-  <div style="position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0, 0, 0, 0.15); backdrop-filter: saturate(1.2) contrast(1.05); z-index:1;"></div>
-
   <!-- Contenu centré (Titre épuré) -->
-  <div style="position:relative; z-index:10; text-align:center; max-width:800px; margin-top:10px; display:flex; flex-direction:column; align-items:center;">
-    <!-- Ligne décorative supérieure -->
-    <div style="width:60px; height:3px; background:linear-gradient(90deg, transparent, #467b43, transparent); margin-bottom:15px; border-radius:2px;"></div>
-    
+  <div style="position:relative; z-index:10; text-align:center; max-width:800px; margin-top:25px; display:flex; flex-direction:column; align-items:center;">
     <!-- Titre principal minimaliste -->
-    <h1 style="font-family:'Montserrat', sans-serif; font-size:clamp(2.5rem, 5vw, 3.8rem); color:#2c4f2a; margin:0 0 15px 0; font-weight:800; line-height:1.1; letter-spacing:0.05em; text-shadow: 1px 1px 0 rgba(243,222,180,0.5), 0 3px 15px rgba(0,0,0,0.2);">Événements</h1>
+    <h1 style="font-family:'Montserrat', sans-serif; font-size:clamp(3.5rem, 6vw, 4.5rem); color:#2c4f2a; margin:0 0 15px 0; font-weight:900; line-height:1.1; letter-spacing:1px; text-shadow: 4px 4px 0 #a8e890;">Événements</h1>
     
-    <!-- Petite feuille stylisée avec ligne décorative inférieure -->
-    <div style="display:flex; align-items:center; gap:10px;">
-      <div style="width:30px; height:2px; background:linear-gradient(90deg, transparent, rgba(70,123,67,0.6)); border-radius:2px;"></div>
-      <div style="width:12px; height:18px; background:#467b43; border-radius:50% 0 50% 0; transform:rotate(45deg); opacity:0.75;"></div>
-      <div style="width:30px; height:2px; background:linear-gradient(90deg, rgba(70,123,67,0.6), transparent); border-radius:2px;"></div>
-    </div>
   </div>
   
   <!-- Boutons alignés sur le bord bas -->
   <div style="position:absolute; bottom:0; left:0; right:0; display:flex; justify-content:center; gap:1.5rem; z-index:10;">
     <!-- Bouton À Venir (Vert translucide) -->
-    <button id="btn-upcoming" onclick="toggleSection('upcoming')" class="btn-event btn-upcoming active" style="border-bottom:none; border-bottom-left-radius:0; border-bottom-right-radius:0;">
+    <button id="btn-upcoming" onclick="toggleSection('upcoming')" class="btn-event btn-upcoming active" style="border-bottom:none; border-bottom-left-radius:0; border-bottom-right-radius:0; padding: 0.6rem 1.4rem;">
       <span>📅</span> Événements à venir
     </button>
 
     <!-- Bouton Passé (Marron translucide) -->
-    <button id="btn-past" onclick="toggleSection('past')" class="btn-event btn-past" style="border-bottom:none; border-bottom-left-radius:0; border-bottom-right-radius:0;">
+    <button id="btn-past" onclick="toggleSection('past')" class="btn-event btn-past" style="border-bottom:none; border-bottom-left-radius:0; border-bottom-right-radius:0; padding: 0.6rem 1.4rem;">
       <span>📖</span> Événements passés
     </button>
   </div>
