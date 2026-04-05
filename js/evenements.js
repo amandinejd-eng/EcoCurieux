@@ -89,8 +89,8 @@ function createPastEventCard(event) {
         : '';
         
       return `<div style="width:100%;height:280px;overflow:hidden;border-radius:12px;margin-bottom:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.08);position:relative;cursor:pointer;" 
-                   onmouseover="this.querySelector('img').style.transform='rotate(${rotation}deg) scale(1.05)'; ${caption ? "this.querySelector('.photo-caption').style.transform='translateY(0)';" : ""}" 
-                   onmouseout="this.querySelector('img').style.transform='rotate(${rotation}deg) scale(1)'; ${caption ? "this.querySelector('.photo-caption').style.transform='translateY(100%)';" : ""}">
+                   onmouseenter="this.querySelector('img').style.transform='rotate(${rotation}deg) scale(1.05)'; ${caption ? "this.querySelector('.photo-caption').style.transform='translateY(0)';" : ""}" 
+                   onmouseleave="this.querySelector('img').style.transform='rotate(${rotation}deg) scale(1)'; ${caption ? "this.querySelector('.photo-caption').style.transform='translateY(100%)';" : ""}">
         <img src="${photoUrl}" alt="${caption || event.title}" style="width:100%;height:100%;object-fit:cover;transform:rotate(${rotation}deg);transition:transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
         ${captionHtml}
       </div>`;
@@ -117,8 +117,8 @@ function createPastEventCard(event) {
 
         return `
         <div style="height:180px;background:#f5efe6;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,0.08);cursor:pointer;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;" 
-             onmouseover="this.style.boxShadow='0 8px 20px rgba(0,0,0,0.2)'; this.querySelector('img').style.transform='${rotation === 0 ? 'scale(1.15)' : `rotate(${rotation}deg) scale(1.45)`}'; ${caption ? "this.querySelector('.photo-caption').style.transform='translateY(0)';" : ""}" 
-             onmouseout="this.style.boxShadow='0 3px 10px rgba(0,0,0,0.08)'; this.querySelector('img').style.transform='${rotation === 0 ? 'scale(1)' : `rotate(${rotation}deg) scale(1.3)`}'; ${caption ? "this.querySelector('.photo-caption').style.transform='translateY(100%)';" : ""}">
+             onmouseenter="this.style.boxShadow='0 8px 20px rgba(0,0,0,0.2)'; this.querySelector('img').style.transform='${rotation === 0 ? 'scale(1.15)' : `rotate(${rotation}deg) scale(1.45)`}'; ${caption ? "this.querySelector('.photo-caption').style.transform='translateY(0)';" : ""}" 
+             onmouseleave="this.style.boxShadow='0 3px 10px rgba(0,0,0,0.08)'; this.querySelector('img').style.transform='${rotation === 0 ? 'scale(1)' : `rotate(${rotation}deg) scale(1.3)`}'; ${caption ? "this.querySelector('.photo-caption').style.transform='translateY(100%)';" : ""}">
           <img src="${photoUrl}" alt="${caption || event.title}" style="${imgStyle}">
           ${captionHtml}
         </div>
