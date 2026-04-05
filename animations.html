@@ -40,27 +40,21 @@
             margin: 0;
         }
 
-        .page-header h1::before {
-            content: '🐦';
-            font-size: 2.5rem;
-        }
-
-        /* --- MAIN GRID LAYOUT --- */
+        /* Grille asymétrique pour l'emboîtement des pétales */
         .animations-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1.5fr;
-            grid-template-rows: auto auto;
-            gap: 25px;
-            max-width: 1200px;
+            grid-template-columns: 1fr 1fr 1.2fr;
+            gap: 15px; /* Très rapproché pour l'effet trèfle/pétale */
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         /* --- CARDS COMMON STYLES --- */
         .leaf-card {
-            padding: 40px;
+            padding: 35px;
             position: relative;
             overflow: hidden;
-            box-shadow: 8px 12px 20px rgba(0,0,0,0.15);
+            box-shadow: 4px 6px 12px rgba(0,0,0,0.25);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -70,23 +64,24 @@
         }
 
         .leaf-card:hover {
-            transform: translateY(-5px);
+            transform: scale(1.02);
         }
 
         .leaf-card h2 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
             z-index: 2;
             text-transform: uppercase;
             font-family: 'Nunito', sans-serif;
             font-weight: 800;
-            letter-spacing: 1px;
         }
 
         .leaf-card p {
             z-index: 2;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 25px;
+            font-weight: 600;
+            line-height: 1.4;
         }
 
         .animations-page-content .btn {
@@ -98,6 +93,7 @@
             text-decoration: none;
             font-weight: 700;
             border: 2px solid transparent;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
             font-family: 'Nunito', sans-serif;
         }
@@ -113,7 +109,9 @@
         /* 1. Nature & Biodiversité (En haut à gauche) */
         .card-biodiv {
             grid-column: 1 / 2;
-            border-radius: 90px 20px 90px 20px;
+            grid-row: 1;
+            border-radius: 120px 20px 40px 120px;
+            border: 6px solid #4a6348;
             color: white;
             background: linear-gradient(rgba(82, 112, 83, 0.8), rgba(82, 112, 83, 0.9)), url('https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=800&auto=format&fit=crop');
             background-size: cover;
@@ -123,18 +121,22 @@
         /* 2. Stages Nature (En haut à droite, plus large) */
         .card-stages {
             grid-column: 2 / 4;
-            border-radius: 20px 150px 20px 90px;
+            grid-row: 1;
+            border-radius: 20px 180px 180px 20px;
+            border: 6px solid #2a3d2b;
             color: white;
             background: linear-gradient(rgba(58, 90, 59, 0.85), rgba(58, 90, 59, 0.9)), url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            padding-right: 100px;
+            padding-right: 120px;
         }
 
         /* 3. Interventions (En bas à gauche) */
         .card-interventions {
             grid-column: 1 / 2;
-            border-radius: 20px 90px 20px 90px;
+            grid-row: 2;
+            border-radius: 120px 40px 20px 120px;
+            border: 6px solid #8e543b;
             color: white;
             background: linear-gradient(rgba(179, 106, 75, 0.85), rgba(179, 106, 75, 0.9)), url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop');
             background-size: cover;
@@ -153,25 +155,26 @@
         /* 4. Projets sur mesure (En bas au milieu) */
         .card-projets {
             grid-column: 2 / 3;
-            border-radius: 90px 20px 90px 20px;
+            grid-row: 2;
+            border-radius: 20px 80px 120px 20px;
+            border: 6px solid #dcd1c1;
             background-color: #fffdf9;
             color: #2c3e2d;
-            border: 2px solid #e0d5c1;
-            box-shadow: 4px 6px 15px rgba(0,0,0,0.08);
         }
 
         /* --- BOÎTE À IDÉES --- */
         .boite-idees-section {
             grid-column: 3 / 4;
+            grid-row: 2;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            padding-bottom: 10px;
+            justify-content: center;
+            padding-left: 20px;
         }
 
         .boite-idees-title {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             color: #3a5a3b;
             margin-top: 0;
         }
@@ -179,30 +182,23 @@
         .idees-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
 
         .idee-mini-card {
             background-color: #fffdf9;
-            border-radius: 15px;
-            padding: 15px 20px;
-            box-shadow: 2px 4px 10px rgba(0,0,0,0.05);
-            border: 1px solid #e0d5c1;
+            border-radius: 12px;
+            padding: 12px 15px;
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.05);
+            border: 2px solid #e0d5c1;
             display: flex;
             align-items: center;
-            gap: 15px;
-            transition: transform 0.2s ease;
-            cursor: pointer;
-        }
-
-        .idee-mini-card:hover {
-            transform: translateX(5px);
-            border-color: #527053;
+            gap: 12px;
         }
 
         .idee-mini-card h3 {
             font-family: 'Nunito', sans-serif;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 800;
             margin: 0;
             text-transform: uppercase;
@@ -216,7 +212,8 @@
             }
             .card-biodiv, .card-stages, .card-interventions, .card-projets, .boite-idees-section {
                 grid-column: 1 / -1;
-                border-radius: 30px;
+                grid-row: auto;
+                border-radius: 40px;
                 padding: 30px;
             }
         }
