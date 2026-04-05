@@ -56,18 +56,22 @@
       "photos": [
         {
           "url": "/evenements-passes/La Toque Fermière 28 mars 2026/20260328_100435.jpg",
+          "caption": "Enfant qui fait le puzzle du boeuf",
           "rotation": 0
         },
         {
           "url": "/evenements-passes/La Toque Fermière 28 mars 2026/20260328_121636.jpg",
+          "caption": "Jeu du cochon utile",
           "rotation": -90
         },
         {
           "url": "/evenements-passes/La Toque Fermière 28 mars 2026/20260328_125828.jpg",
+          "caption": "Puzzle boeuf le bon morceau au bon endroit",
           "rotation": 0
         },
         {
           "url": "/evenements-passes/La Toque Fermière 28 mars 2026/20260328_130816.jpg",
+          "caption": "La roue des questions",
           "rotation": -90
         }
       ],
