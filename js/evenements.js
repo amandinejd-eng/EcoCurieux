@@ -82,8 +82,17 @@ function createPastEventCard(event) {
       const photo = event.photos[0];
       const photoUrl = typeof photo === 'string' ? photo : photo.url;
       const rotation = typeof photo === 'object' && photo.rotation ? photo.rotation : 0;
-      return `<div style="width:100%;height:280px;overflow:hidden;border-radius:12px;margin-bottom:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.08);position:relative;">
-        <img src="${photoUrl}" alt="${event.title}" style="width:100%;height:100%;object-fit:cover;transform:rotate(${rotation}deg);transition:transform 0.4s ease;" onmouseover="this.style.transform='rotate(${rotation}deg) scale(1.05)'" onmouseout="this.style.transform='rotate(${rotation}deg) scale(1)'">
+      const caption = typeof photo === 'object' && photo.caption ? photo.caption : '';
+      
+      const captionHtml = caption ? 
+        `<div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:rgba(70,123,67,0.85);color:white;padding:1rem;font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:600;text-align:center;transform:translateY(100%);transition:transform 0.4s ease;z-index:2;">${caption}</div>` 
+        : '';
+        
+      return `<div style="width:100%;height:280px;overflow:hidden;border-radius:12px;margin-bottom:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.08);position:relative;cursor:pointer;" 
+                   onmouseover="this.querySelector('img').style.transform='rotate(${rotation}deg) scale(1.05)'; ${caption ? "this.querySelector('.photo-caption').style.transform='translateY(0)';" : ""}" 
+                   onmouseout="this.querySelector('img').style.transform='rotate(${rotation}deg) scale(1)'; ${caption ? "this.querySelector('.photo-caption').style.transform='translateY(100%)';" : ""}">
+        <img src="${photoUrl}" alt="${caption || event.title}" style="width:100%;height:100%;object-fit:cover;transform:rotate(${rotation}deg);transition:transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+        ${captionHtml}
       </div>`;
     })()
     : '';
