@@ -6,386 +6,438 @@
     <title>Animations nature - Écocurieux</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lato:wght@300;400;700;900&family=Dancing+Script:wght@400;600;700&family=Montserrat:wght@400;600;700;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <style>
-        /* --- STYLES SPÉCIFIQUES ANIMATIONS (Design Pétales / Maquette) --- */
-        body {
-            background-color: #f7f3ec; /* Fond beige texturé */
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
-            font-family: 'Nunito', sans-serif;
-            color: #3b2c20;
-            overflow-x: hidden;
-        }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Lato',sans-serif;
+  background:#ece7de;
+  color:#3a3024;
+  min-height:100vh;
+}
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.65' numOctaves='4' type='fractalNoise'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+}
 
-        .animations-page-content {
-            padding: 60px 20px 100px;
-            max-width: 1300px; /* Élargi pour correspondre à la maquette */
-            margin: 0 auto;
-            position: relative;
-        }
+.section-animations{
+  position:relative;z-index:1;
+  max-width:1360px;
+  margin:0 auto;
+  padding:30px 40px 30px;
+}
 
-        /* Décorations (Oiseaux, Chenille, etc. simulés ou images réelles si disponibles) */
-        .deco-bird-top {
-            position: absolute;
-            top: 40px;
-            left: 28%;
-            font-size: 3rem; /* Emoji en attendant l'image */
-            transform: rotate(-10deg);
-            z-index: 10;
-        }
-        .deco-caterpillar {
-            position: absolute;
-            top: 300px;
-            left: 36%;
-            font-size: 4rem;
-            transform: rotate(-30deg);
-            z-index: 10;
-        }
-        .deco-bird-bottom {
-            position: absolute;
-            bottom: 220px;
-            right: 12%;
-            font-size: 2.5rem;
-            z-index: 10;
-        }
-        .deco-branch {
-            text-align: center;
-            margin-top: 60px;
-            font-size: 2rem;
-            color: #4a6348;
-        }
+.clip-defs{position:absolute;width:0;height:0;}
 
-        /* --- HEADER --- */
-        .page-header {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-            z-index: 2;
-        }
+.robin{position:absolute;z-index:10;pointer-events:none;}
+.robin--tl{top:12px;left:42px;width:58px;height:62px;}
+.robin--br{bottom:58px;right:42px;width:52px;height:56px;}
 
-        .page-header h1 {
-            font-size: 3.5rem;
-            color: #2c3e2d;
-            margin: 0;
-            font-family: 'Caveat', cursive; /* Police manuscrite pour le titre */
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
+.section-title{
+  text-align:center;
+  margin-bottom:28px;
+}
+.section-title h1{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-weight:700;
+  font-size:2.35rem;
+}
 
-        /* --- GRILLE DES PÉTALES --- */
-        .animations-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.6fr; /* Droite plus large */
-            grid-template-rows: auto auto;
-            gap: 15px; /* Très peu d'espace entre les feuilles */
-            position: relative;
-            z-index: 5;
-        }
+.hotspot{
+  position:absolute;
+  display:block;
+  z-index:2;
+  text-decoration:none;
+  cursor:pointer;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
 
-        /* --- STYLES COMMUNS AUX PÉTALES --- */
-        .petal-card {
-            position: relative;
-            padding: 40px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-decoration: none;
-            color: white;
-            box-shadow: 6px 10px 20px rgba(0,0,0,0.4); /* Ombre portée plus forte */
-            transition: transform 0.3s ease;
-            overflow: hidden;
-            /* Bordure épaisse marron/vert foncé simulant l'épaisseur de la feuille */
-            border: 8px solid #3a2e24; 
-        }
+.hotspot--btn{
+  border-radius:20px;
+}
 
-        .petal-card:hover {
-            transform: scale(1.02);
-        }
+.hotspot--btn:hover{
+  transform:scale(1.06);
+  box-shadow:0 4px 16px rgba(0,0,0,.2);
+}
 
-        .petal-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 1;
-            /* L'image de fond et le dégradé seront définis pour chaque carte */
-        }
+.hotspot--leaf{
+  border-radius:35%;
+}
 
-        .petal-content {
-            position: relative;
-            z-index: 2;
-        }
+.hotspot--card{
+  border-radius:14px;
+}
 
-        .petal-icon {
-            width: 45px;
-            height: 45px;
-            margin-bottom: 15px;
-            filter: brightness(0) invert(1); /* Rend l'icône blanche */
-            object-fit: contain;
-        }
+.hotspot--card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 6px 20px rgba(0,0,0,.12);
+}
 
-        .petal-title {
-            font-size: 1.3rem;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            line-height: 1.3;
-        }
+.hs-leaf-1{
+  top:11%;
+  left:5%;
+  width:26%;
+  height:50%;
+}
 
-        .petal-desc {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 25px;
-            opacity: 0.95;
-            max-width: 90%;
-        }
+.hs-leaf-2{
+  top:8%;
+  left:27%;
+  width:36%;
+  height:52%;
+}
 
-        .petal-btn {
-            display: inline-block;
-            background-color: #c95c3f; /* Orange brulé */
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 800;
-            font-size: 0.95rem;
-            text-transform: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: background 0.3s ease;
-            text-decoration: none;
-        }
+.hs-leaf-3{
+  top:53%;
+  left:4%;
+  width:25%;
+  height:40%;
+}
 
-        .petal-btn:hover {
-            background-color: #b34a30;
-        }
+.hs-leaf-4{
+  top:56%;
+  left:26%;
+  width:18%;
+  height:34%;
+}
 
-        /* --- PÉTALE 1 : ANIMATIONS NATURE (Haut Gauche) --- */
-        .card-nature {
-            grid-column: 1 / 2;
-            grid-row: 1 / 2;
-            border-radius: 80px 20px 40px 100px; /* Forme pétale haut gauche */
-            border-color: #4a3c2e;
-            align-items: flex-start;
-        }
-        .card-nature::before {
-            background: linear-gradient(to right, rgba(78, 105, 63, 0.85), rgba(78, 105, 63, 0.5)), url('/images-creation-de-site/2. Animation  nourrissage des chèvres en extérieur avec les enfants.jpg') center/cover;
-        }
+.hs-btn-catalogue{
+  top:65%;
+  left:10%;
+  width:13%;
+  height:5%;
+}
 
-        /* --- PÉTALE 2 : STAGES NATURE (Haut Droite, plus grand) --- */
-        .card-stages {
-            grid-column: 2 / 3;
-            grid-row: 1 / 2;
-            border-radius: 20px 150px 150px 20px; /* Forme pétale allongé droite */
-            border-color: #2b3a25;
-            align-items: center;
-            text-align: center;
-            padding: 50px 120px;
-        }
-        .card-stages::before {
-            background: linear-gradient(to left, rgba(45, 65, 42, 0.85), rgba(45, 65, 42, 0.6)), url('/images-creation-de-site/3. Observation des cochons et découverte de leur habitat.jpg') center/cover;
-        }
-        .card-stages .petal-desc {
-            max-width: 100%;
-        }
+.hs-btn-stage{
+  top:56%;
+  left:46%;
+  width:11.5%;
+  height:5%;
+}
 
-        /* --- PÉTALE 3 : INTERVENTIONS (Bas Gauche) --- */
-        .card-interventions {
-            grid-column: 1 / 2;
-            grid-row: 2 / 3;
-            border-radius: 120px 20px 20px 120px; /* Forme pétale bas gauche */
-            border-color: #633622;
-            align-items: flex-start;
-        }
-        .card-interventions::before {
-            background: linear-gradient(to right, rgba(168, 86, 49, 0.85), rgba(168, 86, 49, 0.5)), url("/images-creation-de-site/7. Échanges pédagogiques et transmission avec un groupe d'enfants.jpg") center/cover;
-        }
-        .card-interventions .petal-btn {
-            background-color: #f7f3ec;
-            color: #a85631;
-        }
-        .card-interventions .petal-btn:hover {
-            background-color: #e5ded2;
-        }
+.hs-btn-devis{
+  top:85%;
+  left:10%;
+  width:11%;
+  height:5%;
+}
 
-        /* --- SECTION BOÎTE À IDÉES & PROJETS (Bas Droite) --- */
-        .bottom-right-container {
-            grid-column: 2 / 3;
-            grid-row: 2 / 3;
-            display: flex;
-            gap: 20px;
-            align-items: flex-end;
-            padding-left: 10px;
-        }
+.hs-btn-savoir{
+  top:80%;
+  left:37%;
+  width:8.5%;
+  height:5%;
+}
 
-        /* Pétale Projets sur mesure (Petit blanc) */
-        .card-projets {
-            flex: 0 0 260px;
-            background-color: #fcfbf8;
-            border-radius: 20px 60px 120px 20px; /* Feuille plus pointue en bas à droite */
-            border: 6px solid #d4c8b8;
-            padding: 40px 30px;
-            color: #3b2c20;
-            box-shadow: 4px 6px 12px rgba(0,0,0,0.2);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .card-projets .petal-icon {
-            filter: none; /* Garde sa couleur d'origine */
-            width: 60px;
-            height: 60px;
-            margin-bottom: 20px;
-        }
-        .card-projets .petal-title {
-            font-size: 1.1rem;
-            color: #3b2c20;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-        .card-projets .petal-desc {
-            color: #665a50;
-            font-size: 0.85rem;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
+.hs-card-1{
+  top:70%;
+  left:47%;
+  width:14.5%;
+  height:26%;
+}
 
-        /* --- BOÎTE À IDÉES --- */
-        .boite-idees-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding-bottom: 10px;
-        }
+.hs-card-2{
+  top:70%;
+  left:62.5%;
+  width:14.5%;
+  height:26%;
+}
 
-        .boite-idees-title {
-            font-family: 'Caveat', cursive;
-            font-size: 3rem;
-            color: #2c3e2d;
-            margin: 0 0 20px 0;
-            text-align: center;
-        }
+.hs-card-3{
+  top:70%;
+  left:78%;
+  width:14.5%;
+  height:26%;
+}
 
-        .idees-cards-container {
-            display: flex;
-            gap: 15px;
-        }
+.layout{
+  position:relative;
+  width:100%;
+  padding-bottom:46%;
+  min-height:520px;
+}
 
-        .idee-card {
-            flex: 1;
-            background: #fff;
-            border: 2px solid #e8e0d5;
-            border-radius: 12px;
-            padding: 25px 20px;
-            background-color: #fdfbf8;
-            /* Ombre douce type papier */
-            box-shadow: 4px 4px 10px rgba(0,0,0,0.08);
-            position: relative;
-        }
-        .idee-card.card-coop {
-            background-color: #e5d3bc; /* Beige sable plus prononcé */
-            border-color: #c7ab8f;
-        }
+.leaf{
+  position:absolute;
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .35s ease,filter .35s ease;
+}
+.leaf:hover{transform:scale(1.02);filter:brightness(1.05);}
 
-        .idee-icon {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 15px;
-            object-fit: contain;
-        }
+.leaf__photo{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+}
+.leaf__dim{
+  position:absolute;inset:0;
+}
+.leaf__body{
+  position:relative;z-index:2;
+  height:100%;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+}
 
-        .idee-title {
-            font-size: 0.9rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            line-height: 1.3;
-            font-family: 'Nunito', sans-serif;
-            color: #3b2c20;
-        }
+.leaf__ico{
+  width:36px;height:36px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:8px;
+}
+.leaf__ico svg{width:20px;height:20px;}
 
-        .idee-desc {
-            font-size: 0.8rem;
-            color: #665a50;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
+.leaf h3{
+  font-family:'Lato',sans-serif;
+  font-weight:900;font-size:.82rem;
+  text-transform:uppercase;letter-spacing:.06em;
+  line-height:1.35;margin-bottom:6px;
+}
+.leaf p{font-size:.7rem;line-height:1.55;margin-bottom:12px;max-width:260px;}
 
-        .idee-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+.cta{
+  display:inline-block;padding:8px 18px;
+  border-radius:20px;font-size:.72rem;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:all .2s;width:fit-content;
+}
+.cta--white{background:#f0ebe2;color:#3a2a18;}
+.cta--white:hover{background:#fff;}
+.cta--orange{background:#d0682e;color:#fff;}
+.cta--orange:hover{background:#b85a24;}
 
-        .idee-list li {
-            font-size: 0.75rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #3b2c20;
-        }
-        .idee-list li::before {
-            content: '●';
-            color: #527053;
-            font-size: 0.9rem;
-        }
+/* LEAF 1 : Animations Nature (top-left) */
+.leaf--1{
+  top:0;left:0;
+  width:33%;
+  height:50%;
+  clip-path:url(#shape1);
+}
+.leaf--1 .leaf__photo{
+  background:
+    linear-gradient(175deg,rgba(28,52,16,.4) 0%,rgba(20,40,12,.78) 100%),
+    radial-gradient(ellipse at 30% 30%,rgba(55,90,30,.5),transparent 60%),
+    radial-gradient(ellipse at 70% 70%,rgba(25,45,10,.6),transparent 50%),
+    url('/images-creation-de-site/2. Animation  nourrissage des chèvres en extérieur avec les enfants.jpg') center/cover no-repeat;
+  background-color:#2a4e18;
+}
+.leaf--1 .leaf__dim{
+  background:linear-gradient(180deg,transparent 30%,rgba(18,35,10,.35) 100%);
+}
+.leaf--1 .leaf__body{padding:26px 22px 24px;}
+.leaf--1 h3,.leaf--1 p{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.3);}
+.leaf--1 .leaf__ico{background:rgba(240,236,228,.9);}
 
-        /* Décorations pour liste fourmis (simulées) */
-        .fourmi-track {
-            margin-top: 15px;
-            font-size: 1rem;
-            letter-spacing: -2px;
-            color: #2c3e2d;
-            opacity: 0.7;
-        }
+/* LEAF 2 : Stages Nature (top-right) */
+.leaf--2{
+  top:0;left:28%;
+  width:46%;
+  height:58%;
+  clip-path:url(#shape2);
+}
+.leaf--2 .leaf__photo{
+  background:
+    linear-gradient(155deg,rgba(75,52,28,.35) 0%,rgba(50,34,16,.72) 100%),
+    radial-gradient(ellipse at 55% 45%,rgba(110,80,40,.3),transparent 55%),
+    url('/images-creation-de-site/3. Observation des cochons et découverte de leur habitat.jpg') center/cover no-repeat;
+  background-color:#6a4a28;
+}
+.leaf--2 .leaf__photo::before{
+  content:'';position:absolute;
+  top:20%;left:50%;width:30%;height:50%;
+  background:linear-gradient(170deg,rgba(220,200,170,.15),rgba(180,160,120,.08));
+  transform:rotate(12deg);
+  border-radius:3px;
+}
+.leaf--2 .leaf__dim{
+  background:linear-gradient(180deg,transparent 20%,rgba(40,28,14,.3) 100%);
+}
+.leaf--2 .leaf__body{
+  padding:32px 30px 26px;
+  align-items:center;text-align:center;
+  justify-content:flex-start;gap:12px;
+}
+.leaf--2 h3,.leaf--2 p{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.3);}
+.leaf--2 .leaf__ico{background:rgba(240,236,228,.9);}
+.leaf--2 p{max-width:340px;}
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1200px) {
-            .card-stages {
-                padding: 40px 80px;
-            }
-        }
-        @media (max-width: 1024px) {
-            .animations-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-                gap: 30px;
-            }
-            .card-nature, .card-stages, .card-interventions, .bottom-right-container {
-                grid-column: 1 / -1;
-                grid-row: auto;
-                border-radius: 40px; /* Plus simple sur mobile */
-            }
-            .card-stages {
-                padding: 40px;
-            }
-            .bottom-right-container {
-                flex-direction: column;
-                align-items: center;
-                padding-left: 0;
-            }
-            .deco-bird-top, .deco-caterpillar, .deco-bird-bottom {
-                display: none; /* Masque les décos sur mobile pour la clarté */
-            }
-        }
-        @media (max-width: 768px) {
-            .idees-cards-container {
-                flex-direction: column;
-            }
-            .card-projets {
-                width: 100%;
-                flex: auto;
-            }
-        }
+.leaf--2::after{
+  content:'';position:absolute;z-index:5;
+  top:0;left:32%;width:75px;height:18px;
+  background:repeating-linear-gradient(
+    90deg,#8a6840 0px,#8a6840 3px,transparent 3px,transparent 9px
+  );
+  border-radius:0 0 2px 2px;
+  opacity:.55;
+}
+
+/* LEAF 3 : Interventions (bottom-left) */
+.leaf--3{
+  top:46%;left:0;
+  width:32%;
+  height:50%;
+  clip-path:url(#shape3);
+}
+.leaf--3 .leaf__photo{
+  background:
+    linear-gradient(155deg,rgba(95,42,15,.42) 0%,rgba(70,30,10,.75) 100%),
+    radial-gradient(ellipse at 45% 50%,rgba(130,60,25,.3),transparent 55%),
+    url("/images-creation-de-site/7. Échanges pédagogiques et transmission avec un groupe d'enfants.jpg") center/cover no-repeat;
+  background-color:#7a3818;
+}
+.leaf--3 .leaf__dim{
+  background:linear-gradient(180deg,transparent 30%,rgba(45,20,8,.3) 100%);
+}
+.leaf--3 .leaf__body{padding:26px 22px 24px;}
+.leaf--3 h3,.leaf--3 p{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.3);}
+.leaf--3 .leaf__ico{background:rgba(240,236,228,.9);}
+
+/* LEAF 4 : Projets sur mesure (bottom-center) */
+.leaf--4{
+  top:52%;left:28%;
+  width:18%;
+  height:42%;
+  clip-path:url(#shape4);
+}
+.leaf--4 .leaf__photo{
+  background:linear-gradient(150deg,#dbd0ba 0%,#cbbfa5 100%);
+}
+.leaf--4 .leaf__photo::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.5' numOctaves='3' type='fractalNoise'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+}
+.leaf--4 .leaf__body{padding:22px 20px 20px;}
+.leaf--4 h3{color:#2c2416;text-shadow:none;}
+.leaf--4 p{color:#4a3c2e;text-shadow:none;max-width:200px;}
+.leaf--4 .leaf__ico{background:#c2b49a;}
+
+/* RIGHT COLUMN */
+.right-col{
+  position:absolute;
+  top:47%;left:48%;
+  width:50%;
+  z-index:3;
+}
+
+.boite-heading{
+  font-family:'Dancing Script',cursive;
+  font-size:2.2rem;
+  font-weight:700;
+  color:#2c2416;
+  margin-bottom:4px;
+  line-height:1.15;
+}
+
+.ants{
+  display:flex;gap:4px;
+  margin-bottom:10px;
+  opacity:.28;font-size:.42rem;
+}
+.ants span{animation:aw 2.2s ease-in-out infinite alternate;}
+@keyframes aw{0%{transform:translateX(0)}100%{transform:translateX(3px)}}
+.ants span:nth-child(2){animation-delay:.15s}
+.ants span:nth-child(3){animation-delay:.3s}
+.ants span:nth-child(4){animation-delay:.45s}
+.ants span:nth-child(5){animation-delay:.6s}
+.ants span:nth-child(6){animation-delay:.75s}
+.ants span:nth-child(7){animation-delay:.9s}
+
+.idees{display:flex;gap:10px;}
+.idee{
+  flex:1;
+  background:linear-gradient(160deg,#f4efe5,#eae3d6);
+  border-radius:14px;
+  padding:14px 12px 14px;
+  border:1px solid rgba(0,0,0,.045);
+  box-shadow:0 1.5px 6px rgba(0,0,0,.04),inset 0 1px 0 rgba(255,255,255,.5);
+  cursor:pointer;
+  transition:transform .3s,box-shadow .3s;
+}
+.idee:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.08);}
+
+.idee__icon{height:28px;margin-bottom:8px;opacity:.5;}
+.idee__icon svg{height:28px;width:auto;}
+
+.idee h4{
+  font-size:.58rem;font-weight:900;
+  text-transform:uppercase;letter-spacing:.05em;
+  color:#2c2416;margin-bottom:6px;line-height:1.4;
+}
+.idee p,.idee ul{font-size:.58rem;color:#5a4c3e;line-height:1.5;}
+.idee ul{list-style:none;margin-top:4px;}
+.idee ul li{padding:1px 0 1px 11px;position:relative;}
+.idee ul li::before{
+  content:'›';position:absolute;left:0;
+  color:#6a8a3a;font-weight:700;
+}
+.idee:nth-child(2) ul li::before{
+  content:'🐦';font-size:.42rem;top:2px;
+}
+
+/* VINE */
+.vine{
+  position:absolute;
+  bottom:8px;left:5%;
+  width:90%;height:40px;
+  opacity:.45;z-index:2;
+}
+
+.wm{
+  position:absolute;
+  bottom:10px;right:30px;
+  opacity:.1;z-index:2;
+}
+
+/* ANIMATIONS */
+@keyframes fi{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fs{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.section-title{animation:fi .7s ease both;}
+.leaf--1{animation:fs .55s ease .08s both;}
+.leaf--2{animation:fs .55s ease .18s both;}
+.leaf--3{animation:fs .55s ease .28s both;}
+.leaf--4{animation:fs .55s ease .38s both;}
+.right-col{animation:fi .6s ease .35s both;}
+.idee:nth-child(1){animation:fi .45s ease .5s both;}
+.idee:nth-child(2){animation:fi .45s ease .6s both;}
+.idee:nth-child(3){animation:fi .45s ease .7s both;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .section-animations{padding:20px 16px 20px;}
+  .section-title h1{font-size:1.5rem;}
+  .layout{padding-bottom:0;min-height:auto;display:flex;flex-direction:column;gap:14px;}
+  .leaf,.right-col{position:relative!important;top:auto!important;left:auto!important;width:100%!important;height:auto!important;min-height:200px;}
+  .leaf--2 .leaf__body{padding-top:30px;}
+  .right-col{padding:0;width:100%!important;}
+  .idees{flex-direction:column;}
+  .robin{display:none;}
+  .vine{display:none;}
+}
     </style>
 </head>
 <body>
+
+<!-- SVG CLIP-PATH DEFINITIONS -->
+<svg style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="shape1" clipPathUnits="objectBoundingBox">
+      <path d="M 0.1,0.85 C 0.0,0.72 0.0,0.28 0.1,0.15 C 0.2,0.02 0.65,0.08 0.95,0.45 C 0.65,0.92 0.2,0.98 0.1,0.85 Z"/>
+    </clipPath>
+    <clipPath id="shape2" clipPathUnits="objectBoundingBox">
+      <path d="M 0.22,0.06 C 0.05,0.12 0.0,0.42 0.08,0.68 C 0.2,0.98 0.68,1.06 0.92,0.92 C 1.02,0.5 0.62,0.0 0.22,0.06 Z"/>
+    </clipPath>
+    <clipPath id="shape3" clipPathUnits="objectBoundingBox">
+      <path d="M 0.1,0.82 C 0.0,0.68 0.0,0.32 0.1,0.18 C 0.2,0.02 0.62,0.1 0.92,0.48 C 0.62,0.92 0.2,0.98 0.1,0.82 Z"/>
+    </clipPath>
+    <clipPath id="shape4" clipPathUnits="objectBoundingBox">
+      <path d="M 0.15,0.92 C 0.02,0.78 0.0,0.42 0.1,0.22 C 0.22,0.02 0.62,0.0 0.88,0.18 C 0.98,0.55 0.72,0.98 0.15,0.92 Z"/>
+    </clipPath>
+  </defs>
+</svg>
 
 <!-- ========== NAV ========== -->
 <nav>
@@ -473,112 +525,173 @@
   <a href="/contact.html" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
 </div>
 
-<!-- ========== CONTENU ANIMATIONS NOUVEAU DESIGN (PÉTALES) ========== -->
-<div class="animations-page-content">
-    
-    <!-- Décorations (Utilisez des vraies images d'oiseaux/chenille quand elles seront disponibles, ici laissées vides pour ne pas avoir d'emojis) -->
-    <div class="deco-bird-top"></div>
-    <div class="deco-caterpillar"></div>
-    <div class="deco-bird-bottom"></div>
+<section id="animations" class="section-animations">
 
-    <header class="page-header" id="animations">
-        <h1>Des animations vivantes et sur mesure</h1>
-    </header>
+  <img
+    class="section-animations__img"
+    src="/images-creation-de-site/Fond animation.png"
+    alt="Des animations vivantes et sur mesure — Écocurieux"
+    loading="lazy"
+    width="1365"
+    height="614"
+  >
 
-    <div class="animations-grid">
-        
-        <!-- Pétale 1 : Nature & Biodiversité -->
-        <article class="petal-card card-nature">
-            <div class="petal-content">
-                <img src="https://cdn-icons-png.flaticon.com/512/2906/2906274.png" alt="Icon Nature" class="petal-icon">
-                <h2 class="petal-title">Animations Nature &<br>Biodiversité</h2>
-                <p class="petal-desc">Des séances d'observations et d'expérimentations adaptées à chaque âge. Écouter, flâner, imaginer, creuser la terre, comprendre les cycles de la vie à travers le jeu et l'apprentissage.</p>
-                <a href="#catalogue" class="petal-btn">Découvrir le catalogue</a>
-            </div>
-        </article>
+  <div class="section-animations__seo">
+    <h2>Des animations vivantes et sur mesure</h2>
+    <h3>Animations Nature et Biodiversité</h3>
+    <p>Une balade découverte avec des animations en pleine nature. Des moments forts pour se reconnecter à la nature par tous les sens.</p>
+    <h3>Stages Nature et Cahier Buissonnier</h3>
+    <p>Une immersion dans la nature pour apprendre et s'émerveiller. En plusieurs séances, les participants découvrent la faune et la flore. Un cahier buissonnier accompagne chaque stage.</p>
+    <h3>Interventions sur site</h3>
+    <p>Des facilitateurs qualifiés viennent directement sur votre site pour des animations sur la biodiversité, des ateliers de sensibilisation à l'environnement.</p>
+    <h3>Projets sur mesure</h3>
+    <p>Une animation clés en main conçue pour vos objectifs. Nous concevons des projets adaptés à votre contexte.</p>
+    <h3>La Boîte à idées</h3>
+    <p>Les ondes des fourmis. Les histoires des nids. Ateliers de coopération.</p>
+  </div>
 
-        <!-- Pétale 2 : Stages Nature -->
-        <article class="petal-card card-stages" id="stages">
-            <div class="petal-content">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135692.png" alt="Icon Stages" class="petal-icon">
-                <h2 class="petal-title">Stages Nature &<br>Cahier Buissonnier</h2>
-                <p class="petal-desc">Une immersion d'une demi-journée ou d'une journée pour se reconnecter au vivant. Je vous fournis votre carnet de terrain personnel pour explorer la biodiversité locale : réalisation d'herbiers, inventaires d'insectes ou croquis d'oiseaux.</p>
-                <a href="/contact.html" class="petal-btn">S'inscrire à un stage</a>
-            </div>
-        </article>
+  <a id="stages"></a>
+  <a id="boite"></a>
 
-        <!-- Pétale 3 : Interventions sur site -->
-        <article class="petal-card card-interventions">
-            <div class="petal-content">
-                <img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png" alt="Icon Interventions" class="petal-icon">
-                <h2 class="petal-title">Interventions sur site</h2>
-                <p class="petal-desc">J'interviens directement dans votre établissement ou sur le lieu de vos événements avec tout le matériel nécessaire. Animations adaptées au contexte, aux participants et à vos objectifs.</p>
-                <a href="/contact.html" class="petal-btn">Demander un devis</a>
-            </div>
-        </article>
+  <a href="#animations"  class="hotspot hotspot--leaf hs-leaf-1" aria-label="Animations Nature et Biodiversité"></a>
+  <a href="#stages"      class="hotspot hotspot--leaf hs-leaf-2" aria-label="Stages Nature et Cahier Buissonnier"></a>
+  <a href="#animations"  class="hotspot hotspot--leaf hs-leaf-3" aria-label="Interventions sur site"></a>
+  <a href="#animations"  class="hotspot hotspot--leaf hs-leaf-4" aria-label="Projets sur mesure"></a>
 
-        <!-- Conteneur Bas Droite (Projets + Boîte à idées) -->
-        <div class="bottom-right-container">
-            
-            <!-- Pétale Blanc : Projets sur mesure -->
-            <article class="card-projets">
-                <img src="https://cdn-icons-png.flaticon.com/512/854/854929.png" alt="Icon Projets" class="petal-icon" style="opacity: 0.7;">
-                <h2 class="petal-title">Projets sur mesure</h2>
-                <p class="petal-desc">Une idée précise ? Un besoin particulier ? Nous co-construisons un projet pédagogique adapté à votre public et vos contraintes.</p>
-                <a href="/contact.html" class="petal-btn">En savoir plus</a>
-            </article>
+  <a href="#"             class="hotspot hotspot--btn hs-btn-catalogue" aria-label="Découvrir le catalogue"></a>
+  <a href="/contact.html" class="hotspot hotspot--btn hs-btn-stage"     aria-label="S'inscrire à un stage"></a>
+  <a href="/contact.html" class="hotspot hotspot--btn hs-btn-devis"     aria-label="Demander un devis"></a>
+  <a href="/contact.html" class="hotspot hotspot--btn hs-btn-savoir"    aria-label="En savoir plus"></a>
 
-            <!-- Boîte à idées -->
-            <section class="boite-idees-wrapper" id="boite">
-                <h2 class="boite-idees-title">La Boîte à idées <img src="https://cdn-icons-png.flaticon.com/512/3063/3063162.png" alt="Oiseau" style="width: 30px; vertical-align: middle; margin-left: 10px; filter: grayscale(100%); opacity: 0.8;"></h2>
-                <div class="idees-cards-container">
-                    
-                    <!-- Idée 1 -->
-                    <div class="idee-card">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1895/1895066.png" alt="Fourmis" class="idee-icon" style="opacity: 0.6;">
-                        <h3 class="idee-title">Les ondes des fourmis</h3>
-                        <p class="idee-desc">Des animations centrées sur la découverte du monde fascinant des insectes sociaux :</p>
-                        <ul class="idee-list">
-                            <li>La vie de la fourmilière</li>
-                            <li>La communication</li>
-                            <li>Le rôle écologique</li>
-                        </ul>
-                        <div class="fourmi-track">🐜 🐜 🐜</div>
-                    </div>
+  <a href="#boite" class="hotspot hotspot--card hs-card-1" aria-label="Les ondes des fourmis"></a>
+  <a href="#boite" class="hotspot hotspot--card hs-card-2" aria-label="Les histoires des nids"></a>
+  <a href="#boite" class="hotspot hotspot--card hs-card-3" aria-label="Ateliers de coopération"></a>
 
-                    <!-- Idée 2 -->
-                    <div class="idee-card">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3063/3063162.png" alt="Nids" class="idee-icon" style="opacity: 0.6;">
-                        <h3 class="idee-title">Les histoires des nids</h3>
-                        <p class="idee-desc">Plongez dans l'univers de l'ornithologie et de l'habitat des oiseaux :</p>
-                        <ul class="idee-list">
-                            <li>Reconnaître les nids</li>
-                            <li>Les matériaux utilisés</li>
-                            <li>Le cycle de reproduction</li>
-                        </ul>
-                    </div>
+</section>
 
-                    <!-- Idée 3 -->
-                    <div class="idee-card card-coop">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Coopération" class="idee-icon" style="opacity: 0.6;">
-                        <h3 class="idee-title">Ateliers de coopération</h3>
-                        <p class="idee-desc">Apprendre à travailler ensemble en s'inspirant des modèles de la nature :</p>
-                        <ul class="idee-list">
-                            <li>Jeux d'équipe en forêt</li>
-                            <li>Défis nature</li>
-                            <li>Constructions collectives</li>
-                        </ul>
-                    </div>
-
-                </div>
-            </section>
+<!-- Ancien contenu masqué -->
+<div style="display:none">
+    <div class="leaf leaf--4">
+      <div class="leaf__photo"></div>
+      <div class="leaf__dim"></div>
+      <div class="leaf__body">
+        <div>
+          <div class="leaf__ico">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="#5c3a1e" stroke-width="1.3"/>
+              <path d="M12 3v3 M12 18v3 M3 12h3 M18 12h3" stroke="#5c3a1e" stroke-width=".8"/>
+              <path d="M12 8l1.5 4 4 .5" stroke="#5c3a1e" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+              <circle cx="12" cy="12" r="1.5" fill="#5c3a1e" opacity=".25"/>
+            </svg>
+          </div>
+          <h3>Projets sur mesure</h3>
+          <p>Une animation clés en main conçue pour vos objectifs. Nous concevons des projets adaptés à votre contexte.</p>
         </div>
+        <a href="/contact.html" class="cta cta--orange">En savoir plus</a>
+      </div>
     </div>
 
-    <div class="deco-branch">
-        <!-- Remplacer par la vraie branche si disponible -->
+    <!-- RIGHT COLUMN — La Boîte à idées -->
+    <div class="right-col" id="boite">
+      <h2 class="boite-heading">La Boîte à idées</h2>
+      <div class="ants">
+        <span>🐜</span><span>🐜</span><span>🐜</span>
+        <span>🐜</span><span>🐜</span><span>🐜</span><span>🐜</span>
+      </div>
+      <div class="idees">
+        <div class="idee">
+          <div class="idee__icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 8c-3 0-5 2-5 5s2 4 5 5c3-1 5-2 5-5s-2-5-5-5z" stroke="#8a7050" stroke-width="1.2"/>
+              <path d="M14 22c-2 3-3 8-1 11 1 2 3 2 5 1" stroke="#8a7050" stroke-width="1.1" fill="none"/>
+              <path d="M26 22c2 3 3 8 1 11-1 2-3 2-5 1" stroke="#8a7050" stroke-width="1.1" fill="none"/>
+            </svg>
+          </div>
+          <h4>Les ondes des fourmis</h4>
+          <p>Les subtilités des communications chimiques, sonores et tactiles.</p>
+          <ul>
+            <li>Les ondes des fourmis</li>
+            <li>Les ondes d'art</li>
+            <li>Les ondes des fourmis</li>
+          </ul>
+        </div>
+        <div class="idee">
+          <div class="idee__icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 32c0-10 4-16 8-20 4 4 8 10 8 20" stroke="#8a7050" stroke-width="1.2"/>
+              <path d="M16 30c1-5 2-8 4-12 2 4 3 7 4 12" stroke="#8a7050" stroke-width=".8" opacity=".4"/>
+              <line x1="20" y1="12" x2="20" y2="6" stroke="#8a7050" stroke-width=".8"/>
+              <circle cx="20" cy="5" r="1.8" fill="#d47030" opacity=".45"/>
+            </svg>
+          </div>
+          <h4>Les histoires des nids</h4>
+          <p>Des animations qui explorent les habitats naturels.</p>
+          <ul>
+            <li>Les histoires des nids</li>
+            <li>Les vitesses des vents</li>
+            <li>L'album des oiseaux</li>
+          </ul>
+        </div>
+        <div class="idee">
+          <div class="idee__icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="14" cy="18" r="6" stroke="#8a7050" stroke-width="1.2"/>
+              <circle cx="26" cy="18" r="6" stroke="#8a7050" stroke-width="1.2"/>
+              <path d="M18 15c1 2 1 4 0 6" stroke="#6a8a3a" stroke-width="1.2"/>
+              <path d="M22 15c-1 2-1 4 0 6" stroke="#6a8a3a" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <h4>Ateliers de coopération</h4>
+          <p>Apprenons ensemble à travers des activités créatives favorisant l'entraide et la coopération.</p>
+        </div>
+      </div>
     </div>
+
+  </div>
+
+  <!-- ROBIN BOTTOM-RIGHT -->
+  <svg class="robin robin--br" viewBox="0 0 100 105" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="52" cy="60" rx="20" ry="18" fill="#7a6444"/>
+    <ellipse cx="54" cy="58" rx="14" ry="15" fill="#d46830"/>
+    <ellipse cx="54" cy="52" rx="7" ry="6" fill="#e8a06a" opacity=".3"/>
+    <circle cx="54" cy="36" r="13" fill="#5c4c3a"/>
+    <circle cx="60" cy="33" r="2.8" fill="#fff"/>
+    <circle cx="60" cy="33" r="1.4" fill="#1a1a1a"/>
+    <polygon points="68,36 77,34 68,39" fill="#9a7a50"/>
+    <ellipse cx="34" cy="52" rx="13" ry="6" fill="#685840" transform="rotate(10 34 52)"/>
+    <path d="M36 68 L20 72 L22 68 L18 70 L24 66" fill="#5c4c3a"/>
+    <g stroke="#5c4c3a" stroke-width="1.8" stroke-linecap="round" fill="none">
+      <path d="M46 76 L44 90 M44 90 L40 93 M44 90 L48 93"/>
+      <path d="M60 76 L62 90 M62 90 L58 93 M62 90 L66 93"/>
+    </g>
+  </svg>
+
+  <!-- VINE -->
+  <svg class="vine" viewBox="0 0 900 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <path d="M0 20 C25 14,50 26,80 20 S130 14,160 20 S210 26,250 20 S300 14,340 20 S390 26,430 20 S480 14,520 20 S570 26,610 20 S660 14,700 20 S750 26,790 20 S840 14,880 20 L900 20" stroke="#3a5a2c" stroke-width="2" fill="none"/>
+    <g fill="#3a5a2c" opacity=".5">
+      <ellipse cx="60" cy="16" rx="13" ry="5" transform="rotate(-35 60 16)"/>
+      <ellipse cx="150" cy="24" rx="11" ry="4.5" transform="rotate(30 150 24)"/>
+      <ellipse cx="250" cy="16" rx="12" ry="5" transform="rotate(-28 250 16)"/>
+      <ellipse cx="350" cy="24" rx="13" ry="5" transform="rotate(32 350 24)"/>
+      <ellipse cx="450" cy="16" rx="11" ry="4.5" transform="rotate(-30 450 16)"/>
+      <ellipse cx="540" cy="24" rx="12" ry="5" transform="rotate(28 540 24)"/>
+      <ellipse cx="640" cy="16" rx="13" ry="5" transform="rotate(-35 640 16)"/>
+      <ellipse cx="740" cy="24" rx="11" ry="4.5" transform="rotate(30 740 24)"/>
+      <ellipse cx="840" cy="17" rx="12" ry="5" transform="rotate(-28 840 17)"/>
+    </g>
+  </svg>
+
+  <!-- WATERMARK -->
+  <svg class="wm" width="32" height="32" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#3a5a2c">
+      <path d="M24 42c0-7 3-11 8-14-2-3-1-9 2-11 2-1.5 4.5.5 5.5 2 1-1 3-1 4 0 2.5 2.5 2 6 .5 8 4.5 2.5 7.5 7 7.5 13 0 5.5-4.5 9.5-10 10.5l2 4h-4l-1.5-3.5c-1 .3-2 .3-3-.3l-1.5 4h-4l2.5-5.5c-4.5-2-8-5.5-8-9.7z"/>
+      <path d="M39 28c3.5-1.5 7 .5 9 3.5 1.5 2.5 1 5.5-1 7-1.5-2.5-4-4-6-4" opacity=".6"/>
+    </g>
+  </svg>
+
 </div>
+<!-- fin ancien contenu masqué -->
 
 <!-- ========== FOOTER (Allégé) ========== -->
 <footer style="background: var(--green-dark); color: rgba(243,222,180,0.55); padding: 2rem 1rem 3rem; text-align: center;">
