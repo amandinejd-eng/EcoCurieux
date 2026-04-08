@@ -485,16 +485,200 @@
   footer a:hover { color: var(--beige); }
 
   /* ========== RESPONSIVE ========== */
+  
+  /* Tablettes et petits écrans */
   @media (max-width: 900px) {
+    /* Navigation */
     .nav-links, .nav-cta { display: none; }
-    .hamburger { display: flex; }
-    .boite-grid { grid-template-columns: 1fr; }
-    .ateliers-grid { grid-template-columns: 1fr; }
+    .hamburger { display: flex; min-width: 44px; min-height: 44px; }
+    nav { padding: 0 1.2rem; height: 70px; }
+    .nav-logo-img { height: 52px; width: 100px; }
+    .nav-logo-name { font-size: 1.1rem; }
+    .nav-logo-sub { font-size: 0.65rem; }
+    .mobile-menu { top: 70px; padding: 1.5rem 1.2rem; }
+    .mobile-menu a { padding: 14px 0; min-height: 44px; }
+    
+    /* Sections */
+    section.padded { padding: 60px 1.5rem; }
+    .section-title { font-size: clamp(1.6rem, 5vw, 2.4rem); }
+    .section-label { font-size: 0.68rem; }
+    
+    /* Grilles */
+    .boite-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+    .ateliers-grid { grid-template-columns: 1fr; gap: 1.2rem; }
     .valeurs-grid { grid-template-columns: 1fr; }
+    .demarche-grid-v2 { grid-template-columns: 1fr; gap: 2rem; }
+    
+    /* Contact */
     .contact-grid { flex-direction: column !important; gap: 2rem !important; padding: 0 1.2rem !important; }
-    .contact-form { margin-top: 0 !important; min-width: unset !important; }
+    .contact-form { margin-top: 0 !important; min-width: unset !important; padding: 1.2rem 1.3rem; }
     .contact-info { min-width: unset !important; }
     .contact-info > div[style*="gap: 140px"] { gap: 1.5rem !important; }
+    .contact-info h2 { font-size: 1.6rem !important; }
+    .form-group input, .form-group textarea, .form-group select { padding: 16px; font-size: 16px; }
+    .aud-btn { padding: 12px 18px; font-size: 0.8rem; }
+    
+    /* Bento services */
+    .bento-services { padding: 1.2rem; gap: 1.2rem; }
+    .bento-item { padding: 1.8rem; }
+    .bento-item h3 { font-size: 1.2rem; }
+    .icon-box { width: 44px; height: 44px; font-size: 20px; }
+    
+    /* Cards */
+    .atelier-card { padding: 1.5rem; }
+    .univers-card { margin-bottom: 0.8rem; }
+    .univers-head { padding: 1.2rem 1.2rem 0.8rem; }
+    .univers-list { padding: 0.8rem 1.2rem 1.2rem; }
+    
+    /* Garanties */
+    .garantie-box { padding: 1.5rem; max-width: 100%; }
+    
+    /* Hero */
+    .hero { padding: 90px 1.5rem 6rem; min-height: 90vh; }
+    .hero h1 { font-size: clamp(2.2rem, 10vw, 4rem); }
+    .hero-btns { gap: 0.8rem; }
+    .btn-primary, .btn-outline { padding: 12px 24px; font-size: 0.85rem; }
+    .hero-scroll { bottom: 1.5rem; }
+    .hero-scroll .scroll-label { font-size: 0.7rem; letter-spacing: 0.15em; }
+  }
+  
+  /* Smartphones */
+  @media (max-width: 768px) {
+    /* Typographie globale */
+    body { font-size: 16px; }
+    p { font-size: 16px; line-height: 1.75; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.2rem; }
+    
+    /* Navigation */
+    nav { height: 65px; padding: 0 1rem; }
+    .nav-logo-img { height: 48px; width: 90px; }
+    .nav-logo-name { font-size: 1rem; }
+    .mobile-menu { top: 65px; }
+    
+    /* Sections */
+    section.padded { padding: 50px 1.2rem; }
+    .section-title { margin-bottom: 1.2rem; }
+    .section-inner { padding: 0; }
+    
+    /* Hero */
+    .hero { padding: 80px 1.2rem 5rem; min-height: 85vh; }
+    .hero-badge { font-size: 0.68rem; padding: 5px 14px; margin-bottom: 1.2rem; }
+    .hero h1 { font-size: clamp(2rem, 12vw, 3.5rem); margin-bottom: 0.6rem; }
+    .hero h2 { font-size: clamp(0.9rem, 3vw, 1.2rem); margin-bottom: 1.5rem; }
+    .hero p { font-size: 0.95rem; margin-bottom: 2rem; }
+    .hero-btns { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+    .btn-primary, .btn-outline { width: 100%; text-align: center; justify-content: center; }
+    
+    /* Ticker */
+    .ticker { padding: 11px 0; }
+    .ticker-inner span { font-size: 0.75rem; }
+    
+    /* Bento Services */
+    .bento-services { padding: 1rem; gap: 1rem; }
+    .bento-item { padding: 1.5rem; border-radius: 18px; }
+    .bento-item h3 { font-size: 1.1rem; padding-bottom: 8px; margin-bottom: 10px; }
+    .bento-item p { font-size: 0.9rem; }
+    .stages-card .stages-row { flex-direction: column; gap: 1.5rem; }
+    .stages-card .stages-badge { min-width: 100px; padding: 1.2rem; }
+    
+    /* Démarche */
+    .pillier { padding: 1.1rem 1.2rem; }
+    .pillier h4 { font-size: 0.85rem; }
+    .pillier p { font-size: 0.78rem; }
+    .demarche-visual { padding: 1.3rem; }
+    .demarche-visual .big-emoji { font-size: 3rem; margin-bottom: 1rem; }
+    .valeur { padding: 0.6rem 0.9rem; }
+    .valeur .vi { font-size: 1.1rem; }
+    .valeur span { font-size: 0.75rem; }
+    
+    /* Boîte à idées */
+    .boite-grid { gap: 1rem; margin-top: 2rem; }
+    .univers-head { padding: 1.2rem; }
+    .univers-head .u-icon { font-size: 1.7rem; }
+    .univers-head h3 { font-size: 0.95rem; }
+    .univers-list { padding: 0.8rem 1.2rem 1.2rem; gap: 0.6rem; }
+    .univers-list li { font-size: 0.8rem; }
+    .univers-list li strong { font-size: 0.75rem; }
+    
+    /* Ateliers */
+    .ateliers-grid { gap: 1rem; margin-top: 2rem; }
+    .atelier-card { padding: 1.3rem; border-radius: 16px; }
+    .atelier-card .ac-icon-wrap { width: 48px; height: 48px; font-size: 1.4rem; }
+    .atelier-card h3 { font-size: 1rem; }
+    .atelier-card p { font-size: 0.85rem; }
+    .atelier-tag { font-size: 0.68rem; padding: 4px 10px; }
+    .zone-info { margin-top: 2rem; gap: 0.8rem; }
+    .zone-pill { padding: 8px 16px; font-size: 0.75rem; }
+    
+    /* Garanties */
+    .garanties { padding: 2.5rem 1.2rem; }
+    .garantie-box { padding: 1.3rem 1.5rem; min-width: auto; }
+    .garantie-box .gb-icon { font-size: 1.5rem; }
+    .gb-title { font-size: 0.85rem; }
+    .gb-sub { font-size: 0.7rem; }
+    
+    /* Contact */
+    .contact.padded { padding: 50px 1.2rem 80px !important; }
+    .contact-form { padding: 1rem 1.2rem; }
+    .form-label { font-size: 0.68rem; }
+    .audience-selector { gap: 0.4rem; }
+    .aud-btn { padding: 10px 14px; font-size: 0.74rem; }
+    .btn-submit { font-size: 0.85rem; padding: 14px; }
+    
+    /* Footer */
+    footer { padding: 1.5rem 1.2rem; font-size: 0.72rem; }
+  }
+  
+  /* Petits smartphones */
+  @media (max-width: 480px) {
+    /* Hero */
+    .hero { padding: 75px 1rem 4rem; }
+    .hero h1 { font-size: clamp(1.8rem, 14vw, 3rem); }
+    .hero h2 { font-size: clamp(0.85rem, 4vw, 1.1rem); }
+    .hero p { font-size: 0.9rem; line-height: 1.65; }
+    .hero-scroll .scroll-label { font-size: 0.6rem; }
+    .hero-scroll .scroll-arrow { font-size: 1.5rem; }
+    
+    /* Sections */
+    section.padded { padding: 40px 1rem; }
+    .section-title { font-size: clamp(1.4rem, 6vw, 2rem); }
+    .section-label { font-size: 0.65rem; }
+    
+    /* Navigation */
+    nav { padding: 0 0.8rem; height: 60px; }
+    .nav-logo-img { height: 44px; width: 80px; }
+    .nav-logo-name { font-size: 0.95rem; }
+    .nav-logo-sub { font-size: 0.6rem; }
+    .mobile-menu { top: 60px; padding: 1.2rem 1rem; }
+    .hamburger { min-width: 40px; min-height: 40px; }
+    
+    /* Bento */
+    .bento-services { padding: 0.8rem; gap: 0.8rem; }
+    .bento-item { padding: 1.2rem; }
+    .bento-item h3 { font-size: 1rem; }
+    .icon-box { width: 40px; height: 40px; font-size: 18px; margin-bottom: 14px; }
+    
+    /* Cards */
+    .atelier-card, .univers-card { border-radius: 14px; }
+    .atelier-card { padding: 1.2rem; }
+    .univers-head { padding: 1rem; }
+    .univers-list { padding: 0.7rem 1rem 1rem; }
+    
+    /* Garanties */
+    .garanties { padding: 2rem 1rem; }
+    .garantie-box { flex-direction: column; text-align: center; padding: 1.2rem; }
+    .garantie-box .gb-icon { margin-bottom: 0.5rem; }
+    
+    /* Contact */
+    .contact-form { padding: 0.9rem 1rem; }
+    .form-group input, .form-group textarea { padding: 14px; }
+    .aud-btn { padding: 9px 12px; font-size: 0.7rem; }
+    
+    /* Boutons */
+    .btn-primary { padding: 11px 20px; font-size: 0.8rem; }
+    .btn-outline { padding: 10px 18px; font-size: 0.8rem; }
   }
   .hbb {
     position: absolute;
@@ -533,8 +717,32 @@
     40%     { transform: translateY(-16px) rotate(2deg); }
     70%     { transform: translateY(-6px) rotate(-1deg); }
   }
-  @media (max-width: 700px) {
-    .hbb:nth-child(3),.hbb:nth-child(4),.hbb:nth-child(7),.hbb:nth-child(8) { display:none; }
+  /* Optimisation bulles hero sur mobile */
+  @media (max-width: 900px) {
+    .hbb { border-width: 2px; }
+    .hbb:nth-child(1) { width: 75px; height: 75px; }
+    .hbb:nth-child(2) { width: 65px; height: 65px; }
+    .hbb:nth-child(3) { width: 70px; height: 70px; }
+    .hbb:nth-child(4) { width: 60px; height: 60px; }
+    .hbb:nth-child(5) { width: 80px; height: 80px; }
+    .hbb:nth-child(6) { width: 70px; height: 70px; }
+    .hbb:nth-child(7) { width: 75px; height: 75px; }
+    .hbb:nth-child(8) { width: 65px; height: 65px; }
+    .hbb:hover { transform: scale(2.5) !important; }
+  }
+  @media (max-width: 768px) {
+    .hbb:nth-child(3), .hbb:nth-child(4), .hbb:nth-child(7), .hbb:nth-child(8) { display: none; }
+    .hbb:nth-child(1) { width: 60px; height: 60px; top: 15%; left: 8%; }
+    .hbb:nth-child(2) { width: 55px; height: 55px; top: 60%; left: 5%; }
+    .hbb:nth-child(5) { width: 65px; height: 65px; top: 20%; right: 8%; }
+    .hbb:nth-child(6) { width: 58px; height: 58px; top: 55%; right: 6%; }
+    .hbb:hover { transform: scale(2) !important; }
+    .hbb .bubble-text { font-size: 0.45rem; }
+  }
+  @media (max-width: 480px) {
+    .hbb:nth-child(2), .hbb:nth-child(6) { display: none; }
+    .hbb:nth-child(1) { width: 50px; height: 50px; }
+    .hbb:nth-child(5) { width: 55px; height: 55px; }
   }
   .stages-card { grid-column: 1 / -1 !important; }
   .stages-card .stages-row { display:flex; align-items:center; gap:2.5rem; }
@@ -647,10 +855,26 @@
   .kit-avis-cta { text-align: center; padding: 1.2rem; background: var(--beige-light); border-radius: 12px; border: 2px dashed var(--beige-2); }
   .kit-avis-cta p { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; color: #7a6a50; margin-bottom: 0.6rem; }
 
-  @media (max-width: 700px) {
-    .kit-desc, .kit-included { padding: 1.8rem 1.5rem; }
-    .kit-infos-grid, .kit-photos-grid, .kit-avis-grid { grid-template-columns: 1fr; }
-    .kit-page-hero { padding: 120px 1.2rem 60px; }
+  /* Kits responsive */
+  @media (max-width: 768px) {
+    .kit-page-hero { padding: 100px 1.2rem 50px; }
+    .kit-page-hero .kit-icon { font-size: 3.5rem; }
+    .kit-page-hero h1 { font-size: clamp(1.6rem, 6vw, 2.8rem); }
+    .kit-page-hero .hero-sub { font-size: 0.82rem; }
     .kit-content { padding: 40px 1.2rem 60px; }
+    .kit-desc, .kit-included { padding: 1.8rem 1.5rem; border-radius: 18px; }
+    .kit-desc h2, .kit-included h2 { font-size: 1.1rem; }
+    .kit-desc p { font-size: 0.9rem; }
+    .kit-included ul li { font-size: 0.87rem; }
+    .kit-infos-grid, .kit-photos-grid, .kit-avis-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+    .kit-info-box { padding: 1.2rem 1.5rem; }
     .kit-cta { padding: 2rem 1.5rem; }
+    .kit-cta h2 { font-size: 1.1rem; }
+  }
+  @media (max-width: 480px) {
+    .kit-page-hero { padding: 90px 1rem 40px; }
+    .kit-page-hero .kit-icon { font-size: 3rem; }
+    .kit-content { padding: 30px 1rem 50px; }
+    .kit-desc, .kit-included { padding: 1.5rem 1.2rem; }
+    .kit-cta { padding: 1.5rem 1.2rem; }
   }

@@ -156,26 +156,111 @@
 }
 
 @media (max-width: 768px) {
+  .accordion-container {
+    margin: 2rem auto 0;
+  }
   .accordion-header {
-    padding: 20px;
+    padding: 18px;
     gap: 12px;
   }
   .accordion-header h3 {
     font-size: 1.05rem;
+    line-height: 1.3;
   }
   .accordion-icon {
     width: 45px;
     height: 45px;
     font-size: 1.6rem;
   }
+  .accordion-toggle {
+    font-size: 1.2rem;
+  }
   .accordion-content {
-    padding: 0 20px;
+    padding: 0 18px;
   }
   .accordion-item.active .accordion-content {
-    padding: 0 20px 20px;
+    padding: 0 18px 18px;
+  }
+  .accordion-content p {
+    font-size: 0.95rem;
+  }
+  .accordion-content ul li {
+    font-size: 0.95rem;
+  }
+  .accordion-cta {
+    width: 100%;
+    text-align: center;
   }
   .boite-mini-cards {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .boite-mini-card {
+    padding: 18px;
+  }
+  .boite-mini-card h4 {
+    font-size: 0.85rem;
+  }
+  .boite-mini-card p {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .accordion-container {
+    margin: 1.5rem auto 0;
+  }
+  .accordion-item {
+    margin-bottom: 12px;
+    border-radius: 14px;
+  }
+  .accordion-header {
+    padding: 16px;
+    gap: 10px;
+  }
+  .accordion-header h3 {
+    font-size: 0.95rem;
+  }
+  .accordion-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+  .accordion-toggle {
+    font-size: 1.1rem;
+  }
+  .accordion-content {
+    padding: 0 16px;
+  }
+  .accordion-item.active .accordion-content {
+    padding: 0 16px 16px;
+  }
+  .accordion-content p {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+  .accordion-content ul {
+    margin: 12px 0;
+  }
+  .accordion-content ul li {
+    padding: 6px 0 6px 20px;
+    font-size: 0.9rem;
+  }
+  .boite-mini-cards {
+    gap: 10px;
+  }
+  .boite-mini-card {
+    padding: 16px;
+  }
+  .boite-mini-card .emoji-icon {
+    font-size: 1.6rem;
+  }
+  .boite-mini-card h4 {
+    font-size: 0.8rem;
+    margin: 10px 0 6px;
+  }
+  .boite-mini-card p {
+    font-size: 0.78rem;
   }
 }
     </style>
