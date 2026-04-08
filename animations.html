@@ -3,386 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animations nature - Écocurieux</title>
+    <title>Ce que je propose - Écocurieux</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <style>
-        /* --- STYLES SPÉCIFIQUES ANIMATIONS (Design Pétales / Maquette) --- */
-        body {
-            background-color: #f7f3ec; /* Fond beige texturé */
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
-            font-family: 'Nunito', sans-serif;
-            color: #3b2c20;
-            overflow-x: hidden;
-        }
+/* === ACCORDÉONS ANIMATIONS === */
+.accordion-container {
+  max-width: 900px;
+  margin: 2.5rem auto 0;
+}
 
-        .animations-page-content {
-            padding: 60px 20px 100px;
-            max-width: 1300px; /* Élargi pour correspondre à la maquette */
-            margin: 0 auto;
-            position: relative;
-        }
+.accordion-item {
+  background: white;
+  border: 2px solid #e8e0d5;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+}
 
-        /* Décorations (Oiseaux, Chenille, etc. simulés ou images réelles si disponibles) */
-        .deco-bird-top {
-            position: absolute;
-            top: 40px;
-            left: 28%;
-            font-size: 3rem; /* Emoji en attendant l'image */
-            transform: rotate(-10deg);
-            z-index: 10;
-        }
-        .deco-caterpillar {
-            position: absolute;
-            top: 300px;
-            left: 36%;
-            font-size: 4rem;
-            transform: rotate(-30deg);
-            z-index: 10;
-        }
-        .deco-bird-bottom {
-            position: absolute;
-            bottom: 220px;
-            right: 12%;
-            font-size: 2.5rem;
-            z-index: 10;
-        }
-        .deco-branch {
-            text-align: center;
-            margin-top: 60px;
-            font-size: 2rem;
-            color: #4a6348;
-        }
+.accordion-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
-        /* --- HEADER --- */
-        .page-header {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-            z-index: 2;
-        }
+.accordion-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 28px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+}
 
-        .page-header h1 {
-            font-size: 3.5rem;
-            color: #2c3e2d;
-            margin: 0;
-            font-family: 'Caveat', cursive; /* Police manuscrite pour le titre */
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
+.accordion-header:hover {
+  background: #fdfbf8;
+}
 
-        /* --- GRILLE DES PÉTALES --- */
-        .animations-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.6fr; /* Droite plus large */
-            grid-template-rows: auto auto;
-            gap: 15px; /* Très peu d'espace entre les feuilles */
-            position: relative;
-            z-index: 5;
-        }
+.accordion-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--beige-light);
+  border-radius: 12px;
+}
 
-        /* --- STYLES COMMUNS AUX PÉTALES --- */
-        .petal-card {
-            position: relative;
-            padding: 40px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-decoration: none;
-            color: white;
-            box-shadow: 6px 10px 20px rgba(0,0,0,0.4); /* Ombre portée plus forte */
-            transition: transform 0.3s ease;
-            overflow: hidden;
-            /* Bordure épaisse marron/vert foncé simulant l'épaisseur de la feuille */
-            border: 8px solid #3a2e24; 
-        }
+.accordion-header h3 {
+  flex: 1;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--green-dark);
+}
 
-        .petal-card:hover {
-            transform: scale(1.02);
-        }
+.accordion-toggle {
+  font-size: 1.4rem;
+  color: var(--green);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
 
-        .petal-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 1;
-            /* L'image de fond et le dégradé seront définis pour chaque carte */
-        }
+.accordion-item.active .accordion-toggle {
+  transform: rotate(180deg);
+}
 
-        .petal-content {
-            position: relative;
-            z-index: 2;
-        }
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 28px;
+}
 
-        .petal-icon {
-            width: 45px;
-            height: 45px;
-            margin-bottom: 15px;
-            filter: brightness(0) invert(1); /* Rend l'icône blanche */
-            object-fit: contain;
-        }
+.accordion-item.active .accordion-content {
+  max-height: 1000px;
+  padding: 0 28px 28px;
+}
 
-        .petal-title {
-            font-size: 1.3rem;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            line-height: 1.3;
-        }
+.accordion-content p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #5a5040;
+  margin-bottom: 16px;
+}
 
-        .petal-desc {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 25px;
-            opacity: 0.95;
-            max-width: 90%;
-        }
+.accordion-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
 
-        .petal-btn {
-            display: inline-block;
-            background-color: #c95c3f; /* Orange brulé */
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 800;
-            font-size: 0.95rem;
-            text-transform: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: background 0.3s ease;
-            text-decoration: none;
-        }
+.accordion-content ul li {
+  padding: 8px 0 8px 24px;
+  position: relative;
+  color: #5a5040;
+  line-height: 1.6;
+}
 
-        .petal-btn:hover {
-            background-color: #b34a30;
-        }
+.accordion-content ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+}
 
-        /* --- PÉTALE 1 : ANIMATIONS NATURE (Haut Gauche) --- */
-        .card-nature {
-            grid-column: 1 / 2;
-            grid-row: 1 / 2;
-            border-radius: 80px 20px 40px 100px; /* Forme pétale haut gauche */
-            border-color: #4a3c2e;
-            align-items: flex-start;
-        }
-        .card-nature::before {
-            background: linear-gradient(to right, rgba(78, 105, 63, 0.85), rgba(78, 105, 63, 0.5)), url('/images-creation-de-site/2. Animation  nourrissage des chèvres en extérieur avec les enfants.jpg') center/cover;
-        }
+.accordion-cta {
+  display: inline-block;
+  margin-top: 16px;
+}
 
-        /* --- PÉTALE 2 : STAGES NATURE (Haut Droite, plus grand) --- */
-        .card-stages {
-            grid-column: 2 / 3;
-            grid-row: 1 / 2;
-            border-radius: 20px 150px 150px 20px; /* Forme pétale allongé droite */
-            border-color: #2b3a25;
-            align-items: center;
-            text-align: center;
-            padding: 50px 120px;
-        }
-        .card-stages::before {
-            background: linear-gradient(to left, rgba(45, 65, 42, 0.85), rgba(45, 65, 42, 0.6)), url('/images-creation-de-site/3. Observation des cochons et découverte de leur habitat.jpg') center/cover;
-        }
-        .card-stages .petal-desc {
-            max-width: 100%;
-        }
+.boite-mini-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
 
-        /* --- PÉTALE 3 : INTERVENTIONS (Bas Gauche) --- */
-        .card-interventions {
-            grid-column: 1 / 2;
-            grid-row: 2 / 3;
-            border-radius: 120px 20px 20px 120px; /* Forme pétale bas gauche */
-            border-color: #633622;
-            align-items: flex-start;
-        }
-        .card-interventions::before {
-            background: linear-gradient(to right, rgba(168, 86, 49, 0.85), rgba(168, 86, 49, 0.5)), url("/images-creation-de-site/7. Échanges pédagogiques et transmission avec un groupe d'enfants.jpg") center/cover;
-        }
-        .card-interventions .petal-btn {
-            background-color: #f7f3ec;
-            color: #a85631;
-        }
-        .card-interventions .petal-btn:hover {
-            background-color: #e5ded2;
-        }
+.boite-mini-card {
+  background: #fdfbf8;
+  border: 2px solid #e8e0d5;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
 
-        /* --- SECTION BOÎTE À IDÉES & PROJETS (Bas Droite) --- */
-        .bottom-right-container {
-            grid-column: 2 / 3;
-            grid-row: 2 / 3;
-            display: flex;
-            gap: 20px;
-            align-items: flex-end;
-            padding-left: 10px;
-        }
+.boite-mini-card h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--green-dark);
+  margin: 12px 0 8px;
+}
 
-        /* Pétale Projets sur mesure (Petit blanc) */
-        .card-projets {
-            flex: 0 0 260px;
-            background-color: #fcfbf8;
-            border-radius: 20px 60px 120px 20px; /* Feuille plus pointue en bas à droite */
-            border: 6px solid #d4c8b8;
-            padding: 40px 30px;
-            color: #3b2c20;
-            box-shadow: 4px 6px 12px rgba(0,0,0,0.2);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .card-projets .petal-icon {
-            filter: none; /* Garde sa couleur d'origine */
-            width: 60px;
-            height: 60px;
-            margin-bottom: 20px;
-        }
-        .card-projets .petal-title {
-            font-size: 1.1rem;
-            color: #3b2c20;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-        .card-projets .petal-desc {
-            color: #665a50;
-            font-size: 0.85rem;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
+.boite-mini-card p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #665a50;
+  margin: 0;
+}
 
-        /* --- BOÎTE À IDÉES --- */
-        .boite-idees-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding-bottom: 10px;
-        }
+.boite-mini-card .emoji-icon {
+  font-size: 2rem;
+}
 
-        .boite-idees-title {
-            font-family: 'Caveat', cursive;
-            font-size: 3rem;
-            color: #2c3e2d;
-            margin: 0 0 20px 0;
-            text-align: center;
-        }
-
-        .idees-cards-container {
-            display: flex;
-            gap: 15px;
-        }
-
-        .idee-card {
-            flex: 1;
-            background: #fff;
-            border: 2px solid #e8e0d5;
-            border-radius: 12px;
-            padding: 25px 20px;
-            background-color: #fdfbf8;
-            /* Ombre douce type papier */
-            box-shadow: 4px 4px 10px rgba(0,0,0,0.08);
-            position: relative;
-        }
-        .idee-card.card-coop {
-            background-color: #e5d3bc; /* Beige sable plus prononcé */
-            border-color: #c7ab8f;
-        }
-
-        .idee-icon {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 15px;
-            object-fit: contain;
-        }
-
-        .idee-title {
-            font-size: 0.9rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            line-height: 1.3;
-            font-family: 'Nunito', sans-serif;
-            color: #3b2c20;
-        }
-
-        .idee-desc {
-            font-size: 0.8rem;
-            color: #665a50;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .idee-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .idee-list li {
-            font-size: 0.75rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #3b2c20;
-        }
-        .idee-list li::before {
-            content: '●';
-            color: #527053;
-            font-size: 0.9rem;
-        }
-
-        /* Décorations pour liste fourmis (simulées) */
-        .fourmi-track {
-            margin-top: 15px;
-            font-size: 1rem;
-            letter-spacing: -2px;
-            color: #2c3e2d;
-            opacity: 0.7;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1200px) {
-            .card-stages {
-                padding: 40px 80px;
-            }
-        }
-        @media (max-width: 1024px) {
-            .animations-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-                gap: 30px;
-            }
-            .card-nature, .card-stages, .card-interventions, .bottom-right-container {
-                grid-column: 1 / -1;
-                grid-row: auto;
-                border-radius: 40px; /* Plus simple sur mobile */
-            }
-            .card-stages {
-                padding: 40px;
-            }
-            .bottom-right-container {
-                flex-direction: column;
-                align-items: center;
-                padding-left: 0;
-            }
-            .deco-bird-top, .deco-caterpillar, .deco-bird-bottom {
-                display: none; /* Masque les décos sur mobile pour la clarté */
-            }
-        }
-        @media (max-width: 768px) {
-            .idees-cards-container {
-                flex-direction: column;
-            }
-            .card-projets {
-                width: 100%;
-                flex: auto;
-            }
-        }
+@media (max-width: 768px) {
+  .accordion-header {
+    padding: 20px;
+    gap: 12px;
+  }
+  .accordion-header h3 {
+    font-size: 1.05rem;
+  }
+  .accordion-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.6rem;
+  }
+  .accordion-content {
+    padding: 0 20px;
+  }
+  .accordion-item.active .accordion-content {
+    padding: 0 20px 20px;
+  }
+  .boite-mini-cards {
+    grid-template-columns: 1fr;
+  }
+}
     </style>
 </head>
 <body>
@@ -400,11 +195,11 @@
   <ul class="nav-links">
     <li><a href="/">Accueil</a></li>
     <li>
-      <a href="/animations.html#animations">Animations <span class="arrow">▼</span></a>
+      <a href="/animations.html#animations">Ce que je propose <span class="arrow">▼</span></a>
       <div class="dropdown">
-        <a href="/animations.html#animations"><span class="dd-icon">🦔</span>Animations nature</a>
-        <a href="/animations.html#stages"><span class="dd-icon">📔</span>Stages nature</a>
-        <a href="/animations.html#boite"><span class="dd-icon">💡</span>La boîte à idées</a>
+        <a href="/animations.html#animations"><span class="dd-icon">🦔</span>Mes animations</a>
+        <a href="/animations.html#stages"><span class="dd-icon">📔</span>Mes stages</a>
+        <a href="/animations.html#boite"><span class="dd-icon">💡</span>Mes services</a>
       </div>
     </li>
     <li>
@@ -461,10 +256,10 @@
 <div class="mobile-menu" id="mobileMenu">
   <span class="mm-head">Menu</span>
   <a href="/" onclick="toggleMenu()"><span>🏠</span> Accueil</a>
-  <span class="mm-head">Animations</span>
-  <a href="/animations.html#animations" onclick="toggleMenu()"><span>🦔</span> Animations nature</a>
-  <a href="/animations.html#stages" onclick="toggleMenu()"><span>📔</span> Stages nature</a>
-  <a href="/animations.html#boite" onclick="toggleMenu()"><span>💡</span> La boîte à idées</a>
+  <span class="mm-head">Ce que je propose</span>
+  <a href="/animations.html#animations" onclick="toggleMenu()"><span>🦔</span> Mes animations</a>
+  <a href="/animations.html#stages" onclick="toggleMenu()"><span>📔</span> Mes stages</a>
+  <a href="/animations.html#boite" onclick="toggleMenu()"><span>💡</span> Mes services</a>
   <span class="mm-head">Services</span>
   <a href="/kits/" onclick="toggleMenu()"><span>🥚</span> Kits pédagogiques</a>
   <a href="/pour-qui.html" onclick="toggleMenu()"><span>📌</span> Pour qui ?</a>
@@ -473,112 +268,147 @@
   <a href="/contact.html" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
 </div>
 
-<!-- ========== CONTENU ANIMATIONS NOUVEAU DESIGN (PÉTALES) ========== -->
-<div class="animations-page-content">
+<!-- ========== SECTION CE QUE JE PROPOSE ========== -->
+<section class="padded" style="background:var(--beige-light);padding:4rem 1rem;" id="animations">
+  <div class="section-inner">
+    <div class="section-label">Ce que je propose</div>
+    <div class="section-title">Des animations <span>vivantes et sur mesure</span></div>
+    <p style="text-align:center;max-width:700px;margin:0 auto 0;font-size:1.05rem;line-height:1.65;color:#5a5040;">
+      Des expériences pédagogiques au cœur du vivant pour observer, manipuler, comprendre et créer un vrai lien avec la nature.
+    </p>
     
-    <!-- Décorations (Utilisez des vraies images d'oiseaux/chenille quand elles seront disponibles, ici laissées vides pour ne pas avoir d'emojis) -->
-    <div class="deco-bird-top"></div>
-    <div class="deco-caterpillar"></div>
-    <div class="deco-bird-bottom"></div>
-
-    <header class="page-header" id="animations">
-        <h1>Des animations vivantes et sur mesure</h1>
-    </header>
-
-    <div class="animations-grid">
-        
-        <!-- Pétale 1 : Nature & Biodiversité -->
-        <article class="petal-card card-nature">
-            <div class="petal-content">
-                <img src="https://cdn-icons-png.flaticon.com/512/2906/2906274.png" alt="Icon Nature" class="petal-icon">
-                <h2 class="petal-title">Animations Nature &<br>Biodiversité</h2>
-                <p class="petal-desc">Des séances d'observations et d'expérimentations adaptées à chaque âge. Écouter, flâner, imaginer, creuser la terre, comprendre les cycles de la vie à travers le jeu et l'apprentissage.</p>
-                <a href="#catalogue" class="petal-btn">Découvrir le catalogue</a>
-            </div>
-        </article>
-
-        <!-- Pétale 2 : Stages Nature -->
-        <article class="petal-card card-stages" id="stages">
-            <div class="petal-content">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135692.png" alt="Icon Stages" class="petal-icon">
-                <h2 class="petal-title">Stages Nature &<br>Cahier Buissonnier</h2>
-                <p class="petal-desc">Une immersion d'une demi-journée ou d'une journée pour se reconnecter au vivant. Je vous fournis votre carnet de terrain personnel pour explorer la biodiversité locale : réalisation d'herbiers, inventaires d'insectes ou croquis d'oiseaux.</p>
-                <a href="/contact.html" class="petal-btn">S'inscrire à un stage</a>
-            </div>
-        </article>
-
-        <!-- Pétale 3 : Interventions sur site -->
-        <article class="petal-card card-interventions">
-            <div class="petal-content">
-                <img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png" alt="Icon Interventions" class="petal-icon">
-                <h2 class="petal-title">Interventions sur site</h2>
-                <p class="petal-desc">J'interviens directement dans votre établissement ou sur le lieu de vos événements avec tout le matériel nécessaire. Animations adaptées au contexte, aux participants et à vos objectifs.</p>
-                <a href="/contact.html" class="petal-btn">Demander un devis</a>
-            </div>
-        </article>
-
-        <!-- Conteneur Bas Droite (Projets + Boîte à idées) -->
-        <div class="bottom-right-container">
-            
-            <!-- Pétale Blanc : Projets sur mesure -->
-            <article class="card-projets">
-                <img src="https://cdn-icons-png.flaticon.com/512/854/854929.png" alt="Icon Projets" class="petal-icon" style="opacity: 0.7;">
-                <h2 class="petal-title">Projets sur mesure</h2>
-                <p class="petal-desc">Une idée précise ? Un besoin particulier ? Nous co-construisons un projet pédagogique adapté à votre public et vos contraintes.</p>
-                <a href="/contact.html" class="petal-btn">En savoir plus</a>
-            </article>
-
-            <!-- Boîte à idées -->
-            <section class="boite-idees-wrapper" id="boite">
-                <h2 class="boite-idees-title">La Boîte à idées <img src="https://cdn-icons-png.flaticon.com/512/3063/3063162.png" alt="Oiseau" style="width: 30px; vertical-align: middle; margin-left: 10px; filter: grayscale(100%); opacity: 0.8;"></h2>
-                <div class="idees-cards-container">
-                    
-                    <!-- Idée 1 -->
-                    <div class="idee-card">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1895/1895066.png" alt="Fourmis" class="idee-icon" style="opacity: 0.6;">
-                        <h3 class="idee-title">Les ondes des fourmis</h3>
-                        <p class="idee-desc">Des animations centrées sur la découverte du monde fascinant des insectes sociaux :</p>
-                        <ul class="idee-list">
-                            <li>La vie de la fourmilière</li>
-                            <li>La communication</li>
-                            <li>Le rôle écologique</li>
-                        </ul>
-                        <div class="fourmi-track">🐜 🐜 🐜</div>
-                    </div>
-
-                    <!-- Idée 2 -->
-                    <div class="idee-card">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3063/3063162.png" alt="Nids" class="idee-icon" style="opacity: 0.6;">
-                        <h3 class="idee-title">Les histoires des nids</h3>
-                        <p class="idee-desc">Plongez dans l'univers de l'ornithologie et de l'habitat des oiseaux :</p>
-                        <ul class="idee-list">
-                            <li>Reconnaître les nids</li>
-                            <li>Les matériaux utilisés</li>
-                            <li>Le cycle de reproduction</li>
-                        </ul>
-                    </div>
-
-                    <!-- Idée 3 -->
-                    <div class="idee-card card-coop">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Coopération" class="idee-icon" style="opacity: 0.6;">
-                        <h3 class="idee-title">Ateliers de coopération</h3>
-                        <p class="idee-desc">Apprendre à travailler ensemble en s'inspirant des modèles de la nature :</p>
-                        <ul class="idee-list">
-                            <li>Jeux d'équipe en forêt</li>
-                            <li>Défis nature</li>
-                            <li>Constructions collectives</li>
-                        </ul>
-                    </div>
-
-                </div>
-            </section>
+    <div class="accordion-container">
+      
+      <!-- Accordéon 1 : Animations Nature & Biodiversité -->
+      <div class="accordion-item active">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-icon">🦔</div>
+          <h3>Animations Nature & Biodiversité</h3>
+          <span class="accordion-toggle">▼</span>
         </div>
-    </div>
+        <div class="accordion-content">
+          <p>Une balade découverte avec des animations en pleine nature. Des moments forts pour se reconnecter à la nature par tous les sens.</p>
+          <p>Des séances d'observations et d'expérimentations adaptées à chaque âge : écouter, flâner, imaginer, creuser la terre, comprendre les cycles de la vie à travers le jeu et l'apprentissage.</p>
+          <ul>
+            <li>Découverte de la biodiversité locale</li>
+            <li>Observation des insectes et petites bêtes</li>
+            <li>Ateliers sensoriels en pleine nature</li>
+            <li>Cycles de vie des plantes et animaux</li>
+          </ul>
+          <a href="#" class="btn-primary accordion-cta">Découvrir le catalogue</a>
+        </div>
+      </div>
 
-    <div class="deco-branch">
-        <!-- Remplacer par la vraie branche si disponible -->
+      <!-- Accordéon 2 : Stages Nature & Cahier Buissonnier -->
+      <div class="accordion-item" id="stages">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-icon">📔</div>
+          <h3>Stages Nature & Cahier Buissonnier</h3>
+          <span class="accordion-toggle">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Une immersion dans la nature pour apprendre et s'émerveiller. En plusieurs séances, les participants découvrent la faune et la flore. Un cahier buissonnier accompagne chaque stage.</p>
+          <p>Je vous fournis votre carnet de terrain personnel pour explorer la biodiversité locale : réalisation d'herbiers, inventaires d'insectes ou croquis d'oiseaux.</p>
+          <ul>
+            <li>Stages d'une demi-journée ou journée complète</li>
+            <li>Cahier buissonnier personnalisé fourni</li>
+            <li>Herbiers et collections naturalistes</li>
+            <li>Croquis et observations sur le terrain</li>
+          </ul>
+          <a href="/contact.html" class="btn-primary accordion-cta">S'inscrire à un stage</a>
+        </div>
+      </div>
+
+      <!-- Accordéon 3 : Interventions sur site -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-icon">🏫</div>
+          <h3>Interventions sur site</h3>
+          <span class="accordion-toggle">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Des facilitateurs qualifiés viennent directement sur votre site pour des animations sur la biodiversité, des ateliers de sensibilisation à l'environnement.</p>
+          <p>J'interviens directement dans votre établissement ou sur le lieu de vos événements avec tout le matériel nécessaire. Animations adaptées au contexte, aux participants et à vos objectifs.</p>
+          <ul>
+            <li>Écoles et établissements scolaires</li>
+            <li>Centres de loisirs et structures jeunesse</li>
+            <li>Événements grand public et fêtes de la nature</li>
+            <li>Matériel pédagogique fourni</li>
+          </ul>
+          <a href="/contact.html" class="btn-primary accordion-cta">Demander un devis</a>
+        </div>
+      </div>
+
+      <!-- Accordéon 4 : Projets sur mesure -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-icon">🎯</div>
+          <h3>Projets sur mesure</h3>
+          <span class="accordion-toggle">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Une animation clés en main conçue pour vos objectifs. Nous concevons des projets adaptés à votre contexte.</p>
+          <p>Une idée précise ? Un besoin particulier ? Nous co-construisons un projet pédagogique adapté à votre public et vos contraintes.</p>
+          <ul>
+            <li>Co-construction avec vous</li>
+            <li>Adaptation à vos besoins spécifiques</li>
+            <li>Projets de classe ou projets d'établissement</li>
+            <li>Suivi et accompagnement personnalisé</li>
+          </ul>
+          <a href="/contact.html" class="btn-primary accordion-cta">En savoir plus</a>
+        </div>
+      </div>
+
+      <!-- Accordéon 5 : La Boîte à idées -->
+      <div class="accordion-item" id="boite">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-icon">💡</div>
+          <h3>La Boîte à idées</h3>
+          <span class="accordion-toggle">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Quelques exemples d'ateliers thématiques que je propose. Ces animations peuvent être adaptées selon vos besoins et le niveau de votre public.</p>
+          
+          <div class="boite-mini-cards">
+            <div class="boite-mini-card">
+              <div class="emoji-icon">🐜</div>
+              <h4>Les ondes des fourmis</h4>
+              <p>Les subtilités des communications chimiques, sonores et tactiles. Découverte du monde fascinant des insectes sociaux.</p>
+            </div>
+            <div class="boite-mini-card">
+              <div class="emoji-icon">🐦</div>
+              <h4>Les histoires des nids</h4>
+              <p>Des animations qui explorent les habitats naturels. Plongez dans l'univers de l'ornithologie et de l'habitat des oiseaux.</p>
+            </div>
+            <div class="boite-mini-card">
+              <div class="emoji-icon">🤝</div>
+              <h4>Ateliers de coopération</h4>
+              <p>Apprenons ensemble à travers des activités créatives favorisant l'entraide et la coopération.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-</div>
+  </div>
+</section>
+
+<script>
+function toggleAccordion(header) {
+  const item = header.parentElement;
+  const wasActive = item.classList.contains('active');
+  
+  // Fermer tous les accordéons
+  document.querySelectorAll('.accordion-item').forEach(acc => {
+    acc.classList.remove('active');
+  });
+  
+  // Ouvrir celui cliqué s'il était fermé
+  if (!wasActive) {
+    item.classList.add('active');
+  }
+}
+</script>
 
 <!-- ========== FOOTER (Allégé) ========== -->
 <footer style="background: var(--green-dark); color: rgba(243,222,180,0.55); padding: 2rem 1rem 3rem; text-align: center;">
