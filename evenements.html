@@ -137,8 +137,23 @@
 <div id="section-past" style="display:none;animation:fadeIn 0.5s ease;">
   <section class="padded" style="background:var(--white);padding-top:2rem;padding-bottom:5rem;">
     <div class="section-inner">
-      <div id="past-events-container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:1000px;margin:0 auto;">
-        <!-- Injecté via JS -->
+      <div class="carousel-container">
+        <button class="carousel-arrow carousel-prev" aria-label="Événement précédent">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <div id="past-events-carousel" class="carousel-wrapper">
+          <!-- Événements injectés via JS -->
+        </div>
+        <button class="carousel-arrow carousel-next" aria-label="Événement suivant">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+        <div class="carousel-indicators" id="carousel-indicators">
+          <!-- Points de navigation injectés via JS -->
+        </div>
       </div>
     </div>
   </section>

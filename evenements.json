@@ -1,34 +1,6 @@
 {
   "upcoming": [
     {
-      "id": "event-003",
-      "date": "2026-04-11",
-      "day": "11",
-      "month": "AVRIL",
-      "year": "2026",
-      "title": "🦕 Mais à qui appartient cet œuf ?",
-      "location": "Événement privé",
-      "description": "Pour l'anniversaire d'un enfant de 5 ans, Écocurieux a été mandatée pour créer une animation 100% sur mesure autour des dinosaures. Pendant 2h, 6 petits scientifiques en herbe devront résoudre le mystère d'un œuf mystérieux sauvé d'une attaque de T-Rex !",
-      "details": "Épreuves, fouilles, élixir magique… et un diplôme d'explorateur à la clé !",
-      "time": "",
-      "audience": "Animation anniversaire — 5 ans",
-      "price": "Sur devis"
-    },
-    {
-      "id": "event-004",
-      "date": "2026-04-09",
-      "day": "09",
-      "month": "AVRIL",
-      "year": "2026",
-      "title": "🐺 L'Épopée des Quatre Clans",
-      "location": "Événement public — Centre de Loisirs du Carmel",
-      "description": "Mandatée par le Centre de Loisirs dont le thème du moment est \"Les 5 sens\", Écocurieux a conçu une animation 100% sur mesure pour un groupe de 12 enfants. Les louveteaux incarnent des clans de loups et explorent tour à tour leur vue, leur ouïe, leur odorat et leur toucher pour survivre, coopérer et bâtir leur tanière.",
-      "details": "Une aventure immersive imaginée et animée entièrement par Écocurieux pour coller parfaitement au thème !",
-      "time": "2h",
-      "audience": "Centre de loisirs — 5/6 ans",
-      "price": "Sur devis"
-    },
-    {
       "id": "event-002",
       "date": "2026-06-24",
       "day": "24",
@@ -44,6 +16,121 @@
     }
   ],
   "past": [
+    {
+      "id": "past-002",
+      "date": "2026-04-11",
+      "day": "11",
+      "month": "AVRIL",
+      "year": "2026",
+      "title": "L'Expédition \"Dino-Secours\"",
+      "location": "Anniversaire 5 ans",
+      "description": "À l'occasion d'un anniversaire de 5 ans, Écocurieux a imaginé une immersion totale dans la peau d'un paléontologue dont le laboratoire d'analyse vient d'être saccagé par un T-Rex !",
+      "photos": [
+        {
+          "url": "/evenements-passes/expedition-dino-secours/camp-de-base.jpg",
+          "caption": "Le camp de base du paléontologue",
+          "rotation": 0
+        },
+        {
+          "url": "/evenements-passes/expedition-dino-secours/expertise-sensorielle.jpg",
+          "caption": "Mission 1 : L'expertise sensorielle",
+          "rotation": 0
+        },
+        {
+          "url": "/evenements-passes/expedition-dino-secours/elixir-chimique.jpg",
+          "caption": "Mission 2 : L'élixir chimique",
+          "rotation": 0
+        },
+        {
+          "url": "/evenements-passes/expedition-dino-secours/grand-codex.jpg",
+          "caption": "Mission 3 : Le Grand Codex",
+          "rotation": 0
+        }
+      ],
+      "recap": "Les petits explorateurs ont dû faire preuve de courage et de rigueur scientifique pour remettre le camp de base sur pied et percer le mystère d'un œuf sauvé des décombres. ✨ Toutes les animations présentées lors de cet événement ont été entièrement conçues et animées par Écocurieux.",
+      "program": [
+        {
+          "emoji": "🥚",
+          "title": "Mission 1 : Le véritable œuf",
+          "description": "Parmi les débris, plusieurs spécimens ont été retrouvés. Poids, son, texture… Les enfants ont dû mener une expertise sensorielle pour isoler le seul et unique œuf \"vivant\" au milieu des leurres fossilisés."
+        },
+        {
+          "emoji": "🧪",
+          "title": "Mission 2 : L’élixir d’analyse",
+          "description": "Place à la chimie ! Pour découvrir le régime alimentaire du spécimen, les recrues ont analysé un liquide mystérieux. Une réaction colorée et effervescente qui a révélé le secret : herbivore ou carnivore ?"
+        },
+        {
+          "emoji": "📜",
+          "title": "Mission 3 : Le Grand Codex des Dinosaures",
+          "description": "Les archives ont été dispersées lors de l'attaque ! Une course contre la montre pour retrouver les IRM (radiographies) et les fiches d’identification du Codex afin de valider scientifiquement l’espèce de notre œuf."
+        },
+        {
+          "emoji": "🦴",
+          "title": "Mission 4 : Chantier de fouilles",
+          "description": "Retour sur le terrain ! Armés de pinceaux et de truelles, les paléontologues ont exploré le gisement de sable pour extraire des fossiles et reconstituer l'histoire du géant qui a dévasté le laboratoire."
+        },
+        {
+          "emoji": "🦖",
+          "title": "Mission 5 : L'éclosion",
+          "description": "Le moment tant attendu... Sous les yeux émerveillés de l'équipe, l'œuf protégé tout au long de l'aventure a fini par se fissurer pour laisser place à la vie."
+        }
+      ]
+    },
+    {
+      "id": "past-004",
+      "date": "2026-04-09",
+      "day": "09",
+      "month": "AVRIL",
+      "year": "2026",
+      "title": "L'Épopée des Quatre Clans",
+      "location": "Centre de Loisirs du Carmel, Chalon-sur-Saône",
+      "description": "À l'occasion d'une animation sur le thème des 5 sens, Écocurieux a imaginé et animé L'Épopée des Quatre Clans : 2h d'aventure immersive pour 12 louveteaux de 5-6 ans, 100% sur mesure. Les enfants ont incarné des clans de loups et exploré tour à tour leur vue, leur ouïe, leur odorat et leur toucher pour survivre, coopérer et bâtir leur tanière.",
+      "photos": [
+        {
+          "url": "/evenements-passes/epopee-quatre-clans/taniere-loup.jpg",
+          "caption": "La tanière mystérieuse",
+          "rotation": 0
+        },
+        {
+          "url": "/evenements-passes/epopee-quatre-clans/piste-nature.jpg",
+          "caption": "Sur la piste olfactive",
+          "rotation": 0
+        },
+        {
+          "url": "/evenements-passes/epopee-quatre-clans/empreintes-loup.jpg",
+          "caption": "Chasse aux empreintes",
+          "rotation": 0
+        }
+      ],
+      "recap": "Répartis en 4 clans de loups, les enfants ont exploré chacun de leurs sens tour à tour. Le tout conclu par un grand hurlement de victoire collectif 🐺 Toutes les animations présentées lors de cet événement ont été entièrement conçues et animées par Écocurieux.",
+      "program": [
+        {
+          "emoji": "👁️",
+          "title": "La vue — Décoder les postures de l'Alpha",
+          "description": "Les louveteaux ont dû observer et comprendre le langage corporel de leur chef de meute pour communiquer et coordonner leurs actions."
+        },
+        {
+          "emoji": "👂",
+          "title": "L'ouïe — Retrouver son clan les yeux fermés",
+          "description": "Un défi sensoriel où chaque louveteau devait reconnaître et rejoindre son clan uniquement grâce aux sons, les yeux bandés."
+        },
+        {
+          "emoji": "👃",
+          "title": "L'odorat — Suivre la piste olfactive",
+          "description": "Une aventure olfactive pour retrouver le chemin de la tanière en suivant les odeurs dispersées dans le parc."
+        },
+        {
+          "emoji": "🐾",
+          "title": "Le toucher — Chasser les proies par les empreintes",
+          "description": "Les jeunes loups ont exploré le terrain pour identifier et suivre les empreintes de leurs proies, utilisant uniquement le sens du toucher."
+        },
+        {
+          "emoji": "🐺",
+          "title": "Le grand hurlement de victoire",
+          "description": "Pour célébrer la réussite de toutes les épreuves, les 4 clans se sont réunis pour un hurlement collectif mémorable !"
+        }
+      ]
+    },
     {
       "id": "past-001",
       "date": "2026-03-28",
@@ -62,7 +149,7 @@
         {
           "url": "/evenements-passes/La Toque Fermière 28 mars 2026/Jeu du cochon utile.jpg",
           "caption": "Jeu du cochon utile",
-          "rotation": -90
+          "rotation": 0
         },
         {
           "url": "/evenements-passes/La Toque Fermière 28 mars 2026/Enfant qui fait le puzzle du boeuf.jpg",
@@ -72,7 +159,7 @@
         {
           "url": "/evenements-passes/La Toque Fermière 28 mars 2026/Puzzle boeuf le bon morceau au bon endroit.jpg",
           "caption": "Puzzle bœuf le bon morceau au bon endroit",
-          "rotation": -90
+          "rotation": 0
         }
       ],
       "recap": "Petits et grands curieux ont pu explorer, manipuler, questionner… et repartir avec des connaissances qu'ils n'auraient jamais soupçonnées !",
