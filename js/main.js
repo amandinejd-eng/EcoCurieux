@@ -46,7 +46,18 @@
 })();
 
 function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
+  var menu = document.getElementById('mobileMenu');
+  var isOpen = menu.classList.contains('open');
+  if (!isOpen) {
+    document.body.dataset.scrollY = window.scrollY;
+    document.body.classList.add('menu-open');
+    document.body.style.top = '-' + window.scrollY + 'px';
+  } else {
+    document.body.classList.remove('menu-open');
+    document.body.style.top = '';
+    window.scrollTo(0, parseInt(document.body.dataset.scrollY || '0'));
+  }
+  menu.classList.toggle('open');
 }
 
 async function sendContactForm() {
@@ -115,5 +126,8 @@ document.addEventListener('click', function(e) {
   var h = document.querySelector('.hamburger');
   if (m && m.classList.contains('open') && h && !m.contains(e.target) && !h.contains(e.target)) {
     m.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    document.body.style.top = '';
+    window.scrollTo(0, parseInt(document.body.dataset.scrollY || '0'));
   }
 });
