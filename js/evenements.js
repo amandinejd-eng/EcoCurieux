@@ -29,40 +29,48 @@ function createEventCard(event) {
     : '';
   
   return `
-    <div style="background:#ffffff;border-left:5px solid var(--green);border-radius:12px;padding:2rem;margin-bottom:1.5rem;display:flex;gap:2.5rem;align-items:flex-start;transition:all 0.3s ease;flex-wrap:wrap;box-shadow:0 4px 15px rgba(70,123,67,0.1);position:relative;" onmouseover="this.style.boxShadow='0 8px 25px rgba(70,123,67,0.18)';this.style.transform='translateX(5px)';" onmouseout="this.style.boxShadow='0 4px 15px rgba(70,123,67,0.1)';this.style.transform='translateX(0)';">
+    <div class="upcoming-card" style="background:#ffffff;border-left:5px solid var(--green);border-radius:12px;padding:2rem;margin-bottom:1.5rem;display:flex;gap:2.5rem;align-items:flex-start;transition:all 0.3s ease;flex-wrap:wrap;box-shadow:0 4px 15px rgba(70,123,67,0.1);position:relative;" onmouseover="this.style.boxShadow='0 8px 25px rgba(70,123,67,0.18)';this.style.transform='translateX(5px)';" onmouseout="this.style.boxShadow='0 4px 15px rgba(70,123,67,0.1)';this.style.transform='translateX(0)';">
       
+      <div class="timeline-dot"></div>
+
       <!-- Date Minimaliste -->
-      <div style="text-align:left;min-width:100px;display:flex;flex-direction:column;border-right:3px solid var(--green);padding-right:2rem;">
-        <div style="font-size:2.8rem;font-weight:900;color:var(--green-dark);line-height:1;font-family:'Montserrat',sans-serif;letter-spacing:-1px;">${event.day}</div>
-        <div style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--green);text-transform:uppercase;margin-top:0.2rem;letter-spacing:1px;">${event.month}</div>
-        ${event.year ? `<div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--beige-2);margin-top:0.3rem;">${event.year}</div>` : ''}
+      <div class="upcoming-date" style="text-align:left;min-width:100px;display:flex;flex-direction:column;border-right:3px solid var(--green);padding-right:2rem;">
+        <div class="upcoming-day" style="font-size:2.8rem;font-weight:900;color:var(--green-dark);line-height:1;font-family:'Montserrat',sans-serif;letter-spacing:-1px;">${event.day}</div>
+        <div class="upcoming-month" style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--green);text-transform:uppercase;margin-top:0.2rem;letter-spacing:1px;">${event.month}</div>
+        ${event.year ? `<div class="upcoming-year" style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--beige-2);margin-top:0.3rem;">${event.year}</div>` : ''}
       </div>
       
       <!-- Contenu Central -->
-      <div style="flex:1;min-width:280px;">
+      <div class="upcoming-content" style="flex:1;min-width:280px;">
         <h3 style="font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;color:var(--green-dark);margin:0 0 0.5rem;line-height:1.3;">${event.title}</h3>
-        <p style="font-size:0.9rem;color:#7a6a50;margin:0 0 1rem;display:flex;align-items:center;gap:0.4rem;font-weight:600;">
+        <p class="upcoming-location" style="font-size:0.9rem;color:#7a6a50;margin:0 0 1rem;display:flex;align-items:center;gap:0.4rem;font-weight:600;">
           <span style="font-size:1.1rem;">📍</span>
           ${event.location}
         </p>
-        <p style="font-family:'Lora',serif;font-size:1rem;line-height:1.7;color:#5a5040;margin:0;">${event.description}</p>
-        ${detailsHtml}
+        <button class="upcoming-toggle-btn" onclick="toggleUpcomingCard(this)">
+          <span class="utb-icon">👇</span>
+          <span class="utb-text">En savoir plus</span>
+        </button>
+        <div class="upcoming-details-wrap">
+          <p style="font-family:'Lora',serif;font-size:1rem;line-height:1.7;color:#5a5040;margin:0;">${event.description}</p>
+          ${detailsHtml}
+        </div>
       </div>
 
       <!-- Badges Droite -->
-      <div style="display:flex;flex-direction:column;gap:0.7rem;min-width:160px;">
+      <div class="upcoming-badges" style="display:flex;flex-direction:column;gap:0.7rem;min-width:160px;">
         ${event.time ? `
-        <span style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(70,123,67,0.25);">
+        <span class="upcoming-badge" style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(70,123,67,0.25);">
           <span style="font-size:1rem;">⏰</span>
           ${event.time}
         </span>
         ` : ''}
-        <span style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--brown);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(175,106,50,0.25);">
+        <span class="upcoming-badge" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--brown);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(175,106,50,0.25);">
           <span style="font-size:1rem;">👥</span>
           ${event.audience}
         </span>
         ${event.price ? `
-        <span style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--beige-light);border:1px solid var(--beige-2);color:var(--brown);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(175,106,50,0.15);">
+        <span class="upcoming-badge" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--beige-light);border:1px solid var(--beige-2);color:var(--brown);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(175,106,50,0.15);">
           <span style="font-size:1rem;">🎟️</span>
           ${event.price}
         </span>
@@ -71,6 +79,20 @@ function createEventCard(event) {
 
     </div>
   `;
+}
+
+function toggleUpcomingCard(btn) {
+  const card = btn.closest('.upcoming-card');
+  card.classList.toggle('expanded');
+  const icon = btn.querySelector('.utb-icon');
+  const text = btn.querySelector('.utb-text');
+  if (card.classList.contains('expanded')) {
+    icon.textContent = '👆';
+    text.textContent = 'Masquer';
+  } else {
+    icon.textContent = '👇';
+    text.textContent = 'En savoir plus';
+  }
 }
 
 function createPastEventCard(event) {
@@ -91,6 +113,7 @@ function createPastEventCard(event) {
         <div class="past-img-ratio"></div>
         <img src="${photoUrl}" alt="${caption || event.title}" style="object-fit: ${zoom ? 'cover' : 'contain'}">
         ${captionHtml}
+        <div class="past-date-badge">${event.day} ${event.month}${event.year ? ' ' + event.year : ''}</div>
       </div>`;
     })()
     : '';

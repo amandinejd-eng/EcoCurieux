@@ -732,6 +732,11 @@
   .ppi-content h5 { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--green-dark); margin: 0 0 0.5rem; }
   .ppi-content p { font-family: 'Lora', serif; font-size: 0.95rem; line-height: 1.6; color: #6b5a40; margin: 0; }
 
+  /* ========== MOBILE UPCOMING EVENTS BASE (hidden on desktop) ========== */
+  .timeline-dot { display: none; }
+  .upcoming-toggle-btn { display: none; }
+  .past-date-badge { display: none; }
+
   /* ========== CARROUSEL ÉVÉNEMENTS PASSÉS ========== */
   .carousel-container {
     position: relative;
@@ -1007,13 +1012,235 @@
     .gb-title { font-size: 0.85rem; }
     .gb-sub { font-size: 0.7rem; }
     
+    /* ========== ÉVÉNEMENTS À VENIR — TIMELINE MOBILE ========== */
+    #upcoming-events-container {
+      padding-left: 30px !important;
+      gap: 0 !important;
+      position: relative;
+    }
+    #upcoming-events-container::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--green), var(--beige-2));
+      border-radius: 2px;
+    }
+    #upcoming-events-container .timeline-dot {
+      display: block !important;
+      position: absolute;
+      left: -30px;
+      top: 1.2rem;
+      width: 16px;
+      height: 16px;
+      background: var(--green);
+      border: 3px solid var(--white);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px var(--green);
+      z-index: 1;
+    }
+    .upcoming-card {
+      border-left: 3px solid var(--green) !important;
+      padding: 1.2rem !important;
+      margin-bottom: 1rem !important;
+      flex-direction: column !important;
+      gap: 0.8rem !important;
+      border-radius: 14px !important;
+      box-shadow: 0 3px 12px rgba(70,123,67,0.08) !important;
+    }
+    .upcoming-card:hover {
+      transform: none !important;
+    }
+    .upcoming-date {
+      border-right: none !important;
+      padding-right: 0 !important;
+      flex-direction: row !important;
+      align-items: baseline !important;
+      gap: 0.5rem !important;
+      min-width: unset !important;
+    }
+    .upcoming-day { font-size: 1.6rem !important; }
+    .upcoming-month { font-size: 0.78rem !important; margin-top: 0 !important; }
+    .upcoming-year { font-size: 0.78rem !important; margin-top: 0 !important; }
+    .upcoming-content {
+      min-width: unset !important;
+    }
+    .upcoming-content h3 { font-size: 1.15rem !important; margin-bottom: 0.3rem !important; }
+    .upcoming-location { font-size: 0.82rem !important; margin-bottom: 0.6rem !important; }
+    .upcoming-toggle-btn {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      width: 100%;
+      padding: 0.65rem;
+      background: var(--beige-light);
+      border: 2px solid var(--beige-2);
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .upcoming-card.expanded .upcoming-toggle-btn {
+      background: var(--green);
+      color: var(--white);
+      border-color: var(--green);
+    }
+    .upcoming-details-wrap {
+      max-height: 0 !important;
+      overflow: hidden !important;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding-top: 0;
+    }
+    .upcoming-card.expanded .upcoming-details-wrap {
+      max-height: 2000px !important;
+      overflow: visible !important;
+      padding-top: 0.8rem;
+    }
+    .upcoming-badges {
+      display: none !important;
+    }
+    .upcoming-card.expanded .upcoming-badges {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      gap: 0.5rem !important;
+      min-width: unset !important;
+    }
+    .upcoming-card.expanded .upcoming-badge {
+      padding: 7px 11px !important;
+      font-size: 0.72rem !important;
+    }
+
+    /* ========== ÉVÉNEMENTS PASSÉS — REFONTE MOBILE ========== */
+    .past-card {
+      padding: 0 !important;
+      border-left: none !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      margin-bottom: 0;
+    }
+    .past-leaf-icon { display: none !important; }
+    .past-img-wrapper {
+      border-radius: 0 !important;
+      max-width: 100% !important;
+      flex: auto !important;
+    }
+    .past-img-ratio { padding-top: 50% !important; }
+    .past-img-wrapper img { object-fit: cover !important; }
+    .past-date-badge {
+      display: block !important;
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(175, 106, 50, 0.92);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      z-index: 2;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      letter-spacing: 0.5px;
+    }
+    .past-date { display: none !important; }
+    .past-header {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      text-align: left !important;
+      gap: 0.3rem !important;
+      margin-bottom: 0.6rem !important;
+    }
+    .past-info { padding: 1.2rem !important; }
+    .past-title-box h3 {
+      font-size: 1.15rem !important;
+      text-align: left !important;
+    }
+    .past-location {
+      justify-content: flex-start !important;
+      font-size: 0.82rem !important;
+    }
+    .past-desc {
+      font-size: 0.9rem !important;
+      line-height: 1.6 !important;
+      text-align: left !important;
+      margin-bottom: 1rem !important;
+    }
+    .past-toggle-btn {
+      font-size: 0.82rem !important;
+      padding: 0.75rem !important;
+      border-radius: 10px !important;
+    }
+    .past-details-inner {
+      padding: 0 1.2rem 1.2rem !important;
+      gap: 1.5rem !important;
+    }
+    .past-recap {
+      font-size: 0.88rem !important;
+      line-height: 1.6 !important;
+      padding: 1rem !important;
+    }
+    .past-subtitle {
+      font-size: 1.05rem !important;
+      margin-bottom: 0.8rem !important;
+    }
+    /* Programme → carousel horizontal swipeable */
+    .past-program-grid {
+      display: flex !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory;
+      gap: 0.8rem !important;
+      padding-bottom: 0.8rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--beige-2) transparent;
+    }
+    .past-program-grid::-webkit-scrollbar { height: 5px; }
+    .past-program-grid::-webkit-scrollbar-thumb { background: var(--beige-2); border-radius: 3px; }
+    .past-program-item {
+      flex: 0 0 260px !important;
+      scroll-snap-align: start;
+      border-top-width: 3px !important;
+      padding: 1.1rem !important;
+    }
+    .past-program-item:hover { transform: none !important; }
+    .ppi-icon { font-size: 1.5rem !important; }
+    .ppi-content h5 { font-size: 0.92rem !important; }
+    .ppi-content p { font-size: 0.8rem !important; line-height: 1.5 !important; }
+    /* Galerie mobile */
+    .past-gallery { gap: 0.8rem !important; }
+    .past-gallery-item {
+      flex: 0 0 220px !important;
+      height: 160px !important;
+      border-radius: 10px !important;
+    }
+    .past-gallery-caption {
+      transform: translateY(0) !important;
+      font-size: 0.75rem !important;
+      padding: 0.5rem !important;
+    }
+    /* CTA mobile */
+    .past-cta-container { padding: 0; }
+    .past-cta-container .btn-primary {
+      width: 100%;
+      justify-content: center;
+      font-size: 0.82rem !important;
+      padding: 0.85rem 1.2rem !important;
+    }
+
     /* Carrousel mobile */
     .carousel-container { padding: 0 45px; }
     .carousel-arrow { width: 38px; height: 38px; }
     .carousel-prev { left: 0; }
     .carousel-next { right: 0; }
     .carousel-indicators { margin-top: 1.5rem; }
-    .past-card { padding: 1.5rem; margin-bottom: 0; overflow: visible; }
     
     /* Contact */
     .contact.padded { padding: 50px 1.2rem 80px !important; }
@@ -1102,6 +1329,40 @@
     .btn-primary { padding: 11px 20px; font-size: 0.8rem; }
     .btn-outline { padding: 10px 18px; font-size: 0.8rem; }
     
+    /* Événements petits écrans */
+    #upcoming-events-container {
+      padding-left: 24px !important;
+    }
+    #upcoming-events-container::before {
+      left: 7px;
+    }
+    #upcoming-events-container .timeline-dot {
+      left: -24px !important;
+      width: 14px !important;
+      height: 14px !important;
+    }
+    .upcoming-card {
+      padding: 1rem !important;
+    }
+    .upcoming-day { font-size: 1.4rem !important; }
+    .upcoming-content h3 { font-size: 1.05rem !important; }
+    .upcoming-location { font-size: 0.78rem !important; }
+    .upcoming-toggle-btn { font-size: 0.75rem !important; padding: 0.55rem !important; }
+    .past-program-item {
+      flex: 0 0 230px !important;
+      padding: 1rem !important;
+    }
+    .ppi-content h5 { font-size: 0.85rem !important; }
+    .ppi-content p { font-size: 0.75rem !important; }
+    .past-gallery-item {
+      flex: 0 0 190px !important;
+      height: 140px !important;
+    }
+    .past-img-ratio { padding-top: 55% !important; }
+    .past-title-box h3 { font-size: 1.05rem !important; }
+    .past-desc { font-size: 0.85rem !important; }
+    .past-recap { font-size: 0.82rem !important; }
+
     /* Carrousel petits écrans */
     .carousel-container { padding: 0 38px; }
     .carousel-arrow { width: 34px; height: 34px; }
