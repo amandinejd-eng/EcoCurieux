@@ -1123,7 +1123,7 @@
       border-left: none !important;
       border-radius: 16px !important;
       overflow: hidden !important;
-      margin-bottom: 0;
+      margin-bottom: 0.5rem;
     }
     .past-leaf-icon { display: none !important; }
     .past-img-wrapper {
@@ -1209,32 +1209,45 @@
     .ppi-icon { font-size: 1.5rem !important; }
     .ppi-content h5 { font-size: 0.92rem !important; }
     .ppi-content p { font-size: 0.8rem !important; line-height: 1.5 !important; }
-    /* Galerie mobile */
-    .past-gallery { gap: 0.8rem !important; }
-    .past-gallery-item {
-      flex: 0 0 220px !important;
-      height: 160px !important;
-      border-radius: 10px !important;
+    /* Galerie mobile — pleine largeur */
+    .past-gallery {
+      flex-direction: column !important;
+      overflow-x: visible !important;
+      gap: 1rem !important;
+      padding-bottom: 0.5rem !important;
     }
+    .past-gallery-item {
+      flex: none !important;
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 16 / 10;
+      border-radius: 10px !important;
+      cursor: pointer;
+    }
+    .past-gallery-item img { object-fit: cover !important; }
     .past-gallery-caption {
       transform: translateY(0) !important;
       font-size: 0.75rem !important;
       padding: 0.5rem !important;
     }
     /* CTA mobile */
-    .past-cta-container { padding: 0; margin-top: 0.5rem; }
+    .past-cta-container { padding: 0; margin-top: 0.5rem; margin-bottom: 0.3rem; }
     .past-cta-container .btn-primary {
       width: 100%;
       justify-content: center;
-      font-size: 0.82rem !important;
-      padding: 0.85rem 1.2rem !important;
+      font-size: 0.75rem !important;
+      padding: 0.8rem 1rem !important;
+      white-space: normal !important;
+      text-align: center;
+      line-height: 1.4;
     }
 
     /* Carrousel mobile — flèches superposées */
     .carousel-container { padding: 0; }
-    .carousel-arrow { width: 36px; height: 36px; background: rgba(175,106,50,0.65); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); top: 250px; transform: none; }
-    .carousel-prev { left: 8px; }
-    .carousel-next { right: 8px; }
+    .carousel-arrow { width: 30px; height: 30px; background: rgba(255,255,255,0.75); color: var(--brown); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); top: 130px; transform: none; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .carousel-arrow svg { width: 16px; height: 16px; }
+    .carousel-prev { left: 10px; }
+    .carousel-next { right: 10px; }
     .carousel-indicators { margin-top: 1.5rem; }
     
     /* Contact */
@@ -1351,8 +1364,10 @@
     .ppi-content h5 { font-size: 0.85rem !important; }
     .ppi-content p { font-size: 0.75rem !important; }
     .past-gallery-item {
-      flex: 0 0 190px !important;
-      height: 140px !important;
+      flex: none !important;
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 16 / 10;
     }
     .past-img-ratio { padding-top: 55% !important; }
     .past-title-box h3 { font-size: 1.05rem !important; }
@@ -1361,13 +1376,57 @@
 
     /* Carrousel petits écrans */
     .carousel-container { padding: 0; }
-    .carousel-arrow { width: 32px; height: 32px; top: 220px; }
-    .carousel-prev { left: 6px; }
-    .carousel-next { right: 6px; }
+    .carousel-arrow { width: 28px; height: 28px; top: 110px; }
+    .carousel-arrow svg { width: 14px; height: 14px; }
+    .carousel-prev { left: 8px; }
+    .carousel-next { right: 8px; }
     .carousel-indicators { gap: 7px; }
     .carousel-indicator { width: 10px; height: 10px; }
     .carousel-indicator.active { width: 26px; }
   }
+
+  /* Overlay zoom galerie (mobile) */
+  .gallery-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    cursor: pointer;
+    animation: fadeInOverlay 0.25s ease;
+  }
+  .gallery-overlay img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+  .gallery-overlay-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  @keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
   .hbb {
     position: absolute;
     border-radius: 50%; overflow: hidden;

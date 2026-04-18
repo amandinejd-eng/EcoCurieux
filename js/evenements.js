@@ -388,16 +388,38 @@ function toggleEventDetails(eventId) {
   }
 }
 
+// Zoom galerie au clic (mobile)
+function openGalleryOverlay(imgSrc, imgAlt) {
+  const overlay = document.createElement('div');
+  overlay.className = 'gallery-overlay';
+  overlay.innerHTML = `
+    <button class="gallery-overlay-close" aria-label="Fermer">✕</button>
+    <img src="${imgSrc}" alt="${imgAlt || ''}">
+  `;
+  overlay.addEventListener('click', () => overlay.remove());
+  document.body.appendChild(overlay);
+}
+
+function initGalleryZoom() {
+  document.querySelectorAll('.past-gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      if (img) openGalleryOverlay(img.src, img.alt);
+    });
+  });
+}
+
 // Auto-initialisation
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   if (document.getElementById('upcoming-events-container')) {
-    displayUpcomingEvents('upcoming-events-container');
+    await displayUpcomingEvents('upcoming-events-container');
   }
   if (document.getElementById('past-events-carousel')) {
-    displayPastEvents();
+    await displayPastEvents();
+    initGalleryZoom();
   }
   if (document.getElementById('upcoming-events-container-home')) {
-    displayUpcomingEvents('upcoming-events-container-home');
+    await displayUpcomingEvents('upcoming-events-container-home');
   }
 });
 
