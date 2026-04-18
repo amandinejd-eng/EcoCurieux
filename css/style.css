@@ -1461,6 +1461,37 @@
     background: linear-gradient(160deg, rgba(44,79,42,0.95) 0%, rgba(70,123,67,0.72) 55%, rgba(44,79,42,0.92) 100%);
     background-color: var(--green-dark);
     padding: 140px 2rem 80px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .kit-page-hero.has-bg-image {
+    background-color: var(--green-dark);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .kit-page-hero.has-bg-rotated {
+    background-image: none !important;
+  }
+  .kit-page-hero.has-bg-rotated::before {
+    content: '';
+    position: absolute; top: -20%; left: -10%; width: 120%; height: 140%;
+    background-image: var(--bg-img);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: 55% 20%;
+    transform: rotate(-5deg);
+    z-index: 0;
+  }
+  .kit-page-hero .hero-bg-img {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: 0;
+  }
+  .kit-page-hero .hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(160deg, rgba(44,79,42,0.88) 0%, rgba(44,79,42,0.65) 50%, rgba(44,79,42,0.85) 100%);
+    z-index: 1;
+  }
+  .kit-page-hero.has-bg-image > *:not(.hero-bg-img):not(.hero-overlay) {
+    position: relative; z-index: 2;
   }
   .kit-page-hero .breadcrumb {
     font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600;
@@ -1549,10 +1580,13 @@
 
   /* Kits responsive */
   @media (max-width: 768px) {
-    .kit-page-hero { padding: 100px 1.2rem 50px; }
-    .kit-page-hero .kit-icon { font-size: 3.5rem; }
-    .kit-page-hero h1 { font-size: clamp(1.6rem, 6vw, 2.8rem); }
-    .kit-page-hero .hero-sub { font-size: 0.82rem; }
+    .kit-page-hero { padding: 90px 1.2rem 30px; }
+    .kit-page-hero.has-bg-image { padding-top: 85px !important; padding-bottom: 25px !important; }
+    .kit-page-hero .kit-icon { width: 60px; height: 60px; }
+    .kit-page-hero h1 { font-size: clamp(1.5rem, 6vw, 2.4rem); }
+    .kit-page-hero .hero-sub { font-size: 0.78rem; margin-bottom: 1.2rem; }
+    .kit-page-hero .hero-tags { gap: 6px; }
+    .hero-tag { font-size: 0.68rem; padding: 5px 12px; }
     .kit-content { padding: 40px 1.2rem 60px; }
     .kit-desc, .kit-included { padding: 1.8rem 1.5rem; border-radius: 18px; }
     .kit-desc h2, .kit-included h2 { font-size: 1.1rem; }
@@ -1564,8 +1598,11 @@
     .kit-cta h2 { font-size: 1.1rem; }
   }
   @media (max-width: 480px) {
-    .kit-page-hero { padding: 90px 1rem 40px; }
-    .kit-page-hero .kit-icon { font-size: 3rem; }
+    .kit-page-hero { padding: 80px 1rem 25px; }
+    .kit-page-hero.has-bg-image { padding-top: 75px !important; padding-bottom: 18px !important; }
+    .kit-page-hero .kit-icon { width: 50px; height: 50px; }
+    .kit-page-hero h1 { font-size: clamp(1.3rem, 5.5vw, 2rem); margin-bottom: 0.6rem; }
+    .kit-page-hero .hero-sub { font-size: 0.74rem; margin-bottom: 1rem; }
     .kit-content { padding: 30px 1rem 50px; }
     .kit-desc, .kit-included { padding: 1.5rem 1.2rem; }
     .kit-cta { padding: 1.5rem 1.2rem; }
