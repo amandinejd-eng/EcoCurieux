@@ -1191,22 +1191,17 @@
       font-size: 1.05rem !important;
       margin-bottom: 0.8rem !important;
     }
-    /* Programme → carousel horizontal swipeable */
+    /* Programme → empilé verticalement sur mobile */
     .past-program-grid {
       display: flex !important;
-      overflow-x: auto !important;
-      scroll-snap-type: x mandatory;
+      flex-direction: column !important;
+      overflow-x: visible !important;
       gap: 0.8rem !important;
       padding-bottom: 0.8rem;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: var(--beige-2) transparent;
     }
-    .past-program-grid::-webkit-scrollbar { height: 5px; }
-    .past-program-grid::-webkit-scrollbar-thumb { background: var(--beige-2); border-radius: 3px; }
     .past-program-item {
-      flex: 0 0 260px !important;
-      scroll-snap-align: start;
+      flex: none !important;
+      width: 100% !important;
       border-top-width: 3px !important;
       padding: 1.1rem !important;
     }
@@ -1227,7 +1222,7 @@
       padding: 0.5rem !important;
     }
     /* CTA mobile */
-    .past-cta-container { padding: 0; }
+    .past-cta-container { padding: 0; margin-top: 0.5rem; }
     .past-cta-container .btn-primary {
       width: 100%;
       justify-content: center;
@@ -1349,7 +1344,8 @@
     .upcoming-location { font-size: 0.78rem !important; }
     .upcoming-toggle-btn { font-size: 0.75rem !important; padding: 0.55rem !important; }
     .past-program-item {
-      flex: 0 0 230px !important;
+      flex: none !important;
+      width: 100% !important;
       padding: 1rem !important;
     }
     .ppi-content h5 { font-size: 0.85rem !important; }
