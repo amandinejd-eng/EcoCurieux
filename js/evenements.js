@@ -308,8 +308,9 @@ function initCarousel(totalItems) {
   const prevBtn = document.querySelector('.carousel-prev');
   const nextBtn = document.querySelector('.carousel-next');
   const indicators = document.querySelectorAll('.carousel-indicator');
+  const carouselWrapper = document.querySelector('.carousel-wrapper');
   
-  function updateCarousel(index) {
+  function updateCarousel(index, scrollToTop) {
     currentIndex = index;
     
     // Cacher tous les items, afficher l'actif
@@ -323,28 +324,29 @@ function initCarousel(totalItems) {
     });
     
     // Désactiver les flèches aux extrémités
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index === totalItems - 1;
+    if (prevBtn) prevBtn.disabled = index === 0;
+    if (nextBtn) nextBtn.disabled = index === totalItems - 1;
     
     // Scroll en haut de la section pour voir l'événement
-    const section = document.getElementById('section-past');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (scrollToTop !== false) {
+      const section = document.getElementById('section-past');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   }
   
-  // Navigation par flèches
-  prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      updateCarousel(currentIndex - 1);
-    }
-  });
-  
-  nextBtn.addEventListener('click', () => {
-    if (currentIndex < totalItems - 1) {
-      updateCarousel(currentIndex + 1);
-    }
-  });
+  // Navigation par flèches (desktop)
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) updateCarousel(currentIndex - 1);
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < totalItems - 1) updateCarousel(currentIndex + 1);
+    });
+  }
   
   // Navigation par indicateurs
   indicators.forEach((indicator, index) => {
@@ -362,9 +364,40 @@ function initCarousel(totalItems) {
     }
   });
   
+  // Navigation par swipe tactile (mobile)
+  if (carouselWrapper) {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isSwiping = false;
+
+    carouselWrapper.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      isSwiping = true;
+    }, { passive: true });
+
+    carouselWrapper.addEventListener('touchend', (e) => {
+      if (!isSwiping) return;
+      isSwiping = false;
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const diffX = touchStartX - touchEndX;
+      const diffY = Math.abs(touchStartY - touchEndY);
+      
+      // Swipe horizontal uniquement (pas vertical)
+      if (Math.abs(diffX) > 50 && diffX > diffY) {
+        if (diffX > 0 && currentIndex < totalItems - 1) {
+          updateCarousel(currentIndex + 1);
+        } else if (diffX < 0 && currentIndex > 0) {
+          updateCarousel(currentIndex - 1);
+        }
+      }
+    }, { passive: true });
+  }
+  
   // Initialiser les flèches (premier item déjà actif en HTML)
-  prevBtn.disabled = true;
-  nextBtn.disabled = totalItems <= 1;
+  if (prevBtn) prevBtn.disabled = true;
+  if (nextBtn) nextBtn.disabled = totalItems <= 1;
 }
 
 // Fonction pour déployer/replier les détails d'un événement

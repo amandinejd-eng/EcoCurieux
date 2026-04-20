@@ -1231,24 +1231,25 @@
       padding: 0.5rem !important;
     }
     /* CTA mobile */
-    .past-cta-container { padding: 0; margin-top: 0.5rem; margin-bottom: 0.3rem; }
+    .past-cta-container { padding: 0; margin-top: 0.8rem; margin-bottom: 0.5rem; }
     .past-cta-container .btn-primary {
-      width: 100%;
-      justify-content: center;
+      display: block !important;
+      box-sizing: border-box !important;
+      max-width: 100% !important;
+      width: 100% !important;
       font-size: 0.75rem !important;
       padding: 0.8rem 1rem !important;
       white-space: normal !important;
       text-align: center;
       line-height: 1.4;
+      word-break: break-word;
+      overflow: hidden;
     }
 
-    /* Carrousel mobile — flèches superposées */
+    /* Carrousel mobile — swipe, pas de flèches */
     .carousel-container { padding: 0; }
-    .carousel-arrow { width: 30px; height: 30px; background: rgba(255,255,255,0.75); color: var(--brown); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); top: 130px; transform: none; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-    .carousel-arrow svg { width: 16px; height: 16px; }
-    .carousel-prev { left: 10px; }
-    .carousel-next { right: 10px; }
-    .carousel-indicators { margin-top: 1.5rem; }
+    .carousel-arrow { display: none !important; }
+    .carousel-indicators { margin-top: 1.2rem; }
     
     /* Contact */
     .contact.padded { padding: 50px 1.2rem 80px !important; }
@@ -1376,10 +1377,7 @@
 
     /* Carrousel petits écrans */
     .carousel-container { padding: 0; }
-    .carousel-arrow { width: 28px; height: 28px; top: 110px; }
-    .carousel-arrow svg { width: 14px; height: 14px; }
-    .carousel-prev { left: 8px; }
-    .carousel-next { right: 8px; }
+    .carousel-arrow { display: none !important; }
     .carousel-indicators { gap: 7px; }
     .carousel-indicator { width: 10px; height: 10px; }
     .carousel-indicator.active { width: 26px; }
