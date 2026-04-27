@@ -8,18 +8,43 @@
 <link rel="stylesheet" href="/css/style.css">
 <style>
   .kits-hero {
-    background: linear-gradient(160deg, rgba(44,79,42,0.95) 0%, rgba(70,123,67,0.75) 60%, rgba(44,79,42,0.92) 100%);
-    background-color: var(--green-dark);
-    padding: 85px 2rem 20px;
+    background:
+      radial-gradient(ellipse at 25% 85%, rgba(70,123,67,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(175,106,50,0.12) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 50%, rgba(60,100,58,0.18) 0%, transparent 60%),
+      linear-gradient(160deg, rgba(28,55,27,0.99) 0%, rgba(40,72,38,0.96) 60%, rgba(28,55,27,0.99) 100%);
+    background-color: #1a361a;
+    padding: 80px 2rem 18px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .kits-hero::before,
+  .kits-hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .kits-hero::before {
+    width: 280px; height: 280px;
+    top: -80px; right: -60px;
+    background: radial-gradient(circle, rgba(70,123,67,0.12) 0%, transparent 70%);
+  }
+  .kits-hero::after {
+    width: 200px; height: 200px;
+    bottom: -50px; left: -40px;
+    background: radial-gradient(circle, rgba(175,106,50,0.08) 0%, transparent 70%);
   }
   .kits-hero .breadcrumb {
     font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.14em;
     color: rgba(243,222,180,0.52); margin-bottom: 1.2rem;
   }
-  .kits-hero .breadcrumb a { color: rgba(243,222,180,0.65); text-decoration: none; }
+  .kits-hero .breadcrumb a { color: rgba(243,222,180,0.55); text-decoration: none; transition: color 0.2s; }
   .kits-hero .breadcrumb a:hover { color: var(--beige); }
+  .kits-hero .breadcrumb span,
+  .kits-hero .breadcrumb > *:last-child:not(a) { color: var(--beige); font-weight: 800; }
   .kits-hero h1 {
     font-family: 'Nunito', sans-serif; font-weight: 900;
     font-size: clamp(2.2rem, 5vw, 3.8rem);
@@ -224,7 +249,7 @@
 
 <!-- ========== HERO ========== -->
 <div class="kits-hero">
-  <div class="breadcrumb"><a href="/">Accueil</a> &rsaquo; Kits pédagogiques</div>
+  <div class="breadcrumb"><a href="/">Accueil</a> &rsaquo; <span>Kits pédagogiques</span></div>
   <h1>Location de <span class="accent">kits pédagogiques</span></h1>
   <p>Des kits tout prêts pour accueillir le vivant dans votre classe, structure ou événement. Chaque kit est accompagné de conseils et recommandations pour le bien-être animal.</p>
 </div>

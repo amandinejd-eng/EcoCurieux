@@ -1511,8 +1511,12 @@
 
   /* ========== KIT PAGES ========== */
   .kit-page-hero {
-    background: linear-gradient(160deg, rgba(44,79,42,0.95) 0%, rgba(70,123,67,0.72) 55%, rgba(44,79,42,0.92) 100%);
-    background-color: var(--green-dark);
+    background:
+      radial-gradient(ellipse at 25% 85%, rgba(70,123,67,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(175,106,50,0.12) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 50%, rgba(60,100,58,0.18) 0%, transparent 60%),
+      linear-gradient(160deg, rgba(28,55,27,0.99) 0%, rgba(40,72,38,0.96) 60%, rgba(28,55,27,0.99) 100%);
+    background-color: #1a361a;
     padding: 85px 2rem 40px; text-align: center;
     position: relative; overflow: hidden;
   }
@@ -1551,8 +1555,10 @@
     text-transform: uppercase; letter-spacing: 0.14em;
     color: rgba(243,222,180,0.52); margin-bottom: 0.6rem;
   }
-  .kit-page-hero .breadcrumb a { color: rgba(243,222,180,0.65); text-decoration: none; }
+  .kit-page-hero .breadcrumb a { color: rgba(243,222,180,0.55); text-decoration: none; transition: color 0.2s; }
   .kit-page-hero .breadcrumb a:hover { color: var(--beige); }
+  .kit-page-hero .breadcrumb span,
+  .kit-page-hero .breadcrumb > *:last-child:not(a) { color: var(--beige); font-weight: 800; }
   .kit-page-hero .kit-icon { font-size: 4.5rem; display: block; margin: 0 auto 0.4rem; width: 60px; height: 60px; }
   .kit-page-hero h1 {
     font-family: 'Nunito', sans-serif; font-weight: 900;
