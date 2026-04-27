@@ -9,260 +9,554 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <style>
-/* === ACCORDÉONS ANIMATIONS === */
-.accordion-container {
-  max-width: 900px;
-  margin: 2.5rem auto 0;
-}
 
-.accordion-item {
-  background: white;
-  border: 2px solid #e8e0d5;
-  border-radius: 16px;
-  margin-bottom: 16px;
+/* ====== BASE ====== */
+body { background: #fdf5e6; }
+
+/* ========== HERO SPLIT ========== */
+.page-hero {
+  background: #fdf5e6;
+  padding: 7rem 2rem 4rem;
+  position: relative;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  transition: all 0.3s ease;
 }
-
-.accordion-item:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.accordion-header {
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 24px 28px;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.2s;
+  gap: 4rem;
+  position: relative;
+  z-index: 1;
 }
-
-.accordion-header:hover {
-  background: #fdfbf8;
-}
-
-.accordion-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--beige-light);
-  border-radius: 12px;
-}
-
-.accordion-header h3 {
+.hero-text {
   flex: 1;
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: var(--green-dark);
+  min-width: 0;
 }
-
-.accordion-toggle {
-  font-size: 1.4rem;
-  color: var(--green);
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-}
-
-.accordion-item.active .accordion-toggle {
-  transform: rotate(180deg);
-}
-
-.accordion-content {
-  max-height: 0;
+.hero-image {
+  flex: 0 0 340px;
+  height: 340px;
+  border-radius: 50%;
   overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.4s ease;
-  padding: 0 28px;
+  box-shadow: 0 20px 60px rgba(70,123,67,0.2);
+  border: 6px solid #e8c98a;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-tag {
+  display: inline-block;
+  background: #467b43;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  margin-bottom: 1.5rem;
+}
+.page-hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3rem);
+  font-weight: 900;
+  color: #2c4f2a;
+  margin: 0 0 1.5rem;
+  line-height: 1.15;
+  text-align: left;
+}
+.page-hero h1 em {
+  font-style: normal;
+  color: #467b43;
+}
+.page-hero > .hero-inner > .hero-text > p {
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  color: #4a4a4a;
+  margin: 0 0 2.5rem;
+  line-height: 1.75;
+  font-style: italic;
+  text-align: left;
+}
+.page-hero > .hero-inner > .hero-text > p strong {
+  color: #467b43;
+  font-weight: 600;
+}
+.hero-nav {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.hero-nav a {
+  background: #467b43;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  padding: 0.8rem 1.8rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(70,123,67,0.25);
+}
+.hero-nav a:hover { 
+  background: #2c4f2a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(44,79,42,0.35);
+}
+/* Responsive hero */
+@media (max-width: 850px) {
+  .hero-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .hero-image {
+    flex: 0 0 220px;
+    height: 220px;
+  }
+  .page-hero h1,
+  .page-hero > .hero-inner > .hero-text > p {
+    text-align: center;
+  }
+  .hero-nav {
+    justify-content: center;
+  }
 }
 
-.accordion-item.active .accordion-content {
-  max-height: 1000px;
-  padding: 0 28px 28px;
+/* ========== 3 COLONNES — PROFESSIONNEL ========== */
+.rubriques-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 3rem 2rem;
+  background: #ffffff;
+  position: relative;
 }
 
-.accordion-content p {
+.rubrique {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.rubrique:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.rubrique-inner {
+  padding: 3rem 2rem 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+.rubrique-layout { display: block; }
+.rubrique-layout.reverse { direction: ltr; }
+.rubrique-visual { display: none; }
+
+/* Accent bar */
+.rubrique-accent-bar {
+  width: 60px;
+  height: 4px;
+  background: #e8c98a;
+  border-radius: 2px;
+  margin-bottom: 2rem;
+}
+
+/* Emoji botanique au-dessus du label */
+.rubrique-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+.rubrique-emoji-inline {
+  font-size: 2.4rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+}
+
+/* Label */
+.rubrique-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #f3deb4;
+  margin-bottom: 0.5rem;
+}
+
+/* Titre */
+.rubrique-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 1.5rem;
+  line-height: 1.2;
+}
+.rubrique-title span { 
+  color: #e8c98a;
+  font-weight: 800;
+}
+
+/* Intro */
+.rubrique-intro {
+  font-family: 'Lora', serif;
   font-size: 1rem;
   line-height: 1.7;
-  color: #5a5040;
-  margin-bottom: 16px;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 1.5rem;
 }
 
-.accordion-content ul {
-  list-style: none;
-  padding: 0;
-  margin: 16px 0;
+/* Tagline */
+.rubrique-tagline {
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 2rem;
+  padding: 1.2rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  border-left: 4px solid rgba(232,201,138,0.7);
 }
 
-.accordion-content ul li {
-  padding: 8px 0 8px 24px;
-  position: relative;
-  color: #5a5040;
+/* Bullets */
+.rubrique-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+.rubrique-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.88);
   line-height: 1.6;
 }
+.rubrique-bullet::before {
+  content: '•';
+  color: #e8c98a;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: -2px;
+  flex-shrink: 0;
+}
 
-.accordion-content ul li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--green);
+/* Bouton CTA */
+.rubrique .btn-primary {
+  background: #e8c98a !important;
+  color: #2c4f2a !important;
+  border: none !important;
+  border-radius: 30px !important;
+  padding: 1rem 2rem !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.rubrique .btn-primary:hover {
+  background: #f3deb4 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* ===== COLONNE 1 — ANIMATIONS : observation biodiversité (insectes, loupe, plantes) ===== */
+.rubrique-anim {
+  background:
+    linear-gradient(170deg, rgba(44,79,42,0.75) 0%, rgba(30,58,28,0.85) 100%),
+    url('https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=800&q=80') center/cover no-repeat;
+}
+
+/* ===== COLONNE 2 — ANNIVERSAIRES : enfants joyeux aventure plein air ===== */
+.rubrique-anniv {
+  background:
+    linear-gradient(170deg, rgba(160,90,30,0.75) 0%, rgba(127,70,25,0.85) 100%),
+    url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=800&q=80') center/cover no-repeat;
+}
+
+/* ===== COLONNE 3 — STAGES : balade sentier forêt lumineux ===== */
+.rubrique-stages {
+  background:
+    linear-gradient(170deg, rgba(60,110,57,0.75) 0%, rgba(44,79,42,0.85) 100%),
+    url('https://images.unsplash.com/photo-1504567961542-e24d9439a724?w=800&q=80') center/cover no-repeat;
+}
+
+/* ========== TAGS THÈMES ========== */
+.themes-mini {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 2rem;
+}
+.theme-tag {
+  background: rgba(232,201,138,0.25);
+  border: 1px solid rgba(232,201,138,0.5);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 0.4rem 0.9rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.theme-tag:hover {
+  background: rgba(232,201,138,0.4);
+  transform: translateY(-1px);
+}
+/* ========== MINI CARTES UNIVERS ========== */
+.univers-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 1.5rem 0;
+}
+.univers-mini-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 1.2rem;
+  border: 1px solid rgba(232,201,138,0.3);
+  transition: all 0.2s;
+}
+.univers-mini-card:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+.ubc-icon-sm { 
+  font-size: 2rem; 
+  flex-shrink: 0; 
+  line-height: 1; 
+}
+.univers-mini-card strong {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e8c98a;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.univers-mini-card p {
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  font-style: italic;
+  margin: 0;
+}
+.anniv-closing {
+  background: rgba(232,201,138,0.15);
+  color: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 1.2rem;
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-style: italic;
+  text-align: center;
+  margin: 1.5rem 0;
+  border: 1px solid rgba(232,201,138,0.3);
+}
+
+/* ========== MINI ITEMS STAGES ========== */
+.stages-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 1.2rem 0 1.5rem;
+}
+.stage-mini-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.5;
+  padding: 0.6rem;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.stage-mini-item:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateX(4px);
+}
+.stage-mini-item span {
+  color: #e8c98a;
+  font-weight: 600;
+}
+.carnet-mini {
+  background: rgba(232,201,138,0.15);
+  border-left: 4px solid #e8c98a;
+  padding: 1rem 1.2rem;
+  border-radius: 0 12px 12px 0;
+  margin: 1.5rem 0;
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.6;
+}
+.carnet-mini strong {
+  color: #e8c98a;
   font-weight: 700;
 }
-
-.accordion-cta {
-  display: inline-block;
-  margin-top: 16px;
-}
-
-.boite-mini-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.boite-mini-card {
-  background: #fdfbf8;
-  border: 2px solid #e8e0d5;
-  border-radius: 12px;
-  padding: 20px;
+.stages-cta-note {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.8);
+  font-style: italic;
+  margin: 1rem 0;
   text-align: center;
 }
 
-.boite-mini-card h4 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  color: var(--green-dark);
-  margin: 12px 0 8px;
+/* ========== CATALOGUE ========== */
+#catalogue-section {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.7s ease;
 }
-
-.boite-mini-card p {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: #665a50;
+#catalogue-section.open { max-height: 7000px; }
+.catalogue-intro-box {
+  background: rgba(243,222,180,0.1);
+  border: 2px dashed rgba(243,222,180,0.3);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(243,222,180,0.88);
+  font-style: italic;
+  margin: 1.5rem 0 1.2rem;
+  text-align: center;
+}
+.themes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+.theme-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  border: 1px solid rgba(243,222,180,0.2);
+  transition: background 0.2s;
+}
+.theme-card:hover { background: rgba(255,255,255,0.14); }
+.theme-icon { font-size: 2rem; flex-shrink: 0; line-height: 1; }
+.theme-card-body h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.87rem;
+  font-weight: 800;
+  color: #f3deb4;
+  margin: 0 0 0.3rem;
+}
+.theme-card-body p {
+  font-family: 'Lora', serif;
+  font-size: 0.81rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.8);
   margin: 0;
 }
 
-.boite-mini-card .emoji-icon {
-  font-size: 2rem;
+/* éléments hérités non utilisés */
+.univers-cards { display: none; }
+.univers-big-card { display: none; }
+.stages-highlights { display: none; }
+.carnet-box { display: none; }
+.section-divider { display: none; }
+
+/* Responsive — 3 colonnes → 1 colonne */
+@media (max-width: 1024px) {
+  .rubriques-row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+  .rubrique {
+    max-width: 600px;
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 768px) {
-  .accordion-container {
-    margin: 2rem auto 0;
+  .page-hero {
+    padding: 5rem 1rem 3rem;
   }
-  .accordion-header {
-    padding: 18px;
-    gap: 12px;
+  .hero-nav {
+    gap: 0.8rem;
   }
-  .accordion-header h3 {
-    font-size: 1.05rem;
-    line-height: 1.3;
+  .hero-nav a {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.75rem;
   }
-  .accordion-icon {
-    width: 45px;
-    height: 45px;
+  .rubriques-row {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+  .rubrique-inner {
+    padding: 2rem 1.5rem;
+    min-height: auto;
+  }
+  .rubrique-title {
     font-size: 1.6rem;
   }
-  .accordion-toggle {
-    font-size: 1.2rem;
-  }
-  .accordion-content {
-    padding: 0 18px;
-  }
-  .accordion-item.active .accordion-content {
-    padding: 0 18px 18px;
-  }
-  .accordion-content p {
-    font-size: 0.95rem;
-  }
-  .accordion-content ul li {
-    font-size: 0.95rem;
-  }
-  .accordion-cta {
-    width: 100%;
-    text-align: center;
-  }
-  .boite-mini-cards {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .boite-mini-card {
-    padding: 18px;
-  }
-  .boite-mini-card h4 {
-    font-size: 0.85rem;
-  }
-  .boite-mini-card p {
-    font-size: 0.82rem;
+  .rubrique .btn-primary {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
-  .accordion-container {
-    margin: 1.5rem auto 0;
+  .page-hero h1 {
+    font-size: 1.8rem;
   }
-  .accordion-item {
-    margin-bottom: 12px;
-    border-radius: 14px;
+  .page-hero > .hero-inner > p {
+    font-size: 1rem;
   }
-  .accordion-header {
-    padding: 16px;
-    gap: 10px;
+  .rubrique-inner {
+    padding: 1.5rem 1rem;
   }
-  .accordion-header h3 {
-    font-size: 0.95rem;
+  .univers-mini-card {
+    padding: 1rem;
   }
-  .accordion-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1.4rem;
-  }
-  .accordion-toggle {
-    font-size: 1.1rem;
-  }
-  .accordion-content {
-    padding: 0 16px;
-  }
-  .accordion-item.active .accordion-content {
-    padding: 0 16px 16px;
-  }
-  .accordion-content p {
-    font-size: 0.9rem;
-    margin-bottom: 12px;
-  }
-  .accordion-content ul {
-    margin: 12px 0;
-  }
-  .accordion-content ul li {
-    padding: 6px 0 6px 20px;
-    font-size: 0.9rem;
-  }
-  .boite-mini-cards {
-    gap: 10px;
-  }
-  .boite-mini-card {
-    padding: 16px;
-  }
-  .boite-mini-card .emoji-icon {
-    font-size: 1.6rem;
-  }
-  .boite-mini-card h4 {
-    font-size: 0.8rem;
-    margin: 10px 0 6px;
-  }
-  .boite-mini-card p {
-    font-size: 0.78rem;
+  .ubc-icon-sm {
+    font-size: 1.5rem;
   }
 }
+
     </style>
 </head>
 <body>
@@ -280,11 +574,11 @@
   <ul class="nav-links">
     <li><a href="/">Accueil</a></li>
     <li>
-      <a href="/animations.html#animations">Ce que je propose <span class="arrow">▼</span></a>
+      <a href="/animations.html">Ce que je propose <span class="arrow">▼</span></a>
       <div class="dropdown">
-        <a href="/animations.html#animations"><span class="dd-icon">🦔</span>Mes animations</a>
-        <a href="/animations.html#stages"><span class="dd-icon">📔</span>Mes stages</a>
-        <a href="/animations.html#boite"><span class="dd-icon">💡</span>Mes services</a>
+        <a href="/animations.html#animations"><span class="dd-icon">🌿</span>Animations nature</a>
+        <a href="/animations.html#anniversaires"><span class="dd-icon">🎉</span>Anniversaires</a>
+        <a href="/animations.html#stages"><span class="dd-icon">📔</span>Stages nature</a>
       </div>
     </li>
     <li>
@@ -342,9 +636,9 @@
   <span class="mm-head">Menu</span>
   <a href="/" onclick="toggleMenu()"><span>🏠</span> Accueil</a>
   <span class="mm-head">Ce que je propose</span>
-  <a href="/animations.html#animations" onclick="toggleMenu()"><span>🦔</span> Mes animations</a>
-  <a href="/animations.html#stages" onclick="toggleMenu()"><span>📔</span> Mes stages</a>
-  <a href="/animations.html#boite" onclick="toggleMenu()"><span>💡</span> Mes services</a>
+  <a href="/animations.html#animations" onclick="toggleMenu()"><span>🌿</span> Animations nature</a>
+  <a href="/animations.html#anniversaires" onclick="toggleMenu()"><span>🎉</span> Anniversaires</a>
+  <a href="/animations.html#stages" onclick="toggleMenu()"><span>📔</span> Stages nature</a>
   <span class="mm-head">Services</span>
   <a href="/kits/" onclick="toggleMenu()"><span>🥚</span> Kits pédagogiques</a>
   <a href="/pour-qui.html" onclick="toggleMenu()"><span>📌</span> Pour qui ?</a>
@@ -353,154 +647,137 @@
   <a href="/contact.html" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
 </div>
 
-<!-- ========== SECTION CE QUE JE PROPOSE ========== -->
-<section class="padded" style="background:var(--beige-light);padding:4rem 1rem;" id="animations">
-  <div class="section-inner">
-    <div class="section-label">Ce que je propose</div>
-    <div class="section-title">Des animations <span>vivantes et sur mesure</span></div>
-    <p style="text-align:center;max-width:700px;margin:0 auto 0;font-size:1.05rem;line-height:1.65;color:#5a5040;">
-      Des expériences pédagogiques au cœur du vivant pour observer, manipuler, comprendre et créer un vrai lien avec la nature.
-    </p>
-    
-    <div class="accordion-container">
-      
-      <!-- Accordéon 1 : Animations Nature & Biodiversité -->
-      <div class="accordion-item active">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <div class="accordion-icon">🦔</div>
-          <h3>Animations Nature & Biodiversité</h3>
-          <span class="accordion-toggle">▼</span>
-        </div>
-        <div class="accordion-content">
-          <p>Une balade découverte avec des animations en pleine nature. Des moments forts pour se reconnecter à la nature par tous les sens.</p>
-          <p>Des séances d'observations et d'expérimentations adaptées à chaque âge : écouter, flâner, imaginer, creuser la terre, comprendre les cycles de la vie à travers le jeu et l'apprentissage.</p>
-          <ul>
-            <li>Découverte de la biodiversité locale</li>
-            <li>Observation des insectes et petites bêtes</li>
-            <li>Ateliers sensoriels en pleine nature</li>
-            <li>Cycles de vie des plantes et animaux</li>
-          </ul>
-          <a href="#" class="btn-primary accordion-cta">Découvrir le catalogue</a>
-        </div>
+<!-- ========== HERO ========== -->
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-tag">Écocurieux — Ce que je propose</div>
+      <h1>Le monde du <em>vivant</em> n'attend que votre <em>curiosité</em>.</h1>
+      <p>Animations, balades et stages autour de Chalon-sur-Saône pour <strong>les enfants</strong>, <strong>les familles</strong> et tous ceux qui veulent voir <strong>le monde vivant</strong> autrement.</p>
+      <div class="hero-nav">
+        <a href="#animations">🌿 Animations</a>
+        <a href="#anniversaires">🎉 Anniversaires</a>
+        <a href="#stages">📔 Stages</a>
       </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=600&q=80" alt="Enfant découvrant la nature">
+    </div>
+  </div>
+</div>
 
-      <!-- Accordéon 2 : Stages Nature & Cahier Buissonnier -->
-      <div class="accordion-item" id="stages">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <div class="accordion-icon">📔</div>
-          <h3>Stages Nature & Cahier Buissonnier</h3>
-          <span class="accordion-toggle">▼</span>
-        </div>
-        <div class="accordion-content">
-          <p>Une immersion dans la nature pour apprendre et s'émerveiller. En plusieurs séances, les participants découvrent la faune et la flore. Un cahier buissonnier accompagne chaque stage.</p>
-          <p>Je vous fournis votre carnet de terrain personnel pour explorer la biodiversité locale : réalisation d'herbiers, inventaires d'insectes ou croquis d'oiseaux.</p>
-          <ul>
-            <li>Stages d'une demi-journée ou journée complète</li>
-            <li>Cahier buissonnier personnalisé fourni</li>
-            <li>Herbiers et collections naturalistes</li>
-            <li>Croquis et observations sur le terrain</li>
-          </ul>
-          <a href="/contact.html" class="btn-primary accordion-cta">S'inscrire à un stage</a>
-        </div>
-      </div>
+<div class="rubriques-row">
 
-      <!-- Accordéon 3 : Interventions sur site -->
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <div class="accordion-icon">🏫</div>
-          <h3>Interventions sur site</h3>
-          <span class="accordion-toggle">▼</span>
+<!-- ========== RUBRIQUE 1 — Animations Nature & Biodiversité ========== -->
+<section class="rubrique rubrique-anim" id="animations">
+  <div class="rubrique-inner">
+    <div class="rubrique-accent-bar"></div>
+    <h2 class="rubrique-title">Animations <span>Nature & Biodiversité</span></h2>
+        <p class="rubrique-intro">Centres de loisirs, écoles, anniversaires, événements familiaux… Je me déplace directement chez vous pour concevoir une animation nature adaptée à votre public et à vos envies.</p>
+        <p class="rubrique-tagline">Les thématiques ci-dessous sont là pour vous inspirer — mais elles ne sont pas un catalogue figé. Vous avez une idée précise ? Je pars de là. Vous cherchez encore ? Explorez, laissez-vous inspirer, puis contactez-moi : on construit ensemble quelque chose d'unique.</p>
+        <div class="rubrique-bullets">
+          <div class="rubrique-bullet">Chaque animation conçue spécifiquement pour vous</div>
+          <div class="rubrique-bullet">Tous les âges, tous les contextes</div>
+          <div class="rubrique-bullet">Je me déplace sur votre site</div>
         </div>
-        <div class="accordion-content">
-          <p>Des facilitateurs qualifiés viennent directement sur votre site pour des animations sur la biodiversité, des ateliers de sensibilisation à l'environnement.</p>
-          <p>J'interviens directement dans votre établissement ou sur le lieu de vos événements avec tout le matériel nécessaire. Animations adaptées au contexte, aux participants et à vos objectifs.</p>
-          <ul>
-            <li>Écoles et établissements scolaires</li>
-            <li>Centres de loisirs et structures jeunesse</li>
-            <li>Événements grand public et fêtes de la nature</li>
-            <li>Matériel pédagogique fourni</li>
-          </ul>
-          <a href="/contact.html" class="btn-primary accordion-cta">Demander un devis</a>
-        </div>
-      </div>
+    <a href="/contact.html" class="btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:auto;">
+      📬 Me contacter
+    </a>
 
-      <!-- Accordéon 4 : Projets sur mesure -->
-      <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <div class="accordion-icon">🎯</div>
-          <h3>Projets sur mesure</h3>
-          <span class="accordion-toggle">▼</span>
-        </div>
-        <div class="accordion-content">
-          <p>Une animation clés en main conçue pour vos objectifs. Nous concevons des projets adaptés à votre contexte.</p>
-          <p>Une idée précise ? Un besoin particulier ? Nous co-construisons un projet pédagogique adapté à votre public et vos contraintes.</p>
-          <ul>
-            <li>Co-construction avec vous</li>
-            <li>Adaptation à vos besoins spécifiques</li>
-            <li>Projets de classe ou projets d'établissement</li>
-            <li>Suivi et accompagnement personnalisé</li>
-          </ul>
-          <a href="/contact.html" class="btn-primary accordion-cta">En savoir plus</a>
-        </div>
-      </div>
-
-      <!-- Accordéon 5 : La Boîte à idées -->
-      <div class="accordion-item" id="boite">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <div class="accordion-icon">💡</div>
-          <h3>La Boîte à idées</h3>
-          <span class="accordion-toggle">▼</span>
-        </div>
-        <div class="accordion-content">
-          <p>Quelques exemples d'ateliers thématiques que je propose. Ces animations peuvent être adaptées selon vos besoins et le niveau de votre public.</p>
-          
-          <div class="boite-mini-cards">
-            <div class="boite-mini-card">
-              <div class="emoji-icon">🐜</div>
-              <h4>Les ondes des fourmis</h4>
-              <p>Les subtilités des communications chimiques, sonores et tactiles. Découverte du monde fascinant des insectes sociaux.</p>
-            </div>
-            <div class="boite-mini-card">
-              <div class="emoji-icon">🐦</div>
-              <h4>Les histoires des nids</h4>
-              <p>Des animations qui explorent les habitats naturels. Plongez dans l'univers de l'ornithologie et de l'habitat des oiseaux.</p>
-            </div>
-            <div class="boite-mini-card">
-              <div class="emoji-icon">🤝</div>
-              <h4>Ateliers de coopération</h4>
-              <p>Apprenons ensemble à travers des activités créatives favorisant l'entraide et la coopération.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div class="themes-mini">
+      <span class="theme-tag">🐦 Ornithologie</span>
+      <span class="theme-tag">🐛 Insectes</span>
+      <span class="theme-tag">🍄 Décomposeurs</span>
+      <span class="theme-tag">👃 5 sens</span>
+      <span class="theme-tag">🌿 Plantes & forêt</span>
+      <span class="theme-tag">🐾 Faune</span>
+      <span class="theme-tag">🔄 Cycles & saisons</span>
+      <span class="theme-tag">🎨 Nature créative</span>
     </div>
   </div>
 </section>
 
-<script>
-function toggleAccordion(header) {
-  const item = header.parentElement;
-  const wasActive = item.classList.contains('active');
-  
-  // Fermer tous les accordéons
-  document.querySelectorAll('.accordion-item').forEach(acc => {
-    acc.classList.remove('active');
-  });
-  
-  // Ouvrir celui cliqué s'il était fermé
-  if (!wasActive) {
-    item.classList.add('active');
-  }
-}
-</script>
+<!-- ========== RUBRIQUE 2 — Anniversaires Nature ========== -->
+<section class="rubrique rubrique-anniv" id="anniversaires" style="border-left:2px solid rgba(0,0,0,0.07);">
+  <div class="rubrique-inner">
+    <div class="rubrique-accent-bar"></div>
+    <h2 class="rubrique-title">Anniversaires <span>Nature</span></h2>
+    <p class="rubrique-intro">Offrir à votre enfant un anniversaire qu'il n'oubliera pas — sans artifices, mais avec de vraies aventures. Je viens chez vous pour une animation nature de 2h, entièrement scénarisée et adaptée au groupe.</p>
+    <p class="rubrique-tagline">Deux univers sont disponibles pour vous inspirer :</p>
 
-<!-- ========== FOOTER (Allégé) ========== -->
+    <div class="univers-mini">
+      <div class="univers-mini-card">
+        <span class="ubc-icon-sm">🦕</span>
+        <div>
+          <strong>L'Œuf Mystère</strong>
+          <p>Un T-Rex s’est introduit dans le laboratoire et a tout mis sens dessus dessous. L’œuf de dinosaure a disparu ! Les jeunes paléontologues devront relever une série d’épreuves — élixir mystérieux, codex secret, fouille archéologique — pour le retrouver.</p>
+        </div>
+      </div>
+      <div class="univers-mini-card">
+        <span class="ubc-icon-sm">🌿</span>
+        <div>
+          <strong>La Quête de la Biodiversité</strong>
+          <p>Les princes et princesses de la cité ont remarqué quelque chose d’inquiétant : les insectes et les oiseaux du château ont disparu. Guidés par les Grands Sages, ils devront percer le mystère et réveiller la nature endormie.</p>
+        </div>
+      </div>
+    </div>
+    <div class="anniv-closing">Quel que soit l’âge, quel que soit l’univers — contactez-moi et on imagine ensemble l’aventure qui ressemble à votre enfant.</div>
+    <a href="/contact.html" class="btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:auto;">
+      🎉 Organiser un anniversaire
+    </a>
+  </div>
+</section>
+
+<!-- ========== RUBRIQUE 3 — Stages Nature ========== -->
+<section class="rubrique rubrique-stages" id="stages" style="border-left:2px solid rgba(0,0,0,0.07);">
+  <div class="rubrique-inner">
+    <div class="rubrique-accent-bar"></div>
+    <h2 class="rubrique-title">Stages <span>Nature</span></h2>
+    <p class="rubrique-intro">Des demi-journées et journées nature pour les enfants et les familles, pendant les vacances scolaires et certains mercredis — par petits groupes, pour une vraie expérience de terrain.</p>
+    <p class="rubrique-tagline">Chaque stage suit un circuit de balade autour de Chalon-sur-Saône, pensé autour d'une thématique : oiseaux, insectes, plantes sauvages… À chaque sortie, son univers, ses découvertes, ses surprises.</p>
+
+    <div class="stages-mini">
+      <div class="stage-mini-item">🗓️ <span>Vacances scolaires &amp; mercredis</span></div>
+      <div class="stage-mini-item">👥 <span>Petits groupes</span></div>
+      <div class="stage-mini-item">📍 <span>Autour de Chalon-sur-Saône</span></div>
+    </div>
+    <div class="carnet-mini">
+      ✧ <strong>Le carnet nature</strong> — chaque participant reçoit son carnet conçu spécialement pour la thématique du jour, à compléter au fil de la balade.
+    </div>
+    <p class="stages-cta-note">Les dates et thématiques sont annoncées sur les réseaux sociaux. Les places étant limitées, les inscriptions se font directement en ligne.</p>
+    <a href="/evenements.html" class="btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:auto;">
+      📅 Voir les prochains stages
+    </a>
+  </div>
+</section>
+
+</div><!-- /.rubriques-row -->
+
+<!-- ========== FOOTER ========== -->
 <footer style="background: var(--green-dark); color: rgba(243,222,180,0.55); padding: 2rem 1rem 3rem; text-align: center;">
   <p style="font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:700; color:var(--beige); margin-bottom: 5px;">Écocurieux · Animation nature & biodiversité</p>
   <p style="font-size:0.8rem; margin-bottom: 10px; color:rgba(243,222,180,0.75);">Amandine Junier-Dubus</p>
   <p style="font-size:0.75rem;">© 2026 · Saône-et-Loire · <a href="mailto:amandinejd@gmail.com" style="color:rgba(243,222,180,0.85); font-weight:600; text-decoration:none;">amandinejd@gmail.com</a></p>
 </footer>
+
+<script>
+function toggleCatalogue(btn) {
+  const section = document.getElementById('catalogue-section');
+  const icon = document.getElementById('catalogue-btn-icon');
+  const isOpen = section.classList.contains('open');
+  
+  if (isOpen) {
+    section.classList.remove('open');
+    btn.innerHTML = '<span id="catalogue-btn-icon">🌿</span> Découvrir le catalogue';
+  } else {
+    section.classList.add('open');
+    btn.innerHTML = '<span id="catalogue-btn-icon">✕</span> Masquer le catalogue';
+    setTimeout(() => {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+}
+</script>
 <script src="/js/main.js"></script>
 </body>
 </html>
