@@ -85,6 +85,11 @@
     box-shadow: 0 16px 40px rgba(0,0,0,0.3);
     opacity: 0; pointer-events: none;
     transition: opacity 0.25s, transform 0.25s;
+    z-index: 100;
+  }
+  /* Assurer que le dropdown actif soit toujours au-dessus */
+  .nav-links > li:hover .dropdown {
+    z-index: 200;
   }
   .dropdown a {
     display: flex; align-items: center; gap: 10px;

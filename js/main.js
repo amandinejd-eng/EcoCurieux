@@ -3,6 +3,19 @@
   const navItems = document.querySelectorAll('.nav-links > li');
   let closeTimers = new Map();
 
+  function getOpenTransform() {
+    return 'translateX(-50%) translateY(0)';
+  }
+  function getCloseTransform() {
+    return 'translateX(-50%) translateY(-8px)';
+  }
+
+  function closeDropdown(li, dropdown) {
+    dropdown.style.opacity = '0';
+    dropdown.style.pointerEvents = 'none';
+    dropdown.style.transform = getCloseTransform(li);
+  }
+
   navItems.forEach(function(li) {
     const dropdown = li.querySelector('.dropdown');
     if (!dropdown) return;
@@ -12,17 +25,28 @@
         clearTimeout(closeTimers.get(li));
         closeTimers.delete(li);
       }
+      // Fermer les autres dropdowns
+      navItems.forEach(function(other) {
+        if (other !== li) {
+          var otherDd = other.querySelector('.dropdown');
+          if (otherDd) {
+            closeDropdown(other, otherDd);
+            if (closeTimers.has(other)) {
+              clearTimeout(closeTimers.get(other));
+              closeTimers.delete(other);
+            }
+          }
+        }
+      });
       dropdown.style.opacity = '1';
       dropdown.style.pointerEvents = 'all';
-      dropdown.style.transform = 'translateX(-50%) translateY(0)';
+      dropdown.style.transform = getOpenTransform(li);
     });
 
     dropdown.addEventListener('mouseleave', function(e) {
       const relatedTarget = e.relatedTarget;
       if (!li.contains(relatedTarget)) {
-        dropdown.style.opacity = '0';
-        dropdown.style.pointerEvents = 'none';
-        dropdown.style.transform = 'translateX(-50%) translateY(-8px)';
+        closeDropdown(li, dropdown);
         if (closeTimers.has(li)) {
           clearTimeout(closeTimers.get(li));
           closeTimers.delete(li);
@@ -34,9 +58,7 @@
       const relatedTarget = e.relatedTarget;
       if (!li.contains(relatedTarget)) {
         const timer = setTimeout(function() {
-          dropdown.style.opacity = '0';
-          dropdown.style.pointerEvents = 'none';
-          dropdown.style.transform = 'translateX(-50%) translateY(-8px)';
+          closeDropdown(li, dropdown);
           closeTimers.delete(li);
         }, 300);
         closeTimers.set(li, timer);

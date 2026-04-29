@@ -16,7 +16,7 @@
     </div>
     <div>
       <div class="nav-logo-name">Écocurieux</div>
-      <div class="nav-logo-sub">Animation nature & biodiversité</div>
+      <div class="nav-logo-sub">L'atelier nature sur mesure</div>
     </div>
   </a>
 
@@ -103,82 +103,402 @@
   <a href="/contact.html" onclick="toggleMenu()" style="opacity: 0.6;"><span>📬</span> Me contacter</a>
 </div>
 
-<!-- ========== CONTACT ========== -->
-<section class="padded contact" id="contact">
-  <div class="section-inner">
-    <div class="section-label">Parlons de votre projet</div>
-    <div class="section-title" style="margin-bottom: 2.5rem;">Me <span style="color:var(--brown)">contacter</span></div>
-    <div class="contact-grid">
-      <div class="contact-info" style="padding: 0;">
-        <p class="contact-intro">
-            VOUS SOUHAITEZ EN SAVOIR PLUS, OBTENIR UN DEVIS OU DISCUTER D'UN PROJET ?<br><br>
-            Contactez-moi directement, je vous répondrai personnellement.
-        </p>
-        
-        <!-- qr-codes Compacts -->
-        <div class="qr-codes-container">
-            <div class="qr-code-item facebook">
-                <p>Facebook</p>
-                <img src="/qr-code/qr code facebook.png" alt="qr-code facebook">
-            </div>
-            <div class="qr-code-item instagram">
-                <p>Instagram</p>
-                <img src="/qr-code/qr code instagram.png" alt="qr-code instagram">
-            </div>
-        </div>
-        
-        <div class="contact-detail" style="margin-bottom: 8px;"><span class="icon">📞</span> 06.69.49.18.23</div>
-        <div class="contact-detail" style="margin-bottom: 8px;"><span class="icon">✉️</span> <a href="mailto:amandinejd@gmail.com" style="color:var(--white);text-decoration:none">amandinejd@gmail.com</a></div>
-        <div class="contact-detail" style="margin-bottom: 15px;"><span class="icon">📍</span> Saône-et-Loire & alentours</div>
-        
-        <div class="rc-badge" style="margin-top: 0;">
-          ✅ Assurance Responsabilité Civile Professionnelle
-        </div>
+<!-- ========== CONTACT V3 — UNE SEULE PAGE ========== -->
+<style>
+  .cv3-page {
+    margin-top: 78px;
+    height: calc(100vh - 78px);
+    display: grid;
+    grid-template-columns: 320px 1fr 260px;
+    background: #fdf8f0;
+    overflow: hidden;
+  }
+
+  /* ===== COLONNE GAUCHE ===== */
+  .cv3-left {
+    background: var(--green-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1.6rem;
+    overflow: hidden;
+    position: relative;
+  }
+  .cv3-left::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cpath d='M0 140 Q40 100 80 120 Q120 140 160 110 Q200 80 240 100 Q280 120 320 90 L320 180 L0 180 Z' fill='rgba(70,123,67,0.12)'/%3E%3Cpath d='M0 160 Q60 130 120 150 Q180 170 240 140 Q280 120 320 130 L320 180 L0 180 Z' fill='rgba(70,123,67,0.08)'/%3E%3C/svg%3E") no-repeat bottom center;
+    background-size: cover;
+    pointer-events: none;
+  }
+  .cv3-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .cv3-brand-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--brown);
+  }
+  .cv3-brand-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--beige);
+    line-height: 1.1;
+  }
+  .cv3-brand-title em { font-style: normal; color: var(--brown); }
+  .cv3-brand-sub {
+    font-family: 'Lora', serif;
+    font-size: 0.8rem;
+    color: rgba(243,222,180,0.6);
+    line-height: 1.5;
+    margin-top: 0.5rem;
+    border-left: 2px solid var(--brown);
+    padding-left: 0.7rem;
+  }
+
+  /* Infos de contact */
+  .cv3-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .cv3-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--beige);
+    text-decoration: none;
+    transition: background 0.18s;
+  }
+  .cv3-contact-row:hover { background: rgba(255,255,255,0.12); }
+  .cv3-contact-row span { font-size: 1rem; flex-shrink: 0; }
+
+  /* RC badge */
+  .cv3-rc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: rgba(243,222,180,0.4);
+    line-height: 1.4;
+    border-top: 1px solid rgba(243,222,180,0.1);
+    padding-top: 0.8rem;
+  }
+
+  /* ===== COLONNE CENTRALE — FORMULAIRE ===== */
+  .cv3-center {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2.2rem;
+    gap: 1rem;
+    overflow: hidden;
+  }
+  .cv3-center-title {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--green-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid #ddd4c0;
+  }
+  .cv3-center-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 1.2em;
+    background: var(--brown);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Audience */
+  .cv3-who-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--green);
+    margin-bottom: 0.3rem;
+  }
+  .cv3-aud-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+  }
+  .cv3-aud-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.4rem;
+    border-radius: 10px;
+    border: 1.5px solid #d5c9b5;
+    background: white;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #5a5040;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+  .cv3-aud-btn:hover { border-color: var(--green); background: #f0f7ee; }
+  .cv3-aud-btn.active { border-color: var(--green-dark); background: var(--green-dark); color: var(--beige); }
+
+  /* Champs */
+  .cv3-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+  .cv3-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .cv3-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .cv3-field label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--green);
+  }
+  .cv3-field input,
+  .cv3-field select,
+  .cv3-field textarea {
+    border: 1.5px solid #d5c9b5;
+    border-radius: 9px;
+    padding: 0.5rem 0.75rem;
+    font-family: 'Lora', serif;
+    font-size: 0.88rem;
+    color: #2c2c2c;
+    background: white;
+    outline: none;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    width: 100%;
+  }
+  .cv3-field input:focus,
+  .cv3-field select:focus,
+  .cv3-field textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 2px rgba(70,123,67,0.1);
+  }
+  .cv3-field textarea { height: 120px; resize: none; }
+  .cv3-submit {
+    background: var(--brown);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s, transform 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .cv3-submit:hover { background: #8f5220; transform: translateY(-1px); }
+  .cv3-form-status {
+    min-height: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    color: var(--green);
+    text-align: center;
+  }
+
+  /* ===== COLONNE DROITE — QR CODES ===== */
+  .cv3-right {
+    background: var(--green-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+    padding: 1.5rem 1rem;
+    border-left: 1px solid rgba(243,222,180,0.08);
+  }
+  .cv3-qr-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .cv3-qr-item img {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    border: 2px solid rgba(243,222,180,0.18);
+    object-fit: cover;
+  }
+  .cv3-qr-label-fb {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #0866FF, #00C6FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cv3-qr-label-ig {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cv3-qr-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(243,222,180,0.15);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .cv3-page {
+      grid-template-columns: 1fr;
+      height: auto;
+      overflow: auto;
+    }
+    .cv3-left { padding: 2rem 1.2rem; }
+    .cv3-left::after { display: none; }
+    .cv3-center { padding: 1.5rem 1.2rem; }
+    .cv3-aud-row { grid-template-columns: repeat(2, 1fr); }
+    .cv3-form-row { grid-template-columns: 1fr; }
+    .cv3-right { flex-direction: row; padding: 1.5rem; justify-content: center; }
+    .cv3-qr-divider { width: 1px; height: 80px; }
+  }
+</style>
+
+<div class="cv3-page" id="contact">
+
+  <!-- ===== GAUCHE ===== -->
+  <div class="cv3-left">
+    <div class="cv3-brand">
+      <div class="cv3-brand-tag">📬 Me contacter</div>
+      <div class="cv3-brand-title">Parlons de<br>votre <em>projet</em></div>
+      <p class="cv3-brand-sub">Vous souhaitez un devis ou discuter d'une idée ? Je vous réponds personnellement.</p>
+    </div>
+
+    <div class="cv3-contact-list">
+      <div class="cv3-contact-row"><span>📞</span> 06.69.49.18.23</div>
+      <a href="mailto:amandinejd@gmail.com" class="cv3-contact-row"><span>✉️</span> amandinejd@gmail.com</a>
+      <div class="cv3-contact-row"><span>📍</span> Saône-et-Loire & alentours</div>
+    </div>
+
+    <div class="cv3-rc">✅ Assurance Responsabilité<br>Civile Professionnelle</div>
+  </div>
+
+  <!-- ===== CENTRE ===== -->
+  <div class="cv3-center">
+    <div class="cv3-center-title">Votre message</div>
+
+    <div>
+      <div class="cv3-who-label">Vous êtes :</div>
+      <div class="cv3-aud-row" id="audSelector">
+        <button type="button" class="cv3-aud-btn active" data-val="ecole" onclick="selectCv3Aud(this)">🏫 École</button>
+        <button type="button" class="cv3-aud-btn" data-val="collectivite" onclick="selectCv3Aud(this)">🏛 Collectivité</button>
+        <button type="button" class="cv3-aud-btn" data-val="particulier" onclick="selectCv3Aud(this)">👨‍👩‍👧 Particulier</button>
+        <button type="button" class="cv3-aud-btn" data-val="autre" onclick="selectCv3Aud(this)">🙋 Autre</button>
       </div>
-      <div class="contact-form">
-        <span class="form-label">Vous êtes :</span>
-        <div class="audience-selector" id="audSelector">
-          <button type="button" class="aud-btn active" data-val="ecole" onclick="selectAud(this)">🏫 École / structure</button>
-          <button type="button" class="aud-btn" data-val="collectivite" onclick="selectAud(this)">🏛 Collectivité</button>
-          <button type="button" class="aud-btn" data-val="particulier" onclick="selectAud(this)">👨‍👩‍👧 Particulier</button>
-          <button type="button" class="aud-btn" data-val="autre" onclick="selectAud(this)">🙋 Autre</button>
-        </div>
-        <div class="form-group">
+    </div>
+
+    <div class="cv3-form">
+      <div class="cv3-form-row">
+        <div class="cv3-field">
           <label>Votre nom</label>
           <input type="text" id="userName" placeholder="Prénom Nom">
         </div>
-        <div class="form-group">
+        <div class="cv3-field">
           <label>Email</label>
           <input type="email" id="userEmail" placeholder="votre@email.fr">
         </div>
-        <div class="form-group" style="display:none;">
-          <label>Ne pas remplir</label>
-          <input type="text" id="contactHp" tabindex="-1" autocomplete="off" placeholder="">
-        </div>
-        <div class="form-group">
-          <label>Type de projet</label>
-          <select id="projectType">
-            <option>Animation nature</option>
-            <option>Location de kit pédagogique</option>
-            <option>Projet sur mesure</option>
-            <option>Événement / collectivité</option>
-            <option>Anniversaire nature</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Votre message</label>
-          <textarea id="userMessage" placeholder="Décrisez votre projet, votre public, vos dates…" style="height: 120px !important;"></textarea>
-        </div>
-        <button class="btn-submit" id="contactSubmitBtn" type="button" onclick="sendContactForm()">🧭 Envoyer ma demande</button>
-        <div id="contactFormStatus" style="min-height: 18px; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.85);"></div>
       </div>
+      <div class="cv3-field" style="display:none;">
+        <input type="text" id="contactHp" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="cv3-field">
+        <label>Type de projet</label>
+        <select id="projectType">
+          <option>Animation nature</option>
+          <option>Location de kit pédagogique</option>
+          <option>Projet sur mesure</option>
+          <option>Événement / collectivité</option>
+          <option>Anniversaire nature</option>
+        </select>
+      </div>
+      <div class="cv3-field" style="flex:1;">
+        <label>Votre message</label>
+        <textarea id="userMessage" placeholder="Décrivez votre projet, votre public, vos dates…"></textarea>
+      </div>
+      <button class="cv3-submit" id="contactSubmitBtn" type="button" onclick="sendContactForm()">
+        🧭 Envoyer ma demande
+      </button>
+      <div id="contactFormStatus" class="cv3-form-status"></div>
     </div>
   </div>
-</section>
+
+  <!-- ===== DROITE ===== -->
+  <div class="cv3-right">
+    <div class="cv3-qr-item">
+      <img src="/qr-code/qr code facebook.png" alt="QR code Facebook">
+      <span class="cv3-qr-label-fb">Facebook</span>
+    </div>
+    <div class="cv3-qr-divider"></div>
+    <div class="cv3-qr-item">
+      <img src="/qr-code/qr code instagram.png" alt="QR code Instagram">
+      <span class="cv3-qr-label-ig">Instagram</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function selectCv3Aud(btn) {
+  document.querySelectorAll('#audSelector .cv3-aud-btn').forEach(function(b) {
+    b.classList.remove('active');
+  });
+  btn.classList.add('active');
+}
+</script>
 
 <!-- ========== FOOTER (Allégé) ========== -->
 <footer style="background: var(--green-dark); color: rgba(243,222,180,0.55); padding: 2rem 1rem 3rem; text-align: center;">
-  <p style="font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:700; color:var(--beige); margin-bottom: 5px;">Écocurieux · Animation nature & biodiversité</p>
+  <p style="font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:700; color:var(--beige); margin-bottom: 5px;">Écocurieux · L'atelier nature sur mesure</p>
   <p style="font-size:0.8rem; margin-bottom: 10px; color:rgba(243,222,180,0.75);">Amandine Junier-Dubus</p>
   <p style="font-size:0.75rem;">© 2026 · Saône-et-Loire · <a href="mailto:amandinejd@gmail.com" style="color:rgba(243,222,180,0.85); font-weight:600; text-decoration:none;">amandinejd@gmail.com</a></p>
 </footer>
