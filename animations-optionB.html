@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[OPTION B] Ce que je propose - Écocurieux</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+/* ====== PAGE CE QUE JE PROPOSE — REFONTE COMPLÈTE ====== */
+.page-hero {
+  background: radial-gradient(ellipse at 25% 85%, rgba(70,123,67,0.25) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(175,106,50,0.12) 0%, transparent 45%), radial-gradient(ellipse at 50% 50%, rgba(60,100,58,0.18) 0%, transparent 60%), linear-gradient(160deg, rgba(28,55,27,0.99) 0%, rgba(40,72,38,0.96) 60%, rgba(28,55,27,0.99) 100%);
+  background-color: #1a361a;
+  padding: 80px 2rem 18px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before, .page-hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.page-hero::before { width: 280px; height: 280px; top: -80px; right: -60px; background: radial-gradient(circle, rgba(70,123,67,0.12) 0%, transparent 70%); }
+.page-hero::after { width: 200px; height: 200px; bottom: -50px; left: -40px; background: radial-gradient(circle, rgba(175,106,50,0.08) 0%, transparent 70%); }
+.hero-inner { max-width: 750px; margin: 0 auto; position: relative; z-index: 2; }
+.hero-tag { display: inline-block; background: rgba(243,222,180,0.13); border: 1px solid rgba(243,222,180,0.28); color: var(--beige); font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.45rem 1.3rem; border-radius: 30px; margin-bottom: 1rem; }
+.page-hero h1 { font-family: 'Nunito', sans-serif; font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 900; color: var(--beige); margin: 0 0 0.6rem; line-height: 1.05; text-shadow: 0 4px 24px rgba(0,0,0,0.35); }
+.page-hero h1 .accent { color: var(--brown); }
+.page-hero .hero-sub { font-family: 'Lora', serif; font-size: 1rem; font-weight: 400; font-style: normal; color: rgba(243,222,180,0.75); max-width: 580px; margin: 0 auto 1.5rem; line-height: 1.8; }
+.hero-nav { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; }
+.hero-nav a { color: var(--white); border: none; border-radius: 30px; padding: 0.75rem 1.6rem; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; transition: all 0.3s ease; }
+.hero-nav a:nth-child(1) { background: #3d7a6a; box-shadow: 0 4px 12px rgba(61,122,106,0.4); }
+.hero-nav a:nth-child(1):hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(61,122,106,0.5); }
+.hero-nav a:nth-child(2) { background: var(--brown); box-shadow: 0 4px 12px rgba(175,106,50,0.4); }
+.hero-nav a:nth-child(2):hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(175,106,50,0.5); }
+.hero-nav a:nth-child(3) { background: #5a8a3c; box-shadow: 0 4px 12px rgba(90,138,60,0.4); }
+.hero-nav a:nth-child(3):hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(90,138,60,0.5); }
+
+.rubriques-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; background: var(--beige-light); }
+.rubrique { background: var(--white); border-radius: 20px; overflow: hidden; border: 2px solid var(--beige-2); box-shadow: 5px 5px 0 var(--beige-2); transition: all 0.25s ease; display: flex; flex-direction: column; }
+.rubrique:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--beige-2); }
+.rubrique-photo { width: 100%; height: 200px; overflow: hidden; position: relative; }
+.rubrique-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.rubrique:hover .rubrique-photo img { transform: scale(1.05); }
+.rubrique-photo .photo-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, rgba(0,0,0,0.35), transparent); }
+.rubrique-inner { padding: 2rem 1.8rem 1.8rem; flex: 1; display: flex; flex-direction: column; }
+.rubrique-accent-bar { width: 50px; height: 4px; background: var(--green); border-radius: 2px; margin-bottom: 1rem; }
+.rubrique-anniv .rubrique-accent-bar { background: var(--brown); }
+.rubrique-stages .rubrique-accent-bar { background: var(--green); }
+.rubrique-title { font-family: 'Montserrat', sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; color: var(--green-dark); margin: 0 0 1rem; line-height: 1.2; }
+.rubrique-title span { color: var(--brown); }
+.rubrique-intro { font-family: 'Lora', serif; font-size: 0.92rem; line-height: 1.7; color: #5a5040; margin-bottom: 1.2rem; }
+.rubrique-tagline { font-family: 'Lora', serif; font-size: 0.88rem; line-height: 1.6; font-style: italic; color: #7a6a50; margin-bottom: 1.5rem; padding: 1rem; background: var(--beige-light); border-radius: 12px; border-left: 4px solid var(--brown); }
+.rubrique-bullets { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+.rubrique-bullet { display: flex; align-items: center; gap: 0.6rem; font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--green-dark); line-height: 1.4; }
+.rubrique-bullet::before { content: '◆'; color: var(--brown); font-size: 0.5rem; flex-shrink: 0; }
+.rubrique .btn-primary { background: var(--brown) !important; color: var(--white) !important; border: none !important; border-radius: 30px !important; padding: 12px 24px !important; font-family: 'Montserrat', sans-serif !important; font-size: 0.78rem !important; font-weight: 700 !important; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.3s ease; margin-top: auto; cursor: pointer; text-transform: uppercase; letter-spacing: 0.06em; box-shadow: 0 4px 15px rgba(175,106,50,0.35); }
+.rubrique .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(175,106,50,0.45); }
+.rubrique-anim .btn-primary { background: var(--green) !important; box-shadow: 0 4px 15px rgba(70,123,67,0.35) !important; }
+.rubrique-anim .btn-primary:hover { box-shadow: 0 8px 25px rgba(70,123,67,0.45) !important; }
+.rubrique-stages .btn-primary { background: var(--green) !important; box-shadow: 0 4px 15px rgba(70,123,67,0.35) !important; }
+.themes-mini { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.5rem; }
+.theme-tag { background: var(--beige-light); border: 1px solid var(--beige-2); color: var(--green-dark); border-radius: 30px; padding: 0.35rem 0.8rem; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
+.univers-mini { display: flex; flex-direction: column; gap: 1rem; margin: 1rem 0; }
+.univers-mini-card { display: flex; align-items: flex-start; gap: 0.8rem; background: var(--beige-light); border-radius: 14px; padding: 1rem; border: 1px solid var(--beige-2); }
+.ubc-icon-sm { font-size: 1.8rem; flex-shrink: 0; line-height: 1; }
+.univers-mini-card strong { font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 800; color: var(--green-dark); display: block; margin-bottom: 0.3rem; }
+.univers-mini-card p { font-family: 'Lora', serif; font-size: 0.85rem; line-height: 1.55; color: #5a5040; margin: 0; }
+.anniv-closing { background: var(--beige-light); color: #5a5040; border-radius: 12px; padding: 1rem; font-family: 'Lora', serif; font-size: 0.88rem; line-height: 1.6; font-style: italic; text-align: center; margin: 1rem 0; border: 1px solid var(--beige-2); }
+.stages-mini { display: flex; flex-direction: column; gap: 0.6rem; margin: 1rem 0 1.2rem; }
+.stage-mini-item { display: flex; align-items: center; gap: 0.6rem; font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 600; color: #5a5040; line-height: 1.4; padding: 0.5rem 0.8rem; background: var(--beige-light); border-radius: 8px; }
+.stage-mini-item span { color: var(--green-dark); font-weight: 700; }
+.carnet-mini { background: var(--beige-light); border-left: 4px solid var(--brown); padding: 1rem 1.2rem; border-radius: 0 12px 12px 0; margin: 1rem 0; font-family: 'Lora', serif; font-size: 0.88rem; color: #5a5040; line-height: 1.6; }
+.carnet-mini strong { color: var(--green-dark); font-weight: 700; }
+.stages-cta-note { font-size: 0.82rem; color: #8a7a60; font-style: italic; margin: 1rem 0; text-align: center; }
+#catalogue-section { max-height: 0; overflow: hidden; transition: max-height 0.7s ease; }
+#catalogue-section.open { max-height: 7000px; }
+.catalogue-intro-box { background: var(--beige-light); border: 2px dashed var(--beige-2); border-radius: 12px; padding: 1rem; font-family: 'Lora', serif; font-size: 0.85rem; line-height: 1.7; color: #7a6a50; font-style: italic; margin: 1rem 0; text-align: center; }
+.themes-grid { display: grid; grid-template-columns: 1fr; gap: 0.6rem; }
+.theme-card { background: var(--beige-light); border-radius: 12px; padding: 1rem; display: flex; gap: 0.8rem; align-items: flex-start; border: 1px solid var(--beige-2); }
+.theme-icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1; }
+.theme-card-body h4 { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 800; color: var(--green-dark); margin: 0 0 0.3rem; }
+.theme-card-body p { font-family: 'Lora', serif; font-size: 0.8rem; line-height: 1.55; color: #5a5040; margin: 0; }
+@media (max-width: 1024px) { .rubriques-row { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1rem; } .rubrique { max-width: 550px; margin: 0 auto; } }
+@media (max-width: 768px) { .page-hero { padding: 6rem 1rem 3rem; } .hero-nav a { padding: 0.6rem 1.2rem; font-size: 0.72rem; } .rubrique-photo { height: 160px; } .rubrique-inner { padding: 1.5rem 1.2rem; } }
+@media (max-width: 480px) { .page-hero h1 { font-size: 1.8rem; } .hero-nav { gap: 0.5rem; } .rubrique-photo { height: 140px; } }
+
+/* BANNER OPTION B */
+.option-banner { background: linear-gradient(135deg, #af6a32 0%, #8B4513 100%); color: white; text-align: center; padding: 0.75rem; font-weight: 700; font-size: 0.9rem; position: fixed; top: 0; left: 0; right: 0; z-index: 9999; }
+.option-banner a { color: #f3deb4; text-decoration: underline; margin-left: 1rem; }
+body { padding-top: 40px; }
+    </style>
+</head>
+<body>
+
+<div class="option-banner">
+    🔍 VERSION OPTION B — Comparez avec la <a href="/animations.html">version originale (Option A)</a>
+</div>
+
+<!-- ========== NAV ========== -->
+<nav style="position: fixed; top: 40px; left: 0; right: 0; z-index: 1000;">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-img"><img src="/images-creation-de-site/logo.png" alt="Écocurieux logo"></div>
+    <div>
+      <div class="nav-logo-name">Écocurieux</div>
+      <div class="nav-logo-sub">Animation nature & biodiversité</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Accueil</a></li>
+    <li><a href="/animations.html">Ce que je propose</a></li>
+    <li><a href="/kits/">Kits pédagogiques</a></li>
+    <li><a href="/pour-qui.html">Pour qui ?</a></li>
+    <li><a href="/evenements.html">Événements</a></li>
+  </ul>
+  <a href="/contact.html" class="nav-cta">📬 Me contacter</a>
+</nav>
+
+<!-- ========== HERO ========== -->
+<div class="page-hero" style="padding-top: 120px;">
+  <div class="hero-inner">
+    <div class="hero-tag">📍 Ce que je propose — OPTION B</div>
+    <h1>Le monde du <span class="accent">vivant</span> n'attend que votre curiosité.</h1>
+    <p class="hero-sub">Animations, balades et stages autour de Chalon-sur-Saône pour les enfants, les familles et tous ceux qui veulent voir le monde vivant autrement.</p>
+    <div class="hero-nav">
+      <a href="#animations">&#x1F3AD; L'atelier</a>
+      <a href="#anniversaires">🎉 Anniversaires</a>
+      <a href="#stages">📔 Stage faune et flore</a>
+    </div>
+  </div>
+</div>
+
+<div class="rubriques-row">
+
+<!-- ========== RUBRIQUE 1 — L'atelier nature sur mesure ========== -->
+<section class="rubrique rubrique-anim" id="animations">
+  <div class="rubrique-photo">
+    <img src="/images-creation-de-site/enfants qui observent au jumelle.jpg" alt="Enfants qui observent la nature aux jumelles">
+    <div class="photo-overlay"></div>
+  </div>
+  <div class="rubrique-inner">
+    <div class="rubrique-accent-bar"></div>
+    <h2 class="rubrique-title">L'atelier <span>nature sur mesure</span></h2>
+    <p class="rubrique-intro">Centres de loisirs, écoles, anniversaires, événements familiaux… Je me déplace directement chez vous pour concevoir une animation nature adaptée à votre public et à vos envies.</p>
+    <p class="rubrique-tagline">Les thématiques ci-dessous sont là pour vous inspirer — mais elles ne sont pas un catalogue figé. Vous avez une idée précise ? Je pars de là. Vous cherchez encore ? Explorez, laissez-vous inspirer, puis contactez-moi : on construit ensemble quelque chose d'unique.</p>
+    <div class="rubrique-bullets">
+      <div class="rubrique-bullet">Chaque animation conçue spécifiquement pour vous</div>
+      <div class="rubrique-bullet">Tous les âges, tous les contextes</div>
+      <div class="rubrique-bullet">Je me déplace sur votre site</div>
+    </div>
+    <div class="themes-mini">
+      <span class="theme-tag">🐦 Ornithologie</span>
+      <span class="theme-tag">🐛 Insectes</span>
+      <span class="theme-tag">🍄 Décomposeurs</span>
+      <span class="theme-tag">👃 5 sens</span>
+      <span class="theme-tag">🌿 Plantes & forêt</span>
+      <span class="theme-tag">🐾 Faune</span>
+      <span class="theme-tag">🔄 Cycles & saisons</span>
+      <span class="theme-tag">🎨 Nature créative</span>
+    </div>
+    <a href="#catalogue-section" class="btn-primary" onclick="toggleCatalogue(this); return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:auto;">
+      <span id="catalogue-btn-icon">🌿</span> Découvrir le catalogue
+    </a>
+    <div id="catalogue-section">
+      <div class="catalogue-intro-box">Ces thématiques servent d'inspiration. Toute animation reste 100 % sur mesure selon vos besoins.</div>
+      <div class="themes-grid">
+        <div class="theme-card"><span class="theme-icon">🐦</span><div class="theme-card-body"><h4>Ornithologie</h4><p>Chants mystérieux au petit matin, silhouettes qui traversent le ciel, nids cachés dans les haies…</p></div></div>
+        <div class="theme-card"><span class="theme-icon">🐛</span><div class="theme-card-body"><h4>Le monde des insectes</h4><p>Sous les pierres, dans les fleurs, au creux des vieilles souches…</p></div></div>
+        <div class="theme-card"><span class="theme-icon">🍄</span><div class="theme-card-body"><h4>Les décomposeurs</h4><p>Sans eux, la forêt s'arrêterait de respirer. Champignons, vers de terre, cloportes…</p></div></div>
+        <div class="theme-card"><span class="theme-icon">👃</span><div class="theme-card-body"><h4>Les 5 sens</h4><p>Fermer les yeux pour mieux entendre, toucher l'écorce rugueuse d'un vieux chêne…</p></div></div>
+        <div class="theme-card"><span class="theme-icon">🌿</span><div class="theme-card-body"><h4>Plantes & forêt</h4><p>Reconnaître une plante sauvage comestible, comprendre comment un arbre pousse…</p></div></div>
+        <div class="theme-card"><span class="theme-icon">🐾</span><div class="theme-card-body"><h4>Faune terrestre</h4><p>Renard, hérisson, vache ou mouton — les animaux qui partagent nos campagnes…</p></div></div>
+        <div class="theme-card"><span class="theme-icon">🔄</span><div class="theme-card-body"><h4>Cycles & saisons</h4><p>La nature ne s'arrête jamais, elle se transforme. Pourquoi les hirondelles partent-elles…</p></div></div>
+        <div class="theme-card"><span class="theme-icon">🎨</span><div class="theme-card-body"><h4>Nature créative & ludique</h4><p>Land art dans les bois, jeux de piste sur les traces des animaux…</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RUBRIQUE 2 — Anniversaires Nature ========== -->
+<section class="rubrique rubrique-anniv" id="anniversaires">
+  <div class="rubrique-photo">
+    <img src="/images-creation-de-site/anniversaire jardin.jpg" alt="Anniversaire nature au jardin">
+    <div class="photo-overlay"></div>
+  </div>
+  <div class="rubrique-inner">
+    <div class="rubrique-accent-bar"></div>
+    <h2 class="rubrique-title">Anniversaires <span>Nature</span></h2>
+    <p class="rubrique-intro">Offrir à votre enfant un anniversaire qu'il n'oubliera pas — sans artifices, mais avec de vraies aventures. Je viens chez vous pour une animation nature de 2h, entièrement scénarisée et adaptée au groupe.</p>
+    <p class="rubrique-tagline">Deux univers sont disponibles pour vous inspirer :</p>
+    <div class="univers-mini">
+      <div class="univers-mini-card">
+        <span class="ubc-icon-sm">🦕</span>
+        <div>
+          <strong>L'Œuf Mystère</strong>
+          <p>Un T-Rex s'est introduit dans le laboratoire et a tout mis sens dessus dessous. L'œuf de dinosaure que venait de rapporter Colette a disparu ! Les jeunes paléontologues devront relever une série d'épreuves — élixir mystérieux, codex secret, fouille archéologique — pour le retrouver avant qu'il ne soit trop tard.</p>
+        </div>
+      </div>
+      <div class="univers-mini-card">
+        <span class="ubc-icon-sm">🌿</span>
+        <div>
+          <strong>La Quête de la Biodiversité</strong>
+          <p>Les princes et princesses de la cité ont remarqué quelque chose d'inquiétant : les insectes et les oiseaux du château ont disparu. Guidés par les Grands Sages, ils devront se lancer dans une quête pour percer le mystère et réveiller la nature endormie.</p>
+        </div>
+      </div>
+    </div>
+    <div class="anniv-closing">Quel que soit l'âge, quel que soit l'univers — contactez-moi et on imagine ensemble l'aventure qui ressemble à votre enfant.</div>
+    <a href="/contact.html" class="btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:auto;">
+      🎉 Organiser un anniversaire
+    </a>
+  </div>
+</section>
+
+<!-- ========== RUBRIQUE 3 — Stage faune et flore ========== -->
+<section class="rubrique rubrique-stages" id="stages">
+  <div class="rubrique-photo">
+    <img src="/images-creation-de-site/enfant qui observe son carnet nature.jpg" alt="Enfant observant son carnet nature">
+    <div class="photo-overlay"></div>
+  </div>
+  <div class="rubrique-inner">
+    <div class="rubrique-accent-bar"></div>
+    <h2 class="rubrique-title">Stage <span>faune et flore</span></h2>
+    <p class="rubrique-intro">Des demi-journées et journées nature pour les enfants et les familles, pendant les vacances scolaires et certains mercredis — par petits groupes, pour une vraie expérience de terrain.</p>
+    <p class="rubrique-tagline">Chaque stage suit un circuit de balade autour de Chalon-sur-Saône, pensé autour d'une thématique : oiseaux, insectes, plantes sauvages… À chaque sortie, son univers, ses découvertes, ses surprises.</p>
+    <div class="carnet-mini">
+      Et pour repartir avec un souvenir dans les mains : chaque participant reçoit son <strong>carnet nature</strong>, conçu spécialement pour la thématique du jour — à compléter au fil de la balade, à feuilleter et relire longtemps après.
+    </div>
+    <div class="stages-mini">
+      <div class="stage-mini-item">🗓️ <span>Vacances scolaires & mercredis</span></div>
+      <div class="stage-mini-item">👥 <span>Petits groupes</span></div>
+      <div class="stage-mini-item">📍 <span>Autour de Chalon-sur-Saône</span></div>
+    </div>
+    <p class="stages-cta-note">Les dates et thématiques sont annoncées sur les réseaux sociaux. Les places étant limitées, les inscriptions se font directement en ligne.</p>
+    <a href="/evenements.html" class="btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:auto;">
+      📅 Voir les prochains stages
+    </a>
+  </div>
+</section>
+
+</div>
+
+<footer style="background: var(--green-dark); color: rgba(243,222,180,0.55); padding: 2rem 1rem 3rem; text-align: center;">
+  <p style="font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:700; color:var(--beige); margin-bottom: 5px;">Écocurieux · Animation nature & biodiversité</p>
+  <p style="font-size:0.8rem; margin-bottom: 10px; color:rgba(243,222,180,0.75);">Amandine Junier-Dubus</p>
+  <p style="font-size:0.75rem;">© 2026 · Saône-et-Loire · <a href="mailto:amandinejd@gmail.com" style="color:rgba(243,222,180,0.85); font-weight:600; text-decoration:none;">amandinejd@gmail.com</a></p>
+</footer>
+
+<script>
+function toggleCatalogue(btn) {
+  const section = document.getElementById('catalogue-section');
+  const isOpen = section.classList.contains('open');
+  if (isOpen) {
+    section.classList.remove('open');
+    btn.innerHTML = '<span id="catalogue-btn-icon">🌿</span> Découvrir le catalogue';
+  } else {
+    section.classList.add('open');
+    btn.innerHTML = '<span id="catalogue-btn-icon">✕</span> Masquer le catalogue';
+    setTimeout(() => { section.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+  }
+}
+</script>
+</body>
+</html>

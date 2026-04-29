@@ -164,9 +164,13 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 .rubrique:hover .rubrique-photo img {
-  transform: scale(1.05);
+  transform: scale(1.05) translateZ(0);
 }
 .rubrique-photo .photo-overlay {
   position: absolute;
@@ -618,12 +622,12 @@
 <!-- ========== RUBRIQUE 1 — Animations Nature & Biodiversité ========== -->
 <section class="rubrique rubrique-anim" id="animations">
   <div class="rubrique-photo">
-    <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=600&q=80" alt="Oiseau coloré posé dans la nature">
+    <img src="/images-creation-de-site/enfants qui observent au jumelle.jpg" alt="Enfants qui observent la nature aux jumelles">
     <div class="photo-overlay"></div>
   </div>
   <div class="rubrique-inner">
     <div class="rubrique-accent-bar"></div>
-    <h2 class="rubrique-title">Animations <span>Nature & Biodiversité</span></h2>
+    <h2 class="rubrique-title">L'atelier <span>nature sur mesure</span></h2>
     <p class="rubrique-intro">Centres de loisirs, écoles, anniversaires, événements familiaux… Je me déplace directement chez vous pour concevoir une animation nature adaptée à votre public et à vos envies.</p>
     <p class="rubrique-tagline">Les thématiques ci-dessous sont là pour vous inspirer — mais elles ne sont pas un catalogue figé. Vous avez une idée précise ? Je pars de là. Vous cherchez encore ? Explorez, laissez-vous inspirer, puis contactez-moi : on construit ensemble quelque chose d'unique.</p>
     <div class="rubrique-bullets">
@@ -713,7 +717,7 @@
 <!-- ========== RUBRIQUE 2 — Anniversaires Nature ========== -->
 <section class="rubrique rubrique-anniv" id="anniversaires">
   <div class="rubrique-photo">
-    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&q=80" alt="Enfants jouant dans la nature">
+    <img src="/images-creation-de-site/anniversaire copain enfant jardin.jpg" alt="Anniversaire nature enfant au jardin">
     <div class="photo-overlay"></div>
   </div>
   <div class="rubrique-inner">
@@ -747,12 +751,12 @@
 <!-- ========== RUBRIQUE 3 — Stages Nature ========== -->
 <section class="rubrique rubrique-stages" id="stages">
   <div class="rubrique-photo">
-    <img src="https://images.unsplash.com/photo-1504567961542-e24d9439a724?w=600&q=80" alt="Sentier de balade en forêt">
+    <img src="/images-creation-de-site/enfant qui observe son carnet nature.jpg" alt="Enfant observant son carnet nature">
     <div class="photo-overlay"></div>
   </div>
   <div class="rubrique-inner">
     <div class="rubrique-accent-bar"></div>
-    <h2 class="rubrique-title">Stages <span>Nature</span></h2>
+    <h2 class="rubrique-title">Stage <span>faune et flore</span></h2>
     <p class="rubrique-intro">Des demi-journées et journées nature pour les enfants et les familles, pendant les vacances scolaires et certains mercredis — par petits groupes, pour une vraie expérience de terrain.</p>
     <p class="rubrique-tagline">Chaque stage suit un circuit de balade autour de Chalon-sur-Saône, pensé autour d'une thématique : oiseaux, insectes, plantes sauvages… À chaque sortie, son univers, ses découvertes, ses surprises.</p>
     <div class="carnet-mini">

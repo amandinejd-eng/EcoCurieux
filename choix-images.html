@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choix des images - EcoCurieux</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: #1a361a; padding: 20px; }
+        h1 { color: #f3deb4; text-align: center; margin-bottom: 30px; }
+        .card { background: #faf6ed; border-radius: 16px; padding: 25px; margin-bottom: 30px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+        .card h2 { color: #af6a32; border-bottom: 3px solid #467b43; padding-bottom: 10px; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .opt { background: white; border-radius: 12px; overflow: hidden; border: 3px solid #e8dcc8; }
+        .opt h3 { background: #467b43; color: white; padding: 12px 15px; }
+        .opt img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .opt p { padding: 15px; background: #faf6ed; color: #5a5040; }
+        .current { border-color: #467b43; }
+        .current h3 { background: #af6a32; }
+        @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <h1>🖼️ Choisissez vos images</h1>
+
+    <div class="card">
+        <h2>🎉 Anniversaire nature</h2>
+        <div class="grid">
+            <div class="opt current">
+                <h3>OPTION A (Actuelle)</h3>
+                <img src="images-creation-de-site/anniversaire copain enfant jardin.jpg" alt="Option A">
+                <p><strong>Fichier:</strong> anniversaire copain enfant jardin.jpg<br>
+                Enfant avec son copain au jardin</p>
+            </div>
+            <div class="opt">
+                <h3>OPTION B</h3>
+                <img src="images-creation-de-site/anniversaire jardin.jpg" alt="Option B">
+                <p><strong>Fichier:</strong> anniversaire jardin.jpg<br>
+                Vue du jardin d'anniversaire</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📔 Stage faune et flore</h2>
+        <div class="grid">
+            <div class="opt current">
+                <h3>OPTION A (Actuelle)</h3>
+                <img src="images-creation-de-site/satge nature enfant foret .jpg" alt="Option A">
+                <p><strong>Fichier:</strong> satge nature enfant foret.jpg<br>
+                Enfant dans la forêt</p>
+            </div>
+            <div class="opt">
+                <h3>OPTION B</h3>
+                <img src="images-creation-de-site/enfant qui observe son carnet nature.jpg" alt="Option B">
+                <p><strong>Fichier:</strong> enfant qui observe son carnet.jpg<br>
+                Enfant avec son carnet nature</p>
+            </div>
+        </div>
+    </div>
+
+    <p style="text-align:center; color:#f3deb4; max-width:800px; margin:30px auto;">
+        <strong>Dis-moi ton choix:</strong> "Anniversaire A/B, Stage A/B"<br>
+        Je mettrai à jour animations.html avec tes préférences
+    </p>
+</body>
+</html>
