@@ -103,15 +103,10 @@
   <a href="/contact.html" onclick="toggleMenu()" style="opacity: 0.6;"><span>📬</span> Me contacter</a>
 </div>
 
-<!-- ========== CONTACT V3 — UNE SEULE PAGE ========== -->
+<!-- ========== CONTACT V4 — DIAGONALE ========== -->
 <style>
   .cv3-page {
-    margin-top: 78px;
-    height: calc(100vh - 78px);
-    display: grid;
-    grid-template-columns: 320px 1fr 260px;
-    background: #fdf8f0;
-    overflow: hidden;
+    display: none;
   }
 
   /* ===== COLONNE GAUCHE ===== */
@@ -492,6 +487,370 @@ function selectCv3Aud(btn) {
   document.querySelectorAll('#audSelector .cv3-aud-btn').forEach(function(b) {
     b.classList.remove('active');
   });
+  btn.classList.add('active');
+}
+</script>
+
+<!-- ========== CONTACT V4 HTML ========== -->
+<style>
+  .cv4-wrap {
+    margin-top: 78px;
+    height: calc(100vh - 78px);
+    position: relative;
+    overflow: hidden;
+    background: #1b3a1a;
+  }
+
+  /* Fond gauche sombre avec diagonale */
+  .cv4-bg-left {
+    position: absolute;
+    inset: 0;
+    background: var(--green-dark);
+    clip-path: polygon(0 0, 52% 0, 42% 100%, 0 100%);
+    z-index: 0;
+  }
+
+  /* Décor botanique SVG gauche */
+  .cv4-deco {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 340px;
+    opacity: 0.07;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Fond droit beige clair */
+  .cv4-bg-right {
+    position: absolute;
+    inset: 0;
+    background: #fdf8f0;
+    clip-path: polygon(48% 0, 100% 0, 100% 100%, 38% 100%);
+    z-index: 0;
+  }
+
+  /* Conteneur principal en grille */
+  .cv4-inner {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  /* ===== PANNEAU GAUCHE ===== */
+  .cv4-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    color: var(--beige);
+  }
+  .cv4-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--brown);
+  }
+  .cv4-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--beige);
+  }
+  .cv4-title em { font-style: normal; color: var(--brown); }
+  .cv4-intro {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(243,222,180,0.65);
+    border-left: 2px solid rgba(175,106,50,0.5);
+    padding-left: 0.9rem;
+  }
+  .cv4-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .cv4-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--beige);
+    text-decoration: none;
+  }
+  .cv4-detail-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .cv4-qr-row {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+  }
+  .cv4-qr-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .cv4-qr-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(243,222,180,0.2);
+  }
+  .cv4-qr-fb {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #0866FF, #00C6FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cv4-qr-ig {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cv4-rc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: rgba(243,222,180,0.35);
+  }
+
+  /* ===== PANNEAU DROIT ===== */
+  .cv4-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .cv4-form-title {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--green-dark);
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid #ddd4c0;
+    margin-bottom: 0.2rem;
+  }
+  .cv4-who-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--green);
+    margin-bottom: 0.25rem;
+  }
+  .cv4-aud {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+    margin-bottom: 0.1rem;
+  }
+  .cv4-aud-btn {
+    padding: 0.45rem 0.3rem;
+    border-radius: 8px;
+    border: 1.5px solid #d5c9b5;
+    background: white;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #5a5040;
+    transition: all 0.18s;
+    text-align: center;
+  }
+  .cv4-aud-btn:hover { border-color: var(--green); background: #f0f7ee; }
+  .cv4-aud-btn.active { border-color: var(--green-dark); background: var(--green-dark); color: var(--beige); }
+  .cv4-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .cv4-field { display: flex; flex-direction: column; gap: 0.18rem; }
+  .cv4-field label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--green);
+  }
+  .cv4-field input,
+  .cv4-field select,
+  .cv4-field textarea {
+    border: 1.5px solid #d5c9b5;
+    border-radius: 9px;
+    padding: 0.5rem 0.75rem;
+    font-family: 'Lora', serif;
+    font-size: 0.88rem;
+    color: #2c2c2c;
+    background: white;
+    outline: none;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    width: 100%;
+  }
+  .cv4-field input:focus, .cv4-field select:focus, .cv4-field textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 2px rgba(70,123,67,0.1);
+  }
+  .cv4-field textarea { height: 90px; resize: none; }
+  .cv4-submit {
+    background: var(--brown);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.7rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s, transform 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.2rem;
+  }
+  .cv4-submit:hover { background: #8f5220; transform: translateY(-1px); }
+  .cv4-status {
+    min-height: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    color: var(--green);
+    text-align: center;
+  }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .cv4-wrap { height: auto; }
+    .cv4-bg-left { clip-path: none; height: 340px; position: relative; }
+    .cv4-bg-right { clip-path: none; position: relative; }
+    .cv4-inner { grid-template-columns: 1fr; height: auto; padding: 2rem 1.2rem; gap: 2rem; }
+    .cv4-aud { grid-template-columns: repeat(2, 1fr); }
+    .cv4-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="cv4-wrap" id="contact">
+  <div class="cv4-bg-left"></div>
+  <div class="cv4-bg-right"></div>
+
+  <!-- Décor botanique SVG -->
+  <svg class="cv4-deco" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M150 380 Q150 300 100 250 Q50 200 80 120 Q110 40 150 20" stroke="#f3deb4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M150 300 Q120 270 90 280 Q60 290 50 260" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M150 300 Q180 270 210 280 Q240 290 250 260" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M150 240 Q115 215 85 230 Q55 245 40 220" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M150 240 Q185 215 215 230 Q245 245 260 220" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M150 180 Q120 155 95 168 Q70 181 55 158" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M150 180 Q180 155 205 168 Q230 181 245 158" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+    <ellipse cx="90" cy="280" rx="18" ry="10" transform="rotate(-20 90 280)" fill="#f3deb4" opacity="0.4"/>
+    <ellipse cx="210" cy="280" rx="18" ry="10" transform="rotate(20 210 280)" fill="#f3deb4" opacity="0.4"/>
+    <ellipse cx="85" cy="230" rx="16" ry="9" transform="rotate(-25 85 230)" fill="#f3deb4" opacity="0.35"/>
+    <ellipse cx="215" cy="230" rx="16" ry="9" transform="rotate(25 215 230)" fill="#f3deb4" opacity="0.35"/>
+    <ellipse cx="95" cy="168" rx="14" ry="8" transform="rotate(-30 95 168)" fill="#f3deb4" opacity="0.3"/>
+    <ellipse cx="205" cy="168" rx="14" ry="8" transform="rotate(30 205 168)" fill="#f3deb4" opacity="0.3"/>
+  </svg>
+
+  <div class="cv4-inner">
+
+    <!-- GAUCHE -->
+    <div class="cv4-left">
+      <div>
+        <div class="cv4-eyebrow">Écocurieux · Me contacter</div>
+        <div class="cv4-title">Parlons de<br>votre <em>projet</em></div>
+      </div>
+      <p class="cv4-intro">Vous souhaitez un devis, en savoir plus ou discuter d'une idée ? Contactez-moi directement, je vous réponds personnellement.</p>
+      <div class="cv4-details">
+        <div class="cv4-detail"><div class="cv4-detail-icon">📞</div> 06.69.49.18.23</div>
+        <a href="mailto:amandinejd@gmail.com" class="cv4-detail"><div class="cv4-detail-icon">✉️</div> amandinejd@gmail.com</a>
+        <div class="cv4-detail"><div class="cv4-detail-icon">📍</div> Saône-et-Loire & alentours</div>
+      </div>
+      <div class="cv4-qr-row">
+        <div class="cv4-qr-item">
+          <img src="/qr-code/qr code facebook.png" alt="QR Facebook">
+          <span class="cv4-qr-fb">Facebook</span>
+        </div>
+        <div class="cv4-qr-item">
+          <img src="/qr-code/qr code instagram.png" alt="QR Instagram">
+          <span class="cv4-qr-ig">Instagram</span>
+        </div>
+      </div>
+      <div class="cv4-rc">✅ Assurance Responsabilité Civile Professionnelle</div>
+    </div>
+
+    <!-- DROITE -->
+    <div class="cv4-right">
+      <div class="cv4-form-title">Votre message</div>
+      <div class="cv4-who-label">Vous êtes :</div>
+      <div class="cv4-aud" id="audSelector">
+        <button type="button" class="cv4-aud-btn active" data-val="ecole" onclick="selectCv4Aud(this)">🏫 École</button>
+        <button type="button" class="cv4-aud-btn" data-val="collectivite" onclick="selectCv4Aud(this)">🏛 Collectivité</button>
+        <button type="button" class="cv4-aud-btn" data-val="particulier" onclick="selectCv4Aud(this)">👨‍👩‍👧 Particulier</button>
+        <button type="button" class="cv4-aud-btn" data-val="autre" onclick="selectCv4Aud(this)">🙋 Autre</button>
+      </div>
+      <div class="cv4-row">
+        <div class="cv4-field">
+          <label>Votre nom</label>
+          <input type="text" id="userName" placeholder="Prénom Nom">
+        </div>
+        <div class="cv4-field">
+          <label>Email</label>
+          <input type="email" id="userEmail" placeholder="votre@email.fr">
+        </div>
+      </div>
+      <div class="cv4-field" style="display:none;">
+        <input type="text" id="contactHp" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="cv4-field">
+        <label>Type de projet</label>
+        <select id="projectType">
+          <option>Animation nature</option>
+          <option>Location de kit pédagogique</option>
+          <option>Projet sur mesure</option>
+          <option>Événement / collectivité</option>
+          <option>Anniversaire nature</option>
+        </select>
+      </div>
+      <div class="cv4-field">
+        <label>Votre message</label>
+        <textarea id="userMessage" placeholder="Décrivez votre projet, votre public, vos dates…"></textarea>
+      </div>
+      <button class="cv4-submit" id="contactSubmitBtn" type="button" onclick="sendContactForm()">🧭 Envoyer ma demande</button>
+      <div id="contactFormStatus" class="cv4-status"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function selectCv4Aud(btn) {
+  document.querySelectorAll('#audSelector .cv4-aud-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
 }
 </script>
