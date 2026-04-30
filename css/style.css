@@ -9,9 +9,9 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; overflow-x: hidden; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-  body { font-family: 'Lora', serif; background: var(--beige-light); color: #2c2c2c; overflow-x: hidden; font-size: 18px; width: 100%; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Lora', serif; background: var(--beige-light); color: #2c2c2c; overflow-x: hidden; font-size: 18px; width: 100%; -webkit-tap-highlight-color: transparent; hyphens: none; -webkit-hyphens: none; }
   body.menu-open { overflow: hidden; position: fixed; width: 100%; }
-  img { max-width: 100%; height: auto; }
+  img { max-width: 100%; height: auto; transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; }
   
   /* Typographie globale */
   h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }

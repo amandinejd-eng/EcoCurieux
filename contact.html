@@ -23,11 +23,11 @@
   <ul class="nav-links">
     <li><a href="/">Accueil</a></li>
     <li>
-      <a href="/animations.html#animations">Ce que je propose <span class="arrow">▼</span></a>
+      <a href="/animations.html">Ce que je propose <span class="arrow">▼</span></a>
       <div class="dropdown">
         <a href="/animations.html#animations"><span class="dd-icon">🌿</span>Animations nature</a>
         <a href="/animations.html#anniversaires"><span class="dd-icon">🎉</span>Anniversaires</a>
-        <a href="/animations.html#stages"><span class="dd-icon">�</span>Stages nature</a>
+        <a href="/animations.html#stages"><span class="dd-icon">🥾</span>Stages nature</a>
       </div>
     </li>
     <li>
@@ -92,7 +92,7 @@
   <span class="mm-head">Ce que je propose</span>
   <a href="/animations.html#animations" onclick="toggleMenu()"><span>🌿</span> Animations nature</a>
   <a href="/animations.html#anniversaires" onclick="toggleMenu()"><span>🎉</span> Anniversaires</a>
-  <a href="/animations.html#stages" onclick="toggleMenu()"><span>�</span> Stages nature</a>
+  <a href="/animations.html#stages" onclick="toggleMenu()"><span>🥾</span> Stages nature</a>
   <span class="mm-head">Kits pédagogiques</span>
   <a href="/kits/couveuse.html" onclick="toggleMenu()"><span>🥚</span> Couveuse pédagogique</a>
   <a href="/kits/mante-religieuse.html" onclick="toggleMenu()"><span>🦗</span> Kit mante religieuse</a>
@@ -492,64 +492,77 @@ function selectCv3Aud(btn) {
 </script>
 
 <!-- ========== CONTACT V4 HTML ========== -->
+<!-- Définition du clip-path courbe S pour le panneau vert -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <clipPath id="cv4LeftClip" clipPathUnits="objectBoundingBox">
+      <!-- S-curve: haut à 96% de la largeur, bulge à 100%, dip à 80.8%, bas à 84.6% -->
+      <!-- En % viewport: haut=50%, bulge=52%, dip=42%, bas=44% (sur base panel 52%) -->
+      <path d="M 0 0 L 0.962 0 C 1.0 0.25 0.808 0.75 0.846 1 L 0 1 Z"/>
+    </clipPath>
+  </defs>
+</svg>
 <style>
   .cv4-wrap {
     margin-top: 78px;
     height: calc(100vh - 78px);
-    position: relative;
+    display: flex;
     overflow: hidden;
-    background: #1b3a1a;
+    position: relative;
+    background: #fdf8f0;
   }
 
-  /* Fond gauche sombre avec diagonale */
-  .cv4-bg-left {
+  /* Ligne marron qui trace la courbe S de frontière */
+  .cv4-sep {
     position: absolute;
-    inset: 0;
-    background: var(--green-dark);
-    clip-path: polygon(0 0, 52% 0, 42% 100%, 0 100%);
-    z-index: 0;
+    top: 0;
+    left: calc(47% - 80px);
+    width: 160px;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+  }
+  .cv4-sep svg {
+    width: 100%;
+    height: 100%;
   }
 
-  /* Décor botanique SVG gauche */
+  /* Anciens fonds clip-path désactivés */
+  .cv4-bg-left, .cv4-bg-right { display: none; }
+
+  /* Décor botanique SVG gauche (placé à l'intérieur de cv4-left) */
   .cv4-deco {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 340px;
-    opacity: 0.07;
-    z-index: 1;
+    width: 300px;
+    opacity: 0.08;
+    z-index: 0;
     pointer-events: none;
   }
 
-  /* Fond droit beige clair */
-  .cv4-bg-right {
-    position: absolute;
-    inset: 0;
-    background: #fdf8f0;
-    clip-path: polygon(48% 0, 100% 0, 100% 100%, 38% 100%);
-    z-index: 0;
-  }
-
-  /* Conteneur principal en grille */
+  /* Conteneur principal flex */
   .cv4-inner {
+    display: flex;
+    width: 100%;
+    height: 100%;
     position: relative;
     z-index: 2;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 3rem;
-    align-items: center;
-    gap: 3rem;
   }
 
   /* ===== PANNEAU GAUCHE ===== */
   .cv4-left {
+    width: 52%;
+    flex-shrink: 0;
+    background: var(--green-dark);
+    padding: 2.5rem 6rem 2.5rem 3rem;
+    clip-path: url(#cv4LeftClip);
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
+    justify-content: center;
+    gap: 1.4rem;
     color: var(--beige);
+    position: relative;
   }
   .cv4-eyebrow {
     font-family: 'Montserrat', sans-serif;
@@ -571,8 +584,8 @@ function selectCv3Aud(btn) {
     font-family: 'Lora', serif;
     font-size: 0.9rem;
     line-height: 1.65;
-    color: rgba(243,222,180,0.65);
-    border-left: 2px solid rgba(175,106,50,0.5);
+    color: rgba(243,222,180,0.9);
+    border-left: 2px solid rgba(175,106,50,0.7);
     padding-left: 0.9rem;
   }
   .cv4-details {
@@ -603,7 +616,7 @@ function selectCv3Aud(btn) {
   }
   .cv4-qr-row {
     display: flex;
-    gap: 1.2rem;
+    gap: 2.2rem;
     align-items: center;
   }
   .cv4-qr-item {
@@ -613,14 +626,15 @@ function selectCv3Aud(btn) {
     gap: 0.3rem;
   }
   .cv4-qr-item img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-    border: 1.5px solid rgba(243,222,180,0.2);
+    width: 130px;
+    height: 130px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(243,222,180,0.25);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
   }
   .cv4-qr-fb {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.62rem;
+    font-size: 0.72rem;
     font-weight: 800;
     background: linear-gradient(45deg, #0866FF, #00C6FF);
     -webkit-background-clip: text;
@@ -629,7 +643,7 @@ function selectCv3Aud(btn) {
   }
   .cv4-qr-ig {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.62rem;
+    font-size: 0.72rem;
     font-weight: 800;
     background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
     -webkit-background-clip: text;
@@ -645,9 +659,32 @@ function selectCv3Aud(btn) {
 
   /* ===== PANNEAU DROIT ===== */
   .cv4-right {
+    flex: 1;
+    background: #fdf8f0;
+    padding: 2rem 3rem 2rem 3.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    justify-content: center;
+    gap: 0.65rem;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(70,123,67,0.25) transparent;
+  }
+  .cv4-right::-webkit-scrollbar { width: 4px; }
+  .cv4-right::-webkit-scrollbar-track { background: transparent; }
+  .cv4-right::-webkit-scrollbar-thumb { background: rgba(70,123,67,0.25); border-radius: 2px; }
+
+  /* Décor botanique côté droit (placé à l'intérieur de cv4-right) */
+  .cv4-deco-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 260px;
+    opacity: 0.06;
+    z-index: 0;
+    pointer-events: none;
   }
   .cv4-form-title {
     font-family: 'Lora', serif;
@@ -717,7 +754,7 @@ function selectCv3Aud(btn) {
     border-color: var(--green);
     box-shadow: 0 0 0 2px rgba(70,123,67,0.1);
   }
-  .cv4-field textarea { height: 90px; resize: none; }
+  .cv4-field textarea { height: 115px; resize: none; }
   .cv4-submit {
     background: var(--brown);
     color: white;
@@ -747,10 +784,11 @@ function selectCv3Aud(btn) {
 
   /* Responsive */
   @media (max-width: 860px) {
-    .cv4-wrap { height: auto; }
-    .cv4-bg-left { clip-path: none; height: 340px; position: relative; }
-    .cv4-bg-right { clip-path: none; position: relative; }
-    .cv4-inner { grid-template-columns: 1fr; height: auto; padding: 2rem 1.2rem; gap: 2rem; }
+    .cv4-wrap { height: auto; flex-direction: column; background: #fdf8f0; }
+    .cv4-inner { flex-direction: column; height: auto; }
+    .cv4-left { width: 100%; padding: 2.5rem 1.5rem; clip-path: none; }
+    .cv4-sep { display: none; }
+    .cv4-right { padding: 2rem 1.5rem 3rem; justify-content: flex-start; }
     .cv4-aud { grid-template-columns: repeat(2, 1fr); }
     .cv4-row { grid-template-columns: 1fr; }
   }
@@ -760,27 +798,36 @@ function selectCv3Aud(btn) {
   <div class="cv4-bg-left"></div>
   <div class="cv4-bg-right"></div>
 
-  <!-- Décor botanique SVG -->
-  <svg class="cv4-deco" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M150 380 Q150 300 100 250 Q50 200 80 120 Q110 40 150 20" stroke="#f3deb4" stroke-width="2" stroke-linecap="round"/>
-    <path d="M150 300 Q120 270 90 280 Q60 290 50 260" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M150 300 Q180 270 210 280 Q240 290 250 260" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M150 240 Q115 215 85 230 Q55 245 40 220" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M150 240 Q185 215 215 230 Q245 245 260 220" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M150 180 Q120 155 95 168 Q70 181 55 158" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M150 180 Q180 155 205 168 Q230 181 245 158" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
-    <ellipse cx="90" cy="280" rx="18" ry="10" transform="rotate(-20 90 280)" fill="#f3deb4" opacity="0.4"/>
-    <ellipse cx="210" cy="280" rx="18" ry="10" transform="rotate(20 210 280)" fill="#f3deb4" opacity="0.4"/>
-    <ellipse cx="85" cy="230" rx="16" ry="9" transform="rotate(-25 85 230)" fill="#f3deb4" opacity="0.35"/>
-    <ellipse cx="215" cy="230" rx="16" ry="9" transform="rotate(25 215 230)" fill="#f3deb4" opacity="0.35"/>
-    <ellipse cx="95" cy="168" rx="14" ry="8" transform="rotate(-30 95 168)" fill="#f3deb4" opacity="0.3"/>
-    <ellipse cx="205" cy="168" rx="14" ry="8" transform="rotate(30 205 168)" fill="#f3deb4" opacity="0.3"/>
-  </svg>
-
   <div class="cv4-inner">
+
+    <!-- Ligne marron qui trace la même courbe S que le clip-path -->
+    <div class="cv4-sep">
+      <!-- SVG 160px centré à 47%. La courbe va de x=111 (50% VP) à x=49 (44% VP) -->
+      <svg viewBox="0 0 160 700" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 111 0 C 131 175 29 525 49 700"
+              stroke="rgba(175,106,50,0.55)" stroke-width="2"
+              fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
 
     <!-- GAUCHE -->
     <div class="cv4-left">
+      <!-- Décor botanique SVG gauche -->
+      <svg class="cv4-deco" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M150 380 Q150 300 100 250 Q50 200 80 120 Q110 40 150 20" stroke="#f3deb4" stroke-width="2" stroke-linecap="round"/>
+        <path d="M150 300 Q120 270 90 280 Q60 290 50 260" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M150 300 Q180 270 210 280 Q240 290 250 260" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M150 240 Q115 215 85 230 Q55 245 40 220" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M150 240 Q185 215 215 230 Q245 245 260 220" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M150 180 Q120 155 95 168 Q70 181 55 158" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M150 180 Q180 155 205 168 Q230 181 245 158" stroke="#f3deb4" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="90" cy="280" rx="18" ry="10" transform="rotate(-20 90 280)" fill="#f3deb4" opacity="0.4"/>
+        <ellipse cx="210" cy="280" rx="18" ry="10" transform="rotate(20 210 280)" fill="#f3deb4" opacity="0.4"/>
+        <ellipse cx="85" cy="230" rx="16" ry="9" transform="rotate(-25 85 230)" fill="#f3deb4" opacity="0.35"/>
+        <ellipse cx="215" cy="230" rx="16" ry="9" transform="rotate(25 215 230)" fill="#f3deb4" opacity="0.35"/>
+        <ellipse cx="95" cy="168" rx="14" ry="8" transform="rotate(-30 95 168)" fill="#f3deb4" opacity="0.3"/>
+        <ellipse cx="205" cy="168" rx="14" ry="8" transform="rotate(30 205 168)" fill="#f3deb4" opacity="0.3"/>
+      </svg>
       <div>
         <div class="cv4-eyebrow">Écocurieux · Me contacter</div>
         <div class="cv4-title">Parlons de<br>votre <em>projet</em></div>
@@ -804,8 +851,25 @@ function selectCv3Aud(btn) {
       <div class="cv4-rc">✅ Assurance Responsabilité Civile Professionnelle</div>
     </div>
 
+
     <!-- DROITE -->
     <div class="cv4-right">
+      <!-- Décor botanique SVG droite -->
+      <svg class="cv4-deco-right" viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M140 310 Q142 240 180 190 Q220 140 200 70 Q185 20 140 5" stroke="#467b43" stroke-width="2" stroke-linecap="round"/>
+        <path d="M140 240 Q165 215 195 225 Q220 235 230 210" stroke="#467b43" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M140 240 Q115 215 85 228 Q60 241 50 218" stroke="#467b43" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M140 175 Q168 150 198 162 Q224 174 235 152" stroke="#467b43" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M140 175 Q112 150 82 164 Q56 178 44 155" stroke="#467b43" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M140 115 Q162 92 188 104 Q210 116 222 96" stroke="#467b43" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M140 115 Q118 92 92 106 Q68 120 56 98" stroke="#467b43" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="195" cy="225" rx="20" ry="11" transform="rotate(20 195 225)" fill="#467b43" opacity="0.5"/>
+        <ellipse cx="85" cy="228" rx="20" ry="11" transform="rotate(-20 85 228)" fill="#467b43" opacity="0.5"/>
+        <ellipse cx="198" cy="162" rx="18" ry="10" transform="rotate(18 198 162)" fill="#467b43" opacity="0.45"/>
+        <ellipse cx="82" cy="164" rx="18" ry="10" transform="rotate(-18 82 164)" fill="#467b43" opacity="0.45"/>
+        <ellipse cx="188" cy="104" rx="16" ry="9" transform="rotate(15 188 104)" fill="#467b43" opacity="0.4"/>
+        <ellipse cx="92" cy="106" rx="16" ry="9" transform="rotate(-15 92 106)" fill="#467b43" opacity="0.4"/>
+      </svg>
       <div class="cv4-form-title">Votre message</div>
       <div class="cv4-who-label">Vous êtes :</div>
       <div class="cv4-aud" id="audSelector">
