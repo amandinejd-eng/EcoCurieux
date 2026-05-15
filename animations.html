@@ -512,15 +512,23 @@
   }
 }
 @media (max-width: 768px) {
-  .page-hero { padding: 6rem 1rem 3rem; }
-  .hero-nav a { padding: 0.6rem 1.2rem; font-size: 0.72rem; }
+  .page-hero { padding: 5.5rem 1rem 2.5rem; }
+  .hero-nav { gap: 0.55rem; width: 100%; }
+  .hero-nav a { padding: 0.65rem 1rem; font-size: 0.72rem; min-height: 44px; flex: 1 1 calc(50% - 0.3rem); max-width: 100%; justify-content: center; }
   .rubrique-photo { height: 160px; }
   .rubrique-inner { padding: 1.5rem 1.2rem; }
+  .rubrique .btn-primary { width: 100%; }
+  .theme-tag { white-space: normal; text-align: center; line-height: 1.25; }
+  .univers-mini-card { padding: 0.85rem; }
 }
 @media (max-width: 480px) {
-  .page-hero h1 { font-size: 1.8rem; }
-  .hero-nav { gap: 0.5rem; }
-  .rubrique-photo { height: 140px; }
+  .page-hero { padding: 5rem 0.85rem 2rem; }
+  .page-hero h1 { font-size: 1.75rem; }
+  .page-hero .hero-sub { font-size: 0.9rem; line-height: 1.65; }
+  .hero-nav { flex-direction: column; align-items: stretch; }
+  .hero-nav a { flex: 1 1 auto; width: 100%; font-size: 0.68rem; }
+  .rubrique-photo { height: 130px; }
+  .rubrique-bullet { font-size: 0.78rem; }
 }
 
     </style>

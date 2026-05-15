@@ -1,12 +1,4 @@
 User-agent: *
 Allow: /
 
-Disallow: /test-photos.html
-Disallow: /test-photos2.html
-Disallow: /test-images-options.html
-Disallow: /optionB.html
-Disallow: /animations-optionB.html
-Disallow: /choix-images.html
-Disallow: /comparaison-images.html
-
 Sitemap: https://ecocurieux.com/sitemap.xml

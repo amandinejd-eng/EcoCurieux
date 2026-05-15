@@ -97,7 +97,7 @@ async function sendContactForm() {
   const message = (messageEl && messageEl.value || '').trim();
   const hp = (hpEl && hpEl.value || '').trim();
 
-  const activeAudBtn = document.querySelector('#audSelector .aud-btn.active');
+  const activeAudBtn = document.querySelector('#audSelector .cv4-aud-btn.active');
   const audience = activeAudBtn ? (activeAudBtn.getAttribute('data-val') || '') : '';
 
   if (!name || !email || !message) {

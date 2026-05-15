@@ -1729,3 +1729,32 @@
   footer {
     padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px)) !important;
   }
+
+  /* ========== MOBILE UX (smartphone — le desktop reste inchangé) ========== */
+  @media (max-width: 768px) {
+    input, select, textarea { font-size: 16px !important; }
+    [id] { scroll-margin-top: 72px; }
+    .nav-logo { min-width: 0; max-width: calc(100% - 52px); }
+    .nav-logo > div:last-child { min-width: 0; overflow: hidden; }
+    .nav-logo-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 11rem; }
+    .btn-primary, .btn-outline { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+    .hero-bg-bubbles { pointer-events: none; }
+    .hbb { pointer-events: none; opacity: 0.22 !important; animation: none; }
+    .garanties-inner { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+    .garantie-box { width: 100%; max-width: 100%; }
+  }
+
+  @media (max-width: 480px) {
+    [id] { scroll-margin-top: 68px; }
+    .nav-logo-sub { display: none; }
+    .nav-logo-name { max-width: 9.5rem; font-size: 0.95rem; }
+    .ticker-inner { gap: 2.5rem; }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .hbb:hover { transform: none !important; opacity: 0.22 !important; }
+    .bento-item:hover { transform: none; box-shadow: 5px 5px 0 var(--beige-2); }
+    .kits:hover, .stages:hover { box-shadow: 5px 5px 0 var(--green-dark); }
+    .interventions:hover { box-shadow: 5px 5px 0 #8f5228; }
+    .atelier-card:hover { transform: none; }
+  }
