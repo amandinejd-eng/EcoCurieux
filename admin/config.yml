@@ -106,7 +106,7 @@ collections:
   - name: evenements
     label: Événements
     icon: calendar_month
-    description: "La **date** décide toute seule si l’événement apparaît dans À venir ou Passés sur le site. Après une modification, clique **Publier**, puis attends une minute."
+    description: "Tu peux tout détailler : titre, emoji, couleurs, photos (place, cadrage, rotation), programme. La **date** classe toute seule l’événement en À venir ou Passés. Clique **Publier**, attends une minute, puis rafraîchis le site."
     files:
       - name: agenda
         label: Agenda
@@ -117,12 +117,12 @@ collections:
           - label: Événements à venir
             name: upcoming
             widget: list
-            label_singular: événement à venir
-            summary: "{{title}} — {{date}}"
+            label_singular: événement
+            summary: "{{emoji}} {{title}} — {{date}}"
             collapsed: auto
             add_to_top: true
-            comment: "Ajoute un événement ici. Change seulement la date : le site le place automatiquement dans À venir ou Passés."
-            fields:
+            comment: "Même fiche complète que les passés : photos, couleurs, programme… Seule la date décide où ça s’affiche sur le site."
+            fields: &event_fields
               - { name: id, widget: hidden }
               - label: Date
                 name: date
@@ -130,34 +130,80 @@ collections:
                 type: date
                 format: YYYY-MM-DD
                 default: "{{now}}"
-                hint: "C’est cette date qui s’affiche sur le site et qui classe l’événement."
-              - { label: Titre, name: title, widget: string, hint: "Tu peux commencer par un emoji : 🐦 L’Été des Oiseaux" }
-              - { label: Lieu, name: location, widget: string }
-              - { label: Description, name: description, widget: text }
-              - { label: Encadré vert, name: details, widget: string, required: false, hint: "Petite phrase mise en avant sous la description." }
-              - { label: Horaires, name: time, widget: string, required: false, hint: "Exemple : 10h-18h" }
-              - { label: Public, name: audience, widget: string, default: "Tout public" }
-              - { label: Tarif, name: price, widget: string, required: false, default: "Sur devis" }
-          - label: Événements passés
-            name: past
-            widget: list
-            label_singular: événement passé
-            summary: "{{title}} — {{date}}"
-            collapsed: auto
-            comment: "Ajoute ici photos, programme et récapitulatif. Si tu mets une date encore à venir, l’événement remontera tout seul dans l’agenda."
-            fields:
-              - { name: id, widget: hidden }
-              - label: Date
-                name: date
-                widget: datetime
-                type: date
-                format: YYYY-MM-DD
-                hint: "C’est cette date qui s’affiche sur le site."
-              - { label: Titre, name: title, widget: string }
-              - { label: Lieu, name: location, widget: string }
-              - { label: Description, name: description, widget: text }
-              - { label: Récapitulatif, name: recap, widget: text, required: false }
-              - { label: Note de bas de fiche, name: footer, widget: text, required: false }
+                hint: "C’est cette date qui s’affiche et qui classe l’événement (à venir ou passé)."
+                comment: "📅 L’essentiel"
+              - label: Emoji
+                name: emoji
+                widget: string
+                required: false
+                hint: "Copie-colle un emoji, par exemple 🐦. Il s’affiche devant le titre."
+              - label: Titre
+                name: title
+                widget: string
+                hint: "Le nom de l’événement. Tu peux aussi mettre l’emoji dans le titre si tu préfères."
+              - label: Sous-titre
+                name: subtitle
+                widget: string
+                required: false
+                hint: "Petite phrase sous le titre, optionnelle."
+              - label: Lieu
+                name: location
+                widget: string
+                hint: "Ville, structure, ou par exemple « Anniversaire 5 ans »."
+              - label: Description
+                name: description
+                widget: text
+                hint: "Texte principal. Un saut de ligne = un nouveau paragraphe. Entoure un mot de **deux étoiles** pour le mettre en gras."
+                comment: "📝 Les textes"
+              - label: Encadré mis en avant
+                name: details
+                widget: string
+                required: false
+                hint: "Petite phrase dans un encadré coloré (un plus, un atelier bonus…)."
+              - label: Récapitulatif
+                name: recap
+                widget: text
+                required: false
+                hint: "Texte plus long dans le détail (souvenirs, bilan de l’animation…)."
+              - label: Note de fin
+                name: footer
+                widget: text
+                required: false
+                hint: "Phrase discrète tout en bas de la fiche."
+              - label: Horaires
+                name: time
+                widget: string
+                required: false
+                hint: "Exemple : 10h-18h"
+                comment: "ℹ️ Infos pratiques — pastilles à droite de la fiche."
+              - label: Public
+                name: audience
+                widget: string
+                required: false
+                default: "Tout public"
+              - label: Tarif
+                name: price
+                widget: string
+                required: false
+                default: "Sur devis"
+              - label: Couleur d’accent
+                name: couleur
+                widget: color
+                required: false
+                allowInput: true
+                hint: "Filet, dates et pastilles. Vide = vert (à venir) ou brun (passé)."
+                comment: "🎨 Couleurs et icône"
+              - label: Couleur du titre
+                name: couleurTitre
+                widget: color
+                required: false
+                allowInput: true
+                hint: "Laisse vide pour garder le vert foncé du site."
+              - label: Icône décorative
+                name: icone
+                widget: string
+                required: false
+                hint: "Petit emoji en filigrane en haut à droite, par exemple 🍃 ou 🐦."
               - label: Photos
                 name: photos
                 widget: list
@@ -166,10 +212,87 @@ collections:
                 summary: "{{caption}}"
                 thumbnail: url
                 collapsed: auto
+                comment: "📷 Place chaque photo comme tu veux. Celle marquée « Photo principale » (sinon la première) s’affiche en grand. Les autres forment la galerie. Glisse pour changer l’ordre."
                 fields:
-                  - { label: Photo, name: url, widget: image }
-                  - { label: Légende, name: caption, widget: string, required: false }
-                  - { label: Rotation (°), name: rotation, widget: number, required: false, value_type: int, default: 0, hint: "0, 90, 180 ou 270." }
+                  - label: Photo
+                    name: url
+                    widget: image
+                    choose_url: true
+                    hint: "Envoie une image depuis ton ordinateur, ou colle un lien."
+                  - label: Légende
+                    name: caption
+                    widget: string
+                    required: false
+                    hint: "Texte au survol et sous la photo."
+                  - label: Rôle
+                    name: role
+                    widget: select
+                    required: false
+                    default: galerie
+                    options:
+                      - { label: "Photo principale (grande, à côté du texte)", value: principale }
+                      - { label: "Galerie (dans le détail)", value: galerie }
+                  - label: Place de la photo principale
+                    name: position
+                    widget: select
+                    required: false
+                    default: gauche
+                    hint: "S’applique à la photo principale."
+                    options:
+                      - { label: "À gauche du texte", value: gauche }
+                      - { label: "À droite du texte", value: droite }
+                      - { label: "Au-dessus du texte", value: haut }
+                      - { label: "Toute la largeur", value: pleine }
+                  - label: Cadrage
+                    name: cadrage
+                    widget: select
+                    required: false
+                    default: contenir
+                    options:
+                      - { label: "Voir toute la photo (sans couper)", value: contenir }
+                      - { label: "Remplir le cadre (peut couper les bords)", value: remplir }
+                  - label: Zone visible
+                    name: focus
+                    widget: select
+                    required: false
+                    default: centre
+                    hint: "Si tu remplis le cadre, choisis la partie à garder."
+                    options:
+                      - { label: "Centre", value: centre }
+                      - { label: "Haut", value: haut }
+                      - { label: "Bas", value: bas }
+                      - { label: "Gauche", value: gauche }
+                      - { label: "Droite", value: droite }
+                  - label: Rotation
+                    name: rotation
+                    widget: select
+                    required: false
+                    default: "0"
+                    options:
+                      - { label: "Aucune", value: "0" }
+                      - { label: "90° à droite", value: "90" }
+                      - { label: "180°", value: "180" }
+                      - { label: "90° à gauche", value: "270" }
+              - label: Style de la galerie
+                name: galerie
+                widget: select
+                required: false
+                default: bande
+                options:
+                  - { label: "Bandeau horizontal (on fait défiler)", value: bande }
+                  - { label: "Grille", value: grille }
+              - label: Titre du programme
+                name: titreProgramme
+                widget: string
+                required: false
+                default: "Au programme"
+                hint: "Par défaut : Au programme."
+                comment: "🎯 Programme — les étapes de l’animation."
+              - label: Emoji du programme
+                name: emojiProgramme
+                widget: string
+                required: false
+                default: "🎯"
               - label: Programme
                 name: program
                 widget: list
@@ -178,16 +301,39 @@ collections:
                 summary: "{{emoji}} {{title}}"
                 collapsed: auto
                 fields:
-                  - { label: Emoji, name: emoji, widget: string, required: false, hint: "Tape : puis le nom, par exemple :oeuf:" }
-                  - { label: Titre, name: title, widget: string }
-                  - { label: Description, name: description, widget: text }
+                  - label: Emoji
+                    name: emoji
+                    widget: string
+                    required: false
+                    hint: "Un emoji par étape, par exemple 🥚 ou 🧪."
+                  - label: Titre
+                    name: title
+                    widget: string
+                  - label: Description
+                    name: description
+                    widget: text
+                    hint: "Un saut de ligne = un nouveau paragraphe. **gras** possible."
+                  - label: Couleur
+                    name: couleur
+                    widget: color
+                    required: false
+                    allowInput: true
+                    hint: "Barre en haut de la carte. Vide = vert du site."
+          - label: Événements passés
+            name: past
+            widget: list
+            label_singular: événement
+            summary: "{{emoji}} {{title}} — {{date}}"
+            collapsed: auto
+            comment: "Mêmes réglages que ci-dessus. Si tu mets une date encore à venir, l’événement remonte tout seul dans l’agenda."
+            fields: *event_fields
 
   - divider: true
 
   - name: pages
     label: Pages
     icon: web
-    description: "Textes et images de chaque page du site. Clique une page, puis **Publier**."
+    description: "Textes, photos, couleurs et emojis de chaque page. Clique une page, puis **Publier**."
     files:
       - name: accueil
         label: Accueil
@@ -203,7 +349,8 @@ collections:
             fields:
               - { label: Badge, name: badge, widget: string, hint: "Petite pastille au-dessus du titre, ex. le lieu." }
               - { label: Début du titre, name: titreAvant, widget: string }
-              - { label: Mot en couleur, name: titreAccent, widget: string, hint: "Ce mot s’affiche en vert." }
+              - { label: Mot en couleur, name: titreAccent, widget: string, hint: "Ce mot s’affiche en couleur." }
+              - { label: Couleur de ce mot, name: couleurAccent, widget: color, required: false, allowInput: true, hint: "Laisse vide pour garder le vert du site." }
               - { label: Sous-titre, name: sousTitre, widget: string }
               - { label: Texte d’intro, name: texte, widget: text }
               - { label: Bouton 1, name: bouton1, widget: string }
@@ -217,7 +364,8 @@ collections:
             collapsed: auto
             fields:
               - { label: Photo, name: image, widget: image }
-              - { label: Texte, name: texte, widget: text }
+              - { label: Texte, name: texte, widget: text, hint: "Texte au survol de la bulle." }
+              - { label: Emoji, name: emoji, widget: string, required: false, hint: "Optionnel, affiché sur la bulle." }
           - label: Bandeau défilant
             name: bandeau
             widget: list
@@ -245,6 +393,7 @@ collections:
               - { label: Étiquette, name: label, widget: string }
               - { label: Titre, name: titre, widget: string }
               - { label: Mot en couleur, name: titreAccent, widget: string }
+              - { label: Couleur de ce mot, name: couleurAccent, widget: color, required: false, allowInput: true }
               - { label: Intro, name: intro, widget: string }
               - { label: Citation, name: citation, widget: text }
               - { label: Auteur de la citation, name: citationAuteur, widget: string }
@@ -255,8 +404,10 @@ collections:
                 summary: "{{titre}}"
                 collapsed: auto
                 fields:
+                  - { label: Emoji, name: emoji, widget: string, required: false }
                   - { label: Titre, name: titre, widget: string }
                   - { label: Texte, name: texte, widget: text }
+                  - { label: Couleur, name: couleur, widget: color, required: false, allowInput: true, hint: "Barre à gauche du pilier." }
               - label: Valeurs
                 name: valeurs
                 widget: list
@@ -286,6 +437,7 @@ collections:
               - { label: Emoji, name: emoji, widget: string, required: false }
               - { label: Titre, name: titre, widget: string }
               - { label: Sous-texte, name: sous, widget: string }
+              - { label: Couleur, name: couleur, widget: color, required: false, allowInput: true }
 
       - name: animations
         label: Animations
@@ -296,6 +448,7 @@ collections:
           - { label: Badge, name: badge, widget: string }
           - { label: Titre, name: titre, widget: string }
           - { label: Mot en couleur, name: titreAccent, widget: string }
+          - { label: Couleur de ce mot, name: couleurAccent, widget: color, required: false, allowInput: true }
           - { label: Fin du titre, name: titreFin, widget: string }
           - { label: Sous-titre, name: sousTitre, widget: text }
           - label: Atelier nature
@@ -307,6 +460,7 @@ collections:
               - { label: Photo, name: photo, widget: image }
               - { label: Titre, name: titre, widget: string }
               - { label: Mot en couleur, name: titreAccent, widget: string }
+              - { label: Couleur de ce mot, name: couleurAccent, widget: color, required: false, allowInput: true }
               - { label: Intro, name: intro, widget: text }
               - { label: Accroche, name: accroche, widget: text }
               - { label: Puces, name: puces, widget: list, label_singular: puce, field: { label: Texte, name: texte, widget: string } }
@@ -322,6 +476,7 @@ collections:
                   - { label: Emoji, name: emoji, widget: string, required: false }
                   - { label: Titre, name: titre, widget: string }
                   - { label: Texte, name: texte, widget: text }
+                  - { label: Couleur, name: couleur, widget: color, required: false, allowInput: true }
           - label: Anniversaires
             name: anniversaires
             widget: object
@@ -331,6 +486,7 @@ collections:
               - { label: Photo, name: photo, widget: image }
               - { label: Titre, name: titre, widget: string }
               - { label: Mot en couleur, name: titreAccent, widget: string }
+              - { label: Couleur de ce mot, name: couleurAccent, widget: color, required: false, allowInput: true }
               - { label: Intro, name: intro, widget: text }
               - { label: Accroche, name: accroche, widget: string }
               - { label: Conclusion, name: conclusion, widget: text }
@@ -345,6 +501,7 @@ collections:
                   - { label: Emoji, name: emoji, widget: string, required: false }
                   - { label: Titre, name: titre, widget: string }
                   - { label: Texte, name: texte, widget: text }
+                  - { label: Couleur, name: couleur, widget: color, required: false, allowInput: true }
           - label: Stages
             name: stages
             widget: object
@@ -354,6 +511,7 @@ collections:
               - { label: Photo, name: photo, widget: image }
               - { label: Titre, name: titre, widget: string }
               - { label: Mot en couleur, name: titreAccent, widget: string }
+              - { label: Couleur de ce mot, name: couleurAccent, widget: color, required: false, allowInput: true }
               - { label: Intro, name: intro, widget: text }
               - { label: Accroche, name: accroche, widget: text }
               - { label: Encadré carnet, name: carnet, widget: text }
@@ -370,6 +528,7 @@ collections:
           - { label: Étiquette, name: label, widget: string }
           - { label: Titre, name: titre, widget: string }
           - { label: Mot en couleur, name: titreAccent, widget: string }
+          - { label: Couleur de ce mot, name: couleurAccent, widget: color, required: false, allowInput: true }
           - label: Cartes
             name: cartes
             widget: list
@@ -382,6 +541,7 @@ collections:
               - { label: Titre, name: titre, widget: string }
               - { label: Texte, name: texte, widget: text }
               - { label: Photo de fond, name: photo, widget: image, required: false }
+              - { label: Couleur, name: couleur, widget: color, required: false, allowInput: true, hint: "Teinte du dégradé sur la photo. Vide = vert ou brun automatique." }
               - { label: Étiquettes, name: etiquettes, widget: list, label_singular: étiquette, field: { label: Texte, name: texte, widget: string } }
 
       - name: contact
@@ -413,6 +573,7 @@ collections:
             fields:
               - { label: Titre, name: titre, widget: string }
               - { label: Mot en couleur, name: titreAccent, widget: string }
+              - { label: Couleur de ce mot, name: couleurAccent, widget: color, required: false, allowInput: true }
               - { label: Intro, name: intro, widget: text }
               - { label: Texte d’info, name: info, widget: text }
               - { label: Pastilles, name: pastilles, widget: list, label_singular: pastille, field: { label: Texte, name: texte, widget: string } }
@@ -429,6 +590,8 @@ collections:
               - { label: Identifiant, name: id, widget: string, hint: "couveuse, mante ou phasmes — à ne pas modifier." }
               - { label: Titre, name: titre, widget: string }
               - { label: Mot en couleur, name: titreAccent, widget: string }
+              - { label: Couleur de ce mot, name: couleurAccent, widget: color, required: false, allowInput: true }
+              - { label: Emoji, name: emoji, widget: string, required: false }
               - { label: Sous-titre, name: sousTitre, widget: string }
               - { label: Photo carte, name: photo, widget: image }
               - { label: Texte carte, name: texteCarte, widget: text }

@@ -110,6 +110,25 @@
     });
   }
 
+  function applyColor(selector, color) {
+    if (!color) return;
+    document.querySelectorAll(selector).forEach(function (el) {
+      el.style.color = color;
+    });
+  }
+
+  function overlayFromColor(color, fallback) {
+    var raw = String(color || '').trim();
+    var hex = raw.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+    if (!hex) return fallback;
+    var h = hex[1];
+    if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+    var r = parseInt(h.slice(0, 2), 16);
+    var g = parseInt(h.slice(2, 4), 16);
+    var b = parseInt(h.slice(4, 6), 16);
+    return 'linear-gradient(to bottom, rgba(0,0,0,0) 15%, rgba(' + r + ',' + g + ',' + b + ',0.92) 65%)';
+  }
+
   function applyFields(data) {
     document.querySelectorAll('[data-cms]').forEach(function (el) {
       var value = getPath(data, el.getAttribute('data-cms'));
@@ -133,9 +152,10 @@
     if (!box || !bulles || !bulles.length) return;
     box.innerHTML = bulles.map(function (item) {
       var html = escapeHtml(item.texte || '').replace(/\n/g, '<br>');
+      var emoji = item.emoji ? '<span class="hbb-emoji">' + escapeHtml(item.emoji) + '</span>' : '';
       return '<div class="hbb"><img src="' + escapeHtml(item.image || '') +
         '" alt="' + escapeHtml((item.texte || '').replace(/\n/g, ' ')) +
-        '"><div class="bubble-text">' + html + '</div></div>';
+        '">' + emoji + '<div class="bubble-text">' + html + '</div></div>';
     }).join('');
   }
 
@@ -152,7 +172,9 @@
     var box = document.querySelector('[data-cms-piliers]');
     if (!box || !piliers) return;
     box.innerHTML = piliers.map(function (item) {
-      return '<div class="pillier"><h4>' + escapeHtml(item.titre || '') +
+      var color = item.couleur ? ' style="border-left-color:' + String(item.couleur).replace(/"/g, '') + '"' : '';
+      var emoji = item.emoji ? escapeHtml(item.emoji) + ' ' : '';
+      return '<div class="pillier"' + color + '><h4>' + emoji + escapeHtml(item.titre || '') +
         '</h4><p>' + escapeHtml(item.texte || '') + '</p></div>';
     }).join('');
   }
@@ -172,8 +194,9 @@
     var classes = ['', 'gb-green', 'gb-brown'];
     var shadows = ['var(--beige-2)', 'var(--green-dark)', '#8f5228'];
     box.innerHTML = items.map(function (item, i) {
+      var shadow = item.couleur || shadows[i] || 'var(--beige-2)';
       return '<div class="garantie-box ' + (classes[i] || '') +
-        '" style="box-shadow: 4px 4px 0 ' + (shadows[i] || 'var(--beige-2)') +
+        '" style="box-shadow: 4px 4px 0 ' + String(shadow).replace(/"/g, '') +
         ';"><div class="gb-icon">' + escapeHtml(item.emoji || '') +
         '</div><div><div class="gb-title">' + escapeHtml(item.titre || '') +
         '</div><div class="gb-sub">' + escapeHtml(item.sous || '') +
@@ -205,7 +228,8 @@
     var box = document.querySelector('[data-cms-themes]');
     if (!box || !themes) return;
     box.innerHTML = themes.map(function (item) {
-      return '<div class="theme-card"><span class="theme-icon">' + escapeHtml(item.emoji || '') +
+      var color = item.couleur ? ' style="border-left:4px solid ' + String(item.couleur).replace(/"/g, '') + '"' : '';
+      return '<div class="theme-card"' + color + '><span class="theme-icon">' + escapeHtml(item.emoji || '') +
         '</span><div class="theme-card-body"><h4>' + escapeHtml(item.titre || '') +
         '</h4><p>' + escapeHtml(item.texte || '') + '</p></div></div>';
     }).join('');
@@ -215,7 +239,8 @@
     var box = document.querySelector('[data-cms-univers]');
     if (!box || !items) return;
     box.innerHTML = items.map(function (item) {
-      return '<div class="univers-mini-card"><span class="ubc-icon-sm">' +
+      var color = item.couleur ? ' style="border-left:4px solid ' + String(item.couleur).replace(/"/g, '') + '"' : '';
+      return '<div class="univers-mini-card"' + color + '><span class="ubc-icon-sm">' +
         escapeHtml(item.emoji || '') + '</span><div><strong>' +
         escapeHtml(item.titre || '') + '</strong><p>' +
         escapeHtml(item.texte || '') + '</p></div></div>';
@@ -248,9 +273,9 @@
       if (!item.photo) return '';
       var sel = ['.ac-scolaires', '.ac-loisirs', '.ac-collectivites', '.ac-particuliers'][i];
       if (!sel) return '';
-      var overlay = i === 2
+      var overlay = overlayFromColor(item.couleur, i === 2
         ? 'linear-gradient(to bottom, rgba(0,0,0,0) 15%, rgba(100,50,10,0.93) 65%)'
-        : 'linear-gradient(to bottom, rgba(0,0,0,0) 15%, rgba(44,79,42,0.92) 65%)';
+        : 'linear-gradient(to bottom, rgba(0,0,0,0) 15%, rgba(44,79,42,0.92) 65%)');
       return sel + '{ background: ' + overlay + ', url("' + encodeURI(item.photo).replace(/&/g, '%26') + '") center/cover no-repeat !important; }';
     }).join('');
   }
@@ -292,8 +317,12 @@
       var title = card.querySelector('h2');
       var text = card.querySelector('.kit-card-body p');
       if (img && fiche.photo) img.src = fiche.photo;
-      if (title) title.textContent = ((fiche.titre || '') + ' ' + (fiche.titreAccent || '')).trim();
+      if (title) title.textContent = ((fiche.emoji ? fiche.emoji + ' ' : '') + (fiche.titre || '') + ' ' + (fiche.titreAccent || '')).trim();
       if (text) text.textContent = fiche.texteCarte || '';
+      if (fiche.couleurAccent && title) {
+        var accent = title.querySelector('.accent') || title;
+        accent.style.color = fiche.couleurAccent;
+      }
     });
   }
 
@@ -333,6 +362,8 @@
 
     if (page === 'accueil') {
       applyFields(data);
+      applyColor('[data-cms="hero.titreAccent"]', data.hero && data.hero.couleurAccent);
+      applyColor('[data-cms="demarche.titreAccent"]', data.demarche && data.demarche.couleurAccent);
       renderBulles(data.bulles);
       renderTicker(data.bandeau);
       renderPiliers(data.demarche && data.demarche.piliers);
@@ -340,6 +371,10 @@
       renderGaranties(data.garanties);
     } else if (page === 'animations') {
       applyFields(data);
+      applyColor('[data-cms="titreAccent"]', data.couleurAccent);
+      applyColor('[data-cms="atelier.titreAccent"]', data.atelier && data.atelier.couleurAccent);
+      applyColor('[data-cms="anniversaires.titreAccent"]', data.anniversaires && data.anniversaires.couleurAccent);
+      applyColor('[data-cms="stages.titreAccent"]', data.stages && data.stages.couleurAccent);
       renderSimpleList('[data-cms-puces]', data.atelier && data.atelier.puces, 'rubrique-bullet');
       renderTags('[data-cms-etiquettes]', data.atelier && data.atelier.etiquettes, 'theme-tag');
       renderThemes(data.atelier && data.atelier.themes);
@@ -347,17 +382,25 @@
       renderSimpleList('[data-cms-infos]', data.stages && data.stages.infos, 'stage-mini-item');
     } else if (page === 'pour-qui') {
       applyFields(data);
+      applyColor('[data-cms="titreAccent"]', data.couleurAccent);
       renderPourQui(data.cartes);
     } else if (page === 'contact') {
       applyContact(data, theme);
     } else if (page === 'kits') {
       applyKitsIndex(data);
+      applyColor('[data-cms="titreAccent"]', data.index && data.index.couleurAccent);
     } else if (page === 'kit-couveuse') {
       applyKitFiche(findKit(data, 'couveuse'));
+      var couveuse = findKit(data, 'couveuse');
+      applyColor('[data-cms="titreAccent"]', couveuse && couveuse.couleurAccent);
     } else if (page === 'kit-mante') {
       applyKitFiche(findKit(data, 'mante'));
+      var mante = findKit(data, 'mante');
+      applyColor('[data-cms="titreAccent"]', mante && mante.couleurAccent);
     } else if (page === 'kit-phasmes') {
       applyKitFiche(findKit(data, 'phasmes'));
+      var phasmes = findKit(data, 'phasmes');
+      applyColor('[data-cms="titreAccent"]', phasmes && phasmes.couleurAccent);
     }
   }
 

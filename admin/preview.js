@@ -94,37 +94,48 @@
       var d = getData(this.props.entry);
       var upcoming = list(d.upcoming);
       var past = list(d.past);
+      var getAsset = this.props.getAsset;
+
+      function eventCard(event, i, kind) {
+        var raw = String(event.date || '').match(/^(\d{4})-(\d{2})-(\d{2})/);
+        var day = raw ? raw[3] : '—';
+        var monthYear = raw ? raw[2] + '/' + raw[1] : '';
+        var photos = list(event.photos);
+        var first = photos[0];
+        var src = first && (first.url || first);
+        var accent = event.couleur || (kind === 'past' ? '#af6a32' : '#467b43');
+        var title = (event.emoji ? event.emoji + ' ' : '') + (event.title || 'Sans titre');
+        return h('div', {
+          className: 'pv-card pv-event',
+          key: event.id || i,
+          style: { borderLeftColor: accent }
+        },
+          h('div', { className: 'pv-date', style: { color: accent } },
+            h('b', {}, day),
+            h('span', {}, monthYear)
+          ),
+          h('div', { style: { flex: 1 } },
+            src ? img(assetUrl(getAsset, src), 'pv-thumb', event.title || '') : null,
+            h('h3', { style: event.couleurTitre ? { color: event.couleurTitre } : null }, title),
+            event.subtitle ? h('p', { className: 'pv-muted' }, event.subtitle) : null,
+            h('p', { className: 'pv-muted' }, event.location || ''),
+            h('p', {}, event.description || ''),
+            event.time ? h('span', { className: 'pv-chip' }, '⏰ ' + event.time) : null,
+            event.audience ? h('span', { className: 'pv-chip' }, '👥 ' + event.audience) : null,
+            event.price ? h('span', { className: 'pv-chip' }, '🎟️ ' + event.price) : null,
+            photos.length ? h('p', { className: 'pv-muted' }, photos.length + ' photo' + (photos.length > 1 ? 's' : '')) : null
+          )
+        );
+      }
+
       return h('div', { className: 'pv' },
         kicker('Agenda'),
         h('h1', {}, 'Événements'),
+        h('p', { className: 'pv-muted' }, 'La date classe toute seule l’événement. Photos, couleurs et programme s’affichent comme sur le site.'),
         h('h2', {}, 'À venir (' + upcoming.length + ')'),
-        upcoming.length ? upcoming.map(function (event, i) {
-          var raw = String(event.date || '').match(/^(\d{4})-(\d{2})-(\d{2})/);
-          var day = raw ? raw[3] : '—';
-          var monthYear = raw ? raw[1] + '-' + raw[2] : '';
-          return h('div', { className: 'pv-card pv-event', key: event.id || i },
-            h('div', { className: 'pv-date' },
-              h('b', {}, day),
-              h('span', {}, monthYear)
-            ),
-            h('div', {},
-              h('h3', {}, event.title || 'Sans titre'),
-              h('p', { className: 'pv-muted' }, event.location || ''),
-              h('p', {}, event.description || ''),
-              event.time ? h('span', { className: 'pv-chip' }, event.time) : null,
-              event.audience ? h('span', { className: 'pv-chip' }, event.audience) : null,
-              event.price ? h('span', { className: 'pv-chip' }, event.price) : null
-            )
-          );
-        }) : empty('Aucun événement à venir.'),
+        upcoming.length ? upcoming.map(function (event, i) { return eventCard(event, i, 'upcoming'); }) : empty('Aucun événement à venir.'),
         h('h2', {}, 'Passés (' + past.length + ')'),
-        past.length ? past.map(function (event, i) {
-          return h('div', { className: 'pv-card', key: event.id || i },
-            h('h3', {}, event.title || 'Sans titre'),
-            h('p', { className: 'pv-muted' }, (event.date || '') + (event.location ? ' · ' + event.location : '')),
-            h('p', {}, event.recap || event.description || '')
-          );
-        }) : empty('Aucun événement passé.')
+        past.length ? past.map(function (event, i) { return eventCard(event, i, 'past'); }) : empty('Aucun événement passé.')
       );
     }
   });

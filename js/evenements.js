@@ -92,55 +92,222 @@ async function loadEvents() {
   }
 }
 
-function createEventCard(event) {
-  const detailsHtml = event.details ?
-    `<div style="margin-top:1rem;">
-      <div style="display:inline-block;background:var(--green);color:var(--white);padding:0.7rem 1.2rem;border-radius:10px;box-shadow:0 3px 10px rgba(70,123,67,0.25);">
-        <span style="font-family:'Montserrat',sans-serif;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;opacity:0.9;">✨ EN PLUS :</span>
-        <span style="font-family:'Lora',serif;font-size:0.9rem;margin-left:0.5rem;">${escapeHtml(event.details)}</span>
+function richText(str) {
+  return escapeHtml(str)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+}
+
+function cssColor(value) {
+  const raw = String(value || '').trim();
+  if (!raw || /[;{}<>]/.test(raw)) return '';
+  if (/^#([0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(raw)) return raw;
+  if (/^rgba?\(/i.test(raw) || /^hsla?\(/i.test(raw)) return raw;
+  if (/^[a-z]+$/i.test(raw)) return raw;
+  return '';
+}
+
+function eventAccent(event, fallback) {
+  return cssColor(event.couleur || event.color) || fallback;
+}
+
+function eventTitleColor(event) {
+  return cssColor(event.couleurTitre);
+}
+
+function eventTitleHtml(event) {
+  const title = String(event.title || '');
+  const emoji = String(event.emoji || '').trim();
+  const prefix = emoji && title.indexOf(emoji) !== 0 ? escapeHtml(emoji) + ' ' : '';
+  return prefix + escapeHtml(title);
+}
+
+function eventSubtitle(event) {
+  return event.subtitle || event.sousTitre || '';
+}
+
+function normalizePhoto(photo) {
+  if (!photo) return null;
+  if (typeof photo === 'string') {
+    return { url: photo, caption: '', role: 'galerie', position: 'gauche', cadrage: 'contenir', focus: 'centre', rotation: 0 };
+  }
+  return photo;
+}
+
+function eventPhotos(event) {
+  return (event.photos || []).map(normalizePhoto).filter(function (photo) {
+    return photo && (photo.url || photo.src);
+  });
+}
+
+function mainPhoto(event) {
+  const photos = eventPhotos(event);
+  return photos.find(function (photo) { return photo.role === 'principale'; }) || photos[0] || null;
+}
+
+function galleryPhotos(event) {
+  const photos = eventPhotos(event);
+  const main = mainPhoto(event);
+  return photos.filter(function (photo) { return photo !== main; });
+}
+
+function photoLayout(event) {
+  const main = mainPhoto(event);
+  const pos = (main && main.position) || event.dispositionPhoto || 'gauche';
+  if (pos === 'droite' || pos === 'haut' || pos === 'pleine') return pos;
+  return 'gauche';
+}
+
+function focusPos(focus) {
+  const map = { centre: 'center', haut: 'top', bas: 'bottom', gauche: 'left', droite: 'right' };
+  return map[focus] || 'center';
+}
+
+function photoVars(photo) {
+  const item = normalizePhoto(photo) || {};
+  const fill = item.cadrage === 'remplir' || item.zoom === true || item.zoom === 'true';
+  const rot = Number(item.rotation || 0) || 0;
+  return '--photo-fit:' + (fill ? 'cover' : 'contain') +
+    ';--photo-pos:' + focusPos(item.focus) +
+    ';--photo-rot:' + rot + 'deg';
+}
+
+function photoSrc(photo) {
+  const item = normalizePhoto(photo);
+  return mediaUrl(item && (item.url || item.src));
+}
+
+function photoCaption(photo) {
+  const item = normalizePhoto(photo);
+  return item && item.caption ? item.caption : '';
+}
+
+function renderMainPhoto(event, extraClass) {
+  const photo = mainPhoto(event);
+  if (!photo) return '';
+  const src = photoSrc(photo);
+  const caption = photoCaption(photo);
+  const captionHtml = caption ? `<div class="past-img-caption">${escapeHtml(caption)}</div>` : '';
+  const badge = extraClass === 'upcoming-photo' ? '' :
+    `<div class="past-date-badge">${escapeHtml(event.day)} ${escapeHtml(event.month)}${event.year ? ' ' + escapeHtml(event.year) : ''}</div>`;
+  return `<div class="${extraClass || 'past-img-wrapper'} event-photo" style="${photoVars(photo)}">
+    <div class="past-img-ratio"></div>
+    <img src="${escapeHtml(src)}" alt="${escapeHtml(caption || event.title || '')}">
+    ${captionHtml}
+    ${badge}
+  </div>`;
+}
+
+function renderGallery(event) {
+  const photos = galleryPhotos(event);
+  if (!photos.length) return '';
+  const grid = event.galerie === 'grille' ? ' is-grid' : '';
+  return `<div class="past-gallery-container">
+      <div class="past-gallery${grid}">
+      ${photos.map(function (photo) {
+        const caption = photoCaption(photo);
+        const captionHtml = caption ? `<div class="past-gallery-caption">${escapeHtml(caption)}</div>` : '';
+        return `
+        <div class="past-gallery-item event-photo" style="${photoVars(photo)}">
+          <img src="${escapeHtml(photoSrc(photo))}" alt="${escapeHtml(caption || event.title || '')}">
+          ${captionHtml}
+        </div>`;
+      }).join('')}
       </div>
-    </div>`
-    : '';
+    </div>`;
+}
+
+function renderProgram(event) {
+  if (!event.program || !event.program.length) return '';
+  const heading = event.titreProgramme || 'Au programme';
+  const emoji = event.emojiProgramme || '🎯';
+  return `<div class="event-program">
+      <h4 class="past-subtitle">
+        <span>${escapeHtml(emoji)}</span> ${escapeHtml(heading)}
+      </h4>
+      <div class="past-program-grid">
+        ${event.program.map(function (item) {
+          const color = cssColor(item.couleur);
+          const style = color ? ` style="border-top-color:${color}"` : '';
+          return `
+          <div class="past-program-item"${style}>
+            <span class="ppi-icon">${escapeHtml(item.emoji || '')}</span>
+            <div class="ppi-content">
+              <h5>${escapeHtml(item.title || '')}</h5>
+              <p>${richText(item.description || '')}</p>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+}
+
+function renderDetailsBox(event) {
+  if (!event.details) return '';
+  const accent = eventAccent(event, 'var(--green)');
+  return `<div class="event-plus">
+      <div class="event-plus-inner" style="background:${accent}">
+        <span class="event-plus-label">✨ EN PLUS :</span>
+        <span class="event-plus-text">${richText(event.details)}</span>
+      </div>
+    </div>`;
+}
+
+function createEventCard(event) {
+  const accent = eventAccent(event, 'var(--green)');
+  const titleColor = eventTitleColor(event);
+  const layout = photoLayout(event);
+  const photoHtml = renderMainPhoto(event, 'upcoming-photo past-img-wrapper');
+  const subtitle = eventSubtitle(event);
+  const extra = [
+    event.recap ? `<div class="past-recap">${richText(event.recap)}</div>` : '',
+    renderGallery(event),
+    renderProgram(event),
+    event.footer ? `<p class="past-footer">${richText(event.footer)}</p>` : ''
+  ].join('');
 
   return `
-    <div class="upcoming-card" style="background:#ffffff;border-left:5px solid var(--green);border-radius:12px;padding:2rem;margin-bottom:1.5rem;display:flex;gap:2.5rem;align-items:flex-start;transition:all 0.3s ease;flex-wrap:wrap;box-shadow:0 4px 15px rgba(70,123,67,0.1);position:relative;" onmouseover="this.style.boxShadow='0 8px 25px rgba(70,123,67,0.18)';this.style.transform='translateX(5px)';" onmouseout="this.style.boxShadow='0 4px 15px rgba(70,123,67,0.1)';this.style.transform='translateX(0)';">
+    <div class="upcoming-card layout-${layout}" style="--event-accent:${accent};${titleColor ? '--event-title:' + titleColor + ';' : ''}">
       <div class="timeline-dot"></div>
-      <div class="upcoming-date" style="text-align:left;min-width:100px;display:flex;flex-direction:column;border-right:3px solid var(--green);padding-right:2rem;">
-        <div class="upcoming-day" style="font-size:2.8rem;font-weight:900;color:var(--green-dark);line-height:1;font-family:'Montserrat',sans-serif;letter-spacing:-1px;">${escapeHtml(event.day)}</div>
-        <div class="upcoming-month" style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--green);text-transform:uppercase;margin-top:0.2rem;letter-spacing:1px;">${escapeHtml(event.month)}</div>
-        ${event.year ? `<div class="upcoming-year" style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--beige-2);margin-top:0.3rem;">${escapeHtml(event.year)}</div>` : ''}
+      <div class="upcoming-date">
+        <div class="upcoming-day">${escapeHtml(event.day)}</div>
+        <div class="upcoming-month">${escapeHtml(event.month)}</div>
+        ${event.year ? `<div class="upcoming-year">${escapeHtml(event.year)}</div>` : ''}
       </div>
-      <div class="upcoming-content" style="flex:1;min-width:280px;">
-        <h3 style="font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;color:var(--green-dark);margin:0 0 0.5rem;line-height:1.3;">${escapeHtml(event.title)}</h3>
-        <p class="upcoming-location" style="font-size:0.9rem;color:#7a6a50;margin:0 0 1rem;display:flex;align-items:center;gap:0.4rem;font-weight:600;">
-          <span style="font-size:1.1rem;">📍</span>
-          ${escapeHtml(event.location)}
+      ${photoHtml}
+      <div class="upcoming-content">
+        <h3>${eventTitleHtml(event)}</h3>
+        ${subtitle ? `<p class="event-subtitle">${escapeHtml(subtitle)}</p>` : ''}
+        <p class="upcoming-location">
+          <span>📍</span>
+          ${escapeHtml(event.location || '')}
         </p>
         <button class="upcoming-toggle-btn" onclick="toggleUpcomingCard(this)">
           <span class="utb-icon">👇</span>
           <span class="utb-text">En savoir plus</span>
         </button>
         <div class="upcoming-details-wrap">
-          <p style="font-family:'Lora',serif;font-size:1rem;line-height:1.7;color:#5a5040;margin:0;">${escapeHtml(event.description)}</p>
-          ${detailsHtml}
+          <p class="upcoming-desc">${richText(event.description || '')}</p>
+          ${renderDetailsBox(event)}
+          ${extra}
         </div>
       </div>
-      <div class="upcoming-badges" style="display:flex;flex-direction:column;gap:0.7rem;min-width:160px;">
+      <div class="upcoming-badges">
         ${event.time ? `
-        <span class="upcoming-badge" style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(70,123,67,0.25);">
-          <span style="font-size:1rem;">⏰</span>
+        <span class="upcoming-badge badge-time">
+          <span>⏰</span>
           ${escapeHtml(event.time)}
         </span>
         ` : ''}
         ${event.audience ? `
-        <span class="upcoming-badge" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--brown);color:var(--white);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(175,106,50,0.25);">
-          <span style="font-size:1rem;">👥</span>
+        <span class="upcoming-badge badge-audience">
+          <span>👥</span>
           ${escapeHtml(event.audience)}
         </span>
         ` : ''}
         ${event.price ? `
-        <span class="upcoming-badge" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--beige-light);border:1px solid var(--beige-2);color:var(--brown);padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;box-shadow:0 2px 8px rgba(175,106,50,0.15);">
-          <span style="font-size:1rem;">🎟️</span>
+        <span class="upcoming-badge badge-price">
+          <span>🎟️</span>
           ${escapeHtml(event.price)}
         </span>
         ` : ''}
@@ -163,108 +330,30 @@ function toggleUpcomingCard(btn) {
   }
 }
 
-function photoSrc(photo) {
-  return mediaUrl(typeof photo === 'string' ? photo : photo && photo.url);
-}
-
-function photoCaption(photo) {
-  return typeof photo === 'object' && photo && photo.caption ? photo.caption : '';
-}
-
-function photoStyle(photo) {
-  const zoom = typeof photo === 'object' && photo && photo.zoom;
-  const rotation = typeof photo === 'object' && photo && photo.rotation ? Number(photo.rotation) : 0;
-  const fit = zoom ? 'cover' : 'contain';
-  const rotate = rotation ? ` transform:rotate(${rotation}deg);` : '';
-  return `object-fit:${fit};${rotate}`;
-}
-
 function createPastEventCard(event) {
   const eventId = String(event.id || 'event-' + Math.random().toString(36).slice(2, 11)).replace(/[^a-zA-Z0-9_-]/g, '-');
-
-  const mainPhotoHtml = event.photos && event.photos.length > 0 ?
-    (() => {
-      const photo = event.photos[0];
-      const photoUrl = photoSrc(photo);
-      const caption = photoCaption(photo);
-      const captionHtml = caption ? `<div class="past-img-caption">${escapeHtml(caption)}</div>` : '';
-      return `<div class="past-img-wrapper">
-        <div class="past-img-ratio"></div>
-        <img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(caption || event.title)}" style="${photoStyle(photo)}">
-        ${captionHtml}
-        <div class="past-date-badge">${escapeHtml(event.day)} ${escapeHtml(event.month)}${event.year ? ' ' + escapeHtml(event.year) : ''}</div>
-      </div>`;
-    })()
-    : '';
-
-  const galleryHtml = event.photos && event.photos.length > 1 ?
-    `<div class="past-gallery-container">
-      <div class="past-gallery">
-      ${event.photos.slice(1).map(photo => {
-        const photoUrl = photoSrc(photo);
-        const caption = photoCaption(photo);
-        const captionHtml = caption ? `<div class="past-gallery-caption">${escapeHtml(caption)}</div>` : '';
-        return `
-        <div class="past-gallery-item">
-          <img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(caption || event.title)}" style="${photoStyle(photo)}">
-          ${captionHtml}
-        </div>
-      `;
-      }).join('')}
-      </div>
-    </div>`
-    : '';
-
-  const programHtml = event.program && event.program.length > 0 ?
-    `<div style="margin-top:1.5rem;">
-      <h4 class="past-subtitle">
-        <span style="font-size:1.5rem;">🎯</span> Au programme
-      </h4>
-      <div class="past-program-grid">
-        ${event.program.map(item => `
-          <div class="past-program-item">
-            <span class="ppi-icon">${escapeHtml(item.emoji || '')}</span>
-            <div class="ppi-content">
-              <h5>${escapeHtml(item.title)}</h5>
-              <p>${escapeHtml(item.description)}</p>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    </div>`
-    : '';
-
-  const ctaHtml = `
-    <div class="past-cta-container">
+  const accent = eventAccent(event, 'var(--brown)');
+  const titleColor = eventTitleColor(event);
+  const layout = photoLayout(event);
+  const icon = event.icone || '🍃';
+  const subtitle = eventSubtitle(event);
+  const mainPhotoHtml = renderMainPhoto(event);
+  const extraDetails = [
+    event.recap ? `<div class="past-recap">${richText(event.recap)}</div>` : '',
+    renderGallery(event),
+    renderProgram(event),
+    event.footer ? `<p class="past-footer">${richText(event.footer)}</p>` : '',
+    `<div class="past-cta-container">
       <a href="/contact.html" class="btn-primary">
         <span>💬</span> Organiser un événement similaire
       </a>
-    </div>
-  `;
-
-  const expandableContent = `
-    <div id="details-${eventId}" style="max-height:0;overflow:hidden;transition:max-height 0.5s ease-out;">
-      <div class="past-details-inner">
-        ${event.recap ? `<div class="past-recap">${escapeHtml(event.recap)}</div>` : ''}
-        ${galleryHtml}
-        ${programHtml}
-        ${event.footer ? `<p class="past-footer">${escapeHtml(event.footer)}</p>` : ''}
-        ${ctaHtml}
-      </div>
-    </div>
-  `;
-
-  const toggleButton = `
-    <button onclick="toggleEventDetails('${eventId}')" id="btn-${eventId}" class="past-toggle-btn">
-      <span id="icon-${eventId}">👇</span>
-      <span id="text-${eventId}">Voir le détail de l'événement</span>
-    </button>
-  `;
+    </div>`
+  ].join('');
 
   return `
-    <div class="past-card">
-      <span class="past-leaf-icon">🍃</span>
-      <div class="past-main">
+    <div class="past-card" style="--event-accent:${accent};${titleColor ? '--event-title:' + titleColor + ';' : ''}">
+      <span class="past-leaf-icon">${escapeHtml(icon)}</span>
+      <div class="past-main layout-${layout}">
         ${mainPhotoHtml}
         <div class="past-info">
           <div class="past-header">
@@ -274,17 +363,26 @@ function createPastEventCard(event) {
               ${event.year ? `<div class="pd-year">${escapeHtml(event.year)}</div>` : ''}
             </div>
             <div class="past-title-box">
-              <h3>${escapeHtml(event.title)}</h3>
+              <h3>${eventTitleHtml(event)}</h3>
+              ${subtitle ? `<p class="event-subtitle">${escapeHtml(subtitle)}</p>` : ''}
               <p class="past-location">
-                <span style="font-size:1.1rem;">📍</span> ${escapeHtml(event.location)}
+                <span>📍</span> ${escapeHtml(event.location || '')}
               </p>
             </div>
           </div>
-          <p class="past-desc">${escapeHtml(event.description)}</p>
-          ${toggleButton}
+          <p class="past-desc">${richText(event.description || '')}</p>
+          ${renderDetailsBox(event)}
+          <button onclick="toggleEventDetails('${eventId}')" id="btn-${eventId}" class="past-toggle-btn">
+            <span id="icon-${eventId}">👇</span>
+            <span id="text-${eventId}">Voir le détail de l'événement</span>
+          </button>
         </div>
       </div>
-      ${expandableContent}
+      <div id="details-${eventId}" class="past-details">
+        <div class="past-details-inner">
+          ${extraDetails}
+        </div>
+      </div>
     </div>
   `;
 }
@@ -314,6 +412,7 @@ async function displayUpcomingEvents(containerId) {
   }
 
   container.innerHTML = upcomingEvents.map(event => createEventCard(event)).join('');
+  initGalleryZoom();
 }
 
 async function displayPastEvents() {
@@ -449,17 +548,10 @@ function toggleEventDetails(eventId) {
   const textSpan = document.getElementById(`text-${eventId}`);
   if (!detailsDiv) return;
 
-  if (detailsDiv.style.maxHeight === '0px' || detailsDiv.style.maxHeight === '') {
-    detailsDiv.style.maxHeight = 'none';
-    detailsDiv.style.overflow = 'visible';
-    if (iconSpan) iconSpan.textContent = '👆';
-    if (textSpan) textSpan.textContent = 'Masquer les détails';
-  } else {
-    detailsDiv.style.maxHeight = '0px';
-    detailsDiv.style.overflow = 'hidden';
-    if (iconSpan) iconSpan.textContent = '👇';
-    if (textSpan) textSpan.textContent = "Voir le détail de l'événement";
-  }
+  const open = !detailsDiv.classList.contains('is-open');
+  detailsDiv.classList.toggle('is-open', open);
+  if (iconSpan) iconSpan.textContent = open ? '👆' : '👇';
+  if (textSpan) textSpan.textContent = open ? 'Masquer les détails' : "Voir le détail de l'événement";
 }
 
 function openGalleryOverlay(imgSrc, imgAlt) {
@@ -474,11 +566,13 @@ function openGalleryOverlay(imgSrc, imgAlt) {
 }
 
 function initGalleryZoom() {
-  document.querySelectorAll('.past-gallery-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      if (img) openGalleryOverlay(img.src, img.alt);
-    });
+  if (document.documentElement.dataset.galleryZoom === '1') return;
+  document.documentElement.dataset.galleryZoom = '1';
+  document.addEventListener('click', function (e) {
+    const item = e.target.closest('.past-gallery-item, .past-img-wrapper, .upcoming-photo');
+    if (!item || e.target.closest('.gallery-overlay')) return;
+    const img = item.querySelector('img');
+    if (img) openGalleryOverlay(img.src, img.alt);
   });
 }
 
