@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Écocurieux</title>
+<meta name="description" content="Page Écocurieux — atelier nature en Saône-et-Loire.">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Écocurieux">
+<meta property="og:image" content="https://ecocurieux.com/images-creation-de-site/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/site-cms.js"></script>
+</head>
+<body data-page="page-libre">
+
+<nav>
+  <a href="/#accueil" class="nav-logo">
+    <div class="nav-logo-img"><img src="/images-creation-de-site/logo.png" alt="Écocurieux logo"></div>
+    <div>
+      <div class="nav-logo-name">Écocurieux</div>
+      <div class="nav-logo-sub">L'atelier nature sur mesure</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Accueil</a></li>
+    <li>
+      <a href="/animations.html">Ce que je propose <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <a href="/animations.html#animations"><span class="dd-icon">🌿</span>Animations nature</a>
+        <a href="/animations.html#anniversaires"><span class="dd-icon">🎉</span>Anniversaires</a>
+        <a href="/animations.html#stages"><span class="dd-icon">🥾</span>Stages nature</a>
+      </div>
+    </li>
+    <li>
+      <a href="/kits/">Kits pédagogiques <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <a href="/kits/couveuse.html"><span class="dd-icon">🥚</span>Couveuse pédagogique</a>
+        <a href="/kits/mante-religieuse.html"><span class="dd-icon">🪲</span>Kit mante religieuse</a>
+        <a href="/kits/phasmes.html"><span class="dd-icon">🪵</span>Kit phasmes</a>
+      </div>
+    </li>
+    <li><a href="/pour-qui.html">Pour qui ?</a></li>
+    <li><a href="/evenements.html">Événements</a></li>
+  </ul>
+  <a href="/contact.html" class="nav-cta">📬 Me contacter</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mm-head">Menu</span>
+  <a href="/" onclick="toggleMenu()"><span>🏠</span> Accueil</a>
+  <span class="mm-head">Ce que je propose</span>
+  <a href="/animations.html#animations" onclick="toggleMenu()"><span>🌿</span> Animations nature</a>
+  <a href="/animations.html#anniversaires" onclick="toggleMenu()"><span>🎉</span> Anniversaires</a>
+  <a href="/animations.html#stages" onclick="toggleMenu()"><span>🥾</span> Stages nature</a>
+  <span class="mm-head">Services</span>
+  <a href="/kits/" onclick="toggleMenu()"><span>🥚</span> Kits pédagogiques</a>
+  <a href="/pour-qui.html" onclick="toggleMenu()"><span>📌</span> Pour qui ?</a>
+  <span class="mm-head">Informations</span>
+  <a href="/evenements.html" onclick="toggleMenu()"><span>📅</span> Événements</a>
+  <a href="/contact.html" class="mm-cta" onclick="toggleMenu()">Me contacter</a>
+</div>
+
+<main class="free-page padded" id="free-page">
+  <p class="free-loading">Ouverture de la page…</p>
+</main>
+
+<footer style="background: var(--green-dark); color: rgba(243,222,180,0.55); padding: 2rem 1rem 3rem; text-align: center;">
+  <p style="font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:700; color:var(--beige); margin-bottom: 5px;">Écocurieux · L'atelier nature sur mesure</p>
+  <p style="font-size:0.8rem; margin-bottom: 10px; color:rgba(243,222,180,0.75);">Amandine Junier-Dubus</p>
+  <p style="font-size:0.75rem;">© 2026 · Saône-et-Loire · <a href="mailto:amandinejd@gmail.com" style="color:rgba(243,222,180,0.85); font-weight:600; text-decoration:none;">amandinejd@gmail.com</a></p>
+</footer>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -261,12 +261,58 @@
     }
   });
 
+  var PagesLibrePreview = createClass({
+    render: function () {
+      var d = getData(this.props.entry);
+      var pages = list(d.pages);
+      var getAsset = this.props.getAsset;
+      return h('div', { className: 'pv' },
+        kicker('Nouvelles pages'),
+        h('h1', {}, 'Pages créées'),
+        pages.length ? pages.map(function (page, i) {
+          return h('div', { className: 'pv-card', key: page.slug || i },
+            h('h3', {}, (page.emoji ? page.emoji + ' ' : '') + (page.titre || 'Sans titre')),
+            h('p', { className: 'pv-muted' }, '/p/' + (page.slug || '…') + (page.visible === false ? ' · masquée' : '') + (page.afficherMenu ? ' · dans le menu' : '')),
+            h('p', {}, page.intro || page.sousTitre || ''),
+            page.photos && page.photos[0] ? img(assetUrl(getAsset, page.photos[0].url), 'pv-img', page.titre || '') : null
+          );
+        }) : empty('Aucune page pour le moment. Clique « Ajouter » à gauche.')
+      );
+    }
+  });
+
+  var MenuPreview = createClass({
+    render: function () {
+      var d = getData(this.props.entry);
+      var items = list(d.items).filter(function (item) { return item.visible !== false; });
+      var cta = d.cta || {};
+      return h('div', { className: 'pv' },
+        kicker('Menu du site'),
+        h('h1', {}, 'Navigation'),
+        items.map(function (item, i) {
+          return h('div', { className: 'pv-card', key: item.id || i },
+            h('h3', {}, (item.emoji ? item.emoji + ' ' : '') + (item.label || '')),
+            h('p', { className: 'pv-muted' }, item.href || ''),
+            list(item.children).map(function (child, j) {
+              return h('span', { className: 'pv-chip', key: j }, (child.emoji ? child.emoji + ' ' : '') + (child.label || ''));
+            })
+          );
+        }),
+        cta.visible === false ? null : h('div', { className: 'pv-card' },
+          h('h3', {}, (cta.emoji ? cta.emoji + ' ' : '') + (cta.label || 'Me contacter'))
+        )
+      );
+    }
+  });
+
   CMS.registerPreviewStyle('/admin/preview.css');
   CMS.registerPreviewTemplate('theme', ThemePreview);
+  CMS.registerPreviewTemplate('menu', MenuPreview);
   CMS.registerPreviewTemplate('agenda', EventsPreview);
   CMS.registerPreviewTemplate('accueil', AccueilPreview);
   CMS.registerPreviewTemplate('animations', AnimationsPreview);
   CMS.registerPreviewTemplate('pour_qui', PourQuiPreview);
   CMS.registerPreviewTemplate('contact', ContactPreview);
   CMS.registerPreviewTemplate('kits', KitsPreview);
+  CMS.registerPreviewTemplate('pages_libres_file', PagesLibrePreview);
 })();

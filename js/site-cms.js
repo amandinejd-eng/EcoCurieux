@@ -110,6 +110,158 @@
     });
   }
 
+  function richText(str) {
+    return escapeHtml(str)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
+  }
+
+  function slugify(value) {
+    return String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  function isVisible(item) {
+    return item && item.visible !== false;
+  }
+
+  function applyNav(nav, extras) {
+    if (!nav || !nav.items) return;
+    var items = nav.items.filter(isVisible);
+    var extraPages = ((extras && extras.pages) || []).filter(function (page) {
+      return isVisible(page) && page.afficherMenu;
+    });
+    var hrefs = items.map(function (item) { return item.href; });
+    extraPages.forEach(function (page) {
+      var href = '/p/' + slugify(page.slug || page.titre);
+      if (hrefs.indexOf(href) !== -1) return;
+      items.push({
+        emoji: page.emoji || '🌿',
+        label: page.titre || page.slug,
+        href: href
+      });
+      hrefs.push(href);
+    });
+
+    var links = document.querySelector('.nav-links');
+    if (links) {
+      links.innerHTML = items.map(function (item) {
+        var children = (item.children || []).filter(isVisible);
+        if (children.length) {
+          return '<li><a href="' + escapeHtml(item.href || '#') + '">' + escapeHtml(item.label || '') +
+            ' <span class="arrow">▼</span></a><div class="dropdown">' +
+            children.map(function (child) {
+              return '<a href="' + escapeHtml(child.href || '#') + '"><span class="dd-icon">' +
+                escapeHtml(child.emoji || '') + '</span>' + escapeHtml(child.label || '') + '</a>';
+            }).join('') + '</div></li>';
+        }
+        return '<li><a href="' + escapeHtml(item.href || '#') + '">' + escapeHtml(item.label || '') + '</a></li>';
+      }).join('');
+    }
+
+    var cta = nav.cta;
+    document.querySelectorAll('.nav-cta').forEach(function (el) {
+      if (!cta || cta.visible === false) {
+        el.style.display = 'none';
+        return;
+      }
+      el.style.display = '';
+      el.href = cta.href || '/contact.html';
+      el.textContent = ((cta.emoji ? cta.emoji + ' ' : '') + (cta.label || 'Me contacter')).trim();
+    });
+
+    var mobile = document.getElementById('mobileMenu');
+    if (mobile) {
+      var html = '<span class="mm-head">Menu</span>';
+      items.forEach(function (item) {
+        var children = (item.children || []).filter(isVisible);
+        if (children.length) {
+          html += '<span class="mm-head">' + escapeHtml(item.label || '') + '</span>';
+          children.forEach(function (child) {
+            html += '<a href="' + escapeHtml(child.href || '#') + '" onclick="toggleMenu()"><span>' +
+              escapeHtml(child.emoji || '') + '</span> ' + escapeHtml(child.label || '') + '</a>';
+          });
+        } else {
+          html += '<a href="' + escapeHtml(item.href || '#') + '" onclick="toggleMenu()"><span>' +
+            escapeHtml(item.emoji || '') + '</span> ' + escapeHtml(item.label || '') + '</a>';
+        }
+      });
+      if (cta && cta.visible !== false) {
+        html += '<a href="' + escapeHtml(cta.href || '/contact.html') + '" class="mm-cta" onclick="toggleMenu()">' +
+          escapeHtml(cta.label || 'Me contacter') + '</a>';
+      }
+      mobile.innerHTML = html;
+    }
+
+    if (window.EcoNav && typeof window.EcoNav.bind === 'function') window.EcoNav.bind();
+  }
+
+  function pageSlug() {
+    var path = String(location.pathname || '').replace(/\/+$/, '');
+    var match = path.match(/\/p\/([^/]+)$/);
+    if (match) return decodeURIComponent(match[1]);
+    try {
+      return new URLSearchParams(location.search).get('slug') || '';
+    } catch (err) {
+      return '';
+    }
+  }
+
+  function renderFreePage(bundle) {
+    var slug = slugify(pageSlug());
+    var pages = (bundle && bundle.pages) || [];
+    var page = pages.find(function (item) {
+      return slugify(item.slug || item.titre) === slug && isVisible(item);
+    });
+    var root = document.getElementById('free-page');
+    if (!root) return;
+    if (!page) {
+      document.title = 'Page introuvable – Écocurieux';
+      root.innerHTML =
+        '<div class="free-empty"><div>🌱</div><h1>Cette page n’existe pas (encore)</h1>' +
+        '<p>Elle a peut-être été masquée ou l’adresse n’est pas la bonne.</p>' +
+        '<a class="btn-primary" href="/">Retour à l’accueil</a></div>';
+      return;
+    }
+    document.title = (page.titre || 'Écocurieux') + ' – Écocurieux';
+    var accent = page.couleurAccent ? ' style="color:' + String(page.couleurAccent).replace(/"/g, '') + '"' : '';
+    var photos = (page.photos || []).filter(function (photo) { return photo && photo.url; });
+    var photoHtml = photos.map(function (photo) {
+      var pos = photo.position || 'pleine';
+      return '<figure class="free-photo layout-' + pos + '"><img src="' + escapeHtml(photo.url) +
+        '" alt="' + escapeHtml(photo.caption || page.titre || '') + '">' +
+        (photo.caption ? '<figcaption>' + escapeHtml(photo.caption) + '</figcaption>' : '') +
+        '</figure>';
+    }).join('');
+    var blocs = (page.blocs || []).map(function (bloc) {
+      var color = bloc.couleur ? ' style="border-left-color:' + String(bloc.couleur).replace(/"/g, '') + '"' : '';
+      var img = bloc.photo ? '<img src="' + escapeHtml(bloc.photo) + '" alt="' + escapeHtml(bloc.titre || '') + '">' : '';
+      return '<article class="free-block"' + color + '>' + img + '<div><h2>' +
+        (bloc.emoji ? escapeHtml(bloc.emoji) + ' ' : '') + escapeHtml(bloc.titre || '') +
+        '</h2><p>' + richText(bloc.texte || '') + '</p></div></article>';
+    }).join('');
+    var cta = (page.ctaLabel && page.ctaLien)
+      ? '<a class="btn-primary" href="' + escapeHtml(page.ctaLien) + '">' + escapeHtml(page.ctaLabel) + '</a>'
+      : '';
+    root.innerHTML =
+      '<header class="free-hero">' +
+        (page.badge ? '<div class="hero-badge">' + escapeHtml(page.badge) + '</div>' : '') +
+        '<h1>' + (page.emoji ? '<span class="free-emoji">' + escapeHtml(page.emoji) + '</span> ' : '') +
+        escapeHtml(page.titre || '') +
+        (page.titreAccent ? ' <span class="accent"' + accent + '>' + escapeHtml(page.titreAccent) + '</span>' : '') +
+        '</h1>' +
+        (page.sousTitre ? '<p class="free-sub">' + escapeHtml(page.sousTitre) + '</p>' : '') +
+      '</header>' +
+      (page.intro ? '<p class="free-intro">' + richText(page.intro) + '</p>' : '') +
+      (photoHtml ? '<div class="free-photos">' + photoHtml + '</div>' : '') +
+      (blocs ? '<div class="free-blocks">' + blocs + '</div>' : '') +
+      (cta ? '<div class="free-cta">' + cta + '</div>' : '');
+  }
+
   function applyColor(selector, color) {
     if (!color) return;
     document.querySelectorAll(selector).forEach(function (el) {
@@ -346,8 +498,12 @@
     }
   }
 
-  async function initContent(theme) {
+  async function initContent(theme, extras) {
     var page = document.body && document.body.getAttribute('data-page');
+    if (page === 'page-libre') {
+      renderFreePage(extras || { pages: [] });
+      return;
+    }
     var file = PAGE_FILES[page];
     if (!file) return;
     var data;
@@ -421,25 +577,34 @@
     }
   };
 
-  fetch('/contenu/theme.json', { cache: 'no-store' })
-    .then(function (res) { return res.ok ? res.json() : {}; })
-    .then(function (theme) {
-      var start = function () {
-        applyTheme(theme);
-        initContent(theme);
-      };
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', start);
-      } else {
-        start();
-      }
-    })
-    .catch(function () {
-      var start = function () { initContent(null); };
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', start);
-      } else {
-        start();
-      }
-    });
+  function loadJson(url) {
+    return fetch(url, { cache: 'no-store' }).then(function (res) {
+      return res.ok ? res.json() : null;
+    }).catch(function () { return null; });
+  }
+
+  function boot(theme, nav, extras) {
+    applyTheme(theme);
+    applyNav(nav, extras);
+    initContent(theme, extras);
+  }
+
+  Promise.all([
+    loadJson('/contenu/theme.json'),
+    loadJson('/contenu/navigation.json'),
+    loadJson('/contenu/pages-libre.json')
+  ]).then(function (results) {
+    var theme = results[0] || {};
+    var nav = results[1];
+    var extras = results[2];
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { boot(theme, nav, extras); });
+    } else {
+      boot(theme, nav, extras);
+    }
+  }).catch(function () {
+    var start = function () { initContent(null, null); };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+    else start();
+  });
 })();

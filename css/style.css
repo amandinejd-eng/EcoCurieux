@@ -2024,3 +2024,98 @@
     .interventions:hover { box-shadow: 5px 5px 0 #8f5228; }
     .atelier-card:hover { transform: none; }
   }
+
+  .free-page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 7.5rem 1.4rem 5rem;
+  }
+  .free-loading, .free-empty {
+    text-align: center;
+    color: #7a6a50;
+    padding: 3rem 1rem;
+  }
+  .free-empty h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--green-dark);
+    margin: 0.6rem 0;
+  }
+  .free-hero { text-align: center; margin-bottom: 2rem; }
+  .free-emoji { font-size: 1.15em; }
+  .free-hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--green-dark);
+    margin: 0.6rem 0 0.4rem;
+  }
+  .free-sub {
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    color: #5a5040;
+  }
+  .free-intro {
+    font-family: 'Lora', serif;
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: #5a5040;
+    margin-bottom: 2rem;
+  }
+  .free-photos {
+    display: grid;
+    gap: 1.2rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .free-photo {
+    margin: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--beige-light);
+  }
+  .free-photo img { width: 100%; display: block; }
+  .free-photo figcaption {
+    padding: 0.7rem 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--brown);
+  }
+  .free-photo.layout-gauche,
+  .free-photo.layout-droite {
+    max-width: 420px;
+  }
+  .free-photo.layout-gauche { margin-right: auto; }
+  .free-photo.layout-droite { margin-left: auto; }
+  .free-blocks { display: flex; flex-direction: column; gap: 1.2rem; }
+  .free-block {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--beige-2);
+    border-left: 5px solid var(--green);
+    border-radius: 16px;
+    padding: 1.2rem;
+  }
+  .free-block img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  .free-block h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    color: var(--green-dark);
+    margin: 0 0 0.4rem;
+  }
+  .free-block p {
+    font-family: 'Lora', serif;
+    margin: 0;
+    color: #5a5040;
+    line-height: 1.65;
+  }
+  .free-cta { margin-top: 2.2rem; text-align: center; }
+  @media (max-width: 700px) {
+    .free-block { flex-direction: column; }
+    .free-block img { width: 100%; height: 200px; }
+  }

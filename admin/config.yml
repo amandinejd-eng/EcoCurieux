@@ -35,7 +35,7 @@ collections:
   - name: apparence
     label: Apparence
     icon: palette
-    description: "Couleurs, polices, logo et coordonnées visibles partout sur le site."
+    description: "Couleurs, polices, logo, coordonnées, et le menu du site (afficher, cacher, réordonner)."
     files:
       - name: theme
         label: Identité du site
@@ -101,12 +101,53 @@ collections:
                 widget: select
                 options: [Nunito, Montserrat, Poppins, Playfair Display, Caveat, Quicksand, Lora, Merriweather, Roboto, Open Sans]
 
+      - name: menu
+        label: Menu du site
+        icon: menu
+        file: contenu/navigation.json
+        preview_path: /
+        fields:
+          - label: Bouton « Me contacter »
+            name: cta
+            widget: object
+            collapsed: false
+            summary: "{{emoji}} {{label}}"
+            fields:
+              - { label: Visible, name: visible, widget: boolean, default: true }
+              - { label: Emoji, name: emoji, widget: emoji, required: false }
+              - { label: Texte, name: label, widget: string }
+              - { label: Lien, name: href, widget: string, hint: "En général /contact.html" }
+          - label: Liens du menu
+            name: items
+            widget: list
+            label_singular: lien
+            summary: "{{emoji}} {{label}}"
+            collapsed: auto
+            comment: "Glisse pour changer l’ordre. Décoche **Visible** pour retirer une page du menu (elle n’apparaît plus sur le site). Pour créer une page nouvelle, va dans **Nouvelles pages**, puis ajoute son lien ici (/p/ton-adresse) ou coche « Afficher dans le menu »."
+            fields:
+              - { name: id, widget: hidden }
+              - { label: Visible dans le menu, name: visible, widget: boolean, default: true }
+              - { label: Emoji, name: emoji, widget: emoji, required: false }
+              - { label: Nom, name: label, widget: string }
+              - { label: Lien, name: href, widget: string, hint: "Exemple : /evenements.html ou /p/partenaires" }
+              - label: Sous-menus
+                name: children
+                widget: list
+                required: false
+                label_singular: sous-lien
+                summary: "{{emoji}} {{label}}"
+                collapsed: auto
+                fields:
+                  - { label: Emoji, name: emoji, widget: emoji, required: false }
+                  - { label: Nom, name: label, widget: string }
+                  - { label: Lien, name: href, widget: string }
+
   - divider: true
 
   - name: evenements
     label: Événements
     icon: calendar_month
-    description: "Tu peux tout détailler : titre, emoji, couleurs, photos (place, cadrage, rotation), programme. La **date** classe toute seule l’événement en À venir ou Passés. Clique **Publier**, attends une minute, puis rafraîchis le site."
+    description: "Tu peux tout détailler : titre, emoji (palette en bas à droite 😊), couleurs, photos, programme. La **date** classe toute seule l’événement. Clique **Publier**, attends une minute, puis rafraîchis le site."
     files:
       - name: agenda
         label: Agenda
@@ -134,7 +175,7 @@ collections:
                 comment: "📅 L’essentiel"
               - label: Emoji
                 name: emoji
-                widget: string
+                widget: emoji
                 required: false
                 hint: "Copie-colle un emoji, par exemple 🐦. Il s’affiche devant le titre."
               - label: Titre
@@ -201,7 +242,7 @@ collections:
                 hint: "Laisse vide pour garder le vert foncé du site."
               - label: Icône décorative
                 name: icone
-                widget: string
+                widget: emoji
                 required: false
                 hint: "Petit emoji en filigrane en haut à droite, par exemple 🍃 ou 🐦."
               - label: Photos
@@ -290,7 +331,7 @@ collections:
                 comment: "🎯 Programme — les étapes de l’animation."
               - label: Emoji du programme
                 name: emojiProgramme
-                widget: string
+                widget: emoji
                 required: false
                 default: "🎯"
               - label: Programme
@@ -303,7 +344,7 @@ collections:
                 fields:
                   - label: Emoji
                     name: emoji
-                    widget: string
+                    widget: emoji
                     required: false
                     hint: "Un emoji par étape, par exemple 🥚 ou 🧪."
                   - label: Titre
@@ -333,7 +374,7 @@ collections:
   - name: pages
     label: Pages
     icon: web
-    description: "Textes, photos, couleurs et emojis de chaque page. Clique une page, puis **Publier**."
+    description: "Textes, photos, couleurs et emojis des pages déjà sur le site. Pour en créer une nouvelle, ouvre **Nouvelles pages**."
     files:
       - name: accueil
         label: Accueil
@@ -365,7 +406,7 @@ collections:
             fields:
               - { label: Photo, name: image, widget: image }
               - { label: Texte, name: texte, widget: text, hint: "Texte au survol de la bulle." }
-              - { label: Emoji, name: emoji, widget: string, required: false, hint: "Optionnel, affiché sur la bulle." }
+              - { label: Emoji, name: emoji, widget: emoji, required: false, hint: "Optionnel, affiché sur la bulle." }
           - label: Bandeau défilant
             name: bandeau
             widget: list
@@ -404,7 +445,7 @@ collections:
                 summary: "{{titre}}"
                 collapsed: auto
                 fields:
-                  - { label: Emoji, name: emoji, widget: string, required: false }
+                  - { label: Emoji, name: emoji, widget: emoji, required: false }
                   - { label: Titre, name: titre, widget: string }
                   - { label: Texte, name: texte, widget: text }
                   - { label: Couleur, name: couleur, widget: color, required: false, allowInput: true, hint: "Barre à gauche du pilier." }
@@ -415,7 +456,7 @@ collections:
                 summary: "{{emoji}} {{texte}}"
                 collapsed: auto
                 fields:
-                  - { label: Emoji, name: emoji, widget: string, required: false }
+                  - { label: Emoji, name: emoji, widget: emoji, required: false }
                   - { label: Texte, name: texte, widget: string }
           - label: Encadré agenda
             name: agenda
@@ -434,7 +475,7 @@ collections:
             summary: "{{emoji}} {{titre}}"
             collapsed: auto
             fields:
-              - { label: Emoji, name: emoji, widget: string, required: false }
+              - { label: Emoji, name: emoji, widget: emoji, required: false }
               - { label: Titre, name: titre, widget: string }
               - { label: Sous-texte, name: sous, widget: string }
               - { label: Couleur, name: couleur, widget: color, required: false, allowInput: true }
@@ -473,7 +514,7 @@ collections:
                 summary: "{{emoji}} {{titre}}"
                 collapsed: auto
                 fields:
-                  - { label: Emoji, name: emoji, widget: string, required: false }
+                  - { label: Emoji, name: emoji, widget: emoji, required: false }
                   - { label: Titre, name: titre, widget: string }
                   - { label: Texte, name: texte, widget: text }
                   - { label: Couleur, name: couleur, widget: color, required: false, allowInput: true }
@@ -498,7 +539,7 @@ collections:
                 summary: "{{emoji}} {{titre}}"
                 collapsed: auto
                 fields:
-                  - { label: Emoji, name: emoji, widget: string, required: false }
+                  - { label: Emoji, name: emoji, widget: emoji, required: false }
                   - { label: Titre, name: titre, widget: string }
                   - { label: Texte, name: texte, widget: text }
                   - { label: Couleur, name: couleur, widget: color, required: false, allowInput: true }
@@ -537,7 +578,7 @@ collections:
             thumbnail: photo
             collapsed: auto
             fields:
-              - { label: Emoji, name: emoji, widget: string, required: false }
+              - { label: Emoji, name: emoji, widget: emoji, required: false }
               - { label: Titre, name: titre, widget: string }
               - { label: Texte, name: texte, widget: text }
               - { label: Photo de fond, name: photo, widget: image, required: false }
@@ -591,7 +632,7 @@ collections:
               - { label: Titre, name: titre, widget: string }
               - { label: Mot en couleur, name: titreAccent, widget: string }
               - { label: Couleur de ce mot, name: couleurAccent, widget: color, required: false, allowInput: true }
-              - { label: Emoji, name: emoji, widget: string, required: false }
+              - { label: Emoji, name: emoji, widget: emoji, required: false }
               - { label: Sous-titre, name: sousTitre, widget: string }
               - { label: Photo carte, name: photo, widget: image }
               - { label: Texte carte, name: texteCarte, widget: text }
@@ -603,3 +644,71 @@ collections:
               - { label: Tarif, name: tarif, widget: string }
               - { label: Titre du bouton de réservation, name: ctaTitre, widget: string }
               - { label: Texte du bouton de réservation, name: ctaTexte, widget: text }
+
+  - divider: true
+
+  - name: pages_libres
+    label: Nouvelles pages
+    icon: note_add
+    description: "Crée une page, remplis-la, **Publier**. Adresse : ecocurieux.com/p/ton-adresse. Pour la retirer du site, décoche Visible ou supprime la fiche. Pour l’afficher en menu, coche « Afficher dans le menu » ou ajoute le lien dans Apparence → Menu."
+    files:
+      - name: pages_libres_file
+        label: Pages créées
+        icon: post_add
+        file: contenu/pages-libre.json
+        preview_path: /
+        fields:
+          - label: Pages
+            name: pages
+            widget: list
+            label_singular: page
+            summary: "{{emoji}} {{titre}} — /p/{{slug}}"
+            collapsed: auto
+            add_to_top: true
+            comment: "Chaque fiche devient une vraie page du site. Tu peux en ajouter autant que tu veux, tout détailler, puis supprimer celles qui ne servent plus."
+            fields:
+              - { label: Page visible, name: visible, widget: boolean, default: true, hint: "Décoche pour la cacher sans la supprimer." }
+              - { label: Afficher dans le menu, name: afficherMenu, widget: boolean, default: false, hint: "Ajoute la page à la fin du menu." }
+              - { label: Adresse de la page, name: slug, widget: string, hint: "Lettres minuscules, tirets. Exemple : partenaires → ecocurieux.com/p/partenaires" }
+              - { label: Emoji, name: emoji, widget: emoji, required: false }
+              - { label: Badge, name: badge, widget: string, required: false, hint: "Petite pastille au-dessus du titre." }
+              - { label: Titre, name: titre, widget: string }
+              - { label: Mot en couleur, name: titreAccent, widget: string, required: false }
+              - { label: Couleur de ce mot, name: couleurAccent, widget: color, required: false, allowInput: true }
+              - { label: Sous-titre, name: sousTitre, widget: string, required: false }
+              - { label: Texte d’intro, name: intro, widget: text, required: false, hint: "Saut de ligne = nouveau paragraphe. **gras** possible." }
+              - label: Photos
+                name: photos
+                widget: list
+                required: false
+                label_singular: photo
+                summary: "{{caption}}"
+                thumbnail: url
+                collapsed: auto
+                fields:
+                  - { label: Photo, name: url, widget: image, choose_url: true }
+                  - { label: Légende, name: caption, widget: string, required: false }
+                  - label: Place
+                    name: position
+                    widget: select
+                    required: false
+                    default: pleine
+                    options:
+                      - { label: "Toute la largeur", value: pleine }
+                      - { label: "À gauche", value: gauche }
+                      - { label: "À droite", value: droite }
+              - label: Blocs de contenu
+                name: blocs
+                widget: list
+                required: false
+                label_singular: bloc
+                summary: "{{emoji}} {{titre}}"
+                collapsed: auto
+                fields:
+                  - { label: Emoji, name: emoji, widget: emoji, required: false }
+                  - { label: Titre, name: titre, widget: string }
+                  - { label: Texte, name: texte, widget: text, hint: "Saut de ligne = nouveau paragraphe. **gras** possible." }
+                  - { label: Photo, name: photo, widget: image, required: false }
+                  - { label: Couleur, name: couleur, widget: color, required: false, allowInput: true }
+              - { label: Texte du bouton, name: ctaLabel, widget: string, required: false, default: "Me contacter" }
+              - { label: Lien du bouton, name: ctaLien, widget: string, required: false, default: "/contact.html" }

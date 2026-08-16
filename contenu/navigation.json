@@ -1,0 +1,55 @@
+{
+  "cta": {
+    "visible": true,
+    "emoji": "📬",
+    "label": "Me contacter",
+    "href": "/contact.html"
+  },
+  "items": [
+    {
+      "id": "accueil",
+      "visible": true,
+      "emoji": "🏠",
+      "label": "Accueil",
+      "href": "/"
+    },
+    {
+      "id": "animations",
+      "visible": true,
+      "emoji": "🌿",
+      "label": "Ce que je propose",
+      "href": "/animations.html",
+      "children": [
+        { "emoji": "🌿", "label": "Animations nature", "href": "/animations.html#animations" },
+        { "emoji": "🎉", "label": "Anniversaires", "href": "/animations.html#anniversaires" },
+        { "emoji": "🥾", "label": "Stages nature", "href": "/animations.html#stages" }
+      ]
+    },
+    {
+      "id": "kits",
+      "visible": true,
+      "emoji": "🥚",
+      "label": "Kits pédagogiques",
+      "href": "/kits/",
+      "children": [
+        { "emoji": "🥚", "label": "Couveuse pédagogique", "href": "/kits/couveuse.html" },
+        { "emoji": "🪲", "label": "Kit mante religieuse", "href": "/kits/mante-religieuse.html" },
+        { "emoji": "🪵", "label": "Kit phasmes", "href": "/kits/phasmes.html" }
+      ]
+    },
+    {
+      "id": "pour-qui",
+      "visible": true,
+      "emoji": "📌",
+      "label": "Pour qui ?",
+      "href": "/pour-qui.html"
+    },
+    {
+      "id": "evenements",
+      "visible": true,
+      "emoji": "📅",
+      "label": "Événements",
+      "href": "/evenements.html"
+    }
+  ]
+}

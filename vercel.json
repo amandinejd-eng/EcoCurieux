@@ -5,7 +5,9 @@
     { "source": "/lib/oauth-credentials.json", "destination": "/api/github-webhook" },
     { "source": "/auth", "destination": "/api/auth" },
     { "source": "/callback", "destination": "/api/callback" },
-    { "source": "/github-setup", "destination": "/api/github-setup" }
+    { "source": "/github-setup", "destination": "/api/github-setup" },
+    { "source": "/p/:slug", "destination": "/page.html" },
+    { "source": "/p/:slug/", "destination": "/page.html" }
   ],
   "headers": [
     {
@@ -22,6 +24,12 @@
     },
     {
       "source": "/js/:path*",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/admin/:path*",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]

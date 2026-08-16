@@ -1,5 +1,6 @@
 // Gestion des dropdowns du menu navigation
-(function() {
+window.EcoNav = window.EcoNav || {};
+window.EcoNav.bind = function bindNavDropdowns() {
   const navItems = document.querySelectorAll('.nav-links > li');
   let closeTimers = new Map();
 
@@ -25,7 +26,6 @@
         clearTimeout(closeTimers.get(li));
         closeTimers.delete(li);
       }
-      // Fermer les autres dropdowns
       navItems.forEach(function(other) {
         if (other !== li) {
           var otherDd = other.querySelector('.dropdown');
@@ -65,7 +65,8 @@
       }
     });
   });
-})();
+};
+window.EcoNav.bind();
 
 function toggleMenu() {
   var menu = document.getElementById('mobileMenu');
