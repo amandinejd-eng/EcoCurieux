@@ -6,5 +6,25 @@
     { "source": "/auth", "destination": "/api/auth" },
     { "source": "/callback", "destination": "/api/callback" },
     { "source": "/github-setup", "destination": "/api/github-setup" }
+  ],
+  "headers": [
+    {
+      "source": "/evenements.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/contenu/:path*",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/js/:path*",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
   ]
 }

@@ -106,7 +106,7 @@ collections:
   - name: evenements
     label: Événements
     icon: calendar_month
-    description: "Ajoute, déplace ou archive les ateliers. Un événement passé se range dans la seconde liste."
+    description: "La **date** décide toute seule si l’événement apparaît dans À venir ou Passés sur le site. Après une modification, clique **Publier**, puis attends une minute."
     files:
       - name: agenda
         label: Agenda
@@ -121,10 +121,16 @@ collections:
             summary: "{{title}} — {{date}}"
             collapsed: auto
             add_to_top: true
-            comment: "Le plus récent se place en haut. Après la date, déplace-le dans « passés »."
+            comment: "Ajoute un événement ici. Change seulement la date : le site le place automatiquement dans À venir ou Passés."
             fields:
               - { name: id, widget: hidden }
-              - { label: Date, name: date, widget: datetime, time_format: false, date_format: "yyyy-MM-dd", picker_utc: true, default: "{{now}}" }
+              - label: Date
+                name: date
+                widget: datetime
+                type: date
+                format: YYYY-MM-DD
+                default: "{{now}}"
+                hint: "C’est cette date qui s’affiche sur le site et qui classe l’événement."
               - { label: Titre, name: title, widget: string, hint: "Tu peux commencer par un emoji : 🐦 L’Été des Oiseaux" }
               - { label: Lieu, name: location, widget: string }
               - { label: Description, name: description, widget: text }
@@ -138,10 +144,15 @@ collections:
             label_singular: événement passé
             summary: "{{title}} — {{date}}"
             collapsed: auto
-            comment: "Ici, tu peux ajouter photos, programme et récapitulatif."
+            comment: "Ajoute ici photos, programme et récapitulatif. Si tu mets une date encore à venir, l’événement remontera tout seul dans l’agenda."
             fields:
               - { name: id, widget: hidden }
-              - { label: Date, name: date, widget: datetime, time_format: false, date_format: "yyyy-MM-dd", picker_utc: true }
+              - label: Date
+                name: date
+                widget: datetime
+                type: date
+                format: YYYY-MM-DD
+                hint: "C’est cette date qui s’affiche sur le site."
               - { label: Titre, name: title, widget: string }
               - { label: Lieu, name: location, widget: string }
               - { label: Description, name: description, widget: text }

@@ -323,7 +323,7 @@
     if (!file) return;
     var data;
     try {
-      var res = await fetch(file);
+      var res = await fetch(file, { cache: 'no-store' });
       if (!res.ok) return;
       data = await res.json();
     } catch (err) {
@@ -364,21 +364,21 @@
   window.EcoCms = {
     normalizeEventDate: function (event) {
       if (!event || !event.date) return event;
-      var raw = String(event.date).slice(0, 10);
-      var parts = raw.split('-');
-      if (parts.length !== 3) return event;
-      var year = parts[0];
-      var monthIndex = parseInt(parts[1], 10) - 1;
-      var dayNum = parseInt(parts[2], 10);
-      event.day = event.day || String(dayNum).padStart(2, '0');
-      event.month = event.month || MONTHS_FR[monthIndex] || '';
-      event.year = event.year || year;
-      event.id = event.id || ('event-' + raw);
+      var raw = String(event.date).match(/^(\d{4})-(\d{2})-(\d{2})/);
+      if (!raw) return event;
+      var year = raw[1];
+      var monthIndex = parseInt(raw[2], 10) - 1;
+      var dayNum = raw[3];
+      event.date = raw[0];
+      event.day = dayNum;
+      event.month = MONTHS_FR[monthIndex] || '';
+      event.year = year;
+      event.id = event.id || ('event-' + raw[0]);
       return event;
     }
   };
 
-  fetch('/contenu/theme.json')
+  fetch('/contenu/theme.json', { cache: 'no-store' })
     .then(function (res) { return res.ok ? res.json() : {}; })
     .then(function (theme) {
       var start = function () {

@@ -99,10 +99,13 @@
         h('h1', {}, 'Événements'),
         h('h2', {}, 'À venir (' + upcoming.length + ')'),
         upcoming.length ? upcoming.map(function (event, i) {
+          var raw = String(event.date || '').match(/^(\d{4})-(\d{2})-(\d{2})/);
+          var day = raw ? raw[3] : '—';
+          var monthYear = raw ? raw[1] + '-' + raw[2] : '';
           return h('div', { className: 'pv-card pv-event', key: event.id || i },
             h('div', { className: 'pv-date' },
-              h('b', {}, String(event.date || '').slice(8, 10) || '—'),
-              h('span', {}, String(event.date || '').slice(0, 7))
+              h('b', {}, day),
+              h('span', {}, monthYear)
             ),
             h('div', {},
               h('h3', {}, event.title || 'Sans titre'),
