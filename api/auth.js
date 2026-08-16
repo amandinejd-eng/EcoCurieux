@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       body: `
         <h1>Se connecter avec GitHub</h1>
         <p>Plus besoin de créer un jeton. Clique sur le bouton, puis sur GitHub accepte les écrans <strong>Create GitHub App</strong> et <strong>Installer</strong>.</p>
-        <p class="muted">C’est à faire une seule fois. Ensuite, le bouton GitHub du back-office suffira.</p>
+        <p class="muted">Si GitHub dit que le nom est déjà pris, change-le simplement (par exemple EcoCurieux-amandinejd). C’est gratuit.</p>
         <form action="https://github.com/settings/apps/new" method="post">
           <input type="hidden" name="manifest" id="manifest">
           <button class="btn" type="submit">Continuer avec GitHub</button>
