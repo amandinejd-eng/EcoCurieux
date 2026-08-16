@@ -123,6 +123,8 @@
             event.time ? h('span', { className: 'pv-chip' }, '⏰ ' + event.time) : null,
             event.audience ? h('span', { className: 'pv-chip' }, '👥 ' + event.audience) : null,
             event.price ? h('span', { className: 'pv-chip' }, '🎟️ ' + event.price) : null,
+            event.acces && event.acces !== 'public' ? h('span', { className: 'pv-chip' }, event.acces === 'invitation' ? 'Sur invitation' : 'Privé') : null,
+            event.dateFin ? h('span', { className: 'pv-chip' }, '→ ' + event.dateFin) : null,
             photos.length ? h('p', { className: 'pv-muted' }, photos.length + ' photo' + (photos.length > 1 ? 's' : '')) : null
           )
         );
@@ -131,7 +133,7 @@
       return h('div', { className: 'pv' },
         kicker('Agenda'),
         h('h1', {}, 'Événements'),
-        h('p', { className: 'pv-muted' }, 'La date classe toute seule l’événement. Photos, couleurs et programme s’affichent comme sur le site.'),
+        h('p', { className: 'pv-muted' }, 'La date classe l’événement. Public / privé et dates de fin s’affichent comme sur le site.'),
         h('h2', {}, 'À venir (' + upcoming.length + ')'),
         upcoming.length ? upcoming.map(function (event, i) { return eventCard(event, i, 'upcoming'); }) : empty('Aucun événement à venir.'),
         h('h2', {}, 'Passés (' + past.length + ')'),

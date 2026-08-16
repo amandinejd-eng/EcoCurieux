@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
 
 locale: fr
-app_title: Modifier le site
+app_title: Studio Écocurieux
 site_url: https://ecocurieux.com
 display_url: https://ecocurieux.com
 logout_redirect_url: https://ecocurieux.com
@@ -33,12 +33,12 @@ slug:
 
 collections:
   - name: apparence
-    label: Apparence
+    label: 01 · Identité
     icon: palette
-    description: "Couleurs, polices, logo, coordonnées, et le menu du site (afficher, cacher, réordonner)."
+    description: "Logo, couleurs, coordonnées, et le menu du site."
     files:
       - name: theme
-        label: Identité du site
+        label: Logo, couleurs, contact
         icon: brush
         file: contenu/theme.json
         preview_path: /
@@ -102,7 +102,7 @@ collections:
                 options: [Nunito, Montserrat, Poppins, Playfair Display, Caveat, Quicksand, Lora, Merriweather, Roboto, Open Sans]
 
       - name: menu
-        label: Menu du site
+        label: Menu
         icon: menu
         file: contenu/navigation.json
         preview_path: /
@@ -123,7 +123,7 @@ collections:
             label_singular: lien
             summary: "{{emoji}} {{label}}"
             collapsed: auto
-            comment: "Glisse pour changer l’ordre. Décoche **Visible** pour retirer une page du menu (elle n’apparaît plus sur le site). Pour créer une page nouvelle, va dans **Nouvelles pages**, puis ajoute son lien ici (/p/ton-adresse) ou coche « Afficher dans le menu »."
+            comment: "Glisse pour changer l’ordre. Décoche Visible pour retirer un lien. Une page nouvelle se crée dans 04 · Créer une page."
             fields:
               - { name: id, widget: hidden }
               - { label: Visible dans le menu, name: visible, widget: boolean, default: true }
@@ -145,9 +145,9 @@ collections:
   - divider: true
 
   - name: evenements
-    label: Événements
+    label: 02 · Agenda
     icon: calendar_month
-    description: "Tu peux tout détailler : titre, emoji (palette en bas à droite 😊), couleurs, photos, programme. La **date** classe toute seule l’événement. Clique **Publier**, attends une minute, puis rafraîchis le site."
+    description: "Une fiche = un événement. La date le classe toute seule (à venir ou passé). Publier, attendre 1 minute, Ctrl+F5."
     files:
       - name: agenda
         label: Agenda
@@ -155,96 +155,160 @@ collections:
         file: evenements.json
         preview_path: evenements.html
         fields:
-          - label: Événements à venir
+          - label: À venir
             name: upcoming
             widget: list
             label_singular: événement
             summary: "{{emoji}} {{title}} — {{date}}"
             collapsed: auto
             add_to_top: true
-            comment: "Même fiche complète que les passés : photos, couleurs, programme… Seule la date décide où ça s’affiche sur le site."
+            comment: "Clique + pour ajouter. Remplis d’abord le bloc 1, le reste est optionnel."
             fields: &event_fields
               - { name: id, widget: hidden }
-              - label: Date
+              - label: Date de début
                 name: date
                 widget: datetime
                 type: date
                 format: YYYY-MM-DD
                 default: "{{now}}"
-                hint: "C’est cette date qui s’affiche et qui classe l’événement (à venir ou passé)."
-                comment: "📅 L’essentiel"
+                hint: "Cette date classe l’événement (à venir ou passé)."
+                comment: "1 · L’essentiel"
               - label: Emoji
                 name: emoji
                 widget: emoji
                 required: false
-                hint: "Copie-colle un emoji, par exemple 🐦. Il s’affiche devant le titre."
+                hint: "Clique Choisir. Il s’affiche devant le titre."
               - label: Titre
                 name: title
                 widget: string
-                hint: "Le nom de l’événement. Tu peux aussi mettre l’emoji dans le titre si tu préfères."
               - label: Sous-titre
                 name: subtitle
                 widget: string
                 required: false
-                hint: "Petite phrase sous le titre, optionnelle."
+                hint: "Optionnel."
               - label: Lieu
                 name: location
                 widget: string
-                hint: "Ville, structure, ou par exemple « Anniversaire 5 ans »."
-              - label: Description
-                name: description
-                widget: text
-                hint: "Texte principal. Un saut de ligne = un nouveau paragraphe. Entoure un mot de **deux étoiles** pour le mettre en gras."
-                comment: "📝 Les textes"
-              - label: Encadré mis en avant
-                name: details
+                hint: "Ville, structure, ou « Anniversaire 5 ans »."
+              - label: Cacher le lieu
+                name: masquerLieu
+                widget: boolean
+                required: false
+                default: false
+                hint: "Utile pour un événement privé."
+              - label: Accès
+                name: acces
+                widget: select
+                required: false
+                hint: "Vide = déduit du champ Public (si tu as écrit Privé)."
+                comment: "2 · Public ou privé · Durée"
+                options:
+                  - { label: "Public — ouvert à tous", value: public }
+                  - { label: "Privé — structure / inscription", value: prive }
+                  - { label: "Sur invitation", value: invitation }
+              - label: Durée
+                name: dureeType
+                widget: select
+                required: false
+                hint: "Vide = une journée."
+                options:
+                  - { label: "Une journée", value: une-journee }
+                  - { label: "Une demi-journée", value: demi-journee }
+                  - { label: "Plusieurs jours", value: plusieurs-jours }
+                  - { label: "Stage / séjour", value: stage }
+              - label: Date de fin
+                name: dateFin
+                widget: datetime
+                type: date
+                format: YYYY-MM-DD
+                required: false
+                hint: "Seulement si ça dure plusieurs jours. Vide = un seul jour."
+              - label: Afficher sur le site
+                name: afficherSite
+                widget: boolean
+                required: false
+                default: true
+                hint: "Décoche pour garder la fiche sans la montrer."
+              - label: Type
+                name: type
                 widget: string
                 required: false
-                hint: "Petite phrase dans un encadré coloré (un plus, un atelier bonus…)."
-              - label: Récapitulatif
-                name: recap
-                widget: text
+                hint: "Optionnel. Ex. Atelier, Anniversaire, Stage."
+              - label: Statut
+                name: statut
+                widget: select
                 required: false
-                hint: "Texte plus long dans le détail (souvenirs, bilan de l’animation…)."
-              - label: Note de fin
-                name: footer
-                widget: text
-                required: false
-                hint: "Phrase discrète tout en bas de la fiche."
+                hint: "Vide = ouvert."
+                options:
+                  - { label: "Ouvert", value: ouvert }
+                  - { label: "Complet", value: complet }
+                  - { label: "Annulé", value: annule }
+                  - { label: "Terminé", value: termine }
               - label: Horaires
                 name: time
                 widget: string
                 required: false
-                hint: "Exemple : 10h-18h"
-                comment: "ℹ️ Infos pratiques — pastilles à droite de la fiche."
+                hint: "Ex. 10h-18h"
+                comment: "3 · Infos pratiques — tout est optionnel."
               - label: Public
                 name: audience
                 widget: string
                 required: false
-                default: "Tout public"
+                hint: "Ex. Tout public, 6-12 ans, École ouverte."
+              - label: Âges
+                name: ages
+                widget: string
+                required: false
+                hint: "Optionnel. Ex. 6-10 ans."
               - label: Tarif
                 name: price
                 widget: string
                 required: false
-                default: "Sur devis"
-              - label: Couleur d’accent
-                name: couleur
-                widget: color
+              - label: Inscription
+                name: inscription
+                widget: string
                 required: false
-                allowInput: true
-                hint: "Filet, dates et pastilles. Vide = vert (à venir) ou brun (passé)."
-                comment: "🎨 Couleurs et icône"
-              - label: Couleur du titre
-                name: couleurTitre
-                widget: color
+                hint: "Optionnel. Ex. Obligatoire, Sur place."
+              - label: Places
+                name: places
+                widget: string
                 required: false
-                allowInput: true
-                hint: "Laisse vide pour garder le vert foncé du site."
-              - label: Icône décorative
-                name: icone
-                widget: emoji
+                hint: "Optionnel. Ex. 12 places."
+              - label: À prévoir
+                name: aPrevoir
+                widget: text
                 required: false
-                hint: "Petit emoji en filigrane en haut à droite, par exemple 🍃 ou 🐦."
+                hint: "Optionnel."
+              - label: Inclus
+                name: inclus
+                widget: text
+                required: false
+                hint: "Optionnel."
+              - label: Météo / consigne
+                name: meteo
+                widget: string
+                required: false
+                hint: "Optionnel."
+              - label: Description
+                name: description
+                widget: text
+                hint: "Texte principal. Saut de ligne = paragraphe. **gras**."
+                comment: "4 · Textes"
+              - label: Encadré mis en avant
+                name: details
+                widget: string
+                required: false
+                hint: "Optionnel. Petite phrase colorée."
+              - label: Récapitulatif
+                name: recap
+                widget: text
+                required: false
+                hint: "Optionnel. Souvenirs, bilan…"
+              - label: Note de fin
+                name: footer
+                widget: text
+                required: false
+                hint: "Optionnel."
               - label: Photos
                 name: photos
                 widget: list
@@ -253,7 +317,7 @@ collections:
                 summary: "{{caption}}"
                 thumbnail: url
                 collapsed: auto
-                comment: "📷 Place chaque photo comme tu veux. Celle marquée « Photo principale » (sinon la première) s’affiche en grand. Les autres forment la galerie. Glisse pour changer l’ordre."
+                comment: "5 · Photos — la première, ou celle marquée principale, s’affiche en grand. Glisse pour réordonner."
                 fields:
                   - label: Photo
                     name: url
@@ -328,7 +392,7 @@ collections:
                 required: false
                 default: "Au programme"
                 hint: "Par défaut : Au programme."
-                comment: "🎯 Programme — les étapes de l’animation."
+                comment: "6 · Programme — optionnel."
               - label: Emoji du programme
                 name: emojiProgramme
                 widget: emoji
@@ -360,21 +424,39 @@ collections:
                     required: false
                     allowInput: true
                     hint: "Barre en haut de la carte. Vide = vert du site."
-          - label: Événements passés
+              - label: Couleur d’accent
+                name: couleur
+                widget: color
+                required: false
+                allowInput: true
+                hint: "Filet, dates, pastilles. Vide = vert ou brun automatique."
+                comment: "7 · Apparence — optionnel."
+              - label: Couleur du titre
+                name: couleurTitre
+                widget: color
+                required: false
+                allowInput: true
+                hint: "Vide = vert foncé du site."
+              - label: Icône décorative
+                name: icone
+                widget: emoji
+                required: false
+                hint: "Petit emoji en filigrane, ex. 🍃."
+          - label: Passés
             name: past
             widget: list
             label_singular: événement
             summary: "{{emoji}} {{title}} — {{date}}"
             collapsed: auto
-            comment: "Mêmes réglages que ci-dessus. Si tu mets une date encore à venir, l’événement remonte tout seul dans l’agenda."
+            comment: "Même fiche. Une date encore à venir remonte toute seule dans À venir."
             fields: *event_fields
 
   - divider: true
 
   - name: pages
-    label: Pages
+    label: 03 · Pages
     icon: web
-    description: "Textes, photos, couleurs et emojis des pages déjà sur le site. Pour en créer une nouvelle, ouvre **Nouvelles pages**."
+    description: "Les pages déjà sur le site. Pour en créer une nouvelle : 04 · Créer une page."
     files:
       - name: accueil
         label: Accueil
@@ -648,9 +730,9 @@ collections:
   - divider: true
 
   - name: pages_libres
-    label: Nouvelles pages
+    label: 04 · Créer une page
     icon: note_add
-    description: "Crée une page, remplis-la, **Publier**. Adresse : ecocurieux.com/p/ton-adresse. Pour la retirer du site, décoche Visible ou supprime la fiche. Pour l’afficher en menu, coche « Afficher dans le menu » ou ajoute le lien dans Apparence → Menu."
+    description: "Ajoute une fiche, Publier. Adresse : ecocurieux.com/p/ton-adresse. Décoche Visible pour la cacher. Coche « Afficher dans le menu » pour le menu."
     files:
       - name: pages_libres_file
         label: Pages créées
@@ -665,7 +747,7 @@ collections:
             summary: "{{emoji}} {{titre}} — /p/{{slug}}"
             collapsed: auto
             add_to_top: true
-            comment: "Chaque fiche devient une vraie page du site. Tu peux en ajouter autant que tu veux, tout détailler, puis supprimer celles qui ne servent plus."
+            comment: "Chaque fiche devient une page. Ajoute, remplis, Publier. Tu peux supprimer plus tard."
             fields:
               - { label: Page visible, name: visible, widget: boolean, default: true, hint: "Décoche pour la cacher sans la supprimer." }
               - { label: Afficher dans le menu, name: afficherMenu, widget: boolean, default: false, hint: "Ajoute la page à la fin du menu." }

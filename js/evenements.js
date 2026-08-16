@@ -37,8 +37,10 @@ function normalizeEvent(event) {
   const parts = parseDateParts(event.date);
   if (!parts) return event;
   const monthIndex = parseInt(parts.month, 10) - 1;
+  const endParts = parseDateParts(event.dateFin);
   return Object.assign({}, event, {
     date: parts.raw,
+    dateFin: endParts ? endParts.raw : '',
     day: parts.day,
     month: MONTHS_FR[monthIndex] || '',
     year: parts.year,
@@ -52,12 +54,146 @@ function parseEventDay(eventDate) {
   return new Date(Number(parts.year), Number(parts.month) - 1, Number(parts.day));
 }
 
-function isEventPast(eventDate) {
+function eventEndValue(event) {
+  if (event && typeof event === 'object') return event.dateFin || event.date;
+  return event;
+}
+
+function isEventPast(event) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const day = parseEventDay(eventDate);
+  const day = parseEventDay(eventEndValue(event));
   if (Number.isNaN(day.getTime())) return false;
   return day < today;
+}
+
+function isEventVisible(event) {
+  return event && event.afficherSite !== false && event.afficherSite !== 'false';
+}
+
+function eventAcces(event) {
+  const raw = String(event && event.acces || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (raw === 'prive' || raw === 'invitation') return raw;
+  const audience = String(event && event.audience || '').toLowerCase();
+  if (/priv|invitation|sur invitation/.test(audience)) return /invitation/.test(audience) ? 'invitation' : 'prive';
+  return 'public';
+}
+
+function monthLabel(parts) {
+  if (!parts) return '';
+  return MONTHS_FR[parseInt(parts.month, 10) - 1] || '';
+}
+
+function dateBlockHtml(event, dayClass, monthClass, yearClass) {
+  const start = parseDateParts(event.date);
+  const end = parseDateParts(event.dateFin);
+  if (!start) return '';
+  if (!end || end.raw === start.raw) {
+    return `<div class="${dayClass}">${escapeHtml(start.day)}</div>
+        <div class="${monthClass}">${escapeHtml(monthLabel(start))}</div>
+        ${start.year ? `<div class="${yearClass}">${escapeHtml(start.year)}</div>` : ''}`;
+  }
+  if (start.month === end.month && start.year === end.year) {
+    return `<div class="${dayClass} is-range">${escapeHtml(start.day)}–${escapeHtml(end.day)}</div>
+        <div class="${monthClass}">${escapeHtml(monthLabel(start))}</div>
+        ${start.year ? `<div class="${yearClass}">${escapeHtml(start.year)}</div>` : ''}`;
+  }
+  return `<div class="${dayClass} is-range">${escapeHtml(start.day)} ${escapeHtml(monthLabel(start).slice(0, 4))}</div>
+      <div class="${monthClass}">→ ${escapeHtml(end.day)} ${escapeHtml(monthLabel(end).slice(0, 4))}</div>
+      ${end.year ? `<div class="${yearClass}">${escapeHtml(end.year)}</div>` : ''}`;
+}
+
+function accesLabel(acces) {
+  if (acces === 'prive') return 'Privé';
+  if (acces === 'invitation') return 'Sur invitation';
+  return 'Public';
+}
+
+function dureeLabel(value) {
+  const map = {
+    'une-journee': 'Une journée',
+    'demi-journee': 'Demi-journée',
+    'plusieurs-jours': 'Plusieurs jours',
+    stage: 'Stage'
+  };
+  return map[value] || '';
+}
+
+function statutLabel(value) {
+  const map = { ouvert: 'Ouvert', complet: 'Complet', annule: 'Annulé', termine: 'Terminé' };
+  return map[value] || '';
+}
+
+function renderBadge(kind, icon, text) {
+  if (!text) return '';
+  return `<span class="upcoming-badge badge-${kind}">
+          <span>${icon}</span>
+          ${escapeHtml(text)}
+        </span>`;
+}
+
+function renderEventBadges(event) {
+  const acces = eventAcces(event);
+  const statut = String(event.statut || '');
+  const duree = dureeLabel(event.dureeType);
+  const chips = [
+    acces !== 'public' ? renderBadge('acces-' + acces, acces === 'invitation' ? '✉️' : '🔒', accesLabel(acces)) : '',
+    statut && statut !== 'ouvert' ? renderBadge('statut-' + statut, statut === 'complet' ? '🚫' : (statut === 'annule' ? '⛔' : '✓'), statutLabel(statut)) : '',
+    duree && event.dureeType && event.dureeType !== 'une-journee' ? renderBadge('duree', '📅', duree) : '',
+    event.time ? renderBadge('time', '⏰', event.time) : '',
+    event.audience ? renderBadge('audience', '👥', event.audience) : '',
+    event.ages ? renderBadge('ages', '🎈', event.ages) : '',
+    event.price ? renderBadge('price', '🎟️', event.price) : '',
+    event.inscription ? renderBadge('info', '📝', event.inscription) : '',
+    event.places ? renderBadge('info', '🪑', event.places) : '',
+    event.type ? renderBadge('info', '🏷️', event.type) : ''
+  ];
+  return chips.filter(Boolean).join('');
+}
+
+function renderEventFacts(event) {
+  const rows = [
+    event.inclus ? ['Inclus', event.inclus] : null,
+    event.aPrevoir ? ['À prévoir', event.aPrevoir] : null,
+    event.meteo ? ['Consignes', event.meteo] : null
+  ].filter(Boolean);
+  if (!rows.length) return '';
+  return `<div class="event-facts">
+      ${rows.map(function (row) {
+        return `<div class="event-fact">
+          <span class="event-fact-label">${escapeHtml(row[0])}</span>
+          <span class="event-fact-text">${richText(row[1])}</span>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+function dateBadgeText(event) {
+  const start = parseDateParts(event.date);
+  const end = parseDateParts(event.dateFin);
+  if (!start) return '';
+  if (!end || end.raw === start.raw) {
+    return start.day + ' ' + monthLabel(start) + (start.year ? ' ' + start.year : '');
+  }
+  if (start.month === end.month && start.year === end.year) {
+    return start.day + '–' + end.day + ' ' + monthLabel(start) + (start.year ? ' ' + start.year : '');
+  }
+  return start.day + ' ' + monthLabel(start).slice(0, 4) + ' → ' + end.day + ' ' + monthLabel(end).slice(0, 4);
+}
+
+function locationHtml(event) {
+  if (event.masquerLieu === true || event.masquerLieu === 'true' || !event.location) return '';
+  return `<p class="upcoming-location">
+          <span>📍</span>
+          ${escapeHtml(event.location)}
+        </p>`;
+}
+
+function pastLocationHtml(event) {
+  if (event.masquerLieu === true || event.masquerLieu === 'true' || !event.location) return '';
+  return `<p class="past-location">
+                <span>📍</span> ${escapeHtml(event.location)}
+              </p>`;
 }
 
 function eventKey(event) {
@@ -189,7 +325,7 @@ function renderMainPhoto(event, extraClass) {
   const caption = photoCaption(photo);
   const captionHtml = caption ? `<div class="past-img-caption">${escapeHtml(caption)}</div>` : '';
   const badge = extraClass === 'upcoming-photo' ? '' :
-    `<div class="past-date-badge">${escapeHtml(event.day)} ${escapeHtml(event.month)}${event.year ? ' ' + escapeHtml(event.year) : ''}</div>`;
+    `<div class="past-date-badge">${escapeHtml(dateBadgeText(event))}</div>`;
   return `<div class="${extraClass || 'past-img-wrapper'} event-photo" style="${photoVars(photo)}">
     <div class="past-img-ratio"></div>
     <img src="${escapeHtml(src)}" alt="${escapeHtml(caption || event.title || '')}">
@@ -267,21 +403,16 @@ function createEventCard(event) {
   ].join('');
 
   return `
-    <div class="upcoming-card layout-${layout}" style="--event-accent:${accent};${titleColor ? '--event-title:' + titleColor + ';' : ''}">
+    <div class="upcoming-card layout-${layout}${event.statut === 'annule' ? ' is-cancelled' : ''}${event.statut === 'complet' ? ' is-full' : ''}" style="--event-accent:${accent};${titleColor ? '--event-title:' + titleColor + ';' : ''}">
       <div class="timeline-dot"></div>
       <div class="upcoming-date">
-        <div class="upcoming-day">${escapeHtml(event.day)}</div>
-        <div class="upcoming-month">${escapeHtml(event.month)}</div>
-        ${event.year ? `<div class="upcoming-year">${escapeHtml(event.year)}</div>` : ''}
+        ${dateBlockHtml(event, 'upcoming-day', 'upcoming-month', 'upcoming-year')}
       </div>
       ${photoHtml}
       <div class="upcoming-content">
         <h3>${eventTitleHtml(event)}</h3>
         ${subtitle ? `<p class="event-subtitle">${escapeHtml(subtitle)}</p>` : ''}
-        <p class="upcoming-location">
-          <span>📍</span>
-          ${escapeHtml(event.location || '')}
-        </p>
+        ${locationHtml(event)}
         <button class="upcoming-toggle-btn" onclick="toggleUpcomingCard(this)">
           <span class="utb-icon">👇</span>
           <span class="utb-text">En savoir plus</span>
@@ -289,28 +420,12 @@ function createEventCard(event) {
         <div class="upcoming-details-wrap">
           <p class="upcoming-desc">${richText(event.description || '')}</p>
           ${renderDetailsBox(event)}
+          ${renderEventFacts(event)}
           ${extra}
         </div>
       </div>
       <div class="upcoming-badges">
-        ${event.time ? `
-        <span class="upcoming-badge badge-time">
-          <span>⏰</span>
-          ${escapeHtml(event.time)}
-        </span>
-        ` : ''}
-        ${event.audience ? `
-        <span class="upcoming-badge badge-audience">
-          <span>👥</span>
-          ${escapeHtml(event.audience)}
-        </span>
-        ` : ''}
-        ${event.price ? `
-        <span class="upcoming-badge badge-price">
-          <span>🎟️</span>
-          ${escapeHtml(event.price)}
-        </span>
-        ` : ''}
+        ${renderEventBadges(event)}
       </div>
     </div>
   `;
@@ -351,27 +466,25 @@ function createPastEventCard(event) {
   ].join('');
 
   return `
-    <div class="past-card" style="--event-accent:${accent};${titleColor ? '--event-title:' + titleColor + ';' : ''}">
+    <div class="past-card${event.statut === 'annule' ? ' is-cancelled' : ''}" style="--event-accent:${accent};${titleColor ? '--event-title:' + titleColor + ';' : ''}">
       <span class="past-leaf-icon">${escapeHtml(icon)}</span>
       <div class="past-main layout-${layout}">
         ${mainPhotoHtml}
         <div class="past-info">
           <div class="past-header">
             <div class="past-date">
-              <div class="pd-day">${escapeHtml(event.day)}</div>
-              <div class="pd-month">${escapeHtml(event.month)}</div>
-              ${event.year ? `<div class="pd-year">${escapeHtml(event.year)}</div>` : ''}
+              ${dateBlockHtml(event, 'pd-day', 'pd-month', 'pd-year')}
             </div>
             <div class="past-title-box">
               <h3>${eventTitleHtml(event)}</h3>
               ${subtitle ? `<p class="event-subtitle">${escapeHtml(subtitle)}</p>` : ''}
-              <p class="past-location">
-                <span>📍</span> ${escapeHtml(event.location || '')}
-              </p>
+              ${pastLocationHtml(event)}
+              <div class="past-badges">${renderEventBadges(event)}</div>
             </div>
           </div>
           <p class="past-desc">${richText(event.description || '')}</p>
           ${renderDetailsBox(event)}
+          ${renderEventFacts(event)}
           <button onclick="toggleEventDetails('${eventId}')" id="btn-${eventId}" class="past-toggle-btn">
             <span id="icon-${eventId}">👇</span>
             <span id="text-${eventId}">Voir le détail de l'événement</span>
@@ -393,7 +506,7 @@ async function displayUpcomingEvents(containerId) {
   if (!container) return;
 
   const upcomingEvents = events
-    .filter(event => !isEventPast(event.date))
+    .filter(event => isEventVisible(event) && !isEventPast(event))
     .sort((a, b) => parseEventDay(a.date) - parseEventDay(b.date));
 
   if (upcomingEvents.length === 0) {
@@ -426,7 +539,7 @@ async function displayPastEvents() {
   }
 
   const allPastEvents = events
-    .filter(event => isEventPast(event.date))
+    .filter(event => isEventVisible(event) && isEventPast(event))
     .sort((a, b) => parseEventDay(b.date) - parseEventDay(a.date));
 
   if (allPastEvents.length === 0) {

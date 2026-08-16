@@ -984,6 +984,82 @@
     color: var(--brown);
     box-shadow: 0 2px 8px rgba(175,106,50,0.15);
   }
+  .upcoming-badge.badge-acces-prive {
+    background: #2c4f2a;
+    color: #fff;
+  }
+  .upcoming-badge.badge-acces-invitation {
+    background: #5c3d1e;
+    color: #fff;
+  }
+  .upcoming-badge.badge-statut-complet,
+  .upcoming-badge.badge-statut-annule {
+    background: #8a3a32;
+    color: #fff;
+  }
+  .upcoming-badge.badge-statut-termine {
+    background: #6b6b6b;
+    color: #fff;
+  }
+  .upcoming-badge.badge-duree,
+  .upcoming-badge.badge-ages,
+  .upcoming-badge.badge-info {
+    background: #fff;
+    border: 1px solid var(--beige-2);
+    color: var(--green-dark);
+  }
+  .upcoming-day.is-range,
+  .pd-day.is-range {
+    font-size: 1.55rem;
+    letter-spacing: -0.5px;
+  }
+  .upcoming-card.is-cancelled,
+  .past-card.is-cancelled {
+    opacity: 0.72;
+  }
+  .upcoming-card.is-cancelled h3,
+  .past-card.is-cancelled h3 {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+  }
+  .event-facts {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: 1.1rem;
+    border: 1px solid var(--beige-2);
+    background: var(--beige-light);
+  }
+  .event-fact {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0.7rem;
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid var(--beige-2);
+  }
+  .event-fact:last-child { border-bottom: 0; }
+  .event-fact-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+  }
+  .event-fact-text {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    color: #5a5040;
+  }
+  .past-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.7rem;
+  }
+  .past-badges .upcoming-badge {
+    font-size: 0.72rem;
+    padding: 6px 10px;
+  }
   #upcoming-events-container-home .past-gallery-container,
   #upcoming-events-container-home .event-program,
   #upcoming-events-container-home .past-recap,
@@ -1382,6 +1458,10 @@
     .upcoming-card.expanded .upcoming-badge {
       padding: 7px 11px !important;
       font-size: 0.72rem !important;
+    }
+    .event-fact {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
     }
 
     /* ========== ÉVÉNEMENTS PASSÉS — REFONTE MOBILE ========== */

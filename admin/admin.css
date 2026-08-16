@@ -5,9 +5,27 @@
   --ec-beige: #f3deb4;
   --ec-beige-2: #e8c98a;
   --ec-cream: #fdf5e6;
-  --font-family--default: "Lora", Georgia, serif;
+  --ec-ink: #1f2e1e;
+  --ec-line: #d7c39a;
+  --ec-bar-h: 56px;
+  --font-family--default: "Montserrat", system-ui, sans-serif;
   --primary-color: #467b43;
   --accent-color: #467b43;
+  --sui-base-hue: 118;
+  --sui-font-family-default: "Montserrat", system-ui, sans-serif;
+  --sui-heading-font-family: "Montserrat", system-ui, sans-serif;
+  --sui-control-small-border-radius: 0;
+  --sui-control-medium-border-radius: 0;
+  --sui-control-large-border-radius: 0;
+  --sui-button-small-border-radius: 0;
+  --sui-button-medium-border-radius: 0;
+  --sui-button-large-border-radius: 0;
+  --sui-checkbox-border-radius: 0;
+  --sui-option-border-radius: 0;
+  --sui-listbox-border-radius: 0;
+  --sui-tree-border-radius: 0;
+  --sui-tree-item-border-radius: 0;
+  --sui-textbox-border-radius: 0;
 }
 
 html,
@@ -15,27 +33,152 @@ body {
   margin: 0;
   min-height: 100%;
   background: var(--ec-cream);
+  color: var(--ec-ink);
+}
+
+html {
+  height: 100%;
+}
+
+body.ec-studio {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ——— Barre studio ——— */
+
+.ec-bar {
+  flex: none;
+  height: var(--ec-bar-h);
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) 1fr auto;
+  align-items: stretch;
+  gap: 0;
+  background: var(--ec-green-dark);
+  color: #fff;
+  border-bottom: 2px solid var(--ec-green-dark);
+  z-index: 40;
+  font-family: "Montserrat", sans-serif;
+}
+
+.ec-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0 1rem;
+  color: inherit;
+  text-decoration: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ec-brand img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.ec-brand span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.ec-brand strong {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ec-brand em {
+  font-style: normal;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ec-beige);
+}
+
+.ec-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ec-steps li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0 0.9rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.ec-steps li.is-on {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.ec-steps b {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border: 1px solid currentColor;
+  font-size: 0.68rem;
+}
+
+.ec-site {
+  display: grid;
+  place-items: center;
+  padding: 0 1.1rem;
+  color: var(--ec-green-dark);
+  background: var(--ec-beige);
+  text-decoration: none;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ec-site:hover {
+  background: #fff;
 }
 
 #nc-root {
-  min-height: 100vh;
+  flex: 1;
+  min-height: 0;
+  height: calc(100vh - var(--ec-bar-h));
+  overflow: auto;
 }
+
+#nc-root > * {
+  min-height: 100%;
+}
+
+/* ——— Écran d’ouverture ——— */
 
 .ec-boot {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  display: grid;
+  place-items: center;
   background:
-    radial-gradient(circle at 20% 20%, rgba(70, 123, 67, 0.12), transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(175, 106, 50, 0.12), transparent 42%),
+    linear-gradient(var(--ec-green-dark), var(--ec-green-dark)) 0 0 / 12px 100% no-repeat,
     var(--ec-cream);
   color: var(--ec-green-dark);
-  transition: opacity 0.45s ease, visibility 0.45s ease;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .ec-boot.is-hidden {
@@ -44,20 +187,70 @@ body {
   pointer-events: none;
 }
 
-.ec-boot img {
-  height: 84px;
-  width: auto;
+.ec-boot-frame {
+  width: min(420px, calc(100vw - 32px));
+  border: 2px solid var(--ec-green-dark);
+  background: #fff;
+  padding: 1.6rem 1.5rem 1.25rem;
 }
 
-.ec-boot p {
-  margin: 0;
+.ec-boot-kicker {
+  margin: 0 0 1rem;
   font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ec-brown);
 }
 
-.ec-boot span {
+.ec-boot img {
+  height: 56px;
+  width: auto;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.ec-boot h1 {
+  margin: 0 0 1.1rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.ec-boot-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid var(--ec-green-dark);
+}
+
+.ec-boot-steps li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 0.7rem;
+  align-items: baseline;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--ec-line);
   font-family: "Lora", serif;
+  font-size: 0.95rem;
+}
+
+.ec-boot-steps b {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.ec-boot-wait {
+  margin: 1rem 0 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: #5d6b5c;
 }
 
@@ -73,38 +266,51 @@ body {
   75% { content: "..."; }
 }
 
+/* Carré partout dans le CMS */
+
+#nc-root button,
+#nc-root input,
+#nc-root textarea,
+#nc-root select,
+#nc-root [role="button"],
+#nc-root [class*="card"],
+#nc-root [class*="modal"],
+#nc-root [class*="dialog"] {
+  border-radius: 0 !important;
+}
+
+/* ——— Palette d’emojis ——— */
+
 #ec-emoji-dock {
   position: fixed;
-  right: 18px;
-  bottom: 18px;
+  right: 0;
+  bottom: 0;
   z-index: 2147483000;
   font-family: "Montserrat", sans-serif;
 }
 
 .ec-emoji-toggle {
-  width: 54px;
-  height: 54px;
-  border: 0;
-  border-radius: 50%;
-  background: #2c4f2a;
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--ec-green-dark);
+  border-right: 0;
+  border-bottom: 0;
+  background: var(--ec-green-dark);
   color: #fff;
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(44, 79, 42, 0.28);
 }
 
 .ec-emoji-panel {
   position: absolute;
   right: 0;
-  bottom: 66px;
-  width: min(420px, calc(100vw - 28px));
-  max-height: min(70vh, 560px);
+  bottom: 56px;
+  width: min(400px, calc(100vw - 16px));
+  max-height: min(68vh, 520px);
   overflow: auto;
-  background: #fffdf8;
-  border: 1px solid #e8c98a;
-  border-radius: 18px;
+  background: #fff;
+  border: 2px solid var(--ec-green-dark);
   padding: 0.85rem;
-  box-shadow: 0 18px 40px rgba(44, 79, 42, 0.18);
 }
 
 .ec-emoji-head {
@@ -112,25 +318,39 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.55rem;
-  color: #2c4f2a;
+  color: var(--ec-green-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .ec-emoji-close,
-.ec-emoji-clear {
-  border: 0;
-  background: #f3deb4;
-  color: #2c4f2a;
-  border-radius: 999px;
-  padding: 0.25rem 0.7rem;
-  font-weight: 700;
+.ec-emoji-clear,
+.ec-emoji-pick {
+  border: 1px solid var(--ec-green-dark);
+  background: #fff;
+  color: var(--ec-green-dark);
+  border-radius: 0;
+  padding: 0.35rem 0.7rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   cursor: pointer;
+}
+
+.ec-emoji-pick {
+  background: var(--ec-green-dark);
+  color: #fff;
 }
 
 .ec-emoji-search {
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #e8c98a;
-  border-radius: 10px;
+  border: 1px solid var(--ec-line);
+  border-radius: 0;
   padding: 0.55rem 0.7rem;
   margin: 0.35rem 0 0.55rem;
   font-family: "Lora", serif;
@@ -139,45 +359,49 @@ body {
 .ec-emoji-cats {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 0;
   margin-bottom: 0.55rem;
+  border: 1px solid var(--ec-line);
 }
 
 .ec-emoji-cat {
-  border: 1px solid #e8c98a;
+  border: 0;
+  border-right: 1px solid var(--ec-line);
   background: #fff;
-  color: #2c4f2a;
-  border-radius: 999px;
-  padding: 0.22rem 0.55rem;
-  font-size: 0.72rem;
+  color: var(--ec-green-dark);
+  border-radius: 0;
+  padding: 0.32rem 0.5rem;
+  font-size: 0.68rem;
   font-weight: 700;
   cursor: pointer;
 }
 
 .ec-emoji-cat.is-on {
-  background: #467b43;
-  border-color: #467b43;
+  background: var(--ec-green-dark);
   color: #fff;
 }
 
 .ec-emoji-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(2.15rem, 1fr));
-  gap: 0.2rem;
+  gap: 0;
+  border: 1px solid var(--ec-line);
 }
 
 .ec-emoji-btn {
   border: 0;
-  background: transparent;
-  font-size: 1.35rem;
-  line-height: 1.6;
-  border-radius: 8px;
+  border-right: 1px solid var(--ec-line);
+  border-bottom: 1px solid var(--ec-line);
+  background: #fff;
+  font-size: 1.28rem;
+  line-height: 1.7;
+  border-radius: 0;
   cursor: pointer;
 }
 
 .ec-emoji-btn:hover,
 .ec-emoji-btn.is-on {
-  background: #f3deb4;
+  background: var(--ec-beige);
 }
 
 .ec-emoji-empty,
@@ -189,37 +413,54 @@ body {
 }
 
 .ec-emoji-field {
-  background: #fffdf8;
-  border: 1px solid #e8c98a;
-  border-radius: 14px;
-  padding: 0.7rem;
-}
-
-.ec-emoji-current {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.35rem;
+  align-items: stretch;
+  gap: 0;
+  background: #fff;
+  border: 1px solid var(--ec-line);
 }
 
 .ec-emoji-preview {
-  font-size: 1.8rem;
-  width: 2.2rem;
-  text-align: center;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  min-height: 40px;
+  flex: none;
+  font-size: 1.45rem;
+  background: var(--ec-cream);
+  border-right: 1px solid var(--ec-line);
+}
+
+.ec-emoji-field input {
+  flex: 1;
+  min-width: 0;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.ec-emoji-actions {
+  display: flex;
+  flex: none;
+}
+
+.ec-emoji-actions button {
+  border-left: 1px solid var(--ec-line);
 }
 
 #ec-emoji-toast {
   position: fixed;
   left: 50%;
-  bottom: 88px;
-  transform: translateX(-50%) translateY(12px);
-  background: #2c4f2a;
+  bottom: 72px;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--ec-green-dark);
   color: #fff;
-  padding: 0.55rem 0.9rem;
-  border-radius: 999px;
+  padding: 0.5rem 0.85rem;
+  border: 0;
   font-family: "Montserrat", sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   opacity: 0;
   pointer-events: none;
   z-index: 2147483001;
@@ -229,4 +470,39 @@ body {
 #ec-emoji-toast.is-on {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 860px) {
+  .ec-bar {
+    grid-template-columns: 1fr auto;
+    height: auto;
+    min-height: var(--ec-bar-h);
+  }
+
+  .ec-brand {
+    border-right: 0;
+  }
+
+  .ec-steps {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .ec-steps li {
+    padding: 0.55rem 0.4rem;
+    font-size: 0;
+  }
+
+  .ec-steps li span {
+    display: none;
+  }
+
+  .ec-steps b {
+    margin: 0 auto;
+  }
+
+  #nc-root {
+    height: calc(100vh - 90px);
+  }
 }

@@ -3,6 +3,7 @@
   if (!palette) return;
 
   var lastField = null;
+  var widgetSetter = null;
 
   function rememberField(el) {
     if (!el) return;
@@ -68,11 +69,30 @@
     }, 1600);
   }
 
-  function pick(emoji, fromWidget) {
+  function openDock() {
+    var panel = document.getElementById('ec-emoji-panel');
+    if (!panel) return;
+    panel.removeAttribute('hidden');
+    var search = document.getElementById('ec-emoji-search');
+    if (search) search.focus();
+  }
+
+  function closeDock() {
+    var panel = document.getElementById('ec-emoji-panel');
+    if (panel) panel.setAttribute('hidden', '');
+    widgetSetter = null;
+  }
+
+  function pick(emoji) {
     copyEmoji(emoji);
+    if (typeof widgetSetter === 'function') {
+      widgetSetter(emoji);
+      toast(emoji + ' choisi');
+      closeDock();
+      return;
+    }
     var inserted = insertEmoji(emoji);
-    if (fromWidget) return;
-    toast(inserted ? emoji + ' ajouté' : emoji + ' copié — Ctrl + V pour coller');
+    toast(inserted ? emoji + ' ajouté' : emoji + ' copié — Ctrl + V');
   }
 
   function renderGrid(container, query, catId, onPick) {
@@ -106,13 +126,13 @@
       '<button type="button" class="ec-emoji-toggle" id="ec-emoji-toggle" title="Palette d’emojis">😊</button>' +
       '<div class="ec-emoji-panel" id="ec-emoji-panel" hidden>' +
         '<div class="ec-emoji-head">' +
-          '<strong>Palette d’emojis</strong>' +
-          '<button type="button" class="ec-emoji-close" id="ec-emoji-close" aria-label="Fermer">✕</button>' +
+          '<strong>Emojis</strong>' +
+          '<button type="button" class="ec-emoji-close" id="ec-emoji-close" aria-label="Fermer">Fermer</button>' +
         '</div>' +
         '<input type="search" class="ec-emoji-search" id="ec-emoji-search" placeholder="Cherche : oiseau, arbre, fête…">' +
         '<div class="ec-emoji-cats" id="ec-emoji-cats"></div>' +
         '<div class="ec-emoji-grid" id="ec-emoji-grid"></div>' +
-        '<p class="ec-emoji-help">Clique un emoji pour l’ajouter dans le champ en cours, ou le copier.</p>' +
+        '<p class="ec-emoji-help">Clique un emoji pour l’ajouter au champ, ou le copier.</p>' +
       '</div>';
     document.body.appendChild(dock);
 
@@ -132,9 +152,7 @@
         Array.prototype.forEach.call(catsBox.children, function (child) {
           child.classList.toggle('is-on', child === btn);
         });
-        renderGrid(grid, search.value, catId, function (emoji) {
-          pick(emoji, false);
-        });
+        renderGrid(grid, search.value, catId, pick);
       });
       catsBox.appendChild(btn);
     }
@@ -145,24 +163,21 @@
     });
 
     function refresh() {
-      renderGrid(grid, search.value, catId, function (emoji) {
-        pick(emoji, false);
-      });
+      renderGrid(grid, search.value, catId, pick);
     }
 
     search.addEventListener('input', refresh);
     document.getElementById('ec-emoji-toggle').addEventListener('click', function () {
       var open = panel.hasAttribute('hidden');
-      if (open) panel.removeAttribute('hidden');
-      else panel.setAttribute('hidden', '');
       if (open) {
+        widgetSetter = null;
+        openDock();
         refresh();
-        search.focus();
+      } else {
+        closeDock();
       }
     });
-    document.getElementById('ec-emoji-close').addEventListener('click', function () {
-      panel.setAttribute('hidden', '');
-    });
+    document.getElementById('ec-emoji-close').addEventListener('click', closeDock);
     refresh();
   }
 
@@ -175,72 +190,48 @@
     var createClass = window.createClass;
 
     var EmojiControl = createClass({
-      getInitialState: function () {
-        return { query: '', cat: 'utiles', open: true };
-      },
       choose: function (emoji) {
-        this.props.onChange(emoji);
+        this.props.onChange(emoji || '');
+      },
+      openPalette: function () {
+        var self = this;
+        widgetSetter = function (emoji) {
+          self.props.onChange(emoji);
+        };
+        openDock();
+        var search = document.getElementById('ec-emoji-search');
+        var grid = document.getElementById('ec-emoji-grid');
+        if (grid) renderGrid(grid, search ? search.value : '', 'tous', pick);
       },
       render: function () {
         var self = this;
         var value = this.props.value || '';
-        var query = this.state.query || '';
-        var cat = this.state.cat || 'utiles';
-        var items = palette.search(query, cat).slice(0, 220);
-
         return h('div', { className: 'ec-emoji-field' },
-          h('div', { className: 'ec-emoji-current' },
-            h('span', { className: 'ec-emoji-preview' }, value || '🙂'),
-            h('input', {
-              id: this.props.forID,
-              className: this.props.classNameWrapper,
-              type: 'text',
-              value: value,
-              placeholder: 'Clique un emoji ci-dessous',
-              onChange: function (e) {
-                self.props.onChange(e.target.value);
-              },
-              onFocus: function (e) {
-                rememberField(e.target);
-              }
-            }),
+          h('span', { className: 'ec-emoji-preview' }, value || '·'),
+          h('input', {
+            id: this.props.forID,
+            className: this.props.classNameWrapper,
+            type: 'text',
+            value: value,
+            placeholder: 'Vide',
+            onChange: function (e) {
+              self.props.onChange(e.target.value);
+            },
+            onFocus: function (e) {
+              rememberField(e.target);
+            }
+          }),
+          h('div', { className: 'ec-emoji-actions' },
+            h('button', {
+              type: 'button',
+              className: 'ec-emoji-pick',
+              onClick: function () { self.openPalette(); }
+            }, 'Choisir'),
             value ? h('button', {
               type: 'button',
               className: 'ec-emoji-clear',
               onClick: function () { self.props.onChange(''); }
             }, 'Effacer') : null
-          ),
-          h('input', {
-            type: 'search',
-            className: 'ec-emoji-search',
-            placeholder: 'Cherche un emoji (oiseau, arbre, fête…)',
-            value: query,
-            onChange: function (e) {
-              self.setState({ query: e.target.value });
-            }
-          }),
-          h('div', { className: 'ec-emoji-cats' },
-            [{ id: 'tous', label: 'Tous' }].concat(palette.cats).map(function (catItem) {
-              var id = catItem.id;
-              var label = catItem.label;
-              return h('button', {
-                type: 'button',
-                key: id,
-                className: 'ec-emoji-cat' + (cat === id ? ' is-on' : ''),
-                onClick: function () { self.setState({ cat: id }); }
-              }, label);
-            })
-          ),
-          h('div', { className: 'ec-emoji-grid' },
-            items.length ? items.map(function (item) {
-              return h('button', {
-                type: 'button',
-                key: item.emoji + item.name,
-                className: 'ec-emoji-btn' + (value === item.emoji ? ' is-on' : ''),
-                title: item.name,
-                onClick: function () { self.choose(item.emoji); }
-              }, item.emoji);
-            }) : h('p', { className: 'ec-emoji-empty' }, 'Aucun emoji pour cette recherche.')
           )
         );
       }
@@ -248,7 +239,7 @@
 
     var EmojiPreview = createClass({
       render: function () {
-        return h('span', { style: { fontSize: '1.6rem' } }, this.props.value || '');
+        return h('span', { style: { fontSize: '1.4rem' } }, this.props.value || '');
       }
     });
 

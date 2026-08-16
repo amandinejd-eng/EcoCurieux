@@ -5,43 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="theme-color" content="#2c4f2a" />
-    <title>Modifier le site — Écocurieux</title>
+    <title>Studio — Écocurieux</title>
     <link rel="icon" href="/images-creation-de-site/logo.png" />
     <link rel="apple-touch-icon" href="/images-creation-de-site/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/admin/admin.css" />
   </head>
-  <body>
+  <body class="ec-studio">
+    <header class="ec-bar" id="ec-bar">
+      <a class="ec-brand" href="/" title="Retour au site">
+        <img src="/images-creation-de-site/logo.png" alt="" />
+        <span>
+          <strong>Écocurieux</strong>
+          <em>Studio</em>
+        </span>
+      </a>
+      <ol class="ec-steps" aria-label="Comment publier">
+        <li><b>1</b><span>Choisir</span></li>
+        <li><b>2</b><span>Modifier</span></li>
+        <li><b>3</b><span>Publier</span></li>
+        <li><b>4</b><span>1 min · Ctrl+F5</span></li>
+      </ol>
+      <a class="ec-site" href="https://ecocurieux.com" target="_blank" rel="noopener">Voir le site</a>
+    </header>
+
     <div class="ec-boot" id="ec-boot">
-      <img src="/images-creation-de-site/logo.png" alt="Écocurieux" />
-      <p>Back-office Écocurieux</p>
-      <span>Ouverture du studio<span class="ec-dots"></span></span>
+      <div class="ec-boot-frame">
+        <p class="ec-boot-kicker">Studio</p>
+        <img src="/images-creation-de-site/logo.png" alt="Écocurieux" />
+        <h1>Quatre gestes.</h1>
+        <ol class="ec-boot-steps">
+          <li><b>01</b> Choisir une rubrique à gauche</li>
+          <li><b>02</b> Modifier les textes, photos, couleurs</li>
+          <li><b>03</b> Cliquer sur <strong>Publier</strong></li>
+          <li><b>04</b> Attendre 1 minute, puis Ctrl+F5</li>
+        </ol>
+        <p class="ec-boot-wait">Ouverture<span class="ec-dots"></span></p>
+      </div>
     </div>
+
     <div id="nc-root"></div>
+
     <script src="/admin/emojis.js"></script>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
     <script src="/admin/emoji-field.js"></script>
     <script src="/admin/preview.js"></script>
-    <script>
-      (function () {
-        var boot = document.getElementById('ec-boot');
-        var root = document.getElementById('nc-root');
-        function hide() {
-          if (boot) boot.classList.add('is-hidden');
-        }
-        if (root && window.MutationObserver) {
-          var observer = new MutationObserver(function () {
-            if (root.childElementCount > 0) hide();
-          });
-          observer.observe(root, { childList: true, subtree: true });
-        }
-        window.setTimeout(hide, 8000);
-      })();
-    </script>
+    <script src="/admin/studio.js"></script>
   </body>
 </html>
