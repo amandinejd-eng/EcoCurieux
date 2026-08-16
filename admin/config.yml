@@ -11,6 +11,7 @@ backend:
   branch: main
   base_url: https://ecocurieux.com
   auth_endpoint: auth
+  auth_methods: [oauth]
   commit_messages:
     create: "CMS : création de {{collection}} « {{slug}} »"
     update: "CMS : mise à jour de {{collection}} « {{slug}} »"

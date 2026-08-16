@@ -1,35 +1,38 @@
-function siteOrigin(req) {
-  const proto = req.headers['x-forwarded-proto'] || 'https';
-  const host = req.headers['x-forwarded-host'] || req.headers.host;
-  return `${proto}://${host}`;
+import { siteOrigin, getOAuthCreds } from '../lib/github-oauth.js';
+
+function sendMessage(res, kind, payload) {
+  const json = JSON.stringify(payload).replace(/</g, '\\u003c');
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.status(200).send(`<!DOCTYPE html><html lang="fr"><body><script>
+    (function () {
+      var payload = ${json};
+      function receiveMessage(e) {
+        window.opener.postMessage('authorization:github:${kind}:' + JSON.stringify(payload), e.origin);
+        window.removeEventListener('message', receiveMessage, false);
+      }
+      window.addEventListener('message', receiveMessage, false);
+      if (window.opener) {
+        window.opener.postMessage('authorizing:github', '*');
+      } else {
+        document.body.innerHTML = '<p style="font-family:sans-serif;padding:2rem">Connexion GitHub terminée. Tu peux fermer cette fenêtre et revenir au back-office.</p>';
+      }
+    })();
+  </script></body></html>`);
 }
 
 export default async function handler(req, res) {
   const { code, error, error_description: errorDescription } = req.query || {};
-
-  const fail = (message) => {
-    const payload = JSON.stringify({
-      message: message || 'Authorization failed',
-    }).replace(/</g, '\\u003c');
-    res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    res.status(200).send(`<!DOCTYPE html><html><body><script>
-      (function () {
-        function receiveMessage(e) {
-          window.opener.postMessage('authorization:github:error:' + ${JSON.stringify(payload)}, e.origin);
-          window.removeEventListener('message', receiveMessage, false);
-        }
-        window.addEventListener('message', receiveMessage, false);
-        window.opener.postMessage('authorizing:github', '*');
-      })();
-    </script></body></html>`);
-  };
+  const origin = siteOrigin(req);
+  const { clientId, clientSecret } = getOAuthCreds(req);
 
   if (error) {
-    return fail(errorDescription || error);
+    return sendMessage(res, 'error', { message: errorDescription || error });
   }
 
-  if (!code || !process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET) {
-    return fail('Code OAuth manquant ou identifiants GitHub non configurés.');
+  if (!code || !clientId || !clientSecret) {
+    return sendMessage(res, 'error', {
+      message: 'Connexion GitHub incomplète. Ferme cette fenêtre et réessaie « Se connecter avec GitHub ».',
+    });
   }
 
   try {
@@ -40,34 +43,24 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        client_id: process.env.GITHUB_CLIENT_ID,
-        client_secret: process.env.GITHUB_CLIENT_SECRET,
+        client_id: clientId,
+        client_secret: clientSecret,
         code,
-        redirect_uri: `${siteOrigin(req)}/callback`,
+        redirect_uri: `${origin}/callback`,
       }),
     });
     const data = await tokenRes.json();
     if (!data.access_token) {
-      return fail(data.error_description || data.error || 'Impossible d’obtenir le jeton GitHub.');
+      return sendMessage(res, 'error', {
+        message: data.error_description || data.error || 'Impossible d’obtenir l’accès GitHub.',
+      });
     }
 
-    const success = JSON.stringify({
+    return sendMessage(res, 'success', {
       token: data.access_token,
       provider: 'github',
-    }).replace(/</g, '\\u003c');
-
-    res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    res.status(200).send(`<!DOCTYPE html><html><body><script>
-      (function () {
-        function receiveMessage(e) {
-          window.opener.postMessage('authorization:github:success:' + ${JSON.stringify(success)}, e.origin);
-          window.removeEventListener('message', receiveMessage, false);
-        }
-        window.addEventListener('message', receiveMessage, false);
-        window.opener.postMessage('authorizing:github', '*');
-      })();
-    </script></body></html>`);
+    });
   } catch (err) {
-    return fail(err.message || 'Erreur OAuth');
+    return sendMessage(res, 'error', { message: err.message || 'Erreur OAuth' });
   }
 }

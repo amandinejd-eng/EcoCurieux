@@ -3,6 +3,7 @@
   "cleanUrls": false,
   "rewrites": [
     { "source": "/auth", "destination": "/api/auth" },
-    { "source": "/callback", "destination": "/api/callback" }
+    { "source": "/callback", "destination": "/api/callback" },
+    { "source": "/github-setup", "destination": "/api/github-setup" }
   ]
 }
