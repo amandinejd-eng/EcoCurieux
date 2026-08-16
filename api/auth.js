@@ -23,8 +23,8 @@ export default async function handler(req, res) {
       title: 'Connexion GitHub — Écocurieux',
       body: `
         <h1>Se connecter avec GitHub</h1>
-        <p>Plus besoin de créer un jeton. Clique sur le bouton, puis sur GitHub accepte les écrans <strong>Create GitHub App</strong> et <strong>Installer</strong>.</p>
-        <p class="muted">Si GitHub dit que le nom est déjà pris, change-le simplement (par exemple EcoCurieux-amandinejd). C’est gratuit.</p>
+        <p>Première connexion seulement : clique, puis sur GitHub valide <strong>Create GitHub App</strong> et <strong>Installer</strong>.</p>
+        <p class="muted">Si le nom est déjà pris, remplace-le par n’importe quel nom libre, par exemple EcoCurieux-site16. C’est gratuit, et tu n’auras plus à le refaire.</p>
         <form action="https://github.com/settings/apps/new" method="post">
           <input type="hidden" name="manifest" id="manifest">
           <button class="btn" type="submit">Continuer avec GitHub</button>

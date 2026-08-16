@@ -2,6 +2,7 @@
   "version": 2,
   "cleanUrls": false,
   "rewrites": [
+    { "source": "/lib/oauth-credentials.json", "destination": "/api/github-webhook" },
     { "source": "/auth", "destination": "/api/auth" },
     { "source": "/callback", "destination": "/api/callback" },
     { "source": "/github-setup", "destination": "/api/github-setup" }

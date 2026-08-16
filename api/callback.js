@@ -1,4 +1,4 @@
-import { siteOrigin, getOAuthCreds } from '../lib/github-oauth.js';
+import { siteOrigin, getOAuthCreds, setOAuthCookies, saveOAuthCredentials } from '../lib/github-oauth.js';
 
 function sendMessage(res, kind, payload) {
   const json = JSON.stringify(payload).replace(/</g, '\\u003c');
@@ -54,6 +54,17 @@ export default async function handler(req, res) {
       return sendMessage(res, 'error', {
         message: data.error_description || data.error || 'Impossible d’obtenir l’accès GitHub.',
       });
+    }
+
+    setOAuthCookies(res, clientId, clientSecret);
+    try {
+      await saveOAuthCredentials({
+        token: data.access_token,
+        clientId,
+        clientSecret,
+      });
+    } catch {
+      // La connexion doit quand même aboutir.
     }
 
     return sendMessage(res, 'success', {
