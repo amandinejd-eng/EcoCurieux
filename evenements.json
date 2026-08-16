@@ -2,14 +2,26 @@
   "upcoming": [
     {
       "id": "event-002",
-      "date": "2026-08-24",
+      "date": "2026-08-19",
+      "emoji": "",
       "title": "🐦 L'Été des Oiseaux",
+      "subtitle": "",
       "location": "Port de plaisance 71100 Chalon-sur-Saône",
       "description": "Plongez dans l'univers mystérieux des oiseaux ! À travers des ateliers ludiques en libre service, découvrez leur anatomie, leurs comportements amoureux (parades), leurs chants et l'art de la nidification. Apprenez également les gestes simples pour les aider chez vous.",
       "details": "Participez à nos sessions d'initiation à l'ornithologie pour porter un nouveau regard sur le ciel !",
+      "recap": "",
+      "footer": "",
       "time": "10h-18h",
       "audience": "Tout public",
       "price": "Gratuit",
+      "couleur": "",
+      "couleurTitre": "",
+      "icone": "",
+      "photos": [],
+      "galerie": "bande",
+      "titreProgramme": "Au programme",
+      "emojiProgramme": "🎯",
+      "program": [],
       "day": "24",
       "month": "JUIN",
       "year": "2026"
@@ -19,58 +31,91 @@
     {
       "id": "past-002",
       "date": "2026-04-11",
+      "emoji": "",
       "title": "L'Expédition \"Dino-Secours\"",
+      "subtitle": "",
       "location": "Anniversaire 5 ans",
       "description": "À l'occasion d'un anniversaire de 5 ans, Écocurieux a imaginé une immersion totale dans la peau d'un paléontologue dont le laboratoire d'analyse vient d'être saccagé par un T-Rex !",
+      "details": "",
       "recap": "Les petits explorateurs ont dû faire preuve de courage et de rigueur scientifique pour remettre le camp de base sur pied et percer le mystère d'un œuf sauvé des décombres. ✨ Toutes les animations présentées lors de cet événement ont été entièrement conçues et animées par Écocurieux.",
       "footer": "",
+      "time": "",
+      "audience": "Tout public",
+      "price": "Sur devis",
+      "couleur": "",
+      "couleurTitre": "",
+      "icone": "",
       "photos": [
         {
           "url": "/evenements-passes/expedition-dino-secours/camp-de-base.jpg",
           "caption": "Le camp de base du paléontologue",
+          "role": "galerie",
+          "position": "gauche",
+          "cadrage": "contenir",
+          "focus": "centre",
           "rotation": 0
         },
         {
           "url": "/evenements-passes/expedition-dino-secours/expertise-sensorielle.jpg",
           "caption": "Mission 1 : L'expertise sensorielle",
+          "role": "galerie",
+          "position": "gauche",
+          "cadrage": "contenir",
+          "focus": "centre",
           "rotation": 0
         },
         {
           "url": "/evenements-passes/expedition-dino-secours/elixir-chimique.jpg",
           "caption": "Mission 2 : L'élixir chimique",
+          "role": "galerie",
+          "position": "gauche",
+          "cadrage": "contenir",
+          "focus": "centre",
           "rotation": 0
         },
         {
           "url": "/evenements-passes/expedition-dino-secours/grand-codex.jpg",
           "caption": "Mission 3 : Le Grand Codex",
+          "role": "galerie",
+          "position": "gauche",
+          "cadrage": "contenir",
+          "focus": "centre",
           "rotation": 0
         }
       ],
+      "galerie": "bande",
+      "titreProgramme": "Au programme",
+      "emojiProgramme": "🎯",
       "program": [
         {
           "emoji": "🥚",
           "title": "Mission 1 : Le véritable œuf",
-          "description": "Parmi les débris, plusieurs spécimens ont été retrouvés. Poids, son, texture… Les enfants ont dû mener une expertise sensorielle pour isoler le seul et unique œuf \"vivant\" au milieu des leurres fossilisés."
+          "description": "Parmi les débris, plusieurs spécimens ont été retrouvés. Poids, son, texture… Les enfants ont dû mener une expertise sensorielle pour isoler le seul et unique œuf \"vivant\" au milieu des leurres fossilisés.",
+          "couleur": ""
         },
         {
           "emoji": "🧪",
           "title": "Mission 2 : L’élixir d’analyse",
-          "description": "Place à la chimie ! Pour découvrir le régime alimentaire du spécimen, les recrues ont analysé un liquide mystérieux. Une réaction colorée et effervescente qui a révélé le secret : herbivore ou carnivore ?"
+          "description": "Place à la chimie ! Pour découvrir le régime alimentaire du spécimen, les recrues ont analysé un liquide mystérieux. Une réaction colorée et effervescente qui a révélé le secret : herbivore ou carnivore ?",
+          "couleur": ""
         },
         {
           "emoji": "📜",
           "title": "Mission 3 : Le Grand Codex des Dinosaures",
-          "description": "Les archives ont été dispersées lors de l'attaque ! Une course contre la montre pour retrouver les IRM (radiographies) et les fiches d’identification du Codex afin de valider scientifiquement l’espèce de notre œuf."
+          "description": "Les archives ont été dispersées lors de l'attaque ! Une course contre la montre pour retrouver les IRM (radiographies) et les fiches d’identification du Codex afin de valider scientifiquement l’espèce de notre œuf.",
+          "couleur": ""
         },
         {
           "emoji": "🦴",
           "title": "Mission 4 : Chantier de fouilles",
-          "description": "Retour sur le terrain ! Armés de pinceaux et de truelles, les paléontologues ont exploré le gisement de sable pour extraire des fossiles et reconstituer l'histoire du géant qui a dévasté le laboratoire."
+          "description": "Retour sur le terrain ! Armés de pinceaux et de truelles, les paléontologues ont exploré le gisement de sable pour extraire des fossiles et reconstituer l'histoire du géant qui a dévasté le laboratoire.",
+          "couleur": ""
         },
         {
           "emoji": "🦖",
           "title": "Mission 5 : L'éclosion",
-          "description": "Le moment tant attendu... Sous les yeux émerveillés de l'équipe, l'œuf protégé tout au long de l'aventure a fini par se fissurer pour laisser place à la vie."
+          "description": "Le moment tant attendu... Sous les yeux émerveillés de l'équipe, l'œuf protégé tout au long de l'aventure a fini par se fissurer pour laisser place à la vie.",
+          "couleur": ""
         }
       ],
       "day": "11",
@@ -80,53 +125,82 @@
     {
       "id": "past-004",
       "date": "2026-04-09",
+      "emoji": "",
       "title": "L'Épopée des Quatre Clans",
+      "subtitle": "",
       "location": "Centre de Loisirs du Carmel, Chalon-sur-Saône",
       "description": "À l'occasion d'une animation sur le thème des 5 sens, Écocurieux a imaginé et animé L'Épopée des Quatre Clans : 2h d'aventure immersive pour 12 louveteaux de 5-6 ans, 100% sur mesure. Les enfants ont incarné des clans de loups et exploré tour à tour leur vue, leur ouïe, leur odorat et leur toucher pour survivre, coopérer et bâtir leur tanière.",
+      "details": "",
       "recap": "Répartis en 4 clans de loups, les enfants ont exploré chacun de leurs sens tour à tour. Le tout conclu par un grand hurlement de victoire collectif 🐺 Toutes les animations présentées lors de cet événement ont été entièrement conçues et animées par Écocurieux.",
       "footer": "",
+      "time": "",
+      "audience": "Tout public",
+      "price": "Sur devis",
+      "couleur": "",
+      "couleurTitre": "",
+      "icone": "",
       "photos": [
         {
           "url": "/evenements-passes/epopee-quatre-clans/taniere-loup.jpg",
           "caption": "La tanière mystérieuse",
+          "role": "galerie",
+          "position": "gauche",
+          "cadrage": "contenir",
+          "focus": "centre",
           "rotation": 0
         },
         {
           "url": "/evenements-passes/epopee-quatre-clans/piste-nature.jpg",
           "caption": "Sur la piste olfactive",
+          "role": "galerie",
+          "position": "gauche",
+          "cadrage": "contenir",
+          "focus": "centre",
           "rotation": 0
         },
         {
           "url": "/evenements-passes/epopee-quatre-clans/empreintes-loup.jpg",
           "caption": "Chasse aux empreintes",
+          "role": "galerie",
+          "position": "gauche",
+          "cadrage": "contenir",
+          "focus": "centre",
           "rotation": 0
         }
       ],
+      "galerie": "bande",
+      "titreProgramme": "Au programme",
+      "emojiProgramme": "🎯",
       "program": [
         {
           "emoji": "👁️",
           "title": "La vue — Décoder les postures de l'Alpha",
-          "description": "Les louveteaux ont dû observer et comprendre le langage corporel de leur chef de meute pour communiquer et coordonner leurs actions."
+          "description": "Les louveteaux ont dû observer et comprendre le langage corporel de leur chef de meute pour communiquer et coordonner leurs actions.",
+          "couleur": ""
         },
         {
           "emoji": "👂",
           "title": "L'ouïe — Retrouver son clan les yeux fermés",
-          "description": "Un défi sensoriel où chaque louveteau devait reconnaître et rejoindre son clan uniquement grâce aux sons, les yeux bandés."
+          "description": "Un défi sensoriel où chaque louveteau devait reconnaître et rejoindre son clan uniquement grâce aux sons, les yeux bandés.",
+          "couleur": ""
         },
         {
           "emoji": "👃",
           "title": "L'odorat — Suivre la piste olfactive",
-          "description": "Une aventure olfactive pour retrouver le chemin de la tanière en suivant les odeurs dispersées dans le parc."
+          "description": "Une aventure olfactive pour retrouver le chemin de la tanière en suivant les odeurs dispersées dans le parc.",
+          "couleur": ""
         },
         {
           "emoji": "🐾",
           "title": "Le toucher — Chasser les proies par les empreintes",
-          "description": "Les jeunes loups ont exploré le terrain pour identifier et suivre les empreintes de leurs proies, utilisant uniquement le sens du toucher."
+          "description": "Les jeunes loups ont exploré le terrain pour identifier et suivre les empreintes de leurs proies, utilisant uniquement le sens du toucher.",
+          "couleur": ""
         },
         {
           "emoji": "🐺",
           "title": "Le grand hurlement de victoire",
-          "description": "Pour célébrer la réussite de toutes les épreuves, les 4 clans se sont réunis pour un hurlement collectif mémorable !"
+          "description": "Pour célébrer la réussite de toutes les épreuves, les 4 clans se sont réunis pour un hurlement collectif mémorable !",
+          "couleur": ""
         }
       ],
       "day": "09",
@@ -136,63 +210,97 @@
     {
       "id": "past-001",
       "date": "2026-03-28",
+      "emoji": "",
       "title": "Portes Ouvertes — La Toque Fermière",
+      "subtitle": "",
       "location": "Le Bourg, 71990 Saint-Léger-sous-Beuvray",
       "description": "À l'occasion des Portes Ouvertes de La Toque Fermière, Écocurieux a imaginé et animé un stand complet d'animations 100% sur mesure, pensées spécialement pour faire découvrir le monde de l'élevage de façon ludique et interactive.",
+      "details": "",
       "recap": "Petits et grands curieux ont pu explorer, manipuler, questionner… et repartir avec des connaissances qu'ils n'auraient jamais soupçonnées !",
       "footer": "Toutes les animations présentées lors de cet événement ont été entièrement conçues et animées par Écocurieux — aucun kit tout fait, tout est créé sur mesure pour coller au thème et au public de chaque événement.",
+      "time": "",
+      "audience": "Tout public",
+      "price": "Sur devis",
+      "couleur": "",
+      "couleurTitre": "",
+      "icone": "",
       "photos": [
         {
           "url": "/evenements-passes/La Toque Fermière 28 mars 2026/stand avec différentes animations.jpg",
           "caption": "Stand avec différentes animations",
+          "role": "galerie",
+          "position": "gauche",
+          "cadrage": "contenir",
+          "focus": "centre",
           "rotation": 0
         },
         {
           "url": "/evenements-passes/La Toque Fermière 28 mars 2026/Jeu du cochon utile.jpg",
           "caption": "Jeu du cochon utile",
+          "role": "galerie",
+          "position": "gauche",
+          "cadrage": "contenir",
+          "focus": "centre",
           "rotation": 0
         },
         {
           "url": "/evenements-passes/La Toque Fermière 28 mars 2026/Enfant qui fait le puzzle du boeuf.jpg",
           "caption": "Enfant qui fait le puzzle du bœuf",
+          "role": "galerie",
+          "position": "gauche",
+          "cadrage": "contenir",
+          "focus": "centre",
           "rotation": 0
         },
         {
           "url": "/evenements-passes/La Toque Fermière 28 mars 2026/Puzzle boeuf le bon morceau au bon endroit.jpg",
           "caption": "Puzzle bœuf le bon morceau au bon endroit",
+          "role": "galerie",
+          "position": "gauche",
+          "cadrage": "contenir",
+          "focus": "centre",
           "rotation": 0
         }
       ],
+      "galerie": "bande",
+      "titreProgramme": "Au programme",
+      "emojiProgramme": "🎯",
       "program": [
         {
           "emoji": "🥩",
           "title": "Le bon morceau au bon endroit — Bœuf",
-          "description": "Un puzzle grandeur nature : replacer chaque morceau de bœuf à sa place sur la silhouette de la vache. Un atelier qui a demandé beaucoup de concentration et quelques fous rires !"
+          "description": "Un puzzle grandeur nature : replacer chaque morceau de bœuf à sa place sur la silhouette de la vache. Un atelier qui a demandé beaucoup de concentration et quelques fous rires !",
+          "couleur": ""
         },
         {
           "emoji": "🐷",
           "title": "Le bon morceau au bon endroit — Porc",
-          "description": "Même principe, mais cette fois sur la silhouette du cochon ! Filet, jambon, travers… Pas si simple de s'y retrouver !"
+          "description": "Même principe, mais cette fois sur la silhouette du cochon ! Filet, jambon, travers… Pas si simple de s'y retrouver !",
+          "couleur": ""
         },
         {
           "emoji": "🐷",
           "title": "Le cochon utile",
-          "description": "Pneu de vélo, dentifrice, bière, médicaments… Quel est leur point commun ? Le cochon entre dans leur fabrication ! Un jeu qui a surpris absolument tout le monde."
+          "description": "Pneu de vélo, dentifrice, bière, médicaments… Quel est leur point commun ? Le cochon entre dans leur fabrication ! Un jeu qui a surpris absolument tout le monde.",
+          "couleur": ""
         },
         {
           "emoji": "✅",
           "title": "Vrai ou Faux — Bovin",
-          "description": "Idées reçues, croyances, surprises… Les participants ont testé leurs connaissances sur le bovin à travers une série d'affirmations à démêler. Pas si facile qu'il n'y paraît !"
+          "description": "Idées reçues, croyances, surprises… Les participants ont testé leurs connaissances sur le bovin à travers une série d'affirmations à démêler. Pas si facile qu'il n'y paraît !",
+          "couleur": ""
         },
         {
           "emoji": "🌳",
           "title": "L'arbre phylogénétique du bovin",
-          "description": "Veau, velle, génisse, taureau, vache… Découverte de la grande famille bovine à travers un support visuel créé pour l'occasion."
+          "description": "Veau, velle, génisse, taureau, vache… Découverte de la grande famille bovine à travers un support visuel créé pour l'occasion.",
+          "couleur": ""
         },
         {
           "emoji": "🎡",
           "title": "La roue des questions",
-          "description": "Pour finir de tester ses connaissances sur l'élevage dans la bonne humeur !"
+          "description": "Pour finir de tester ses connaissances sur l'élevage dans la bonne humeur !",
+          "couleur": ""
         }
       ],
       "day": "28",
