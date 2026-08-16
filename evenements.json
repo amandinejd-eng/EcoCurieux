@@ -1,6 +1,28 @@
 {
   "upcoming": [
     {
+      "date": "2026-08-24",
+      "emoji": "",
+      "title": "Éco’Enquête : Mystère à l'École Ouverte",
+      "subtitle": "",
+      "location": "Chalon-sur-saône",
+      "description": "Avis aux détectives en herbe !\n\nUne enquête naturaliste captivante attend les élèves de l'École Ouverte à Chalon-sur-Saône. À travers des indices, des énigmes ludiques et des ateliers d'observation, les enfants partent à la découverte des oiseaux qui peuplent notre environnement.\n\nUne aventure participative pour aiguiser son sens de l'observation, en apprendre plus sur la biodiversité locale et devenir un véritable expert du monde ailé !",
+      "details": "",
+      "recap": "",
+      "footer": "",
+      "time": "",
+      "audience": "Privé : Enfants du dispositif école ouverte",
+      "price": "",
+      "couleur": "",
+      "couleurTitre": "",
+      "icone": "",
+      "photos": [],
+      "galerie": "bande",
+      "titreProgramme": "Au programme",
+      "emojiProgramme": "🎯",
+      "program": []
+    },
+    {
       "id": "event-002",
       "date": "2026-08-19",
       "emoji": "",
