@@ -1,8 +1,17 @@
 // Gestion automatique des événements
+function normalizeEvent(event) {
+  if (window.EcoCms && typeof window.EcoCms.normalizeEventDate === 'function') {
+    return window.EcoCms.normalizeEventDate(event);
+  }
+  return event;
+}
+
 async function loadEvents() {
   try {
     const response = await fetch('/evenements.json');
     const data = await response.json();
+    data.upcoming = (data.upcoming || []).map(normalizeEvent);
+    data.past = (data.past || []).map(normalizeEvent);
     return data;
   } catch (error) {
     console.error('Erreur lors du chargement des événements:', error);
@@ -10,12 +19,21 @@ async function loadEvents() {
   }
 }
 
+function parseEventDay(eventDate) {
+  const raw = String(eventDate || '').slice(0, 10);
+  const parts = raw.split('-');
+  if (parts.length === 3 && parts[0].length === 4) {
+    return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+  }
+  const event = new Date(eventDate);
+  event.setHours(0, 0, 0, 0);
+  return event;
+}
+
 function isEventPast(eventDate) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const event = new Date(eventDate);
-  event.setHours(0, 0, 0, 0);
-  return event < today;
+  return parseEventDay(eventDate) < today;
 }
 
 function createEventCard(event) {
@@ -233,7 +251,7 @@ async function displayUpcomingEvents(containerId) {
   const upcomingEvents = data.upcoming.filter(event => !isEventPast(event.date));
   
   // Trier par date croissante (le plus proche en premier)
-  upcomingEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+  upcomingEvents.sort((a, b) => parseEventDay(a.date) - parseEventDay(b.date));
   
   if (upcomingEvents.length === 0) {
     container.innerHTML = `
@@ -268,7 +286,7 @@ async function displayPastEvents() {
   const allPastEvents = [...data.past, ...pastEventsFromUpcoming];
   
   // Trier par date décroissante (plus récent en premier)
-  allPastEvents.sort((a, b) => new Date(b.date) - new Date(a.date));
+  allPastEvents.sort((a, b) => parseEventDay(b.date) - parseEventDay(a.date));
   
   if (allPastEvents.length === 0) {
     carousel.innerHTML = `

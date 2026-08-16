@@ -1,0 +1,108 @@
+{
+  "badge": "📍 Ce que je propose",
+  "titre": "Le monde du",
+  "titreAccent": "vivant",
+  "titreFin": "n'attend que votre curiosité.",
+  "sousTitre": "Animations, balades et stages autour de Chalon-sur-Saône pour les enfants, les familles et tous ceux qui veulent voir le monde vivant autrement.",
+  "atelier": {
+    "photo": "/images-creation-de-site/enfants qui observent au jumelle.jpg",
+    "titre": "L'atelier",
+    "titreAccent": "nature sur mesure",
+    "intro": "Centres de loisirs, écoles, anniversaires, événements familiaux… Je me déplace directement chez vous pour concevoir une animation nature adaptée à votre public et à vos envies.",
+    "accroche": "Les thématiques ci-dessous sont là pour vous inspirer, mais elles ne sont pas un catalogue figé. Vous avez une idée précise ? Je pars de là. Vous cherchez encore ? Explorez, laissez-vous inspirer, puis contactez-moi : on construit ensemble quelque chose d'unique.",
+    "puces": [
+      "Chaque animation conçue spécifiquement pour vous",
+      "Tous les âges, tous les contextes",
+      "Je me déplace sur votre site"
+    ],
+    "etiquettes": [
+      "🐦 Ornithologie",
+      "🐛 Insectes",
+      "🍄 Décomposeurs",
+      "👃 5 sens",
+      "🌿 Plantes & forêt",
+      "🐾 Faune",
+      "🔄 Cycles & saisons",
+      "🎨 Nature créative"
+    ],
+    "catalogueIntro": "Ces thématiques servent d'inspiration. Toute animation reste 100 % sur mesure selon vos besoins.",
+    "themes": [
+      {
+        "emoji": "🐦",
+        "titre": "Ornithologie",
+        "texte": "Chants mystérieux au petit matin, silhouettes qui traversent le ciel, nids cachés dans les haies… Les oiseaux sont partout, mais on les connaît si peu ! Identification, écoute, observation aux jumelles, fabrication de nichoirs ou rallye plumes : chaque animation est une invitation à lever les yeux."
+      },
+      {
+        "emoji": "🐛",
+        "titre": "Le monde des insectes",
+        "texte": "Sous les pierres, dans les fleurs, au creux des vieilles souches… Les petites bêtes ont mille secrets à révéler. Capture et observation à la loupe, construction d'hôtels à insectes, jeux d'identification : des animations pour apprivoiser ce monde miniature qui fait tourner le nôtre."
+      },
+      {
+        "emoji": "🍄",
+        "titre": "Les décomposeurs",
+        "texte": "Sans eux, la forêt s'arrêterait de respirer. Champignons, vers de terre, cloportes, bactéries… Ces discrets travailleurs de l'ombre méritent qu'on leur consacre une vraie animation. Un thème fascinant pour comprendre les grands cycles du vivant."
+      },
+      {
+        "emoji": "👃",
+        "titre": "Les 5 sens",
+        "texte": "Fermer les yeux pour mieux entendre, toucher l'écorce rugueuse d'un vieux chêne, sentir la terre après la pluie… Cette approche sensorielle de la nature convient à tous les âges et s'adapte à tous les environnements. Une façon douce et puissante de reconnecter avec le vivant."
+      },
+      {
+        "emoji": "🌿",
+        "titre": "Plantes & forêt",
+        "texte": "Reconnaître une plante sauvage comestible, comprendre comment un arbre pousse, créer un petit potager ou partir en balade botanique… Le monde végétal offre un terrain d'exploration infini, entre émerveillement et transmission de savoirs concrets."
+      },
+      {
+        "emoji": "🐾",
+        "titre": "Faune terrestre",
+        "texte": "Renard, hérisson, vache ou mouton, les animaux qui partagent nos campagnes ont chacun leur histoire. Empreintes et traces, comportements, habitats, lien entre animaux sauvages et domestiques : des animations pour mieux connaître nos voisins à quatre pattes."
+      },
+      {
+        "emoji": "🔄",
+        "titre": "Cycles & saisons",
+        "texte": "La nature ne s'arrête jamais, elle se transforme. Pourquoi les hirondelles partent-elles en automne ? Comment un hérisson passe-t-il l'hiver ? Qu'est-ce que la phénologie ? Autant de questions qui ouvrent sur des animations riches, ancrées dans le temps et les paysages locaux."
+      },
+      {
+        "emoji": "🎨",
+        "titre": "Nature créative & ludique",
+        "texte": "Land art dans les bois, jeux de piste sur les traces des animaux, jeux coopératifs en plein air, fabrication de mangeoires… Ces animations mêlent créativité, jeu et découverte pour vivre la nature autrement, avec les mains, le corps et l'imaginaire."
+      }
+    ]
+  },
+  "anniversaires": {
+    "photo": "/images-creation-de-site/anniversaire copain enfant jardin.jpg",
+    "titre": "Anniversaires",
+    "titreAccent": "Nature",
+    "intro": "Offrir à votre enfant un anniversaire qu'il n'oubliera pas, sans artifices, mais avec de vraies aventures. Je viens chez vous pour une animation nature de 2h, entièrement scénarisée et adaptée au groupe.",
+    "accroche": "Deux univers sont disponibles pour vous inspirer :",
+    "conclusion": "Quel que soit l'âge, quel que soit l'univers, contactez-moi et on imagine ensemble l'aventure qui ressemble à votre enfant.",
+    "bouton": "🎉 Organiser un anniversaire",
+    "univers": [
+      {
+        "emoji": "🦕",
+        "titre": "L'Œuf Mystère",
+        "texte": "Un T-Rex s'est introduit dans le laboratoire et a tout mis sens dessus dessous. L'œuf de dinosaure que venait de rapporter Colette a disparu ! Les jeunes paléontologues devront relever une série d'épreuves : élixir mystérieux, codex secret et fouille archéologique, pour le retrouver avant qu'il ne soit trop tard."
+      },
+      {
+        "emoji": "🌿",
+        "titre": "La Quête de la Biodiversité",
+        "texte": "Les princes et princesses de la cité ont remarqué quelque chose d'inquiétant : les insectes et les oiseaux du château ont disparu. Guidés par les Grands Sages, ils devront se lancer dans une quête pour percer le mystère et réveiller la nature endormie."
+      }
+    ]
+  },
+  "stages": {
+    "photo": "/images-creation-de-site/enfant qui observe son carnet nature.jpg",
+    "titre": "Stage",
+    "titreAccent": "faune et flore",
+    "intro": "Des demi-journées et journées nature pour les enfants et les familles, pendant les vacances scolaires et certains mercredis, par petits groupes, pour une vraie expérience de terrain.",
+    "accroche": "Chaque stage suit un circuit de balade autour de Chalon-sur-Saône, pensé autour d'une thématique : oiseaux, insectes, plantes sauvages… À chaque sortie, son univers, ses découvertes, ses surprises.",
+    "carnet": "Et pour repartir avec un souvenir dans les mains : chaque participant reçoit son <strong>carnet nature</strong>, conçu spécialement pour la thématique du jour, à compléter au fil de la balade, à feuilleter et relire longtemps après.",
+    "infos": [
+      "🗓️ Vacances scolaires & mercredis",
+      "👥 Petits groupes",
+      "📍 Autour de Chalon-sur-Saône"
+    ],
+    "note": "Les dates et thématiques sont annoncées sur les réseaux sociaux. Les places étant limitées, les inscriptions se font directement en ligne.",
+    "bouton": "📅 Voir les prochains stages"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "nom": "Écocurieux",
+  "slogan": "L'atelier nature sur mesure",
+  "auteur": "Amandine Junier-Dubus",
+  "email": "amandinejd@gmail.com",
+  "telephone": "06.69.49.18.23",
+  "zone": "Saône-et-Loire & alentours",
+  "logo": "/images-creation-de-site/logo.png",
+  "colors": {
+    "green": "#467b43",
+    "greenDark": "#2c4f2a",
+    "brown": "#af6a32",
+    "beige": "#f3deb4",
+    "beige2": "#e8c98a",
+    "beigeLight": "#fdf5e6"
+  },
+  "fonts": {
+    "titres": "Montserrat",
+    "texte": "Lora",
+    "logo": "Nunito"
+  }
+}

@@ -19,8 +19,9 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Écocurieux","alternateName":["Eco Curieux","Ecocurieux"],"url":"https://ecocurieux.com/","logo":"https://ecocurieux.com/images-creation-de-site/logo.png"}</script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
+<script src="/js/site-cms.js"></script>
 </head>
-<body>
+<body data-page="pour-qui">
 
 <!-- ========== NAV ========== -->
 <nav>
@@ -113,9 +114,9 @@
 <!-- ========== ATELIERS POUR TOUS ========== -->
 <section class="padded ateliers" id="ateliers">
   <div class="section-inner">
-    <div class="section-label">Pour qui ?</div>
-    <div class="section-title">Des ateliers <span>pour tous</span></div>
-    <div class="ateliers-grid">
+    <div class="section-label" data-cms="label">Pour qui ?</div>
+    <div class="section-title"><span data-cms="titre">Des ateliers</span> <span class="accent" data-cms="titreAccent">pour tous</span></div>
+    <div class="ateliers-grid" data-cms-cartes>
       <div class="atelier-card ac-scolaires">
         <div class="ac-top">
           <div class="ac-icon-wrap">🏫</div>

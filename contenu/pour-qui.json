@@ -1,0 +1,35 @@
+{
+  "label": "Pour qui ?",
+  "titre": "Des ateliers",
+  "titreAccent": "pour tous",
+  "cartes": [
+    {
+      "emoji": "🏫",
+      "titre": "Scolaires & Périscolaires",
+      "texte": "Séances liées aux programmes (biodiversité, cycles de vie). De l'initiation au projet de classe complet.",
+      "photo": "/images-creation-de-site/Scolaires & Périscolaires.jpg",
+      "etiquettes": ["Maternelle", "Élémentaire", "Crèches", "ALSH"]
+    },
+    {
+      "emoji": "🎡",
+      "titre": "Centres de Loisirs & Jeunesse",
+      "texte": "Apprentissage ludique par l'action, grands jeux nature, ateliers de fabrication, découverte du vivant.",
+      "photo": "/images-creation-de-site/Centres de Loisirs & Jeunesse.jpg",
+      "etiquettes": ["Mercredis", "Vacances scolaires", "Périscolaire"]
+    },
+    {
+      "emoji": "🏛",
+      "titre": "Collectivités & Entreprises",
+      "texte": "Stand interactif et animation flash pour vos événements, fêtes de la nature ou sensibilisation des citoyens.",
+      "photo": "/images-creation-de-site/Collectivités & Entreprises.jpg",
+      "etiquettes": ["Communes", "Événements", "Fêtes de la nature"]
+    },
+    {
+      "emoji": "👨‍👩‍👧",
+      "titre": "Particuliers & Familles",
+      "texte": "Stages thématiques approfondis et anniversaires nature pour découvrir l'environnement autrement.",
+      "photo": "/images-creation-de-site/Particuliers & Familles.jpg",
+      "etiquettes": ["Anniversaires", "Stages", "Événements privés"]
+    }
+  ]
+}

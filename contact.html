@@ -19,8 +19,9 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Écocurieux","alternateName":["Eco Curieux","Ecocurieux"],"url":"https://ecocurieux.com/","logo":"https://ecocurieux.com/images-creation-de-site/logo.png"}</script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
+<script src="/js/site-cms.js"></script>
 </head>
-<body>
+<body data-page="contact">
 
 <!-- ========== NAV ========== -->
 <nav>
@@ -466,26 +467,26 @@
         <ellipse cx="205" cy="168" rx="14" ry="8" transform="rotate(30 205 168)" fill="#f3deb4" opacity="0.3"/>
       </svg>
       <div>
-        <div class="cv4-eyebrow">Écocurieux · Me contacter</div>
-        <div class="cv4-title">Parlons de<br>votre <em>projet</em></div>
+        <div class="cv4-eyebrow" data-cms="eyebrow">Écocurieux · Me contacter</div>
+        <div class="cv4-title"><span data-cms="titre1">Parlons de</span><br>votre <em data-cms="titreAccent">projet</em></div>
       </div>
-      <p class="cv4-intro">Vous souhaitez un devis, en savoir plus ou discuter d'une idée ? Contactez-moi directement, je vous réponds personnellement.</p>
-      <div class="cv4-details">
+      <p class="cv4-intro" data-cms="intro">Vous souhaitez un devis, en savoir plus ou discuter d'une idée ? Contactez-moi directement, je vous réponds personnellement.</p>
+      <div class="cv4-details" data-cms-contact-details>
         <div class="cv4-detail"><div class="cv4-detail-icon">📞</div> 06.69.49.18.23</div>
         <a href="mailto:amandinejd@gmail.com" class="cv4-detail"><div class="cv4-detail-icon">✉️</div> amandinejd@gmail.com</a>
         <div class="cv4-detail"><div class="cv4-detail-icon">📍</div> Saône-et-Loire & alentours</div>
       </div>
       <div class="cv4-qr-row">
         <div class="cv4-qr-item">
-          <img src="/qr-code/qr code facebook.png" alt="QR Facebook">
+          <img src="/qr-code/qr code facebook.png" alt="QR Facebook" data-cms-src="qrFacebook">
           <span class="cv4-qr-fb">Facebook</span>
         </div>
         <div class="cv4-qr-item">
-          <img src="/qr-code/qr code instagram.png" alt="QR Instagram">
+          <img src="/qr-code/qr code instagram.png" alt="QR Instagram" data-cms-src="qrInstagram">
           <span class="cv4-qr-ig">Instagram</span>
         </div>
       </div>
-      <div class="cv4-rc">✅ Assurance Responsabilité Civile Professionnelle</div>
+      <div class="cv4-rc" data-cms="rc">✅ Assurance Responsabilité Civile Professionnelle</div>
     </div>
 
 
@@ -507,7 +508,7 @@
         <ellipse cx="188" cy="104" rx="16" ry="9" transform="rotate(15 188 104)" fill="#467b43" opacity="0.4"/>
         <ellipse cx="92" cy="106" rx="16" ry="9" transform="rotate(-15 92 106)" fill="#467b43" opacity="0.4"/>
       </svg>
-      <div class="cv4-form-title">Votre message</div>
+      <div class="cv4-form-title" data-cms="formTitre">Votre message</div>
       <div class="cv4-who-label">Vous êtes :</div>
       <div class="cv4-aud" id="audSelector">
         <button type="button" class="cv4-aud-btn active" data-val="ecole" onclick="selectCv4Aud(this)">🏫 École</button>

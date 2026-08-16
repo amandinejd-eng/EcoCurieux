@@ -19,8 +19,9 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Écocurieux","alternateName":["Eco Curieux","Ecocurieux"],"url":"https://ecocurieux.com/","logo":"https://ecocurieux.com/images-creation-de-site/logo.png"}</script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
+<script src="/js/site-cms.js"></script>
 </head>
-<body>
+<body data-page="kit-couveuse">
 
 <!-- ========== NAV ========== -->
 <nav>
@@ -114,8 +115,8 @@
 <div class="kit-page-hero">
   <div class="breadcrumb"><a href="/">Accueil</a> &rsaquo; <a href="/kits/">Kits pédagogiques</a> &rsaquo; <span>Couveuse pédagogique</span></div>
   <span class="kit-icon">🥚</span>
-  <h1>Couveuse <span class="accent">pédagogique</span></h1>
-  <p class="hero-sub">Observez l'éclosion en direct dans votre classe ou structure</p>
+  <h1><span data-cms="titre">Couveuse</span> <span class="accent" data-cms="titreAccent">pédagogique</span></h1>
+  <p class="hero-sub" data-cms="sousTitre">Observez l'éclosion en direct dans votre classe ou structure</p>
   <div class="hero-tags">
     <span class="hero-tag">🏫 Écoles & crèches</span>
     <span class="hero-tag">🏛 Collectivités</span>
@@ -129,14 +130,16 @@
 
     <div class="kit-desc">
       <h2>🐣 Description</h2>
+      <div data-cms-kit-desc>
       <p>La couveuse pédagogique est un kit d'observation fascinant qui permet aux enfants — et aux adultes ! — de suivre l'intégralité du cycle d'éclosion des œufs, du premier jour d'incubation jusqu'aux premières heures des poussins.</p>
       <p>Idéale pour les projets en classe, les centres de loisirs, les événements familiaux ou les structures d'accueil de la petite enfance. Cette expérience unique crée un lien fort avec le vivant et génère toujours un moment de magie partagée.</p>
       <p>Je vous accompagne tout au long de la location : conseils, suivi de température, gestion du retournement des œufs et que faire à l'éclosion.</p>
+      </div>
     </div>
 
     <div class="kit-included">
       <h2>📦 Contenu du kit</h2>
-      <ul>
+      <ul data-cms-kit-contenu>
         <li>La couveuse (avec thermostat et humidimètre intégrés)</li>
         <li>Les œufs fertilisés (nombre selon formule choisie)</li>
         <li>Carnet pédagogique de suivi de l'incubation</li>
@@ -149,25 +152,25 @@
     <div class="kit-infos-grid">
       <div class="kit-info-box">
         <div class="info-label">Durée de location</div>
-        <div class="info-val">3 semaines (incubation + éclosion)</div>
+        <div class="info-val" data-cms="duree">3 semaines (incubation + éclosion)</div>
       </div>
       <div class="kit-info-box">
         <div class="info-label">Public cible</div>
-        <div class="info-val">Dès 2 ans – tous niveaux</div>
+        <div class="info-val" data-cms="public">Dès 2 ans – tous niveaux</div>
       </div>
       <div class="kit-info-box">
         <div class="info-label">Zone de livraison</div>
-        <div class="info-val">Saône-et-Loire & alentours</div>
+        <div class="info-val" data-cms="zone">Saône-et-Loire & alentours</div>
       </div>
       <div class="kit-info-box">
         <div class="info-label">Tarif</div>
-        <div class="info-val">Sur devis — contactez-moi</div>
+        <div class="info-val" data-cms="tarif">Sur devis — contactez-moi</div>
       </div>
     </div>
 
     <div class="kit-cta">
-      <h2>Réserver la couveuse pédagogique</h2>
-      <p>Disponibilités limitées. Contactez-moi pour vérifier les dates et recevoir un devis personnalisé selon votre projet.</p>
+      <h2 data-cms="ctaTitre">Réserver la couveuse pédagogique</h2>
+      <p data-cms="ctaTexte">Disponibilités limitées. Contactez-moi pour vérifier les dates et recevoir un devis personnalisé selon votre projet.</p>
       <a href="/contact.html" class="btn-primary" style="background: var(--white); color: var(--brown);">📬 Demander un devis</a>
     </div>
 

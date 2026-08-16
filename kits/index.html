@@ -19,6 +19,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Écocurieux","alternateName":["Eco Curieux","Ecocurieux"],"url":"https://ecocurieux.com/","logo":"https://ecocurieux.com/images-creation-de-site/logo.png"}</script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
+<script src="/js/site-cms.js"></script>
 <style>
   .kits-hero {
     background:
@@ -170,7 +171,7 @@
   }
 </style>
 </head>
-<body>
+<body data-page="kits">
 
 <!-- ========== NAV ========== -->
 <nav>
@@ -263,15 +264,15 @@
 <!-- ========== HERO ========== -->
 <div class="kits-hero">
   <div class="breadcrumb"><a href="/">Accueil</a> &rsaquo; <span>Kits pédagogiques</span></div>
-  <h1>Location de <span class="accent">kits pédagogiques</span></h1>
-  <p>Des kits tout prêts pour accueillir le vivant dans votre classe, structure ou événement. Chaque kit est accompagné de conseils et recommandations pour le bien-être animal.</p>
+  <h1><span data-cms="titre">Location de</span> <span class="accent" data-cms="titreAccent">kits pédagogiques</span></h1>
+  <p data-cms="intro">Des kits tout prêts pour accueillir le vivant dans votre classe, structure ou événement. Chaque kit est accompagné de conseils et recommandations pour le bien-être animal.</p>
 </div>
 
 <!-- ========== GRILLE DES KITS ========== -->
 <section style="background: var(--beige-light);">
   <div class="kits-grid">
 
-    <a href="/kits/couveuse.html" class="kit-card">
+    <a href="/kits/couveuse.html" class="kit-card" data-cms-kit-card>
       <div class="kit-card-head has-image">
         <img src="/images-creation-de-site/couveuse.webp" alt="Couveuse pédagogique">
         <h2>Couveuse pédagogique</h2>
@@ -282,7 +283,7 @@
       </div>
     </a>
 
-    <a href="/kits/mante-religieuse.html" class="kit-card">
+    <a href="/kits/mante-religieuse.html" class="kit-card" data-cms-kit-card>
       <div class="kit-card-head has-image">
         <img src="/images-creation-de-site/mante-religieuse.jpg" alt="Kit mante religieuse">
         <h2>Kit mante religieuse</h2>
@@ -293,7 +294,7 @@
       </div>
     </a>
 
-    <a href="/kits/phasmes.html" class="kit-card">
+    <a href="/kits/phasmes.html" class="kit-card" data-cms-kit-card>
       <div class="kit-card-head has-image">
         <img src="/images-creation-de-site/phasme.jpg" alt="Kit phasmes">
         <h2>Kit phasmes</h2>
@@ -309,14 +310,14 @@
 
 <!-- ========== INFOS PRATIQUES ========== -->
 <div class="kits-info">
-  <p>Tous les kits sont livrés propres et prêts à l'emploi. Un accompagnement téléphonique ou par message est inclus pendant toute la durée de la location.</p>
-  <div class="info-pills">
+  <p data-cms="info">Tous les kits sont livrés propres et prêts à l'emploi. Un accompagnement téléphonique ou par message est inclus pendant toute la durée de la location.</p>
+  <div class="info-pills" data-cms-pastilles>
     <div class="info-pill">📦 Livraison possible</div>
     <div class="info-pill">📋 Fiches pédagogiques incluses</div>
     <div class="info-pill">🐾 Conseils bien-être animal</div>
     <div class="info-pill">📍 Saône-et-Loire & alentours</div>
   </div>
-  <a href="/contact.html" class="btn-primary">📬 Demander un devis</a>
+  <a href="/contact.html" class="btn-primary" data-cms="bouton">📬 Demander un devis</a>
 </div>
 
 

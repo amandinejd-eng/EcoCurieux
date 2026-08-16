@@ -1,0 +1,102 @@
+{
+  "hero": {
+    "badge": "📍 Saône-et-Loire & alentours",
+    "titreAvant": "Éco",
+    "titreAccent": "curieux",
+    "sousTitre": "L'atelier nature sur mesure",
+    "texte": "Des expériences pédagogiques au cœur du vivant, observer, manipuler, comprendre et créer un vrai lien avec la nature.",
+    "bouton1": "Découvrir les animations",
+    "bouton2": "Demander un devis"
+  },
+  "bulles": [
+    {
+      "image": "/images-creation-de-site/1. Stand d'accueil et d'information de la ferme pédagogique.png",
+      "texte": "Stand d'accueil et\nd'information de la ferme\npédagogique"
+    },
+    {
+      "image": "/images-creation-de-site/2. Animation  nourrissage des chèvres en extérieur avec les enfants-redacted_dot_app.jpg",
+      "texte": "Animation nourrissage\ndes chèvres en extérieur\navec les enfants"
+    },
+    {
+      "image": "/images-creation-de-site/3. Observation des cochons et découverte de leur habitat-redacted_dot_app.jpg",
+      "texte": "Observation des\ncochons et découverte\nde leur habitat"
+    },
+    {
+      "image": "/images-creation-de-site/4. Sensibilisation au contact des chèvres en pâturage.jpg",
+      "texte": "Sensibilisation au\ncontact des chèvres\nen pâturage"
+    },
+    {
+      "image": "/images-creation-de-site/5. Médiation animale  atelier contact et soin aux lapins-redacted_dot_app.jpg",
+      "texte": "Médiation animale\natelier contact et\nsoin aux lapins"
+    },
+    {
+      "image": "/images-creation-de-site/6. Amandine assure le nourrissage d'un agneau au biberon-redacted_dot_app.jpg",
+      "texte": "Amandine assure le\nnourrissage d'un agneau\nau biberon"
+    },
+    {
+      "image": "/images-creation-de-site/7. Échanges pédagogiques et transmission avec un groupe d'enfants-redacted_dot_app.jpg",
+      "texte": "Échanges pédagogiques\net transmission avec un\ngroupe d'enfants"
+    },
+    {
+      "image": "/images-creation-de-site/8. Amandine avec ses perruches.jpg",
+      "texte": "Amandine avec\nses perruches"
+    }
+  ],
+  "bandeau": [
+    "🦔 Animations sur site",
+    "✏️ Projets sur mesure",
+    "🦗 Location de kits pédagogiques",
+    "🏫 Écoles & crèches",
+    "🏛 Collectivités",
+    "🎪 Événements grand public",
+    "🥾 Stages nature",
+    "🐦 Ornithologie"
+  ],
+  "qui": {
+    "label": "Qui suis-je ?",
+    "titre": "Amandine Junier-Dubus",
+    "photo": "/qui-suis-je/perruche.jpg",
+    "p1": "<strong>Animatrice spécialisée dans la sensibilisation au vivant</strong>, j'interviens notamment auprès de centres de loisirs de la région, et de structures comme le Port de Plaisance de Chalon-sur-Saône dans le cadre du label Pavillon Bleu. Avec <strong>Écocurieux</strong>, je conçois des animations pédagogiques sur la biodiversité, concrètes et accessibles, basées sur l'observation, la manipulation et l'expérimentation. <em>L'idée est simple : comprendre en faisant.</em>",
+    "p2": "J'interviens auprès des écoles, collectivités et structures locales avec des animations clés en main, adaptées à chaque public.",
+    "p3": "N'hésitez pas à me contacter pour en savoir plus ou échanger autour de votre projet."
+  },
+  "demarche": {
+    "label": "Ma démarche",
+    "titre": "Une approche unique",
+    "titreAccent": "pour chaque projet",
+    "intro": "Les 3 piliers de mon action :",
+    "citation": "« Parce que la Nature ne se lit pas seulement dans les livres, je vous aide à la vivre au quotidien. »",
+    "citationAuteur": "— Amandine Junier-Dubus",
+    "piliers": [
+      {
+        "titre": "🔬 La Vulgarisation Scientifique",
+        "texte": "J'adapte les notions complexes de l'écologie et de la biodiversité en expériences simples, ludiques et accessibles à tous."
+      },
+      {
+        "titre": "🌍 L'Adaptation au Terrain",
+        "texte": "Mes ateliers sont créés sur mesure et adaptés à votre quotidien et votre environnement (parc, jardin, cour d'école, etc.)."
+      },
+      {
+        "titre": "🤝 La Co-construction",
+        "texte": "Que vous soyez une école, une mairie ou un particulier, nous travaillons ensemble de façon à définir vos objectifs pédagogiques et créer une animation qui vous ressemble."
+      }
+    ],
+    "valeurs": [
+      { "emoji": "🌸", "texte": "Pédagogie accessible" },
+      { "emoji": "⏳", "texte": "Respect du rythme" },
+      { "emoji": "🔍", "texte": "Observation concrète" },
+      { "emoji": "💚", "texte": "Sans culpabilisation" }
+    ]
+  },
+  "agenda": {
+    "badge": "AGENDA",
+    "titre": "Événements à venir",
+    "texte": "Ne manquez pas nos prochaines rencontres et ateliers ludiques autour de la nature.",
+    "bouton": "Voir tous les événements"
+  },
+  "garanties": [
+    { "emoji": "📋", "titre": "Devis sur demande", "sous": "Gratuit & sans engagement" },
+    { "emoji": "🚗", "titre": "Déplacement possible", "sous": "Je viens dans votre structure" },
+    { "emoji": "📍", "titre": "Saône-et-Loire", "sous": "& départements limitrophes" }
+  ]
+}

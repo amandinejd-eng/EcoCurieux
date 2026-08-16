@@ -19,8 +19,9 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Écocurieux","alternateName":["Eco Curieux","Ecocurieux"],"url":"https://ecocurieux.com/","logo":"https://ecocurieux.com/images-creation-de-site/logo.png"}</script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
+<script src="/js/site-cms.js"></script>
 </head>
-<body>
+<body data-page="kit-phasmes">
 
 <!-- ========== NAV ========== -->
 <nav>
@@ -134,8 +135,8 @@
     <path d="M97 135 L58 140 L38 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M103 135 L142 140 L162 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
-  <h1>Kit <span class="accent">phasmes</span></h1>
-  <p class="hero-sub">Les maîtres du camouflage à portée de classe</p>
+  <h1>Kit <span class="accent" data-cms="titreAccent">phasmes</span></h1>
+  <p class="hero-sub" data-cms="sousTitre">Les maîtres du camouflage à portée de classe</p>
   <div class="hero-tags">
     <span class="hero-tag">🏫 Écoles</span>
     <span class="hero-tag">🏛 Collectivités</span>
@@ -148,15 +149,17 @@
   <div class="kit-content">
 
     <div class="kit-desc">
-      <h2><svg viewBox="0 0 200 200" width="26" height="26" style="vertical-align:middle;margin-right:6px" xmlns="http://www.w3.org/2000/svg"><path d="M100 45 Q102 90 100 140 Q98 170 100 185" stroke="#C4A77D" stroke-width="6" fill="none" stroke-linecap="round"/><line x1="95" y1="70" x2="105" y2="70" stroke="#D4B896" stroke-width="1"/><line x1="95" y1="90" x2="105" y2="90" stroke="#D4B896" stroke-width="1"/><line x1="95" y1="110" x2="105" y2="110" stroke="#D4B896" stroke-width="1"/><line x1="96" y1="130" x2="104" y2="130" stroke="#D4B896" stroke-width="1"/><ellipse cx="100" cy="40" rx="7" ry="9" fill="#C4A77D"/><circle cx="95" cy="38" r="2.5" fill="#E8D4B8"/><circle cx="105" cy="38" r="2.5" fill="#E8D4B8"/><circle cx="95.5" cy="37.5" r="1" fill="#FFFFFF"/><circle cx="105.5" cy="37.5" r="1" fill="#FFFFFF"/><path d="M96 32 Q80 15 72 10" stroke="#D4B896" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M104 32 Q120 15 128 10" stroke="#D4B896" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M97 60 L62 45 L45 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M103 60 L138 45 L155 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M97 95 L55 90 L35 108" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M103 95 L145 90 L165 108" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M97 135 L58 140 L38 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M103 135 L142 140 L162 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Description</h2>
+      <h2><svg viewBox="0 0 200 200" width="26" height="26" style="vertical-align:middle;margin-right:6px" xmlns="http://www.w3.org/2000/svg"><path d="M100 45 Q102 90 100 140 Q98 170 100 185" stroke="#C4A77D" stroke-width="6" fill="none" stroke-linecap="round"/><line x1="95" y1="70" x2="105" y2="70" stroke="#D4B896" stroke-width="1"/><line x1="95" y1="90" x2="105" y2="90" stroke="#D4B896" stroke-width="1"/><line x1="95" y1="110" x2="105" y2="110" stroke="#D4B896" stroke-width="1"/><line x1="96" y1="130" x2="104" y2="130" stroke="#D4B896" stroke-width="1"/><ellipse cx="100" cy="40" rx="7" ry="9" fill="#C4A77D"/><circle cx="95" cy="38" r="2.5" fill="#E8D4B8"/><circle cx="105" cy="38" r="2.5" fill="#E8D4B8"/><circle cx="95.5" cy="37.5" r="1" fill="#FFFFFF"/><circle cx="105.5" cy="37.5" r="1" fill="#FFFFFF"/><path d="M96 32 Q80 15 72 10" stroke="#D4B896" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M104 32 Q120 15 128 10" stroke="#D4B896" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M97 60 L62 45 L45 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M103 60 L138 45 L155 55" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M97 95 L55 90 L35 108" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M103 95 L145 90 L165 108" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M97 135 L58 140 L38 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M103 135 L142 140 L162 168" stroke="#C4A77D" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Description      </h2>
+      <div data-cms-kit-desc>
       <p>Les phasmes sont des insectes extraordinaires, véritables artistes du camouflage : leur ressemblance avec des brindilles ou des feuilles est bluffante. Observer leur immobilité, leurs déplacements lents et leur métamorphose crée une connexion unique avec la biodiversité.</p>
       <p>Faciles à entretenir, silencieux, inoffensifs et fascinants, les phasmes conviennent parfaitement à une présence en classe, en structure d'accueil ou lors d'un événement nature.</p>
       <p>Ce kit est une porte d'entrée idéale pour aborder les thèmes du camouflage, de l'adaptation au milieu, et de la fragilité du vivant.</p>
+      </div>
     </div>
 
     <div class="kit-included">
       <h2>📦 Contenu du kit</h2>
-      <ul>
+      <ul data-cms-kit-contenu>
         <li>Terrarium adapté avec ventilation</li>
         <li>Plusieurs phasmes (adultes et/ou juvéniles selon saison)</li>
         <li>Nourriture fraîche pour toute la durée (lierre ou ronce)</li>
@@ -169,19 +172,19 @@
     <div class="kit-infos-grid">
       <div class="kit-info-box">
         <div class="info-label">Durée de location</div>
-        <div class="info-val">1 à 4 semaines (selon projet)</div>
+        <div class="info-val" data-cms="duree">1 à 4 semaines (selon projet)</div>
       </div>
       <div class="kit-info-box">
         <div class="info-label">Public cible</div>
-        <div class="info-val">Dès 3 ans – tous niveaux</div>
+        <div class="info-val" data-cms="public">Dès 3 ans – tous niveaux</div>
       </div>
       <div class="kit-info-box">
         <div class="info-label">Zone de livraison</div>
-        <div class="info-val">Saône-et-Loire & alentours</div>
+        <div class="info-val" data-cms="zone">Saône-et-Loire & alentours</div>
       </div>
       <div class="kit-info-box">
         <div class="info-label">Tarif</div>
-        <div class="info-val">Sur devis — contactez-moi</div>
+        <div class="info-val" data-cms="tarif">Sur devis — contactez-moi</div>
       </div>
     </div>
 
@@ -221,8 +224,8 @@
     </div>
 
     <div class="kit-cta">
-      <h2>Réserver le kit phasmes</h2>
-      <p>Disponibilités limitées. Contactez-moi pour vérifier les dates et recevoir un devis personnalisé selon votre projet.</p>
+      <h2 data-cms="ctaTitre">Réserver le kit phasmes</h2>
+      <p data-cms="ctaTexte">Disponibilités limitées. Contactez-moi pour vérifier les dates et recevoir un devis personnalisé selon votre projet.</p>
       <a href="/contact.html" class="btn-primary" style="background: var(--white); color: var(--brown);">📬 Demander un devis</a>
     </div>
 

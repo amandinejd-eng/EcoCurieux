@@ -1,0 +1,341 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+locale: fr
+site_url: https://ecocurieux.com
+display_url: https://ecocurieux.com
+logo_url: /images-creation-de-site/logo.png
+
+backend:
+  name: github
+  repo: amandinejd-eng/EcoCurieux
+  branch: main
+  base_url: https://ecocurieux.com
+  auth_endpoint: auth
+  commit_messages:
+    create: "CMS : création de {{collection}} « {{slug}} »"
+    update: "CMS : mise à jour de {{collection}} « {{slug}} »"
+    delete: "CMS : suppression de {{collection}} « {{slug}} »"
+    uploadMedia: "CMS : ajout de l’image {{path}}"
+    deleteMedia: "CMS : suppression de l’image {{path}}"
+
+media_folder: images-cms
+public_folder: /images-cms
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: apparence
+    label: Apparence
+    files:
+      - name: theme
+        label: Couleurs, polices et identité
+        file: contenu/theme.json
+        editor:
+          preview: false
+        fields:
+          - { label: Nom du site, name: nom, widget: string }
+          - { label: Slogan, name: slogan, widget: string }
+          - { label: Nom affiché (Amandine…), name: auteur, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Téléphone, name: telephone, widget: string }
+          - { label: Zone géographique, name: zone, widget: string }
+          - { label: Logo, name: logo, widget: image }
+          - label: Couleurs
+            name: colors
+            widget: object
+            fields:
+              - { label: Vert, name: green, widget: color, enableInput: true }
+              - { label: Vert foncé, name: greenDark, widget: color, enableInput: true }
+              - { label: Brun, name: brown, widget: color, enableInput: true }
+              - { label: Beige, name: beige, widget: color, enableInput: true }
+              - { label: Beige 2, name: beige2, widget: color, enableInput: true }
+              - { label: Fond beige clair, name: beigeLight, widget: color, enableInput: true }
+          - label: Polices (Google Fonts)
+            name: fonts
+            widget: object
+            fields:
+              - label: Police des titres
+                name: titres
+                widget: select
+                options: [Montserrat, Nunito, Poppins, Playfair Display, Merriweather, Quicksand, Roboto, Open Sans, Lora, Caveat]
+              - label: Police du texte
+                name: texte
+                widget: select
+                options: [Lora, Merriweather, Open Sans, Roboto, Nunito, Montserrat, Playfair Display, Quicksand, Poppins, Caveat]
+              - label: Police du logo
+                name: logo
+                widget: select
+                options: [Nunito, Montserrat, Poppins, Playfair Display, Caveat, Quicksand, Lora, Merriweather, Roboto, Open Sans]
+
+  - name: evenements
+    label: Événements
+    files:
+      - name: agenda
+        label: Agenda (à venir et passés)
+        file: evenements.json
+        editor:
+          preview: false
+        fields:
+          - label: Événements à venir
+            name: upcoming
+            widget: list
+            summary: "{{title}} — {{date}}"
+            fields:
+              - { label: Identifiant (laisser vide pour créer), name: id, widget: string, required: false }
+              - { label: Date, name: date, widget: datetime, time_format: false, date_format: "yyyy-MM-dd", picker_utc: true }
+              - { label: Titre, name: title, widget: string }
+              - { label: Lieu, name: location, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: En plus (encadré vert), name: details, widget: string, required: false }
+              - { label: Horaires, name: time, widget: string, required: false }
+              - { label: Public, name: audience, widget: string }
+              - { label: Tarif, name: price, widget: string, required: false }
+          - label: Événements passés
+            name: past
+            widget: list
+            summary: "{{title}} — {{date}}"
+            fields:
+              - { label: Identifiant (laisser vide pour créer), name: id, widget: string, required: false }
+              - { label: Date, name: date, widget: datetime, time_format: false, date_format: "yyyy-MM-dd", picker_utc: true }
+              - { label: Titre, name: title, widget: string }
+              - { label: Lieu, name: location, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: Récapitulatif, name: recap, widget: text, required: false }
+              - { label: Note de bas de fiche, name: footer, widget: text, required: false }
+              - label: Photos
+                name: photos
+                widget: list
+                required: false
+                summary: "{{caption}}"
+                fields:
+                  - { label: Photo, name: url, widget: image }
+                  - { label: Légende, name: caption, widget: string, required: false }
+                  - { label: Rotation (°), name: rotation, widget: number, required: false, value_type: int, default: 0 }
+              - label: Programme
+                name: program
+                widget: list
+                required: false
+                summary: "{{title}}"
+                fields:
+                  - { label: Emoji, name: emoji, widget: string, required: false }
+                  - { label: Titre, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+
+  - name: pages
+    label: Pages
+    files:
+      - name: accueil
+        label: Accueil
+        file: contenu/accueil.json
+        editor:
+          preview: false
+        fields:
+          - label: Bannière d’accueil
+            name: hero
+            widget: object
+            fields:
+              - { label: Badge (ex. lieu), name: badge, widget: string }
+              - { label: Début du titre, name: titreAvant, widget: string }
+              - { label: Mot en couleur du titre, name: titreAccent, widget: string }
+              - { label: Sous-titre, name: sousTitre, widget: string }
+              - { label: Texte d’intro, name: texte, widget: text }
+              - { label: Bouton 1, name: bouton1, widget: string }
+              - { label: Bouton 2, name: bouton2, widget: string }
+          - label: Bulles photos
+            name: bulles
+            widget: list
+            summary: "{{texte}}"
+            fields:
+              - { label: Photo, name: image, widget: image }
+              - { label: Texte, name: texte, widget: text }
+          - label: Bandeau défilant
+            name: bandeau
+            widget: list
+            field: { label: Texte, name: texte, widget: string }
+          - label: Qui suis-je
+            name: qui
+            widget: object
+            fields:
+              - { label: Étiquette, name: label, widget: string }
+              - { label: Titre, name: titre, widget: string }
+              - { label: Photo, name: photo, widget: image }
+              - { label: Paragraphe 1 (HTML possible), name: p1, widget: text }
+              - { label: Paragraphe 2, name: p2, widget: text }
+              - { label: Paragraphe 3, name: p3, widget: text }
+          - label: Ma démarche
+            name: demarche
+            widget: object
+            fields:
+              - { label: Étiquette, name: label, widget: string }
+              - { label: Titre, name: titre, widget: string }
+              - { label: Mot en couleur du titre, name: titreAccent, widget: string }
+              - { label: Intro, name: intro, widget: string }
+              - { label: Citation, name: citation, widget: text }
+              - { label: Auteur de la citation, name: citationAuteur, widget: string }
+              - label: Piliers
+                name: piliers
+                widget: list
+                summary: "{{titre}}"
+                fields:
+                  - { label: Titre, name: titre, widget: string }
+                  - { label: Texte, name: texte, widget: text }
+              - label: Valeurs
+                name: valeurs
+                widget: list
+                summary: "{{texte}}"
+                fields:
+                  - { label: Emoji, name: emoji, widget: string }
+                  - { label: Texte, name: texte, widget: string }
+          - label: Encadré agenda
+            name: agenda
+            widget: object
+            fields:
+              - { label: Badge, name: badge, widget: string }
+              - { label: Titre, name: titre, widget: string }
+              - { label: Texte, name: texte, widget: text }
+              - { label: Bouton, name: bouton, widget: string }
+          - label: Garanties
+            name: garanties
+            widget: list
+            summary: "{{titre}}"
+            fields:
+              - { label: Emoji, name: emoji, widget: string }
+              - { label: Titre, name: titre, widget: string }
+              - { label: Sous-texte, name: sous, widget: string }
+
+      - name: animations
+        label: Animations
+        file: contenu/animations.json
+        editor:
+          preview: false
+        fields:
+          - { label: Badge, name: badge, widget: string }
+          - { label: Titre, name: titre, widget: string }
+          - { label: Mot en couleur du titre, name: titreAccent, widget: string }
+          - { label: Fin du titre, name: titreFin, widget: string }
+          - { label: Sous-titre, name: sousTitre, widget: text }
+          - label: Atelier nature
+            name: atelier
+            widget: object
+            fields:
+              - { label: Photo, name: photo, widget: image }
+              - { label: Titre, name: titre, widget: string }
+              - { label: Mot en couleur, name: titreAccent, widget: string }
+              - { label: Intro, name: intro, widget: text }
+              - { label: Accroche, name: accroche, widget: text }
+              - { label: Puces, name: puces, widget: list, field: { label: Texte, name: texte, widget: string } }
+              - { label: Étiquettes, name: etiquettes, widget: list, field: { label: Texte, name: texte, widget: string } }
+              - { label: Intro catalogue, name: catalogueIntro, widget: text }
+              - label: Thématiques
+                name: themes
+                widget: list
+                summary: "{{titre}}"
+                fields:
+                  - { label: Emoji, name: emoji, widget: string }
+                  - { label: Titre, name: titre, widget: string }
+                  - { label: Texte, name: texte, widget: text }
+          - label: Anniversaires
+            name: anniversaires
+            widget: object
+            fields:
+              - { label: Photo, name: photo, widget: image }
+              - { label: Titre, name: titre, widget: string }
+              - { label: Mot en couleur, name: titreAccent, widget: string }
+              - { label: Intro, name: intro, widget: text }
+              - { label: Accroche, name: accroche, widget: string }
+              - { label: Conclusion, name: conclusion, widget: text }
+              - { label: Bouton, name: bouton, widget: string }
+              - label: Univers
+                name: univers
+                widget: list
+                summary: "{{titre}}"
+                fields:
+                  - { label: Emoji, name: emoji, widget: string }
+                  - { label: Titre, name: titre, widget: string }
+                  - { label: Texte, name: texte, widget: text }
+          - label: Stages
+            name: stages
+            widget: object
+            fields:
+              - { label: Photo, name: photo, widget: image }
+              - { label: Titre, name: titre, widget: string }
+              - { label: Mot en couleur, name: titreAccent, widget: string }
+              - { label: Intro, name: intro, widget: text }
+              - { label: Accroche, name: accroche, widget: text }
+              - { label: Encadré carnet, name: carnet, widget: text }
+              - { label: Infos, name: infos, widget: list, field: { label: Texte, name: texte, widget: string } }
+              - { label: Note, name: note, widget: text }
+              - { label: Bouton, name: bouton, widget: string }
+
+      - name: pour_qui
+        label: Pour qui ?
+        file: contenu/pour-qui.json
+        editor:
+          preview: false
+        fields:
+          - { label: Étiquette, name: label, widget: string }
+          - { label: Titre, name: titre, widget: string }
+          - { label: Mot en couleur, name: titreAccent, widget: string }
+          - label: Cartes
+            name: cartes
+            widget: list
+            summary: "{{titre}}"
+            fields:
+              - { label: Emoji, name: emoji, widget: string }
+              - { label: Titre, name: titre, widget: string }
+              - { label: Texte, name: texte, widget: text }
+              - { label: Photo de fond, name: photo, widget: image, required: false }
+              - { label: Étiquettes, name: etiquettes, widget: list, field: { label: Texte, name: texte, widget: string } }
+
+      - name: contact
+        label: Contact
+        file: contenu/contact.json
+        editor:
+          preview: false
+        fields:
+          - { label: Petite ligne au-dessus du titre, name: eyebrow, widget: string }
+          - { label: Titre (ligne 1), name: titre1, widget: string }
+          - { label: Mot en italique, name: titreAccent, widget: string }
+          - { label: Intro, name: intro, widget: text }
+          - { label: Mention RC, name: rc, widget: string }
+          - { label: Titre du formulaire, name: formTitre, widget: string }
+          - { label: QR Facebook, name: qrFacebook, widget: image }
+          - { label: QR Instagram, name: qrInstagram, widget: image }
+
+      - name: kits
+        label: Kits pédagogiques
+        file: contenu/kits.json
+        editor:
+          preview: false
+        fields:
+          - label: Page d’accueil des kits
+            name: index
+            widget: object
+            fields:
+              - { label: Titre, name: titre, widget: string }
+              - { label: Mot en couleur, name: titreAccent, widget: string }
+              - { label: Intro, name: intro, widget: text }
+              - { label: Texte d’info, name: info, widget: text }
+              - { label: Pastilles, name: pastilles, widget: list, field: { label: Texte, name: texte, widget: string } }
+              - { label: Bouton, name: bouton, widget: string }
+          - label: Fiches kits
+            name: fiches
+            widget: list
+            summary: "{{titre}}"
+            fields:
+              - { label: Identifiant (couveuse, mante, phasmes), name: id, widget: string }
+              - { label: Titre, name: titre, widget: string }
+              - { label: Mot en couleur, name: titreAccent, widget: string }
+              - { label: Sous-titre, name: sousTitre, widget: string }
+              - { label: Photo carte, name: photo, widget: image }
+              - { label: Texte carte, name: texteCarte, widget: text }
+              - { label: Description (un paragraphe par ligne), name: description, widget: text }
+              - { label: Contenu du kit (une ligne = un point), name: contenu, widget: text }
+              - { label: Durée, name: duree, widget: string }
+              - { label: Public, name: public, widget: string }
+              - { label: Zone, name: zone, widget: string }
+              - { label: Tarif, name: tarif, widget: string }
+              - { label: Titre du bouton de réservation, name: ctaTitre, widget: string }
+              - { label: Texte du bouton de réservation, name: ctaTexte, widget: text }

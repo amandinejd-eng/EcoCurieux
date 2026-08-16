@@ -1,0 +1,65 @@
+{
+  "index": {
+    "titre": "Location de",
+    "titreAccent": "kits pédagogiques",
+    "intro": "Des kits tout prêts pour accueillir le vivant dans votre classe, structure ou événement. Chaque kit est accompagné de conseils et recommandations pour le bien-être animal.",
+    "info": "Tous les kits sont livrés propres et prêts à l'emploi. Un accompagnement téléphonique ou par message est inclus pendant toute la durée de la location.",
+    "pastilles": [
+      "📦 Livraison possible",
+      "📋 Fiches pédagogiques incluses",
+      "🐾 Conseils bien-être animal",
+      "📍 Saône-et-Loire & alentours"
+    ],
+    "bouton": "📬 Demander un devis"
+  },
+  "fiches": [
+    {
+      "id": "couveuse",
+      "titre": "Couveuse",
+      "titreAccent": "pédagogique",
+      "sousTitre": "Observez l'éclosion en direct dans votre classe ou structure",
+      "photo": "/images-creation-de-site/couveuse.webp",
+      "texteCarte": "Observez l'éclosion des œufs en direct ! Un kit idéal pour les écoles, crèches et centres de loisirs. La couveuse, les œufs, le suivi de l'incubation et un carnet pédagogique sont inclus.",
+      "description": "La couveuse pédagogique est un kit d'observation fascinant qui permet aux enfants — et aux adultes ! — de suivre l'intégralité du cycle d'éclosion des œufs, du premier jour d'incubation jusqu'aux premières heures des poussins.\nIdéale pour les projets en classe, les centres de loisirs, les événements familiaux ou les structures d'accueil de la petite enfance. Cette expérience unique crée un lien fort avec le vivant et génère toujours un moment de magie partagée.\nJe vous accompagne tout au long de la location : conseils, suivi de température, gestion du retournement des œufs et que faire à l'éclosion.",
+      "contenu": "La couveuse (avec thermostat et humidimètre intégrés)\nLes œufs fertilisés (nombre selon formule choisie)\nCarnet pédagogique de suivi de l'incubation\nFiches d'activités pour les enfants\nGuide d'entretien et conseils bien-être animal\nSuivi téléphonique / messagerie pendant toute la durée de la location",
+      "duree": "3 semaines (incubation + éclosion)",
+      "public": "Dès 2 ans – tous niveaux",
+      "zone": "Saône-et-Loire & alentours",
+      "tarif": "Sur devis — contactez-moi",
+      "ctaTitre": "Réserver la couveuse pédagogique",
+      "ctaTexte": "Disponibilités limitées. Contactez-moi pour vérifier les dates et recevoir un devis personnalisé selon votre projet."
+    },
+    {
+      "id": "mante",
+      "titre": "Kit",
+      "titreAccent": "mante religieuse",
+      "sousTitre": "Un insecte fascinant à observer au quotidien",
+      "photo": "/images-creation-de-site/mante-religieuse.jpg",
+      "texteCarte": "Accueillez une ou plusieurs mantes religieuses pour une observation fascinante. Kit complet avec terrarium, nourriture, guide d'entretien et fiches pédagogiques.",
+      "description": "La mante religieuse est l'un des insectes les plus fascinants qui soit : son comportement de chasse, sa posture caractéristique et sa capacité à tourner la tête à 180° captivent autant les enfants que les adultes.\nCe kit d'observation est idéal pour créer un coin nature dans une classe, une salle d'activités ou lors d'un événement. La mante est docile, silencieuse, et son entretien est simple et ludique.\nJe vous fournis tout le nécessaire et vous accompagne pour que cette expérience soit enrichissante et sereine, pour vous comme pour l'animal.",
+      "contenu": "Terrarium adapté avec couvercle ventilé\nUne ou plusieurs mantes religieuses (selon la formule)\nNourriture pour toute la durée de la location (grillons ou mouches)\nFiches pédagogiques sur la biologie de la mante\nGuide d'entretien quotidien (brumisation, température, manipulation)\nSuivi téléphonique / messagerie pendant toute la durée de la location",
+      "duree": "1 à 3 semaines (selon projet)",
+      "public": "Dès 4 ans – tous niveaux",
+      "zone": "Saône-et-Loire & alentours",
+      "tarif": "Sur devis — contactez-moi",
+      "ctaTitre": "Réserver le kit mante religieuse",
+      "ctaTexte": "Disponibilités limitées. Contactez-moi pour vérifier les dates et recevoir un devis personnalisé selon votre projet."
+    },
+    {
+      "id": "phasmes",
+      "titre": "Kit",
+      "titreAccent": "phasmes",
+      "sousTitre": "Les maîtres du camouflage à portée de classe",
+      "photo": "/images-creation-de-site/phasme.jpg",
+      "texteCarte": "Les phasmes, ces insectes maîtres du camouflage, fascinent les enfants comme les adultes. Kit terrarium + insectes + nourriture + fiches pédagogiques.",
+      "description": "Les phasmes sont des insectes extraordinaires, véritables artistes du camouflage : leur ressemblance avec des brindilles ou des feuilles est bluffante. Observer leur immobilité, leurs déplacements lents et leur métamorphose crée une connexion unique avec la biodiversité.\nFaciles à entretenir, silencieux, inoffensifs et fascinants, les phasmes conviennent parfaitement à une présence en classe, en structure d'accueil ou lors d'un événement nature.\nCe kit est une porte d'entrée idéale pour aborder les thèmes du camouflage, de l'adaptation au milieu, et de la fragilité du vivant.",
+      "contenu": "Terrarium adapté avec ventilation\nPlusieurs phasmes (adultes et/ou juvéniles selon saison)\nNourriture fraîche pour toute la durée (lierre ou ronce)\nFiches pédagogiques sur le camouflage et l'adaptation\nGuide d'entretien quotidien (humidité, manipulation douce)\nSuivi téléphonique / messagerie pendant toute la durée de la location",
+      "duree": "1 à 4 semaines (selon projet)",
+      "public": "Dès 3 ans – tous niveaux",
+      "zone": "Saône-et-Loire & alentours",
+      "tarif": "Sur devis — contactez-moi",
+      "ctaTitre": "Réserver le kit phasmes",
+      "ctaTexte": "Disponibilités limitées. Contactez-moi pour vérifier les dates et recevoir un devis personnalisé selon votre projet."
+    }
+  ]
+}

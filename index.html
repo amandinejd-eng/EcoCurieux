@@ -21,8 +21,9 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Écocurieux","alternateName":["Eco Curieux","Ecocurieux"],"url":"https://ecocurieux.com/","logo":"https://ecocurieux.com/images-creation-de-site/logo.png","description":"Animations nature et biodiversité sur mesure en Saône-et-Loire.","areaServed":{"@type":"AdministrativeArea","name":"Saône-et-Loire"}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
+<script src="/js/site-cms.js"></script>
 </head>
-<body>
+<body data-page="accueil">
 
 <!-- ========== NAV ========== -->
 <nav>
@@ -114,7 +115,7 @@
 
 <!-- ========== HERO ========== -->
 <section class="hero" id="accueil">
-    <div class="hero-bg-bubbles">
+    <div class="hero-bg-bubbles" data-cms-bulles>
     <div class="hbb">
       <img src="/images-creation-de-site/1. Stand d'accueil et d'information de la ferme pédagogique.png" alt="Stand d'accueil et d'information de la ferme pédagogique">
       <div class="bubble-text">Stand d'accueil et<br>d'information de la ferme<br>pédagogique</div>
@@ -151,14 +152,14 @@
 
 
   <div class="hero-content">
-    <div class="hero-badge">📍 Saône-et-Loire & alentours</div>
+    <div class="hero-badge" data-cms="hero.badge">📍 Saône-et-Loire & alentours</div>
     
-    <h1>Éco<span class="accent">curieux</span></h1>
-    <h2>L'atelier nature sur mesure</h2>
-    <p>Des expériences pédagogiques au cœur du vivant, observer, manipuler, comprendre et créer un vrai lien avec la nature.</p>
+    <h1><span data-cms="hero.titreAvant">Éco</span><span class="accent" data-cms="hero.titreAccent">curieux</span></h1>
+    <h2 data-cms="hero.sousTitre">L'atelier nature sur mesure</h2>
+    <p data-cms="hero.texte">Des expériences pédagogiques au cœur du vivant, observer, manipuler, comprendre et créer un vrai lien avec la nature.</p>
     <div class="hero-btns">
-      <a href="/animations.html#animations" class="btn-primary">Découvrir les animations</a>
-      <a href="#contact" class="btn-outline">Demander un devis</a>
+      <a href="/animations.html#animations" class="btn-primary" data-cms="hero.bouton1">Découvrir les animations</a>
+      <a href="#contact" class="btn-outline" data-cms="hero.bouton2">Demander un devis</a>
     </div>
   </div>
 
@@ -170,7 +171,7 @@
 
 <!-- ========== TICKER (entre hero et services) ========== -->
 <div class="ticker">
-  <div class="ticker-inner">
+  <div class="ticker-inner" data-cms-bandeau>
     <span class="t-anim">🦔 Animations sur site</span>
     <span class="t-proj">✏️ Projets sur mesure</span>
     <span class="t-kit">🦗 Location de kits pédagogiques</span>
@@ -193,25 +194,22 @@
 <!-- ========== QUI SUIS-JE ========== -->
 <section class="padded" style="background:var(--beige-light);padding:5rem 1rem 2.5rem;" id="qui-suis-je">
   <div class="section-inner">
-    <div class="section-label">Qui suis-je ?</div>
-    <div class="section-title" style="margin-bottom:1.5rem;">Amandine Junier-Dubus</div>
+    <div class="section-label" data-cms="qui.label">Qui suis-je ?</div>
+    <div class="section-title" style="margin-bottom:1.5rem;" data-cms="qui.titre">Amandine Junier-Dubus</div>
     
     <div class="qui-grid">
       <div class="qui-photo">
-        <img src="/qui-suis-je/perruche.jpg" alt="Amandine Junier-Dubus">
+        <img src="/qui-suis-je/perruche.jpg" alt="Amandine Junier-Dubus" data-cms-src="qui.photo">
       </div>
       
       <div class="qui-text">
-        <p>
-          <strong>Animatrice spécialisée dans la sensibilisation au vivant</strong>, j'accompagne depuis plusieurs années enfants, écoles et structures autour de l'environnement.
+        <p data-cms-html="qui.p1">
+          <strong>Animatrice spécialisée dans la sensibilisation au vivant</strong>, j'interviens notamment auprès de centres de loisirs de la région, et de structures comme le Port de Plaisance de Chalon-sur-Saône dans le cadre du label Pavillon Bleu. Avec <strong>Écocurieux</strong>, je conçois des animations pédagogiques sur la biodiversité, concrètes et accessibles, basées sur l'observation, la manipulation et l'expérimentation. <em>L'idée est simple : comprendre en faisant.</em>
         </p>
-        <p>
-          Avec <strong>Écocurieux</strong>, je propose des animations pédagogiques sur la biodiversité, concrètes et accessibles, basées sur l'observation, la manipulation et l'expérimentation. <em>L'idée est simple : comprendre en faisant.</em>
-        </p>
-        <p>
+        <p data-cms="qui.p2">
           J'interviens auprès des écoles, collectivités et structures locales avec des animations clés en main, adaptées à chaque public.
         </p>
-        <p>
+        <p data-cms="qui.p3">
           N'hésitez pas à me contacter pour en savoir plus ou échanger autour de votre projet.
         </p>
       </div>
@@ -224,8 +222,8 @@
   <div class="section-inner">
     <!-- En-tête pleine largeur -->
     <div style="margin-bottom: 2.5rem;">
-      <div class="section-label">Ma démarche</div>
-      <div class="section-title">Une approche unique <span style="color:var(--brown)">pour chaque projet</span></div>
+      <div class="section-label" data-cms="demarche.label">Ma démarche</div>
+      <div class="section-title"><span data-cms="demarche.titre">Une approche unique</span> <span class="accent" data-cms="demarche.titreAccent">pour chaque projet</span></div>
     </div>
 
     <!-- 2 colonnes équilibrées -->
@@ -233,8 +231,8 @@
 
       <!-- Colonne gauche : les 3 piliers -->
       <div>
-        <p class="demarche-intro">Les 3 piliers de mon action :</p>
-        <div class="pilliers">
+        <p class="demarche-intro" data-cms="demarche.intro">Les 3 piliers de mon action :</p>
+        <div class="pilliers" data-cms-piliers>
           <div class="pillier">
             <h4>🔬 La Vulgarisation Scientifique</h4>
             <p>J'adapte les notions complexes de l'écologie et de la biodiversité en expériences simples, ludiques et accessibles à tous.</p>
@@ -254,10 +252,10 @@
       <div class="demarche-visual">
         <img src="/images-creation-de-site/logo.png" alt="Écocurieux" style="width:110px;height:auto;display:block;margin:0 auto 0.8rem;border-radius:14px;">
         <div class="demarche-quote">
-          <p>"Parce que la Nature ne se lit pas seulement dans les livres, je vous aide à la vivre au quotidien."</p>
-          <cite>— Amandine Junier-Dubus</cite>
+          <p data-cms="demarche.citation">"Parce que la Nature ne se lit pas seulement dans les livres, je vous aide à la vivre au quotidien."</p>
+          <cite data-cms="demarche.citationAuteur">— Amandine Junier-Dubus</cite>
         </div>
-        <div class="valeurs-grid">
+        <div class="valeurs-grid" data-cms-valeurs>
           <div class="valeur"><div class="vi">🌸</div><span>Pédagogie accessible</span></div>
           <div class="valeur"><div class="vi">⏳</div><span>Respect du rythme</span></div>
           <div class="valeur"><div class="vi">🔍</div><span>Observation concrète</span></div>
@@ -273,9 +271,9 @@
 <section class="events-preview-section" id="evenements">
   <div class="events-preview-inner">
     <div class="events-preview-header">
-      <span class="events-badge">AGENDA</span>
-      <h2>Événements à venir</h2>
-      <p>Ne manquez pas nos prochaines rencontres et ateliers ludiques autour de la nature.</p>
+      <span class="events-badge" data-cms="agenda.badge">AGENDA</span>
+      <h2 data-cms="agenda.titre">Événements à venir</h2>
+      <p data-cms="agenda.texte">Ne manquez pas nos prochaines rencontres et ateliers ludiques autour de la nature.</p>
     </div>
     
     <div id="upcoming-events-container-home" style="display:flex;flex-direction:column;gap:1.5rem;">
@@ -283,12 +281,12 @@
     </div>
     
     <div style="text-align:center;margin-top:3rem;">
-      <a href="/evenements.html" class="events-cta-btn">Voir tous les événements</a>
+      <a href="/evenements.html" class="events-cta-btn" data-cms="agenda.bouton">Voir tous les événements</a>
     </div>
 
     <!-- ========== GARANTIES ========== -->
     <div class="garanties" style="padding:4rem 0 0 0;">
-      <div class="garanties-inner" style="justify-content:center;">
+      <div class="garanties-inner" style="justify-content:center;" data-cms-garanties>
         <div class="garantie-box" style="box-shadow: 4px 4px 0 var(--beige-2);">
           <div class="gb-icon">📋</div>
           <div>
