@@ -4,9 +4,42 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#2c4f2a" />
     <title>Modifier le site — Écocurieux</title>
+    <link rel="icon" href="/images-creation-de-site/logo.png" />
+    <link rel="apple-touch-icon" href="/images-creation-de-site/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/admin/admin.css" />
   </head>
   <body>
+    <div class="ec-boot" id="ec-boot">
+      <img src="/images-creation-de-site/logo.png" alt="Écocurieux" />
+      <p>Back-office Écocurieux</p>
+      <span>Ouverture<span class="ec-dots"></span></span>
+    </div>
+    <div id="nc-root"></div>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script src="/admin/preview.js"></script>
+    <script>
+      (function () {
+        var boot = document.getElementById('ec-boot');
+        var root = document.getElementById('nc-root');
+        function hide() {
+          if (boot) boot.classList.add('is-hidden');
+        }
+        if (root && window.MutationObserver) {
+          var observer = new MutationObserver(function () {
+            if (root.childElementCount > 0) hide();
+          });
+          observer.observe(root, { childList: true, subtree: true });
+        }
+        window.setTimeout(hide, 8000);
+      })();
+    </script>
   </body>
 </html>

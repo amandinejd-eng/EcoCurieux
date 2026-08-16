@@ -1,9 +1,14 @@
 # yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
 
 locale: fr
+app_title: Modifier le site
 site_url: https://ecocurieux.com
 display_url: https://ecocurieux.com
-logo_url: /images-creation-de-site/logo.png
+logout_redirect_url: https://ecocurieux.com
+
+logo:
+  src: /images-creation-de-site/logo.png
+  show_in_header: true
 
 backend:
   name: github
@@ -29,33 +34,59 @@ slug:
 collections:
   - name: apparence
     label: Apparence
+    icon: palette
+    description: "Couleurs, polices, logo et coordonnées visibles partout sur le site."
     files:
       - name: theme
-        label: Couleurs, polices et identité
+        label: Identité du site
+        icon: brush
         file: contenu/theme.json
-        editor:
-          preview: false
+        preview_path: /
         fields:
-          - { label: Nom du site, name: nom, widget: string }
-          - { label: Slogan, name: slogan, widget: string }
-          - { label: Nom affiché (Amandine…), name: auteur, widget: string }
-          - { label: Email, name: email, widget: string }
-          - { label: Téléphone, name: telephone, widget: string }
-          - { label: Zone géographique, name: zone, widget: string }
-          - { label: Logo, name: logo, widget: image }
+          - label: Nom du site
+            name: nom
+            widget: string
+            hint: "Affiché dans l’en-tête et l’onglet du navigateur."
+          - label: Slogan
+            name: slogan
+            widget: string
+          - label: Nom affiché
+            name: auteur
+            widget: string
+            hint: "Par exemple Amandine Junier-Dubus."
+          - label: Email
+            name: email
+            widget: string
+            type: email
+          - label: Téléphone
+            name: telephone
+            widget: string
+            hint: "Tu peux garder les points, comme 06.69.49.18.23."
+          - label: Zone géographique
+            name: zone
+            widget: string
+          - label: Logo
+            name: logo
+            widget: image
+            hint: "Idéalement un fond transparent."
           - label: Couleurs
             name: colors
             widget: object
+            collapsed: false
+            summary: "{{green}} · {{brown}}"
+            comment: "Ces couleurs s’appliquent à tout le site. Clique sur le carré pour choisir."
             fields:
-              - { label: Vert, name: green, widget: color, enableInput: true }
-              - { label: Vert foncé, name: greenDark, widget: color, enableInput: true }
-              - { label: Brun, name: brown, widget: color, enableInput: true }
-              - { label: Beige, name: beige, widget: color, enableInput: true }
-              - { label: Beige 2, name: beige2, widget: color, enableInput: true }
-              - { label: Fond beige clair, name: beigeLight, widget: color, enableInput: true }
-          - label: Polices (Google Fonts)
+              - { label: Vert, name: green, widget: color, allowInput: true, hint: "Boutons, accents, dates." }
+              - { label: Vert foncé, name: greenDark, widget: color, allowInput: true, hint: "Titres et menu." }
+              - { label: Brun, name: brown, widget: color, allowInput: true }
+              - { label: Beige, name: beige, widget: color, allowInput: true }
+              - { label: Beige 2, name: beige2, widget: color, allowInput: true, hint: "Bordures et filets." }
+              - { label: Fond beige clair, name: beigeLight, widget: color, allowInput: true }
+          - label: Polices
             name: fonts
             widget: object
+            collapsed: false
+            comment: "Polices Google Fonts. Le site les charge tout seul."
             fields:
               - label: Police des titres
                 name: titres
@@ -70,35 +101,46 @@ collections:
                 widget: select
                 options: [Nunito, Montserrat, Poppins, Playfair Display, Caveat, Quicksand, Lora, Merriweather, Roboto, Open Sans]
 
+  - divider: true
+
   - name: evenements
     label: Événements
+    icon: calendar_month
+    description: "Ajoute, déplace ou archive les ateliers. Un événement passé se range dans la seconde liste."
     files:
       - name: agenda
-        label: Agenda (à venir et passés)
+        label: Agenda
+        icon: event
         file: evenements.json
-        editor:
-          preview: false
+        preview_path: evenements.html
         fields:
           - label: Événements à venir
             name: upcoming
             widget: list
+            label_singular: événement à venir
             summary: "{{title}} — {{date}}"
+            collapsed: auto
+            add_to_top: true
+            comment: "Le plus récent se place en haut. Après la date, déplace-le dans « passés »."
             fields:
-              - { label: Identifiant (laisser vide pour créer), name: id, widget: string, required: false }
-              - { label: Date, name: date, widget: datetime, time_format: false, date_format: "yyyy-MM-dd", picker_utc: true }
-              - { label: Titre, name: title, widget: string }
+              - { name: id, widget: hidden }
+              - { label: Date, name: date, widget: datetime, time_format: false, date_format: "yyyy-MM-dd", picker_utc: true, default: "{{now}}" }
+              - { label: Titre, name: title, widget: string, hint: "Tu peux commencer par un emoji : 🐦 L’Été des Oiseaux" }
               - { label: Lieu, name: location, widget: string }
               - { label: Description, name: description, widget: text }
-              - { label: En plus (encadré vert), name: details, widget: string, required: false }
-              - { label: Horaires, name: time, widget: string, required: false }
-              - { label: Public, name: audience, widget: string }
-              - { label: Tarif, name: price, widget: string, required: false }
+              - { label: Encadré vert, name: details, widget: string, required: false, hint: "Petite phrase mise en avant sous la description." }
+              - { label: Horaires, name: time, widget: string, required: false, hint: "Exemple : 10h-18h" }
+              - { label: Public, name: audience, widget: string, default: "Tout public" }
+              - { label: Tarif, name: price, widget: string, required: false, default: "Sur devis" }
           - label: Événements passés
             name: past
             widget: list
+            label_singular: événement passé
             summary: "{{title}} — {{date}}"
+            collapsed: auto
+            comment: "Ici, tu peux ajouter photos, programme et récapitulatif."
             fields:
-              - { label: Identifiant (laisser vide pour créer), name: id, widget: string, required: false }
+              - { name: id, widget: hidden }
               - { label: Date, name: date, widget: datetime, time_format: false, date_format: "yyyy-MM-dd", picker_utc: true }
               - { label: Titre, name: title, widget: string }
               - { label: Lieu, name: location, widget: string }
@@ -109,37 +151,48 @@ collections:
                 name: photos
                 widget: list
                 required: false
+                label_singular: photo
                 summary: "{{caption}}"
+                thumbnail: url
+                collapsed: auto
                 fields:
                   - { label: Photo, name: url, widget: image }
                   - { label: Légende, name: caption, widget: string, required: false }
-                  - { label: Rotation (°), name: rotation, widget: number, required: false, value_type: int, default: 0 }
+                  - { label: Rotation (°), name: rotation, widget: number, required: false, value_type: int, default: 0, hint: "0, 90, 180 ou 270." }
               - label: Programme
                 name: program
                 widget: list
                 required: false
-                summary: "{{title}}"
+                label_singular: étape
+                summary: "{{emoji}} {{title}}"
+                collapsed: auto
                 fields:
-                  - { label: Emoji, name: emoji, widget: string, required: false }
+                  - { label: Emoji, name: emoji, widget: string, required: false, hint: "Tape : puis le nom, par exemple :oeuf:" }
                   - { label: Titre, name: title, widget: string }
                   - { label: Description, name: description, widget: text }
 
+  - divider: true
+
   - name: pages
     label: Pages
+    icon: web
+    description: "Textes et images de chaque page du site. Clique une page, puis **Publier**."
     files:
       - name: accueil
         label: Accueil
+        icon: home
         file: contenu/accueil.json
-        editor:
-          preview: false
+        preview_path: /
         fields:
           - label: Bannière d’accueil
             name: hero
             widget: object
+            collapsed: false
+            summary: "{{titreAvant}} {{titreAccent}}"
             fields:
-              - { label: Badge (ex. lieu), name: badge, widget: string }
+              - { label: Badge, name: badge, widget: string, hint: "Petite pastille au-dessus du titre, ex. le lieu." }
               - { label: Début du titre, name: titreAvant, widget: string }
-              - { label: Mot en couleur du titre, name: titreAccent, widget: string }
+              - { label: Mot en couleur, name: titreAccent, widget: string, hint: "Ce mot s’affiche en vert." }
               - { label: Sous-titre, name: sousTitre, widget: string }
               - { label: Texte d’intro, name: texte, widget: text }
               - { label: Bouton 1, name: bouton1, widget: string }
@@ -147,51 +200,66 @@ collections:
           - label: Bulles photos
             name: bulles
             widget: list
+            label_singular: bulle
             summary: "{{texte}}"
+            thumbnail: image
+            collapsed: auto
             fields:
               - { label: Photo, name: image, widget: image }
               - { label: Texte, name: texte, widget: text }
           - label: Bandeau défilant
             name: bandeau
             widget: list
+            label_singular: phrase
+            comment: "Les phrases défilent en bas de la bannière."
             field: { label: Texte, name: texte, widget: string }
           - label: Qui suis-je
             name: qui
             widget: object
+            collapsed: auto
+            summary: "{{titre}}"
             fields:
               - { label: Étiquette, name: label, widget: string }
               - { label: Titre, name: titre, widget: string }
               - { label: Photo, name: photo, widget: image }
-              - { label: Paragraphe 1 (HTML possible), name: p1, widget: text }
+              - { label: Paragraphe 1, name: p1, widget: text, hint: "Le HTML simple est possible, par exemple **gras** via les balises." }
               - { label: Paragraphe 2, name: p2, widget: text }
               - { label: Paragraphe 3, name: p3, widget: text }
           - label: Ma démarche
             name: demarche
             widget: object
+            collapsed: auto
+            summary: "{{titre}} {{titreAccent}}"
             fields:
               - { label: Étiquette, name: label, widget: string }
               - { label: Titre, name: titre, widget: string }
-              - { label: Mot en couleur du titre, name: titreAccent, widget: string }
+              - { label: Mot en couleur, name: titreAccent, widget: string }
               - { label: Intro, name: intro, widget: string }
               - { label: Citation, name: citation, widget: text }
               - { label: Auteur de la citation, name: citationAuteur, widget: string }
               - label: Piliers
                 name: piliers
                 widget: list
+                label_singular: pilier
                 summary: "{{titre}}"
+                collapsed: auto
                 fields:
                   - { label: Titre, name: titre, widget: string }
                   - { label: Texte, name: texte, widget: text }
               - label: Valeurs
                 name: valeurs
                 widget: list
-                summary: "{{texte}}"
+                label_singular: valeur
+                summary: "{{emoji}} {{texte}}"
+                collapsed: auto
                 fields:
-                  - { label: Emoji, name: emoji, widget: string }
+                  - { label: Emoji, name: emoji, widget: string, required: false }
                   - { label: Texte, name: texte, widget: string }
           - label: Encadré agenda
             name: agenda
             widget: object
+            collapsed: auto
+            summary: "{{titre}}"
             fields:
               - { label: Badge, name: badge, widget: string }
               - { label: Titre, name: titre, widget: string }
@@ -200,46 +268,54 @@ collections:
           - label: Garanties
             name: garanties
             widget: list
-            summary: "{{titre}}"
+            label_singular: garantie
+            summary: "{{emoji}} {{titre}}"
+            collapsed: auto
             fields:
-              - { label: Emoji, name: emoji, widget: string }
+              - { label: Emoji, name: emoji, widget: string, required: false }
               - { label: Titre, name: titre, widget: string }
               - { label: Sous-texte, name: sous, widget: string }
 
       - name: animations
         label: Animations
+        icon: spa
         file: contenu/animations.json
-        editor:
-          preview: false
+        preview_path: animations.html
         fields:
           - { label: Badge, name: badge, widget: string }
           - { label: Titre, name: titre, widget: string }
-          - { label: Mot en couleur du titre, name: titreAccent, widget: string }
+          - { label: Mot en couleur, name: titreAccent, widget: string }
           - { label: Fin du titre, name: titreFin, widget: string }
           - { label: Sous-titre, name: sousTitre, widget: text }
           - label: Atelier nature
             name: atelier
             widget: object
+            collapsed: auto
+            summary: "{{titre}} {{titreAccent}}"
             fields:
               - { label: Photo, name: photo, widget: image }
               - { label: Titre, name: titre, widget: string }
               - { label: Mot en couleur, name: titreAccent, widget: string }
               - { label: Intro, name: intro, widget: text }
               - { label: Accroche, name: accroche, widget: text }
-              - { label: Puces, name: puces, widget: list, field: { label: Texte, name: texte, widget: string } }
-              - { label: Étiquettes, name: etiquettes, widget: list, field: { label: Texte, name: texte, widget: string } }
+              - { label: Puces, name: puces, widget: list, label_singular: puce, field: { label: Texte, name: texte, widget: string } }
+              - { label: Étiquettes, name: etiquettes, widget: list, label_singular: étiquette, field: { label: Texte, name: texte, widget: string } }
               - { label: Intro catalogue, name: catalogueIntro, widget: text }
               - label: Thématiques
                 name: themes
                 widget: list
-                summary: "{{titre}}"
+                label_singular: thématique
+                summary: "{{emoji}} {{titre}}"
+                collapsed: auto
                 fields:
-                  - { label: Emoji, name: emoji, widget: string }
+                  - { label: Emoji, name: emoji, widget: string, required: false }
                   - { label: Titre, name: titre, widget: string }
                   - { label: Texte, name: texte, widget: text }
           - label: Anniversaires
             name: anniversaires
             widget: object
+            collapsed: auto
+            summary: "{{titre}} {{titreAccent}}"
             fields:
               - { label: Photo, name: photo, widget: image }
               - { label: Titre, name: titre, widget: string }
@@ -251,14 +327,18 @@ collections:
               - label: Univers
                 name: univers
                 widget: list
-                summary: "{{titre}}"
+                label_singular: univers
+                summary: "{{emoji}} {{titre}}"
+                collapsed: auto
                 fields:
-                  - { label: Emoji, name: emoji, widget: string }
+                  - { label: Emoji, name: emoji, widget: string, required: false }
                   - { label: Titre, name: titre, widget: string }
                   - { label: Texte, name: texte, widget: text }
           - label: Stages
             name: stages
             widget: object
+            collapsed: auto
+            summary: "{{titre}} {{titreAccent}}"
             fields:
               - { label: Photo, name: photo, widget: image }
               - { label: Titre, name: titre, widget: string }
@@ -266,15 +346,15 @@ collections:
               - { label: Intro, name: intro, widget: text }
               - { label: Accroche, name: accroche, widget: text }
               - { label: Encadré carnet, name: carnet, widget: text }
-              - { label: Infos, name: infos, widget: list, field: { label: Texte, name: texte, widget: string } }
+              - { label: Infos, name: infos, widget: list, label_singular: info, field: { label: Texte, name: texte, widget: string } }
               - { label: Note, name: note, widget: text }
               - { label: Bouton, name: bouton, widget: string }
 
       - name: pour_qui
         label: Pour qui ?
+        icon: groups
         file: contenu/pour-qui.json
-        editor:
-          preview: false
+        preview_path: pour-qui.html
         fields:
           - { label: Étiquette, name: label, widget: string }
           - { label: Titre, name: titre, widget: string }
@@ -282,19 +362,22 @@ collections:
           - label: Cartes
             name: cartes
             widget: list
-            summary: "{{titre}}"
+            label_singular: carte
+            summary: "{{emoji}} {{titre}}"
+            thumbnail: photo
+            collapsed: auto
             fields:
-              - { label: Emoji, name: emoji, widget: string }
+              - { label: Emoji, name: emoji, widget: string, required: false }
               - { label: Titre, name: titre, widget: string }
               - { label: Texte, name: texte, widget: text }
               - { label: Photo de fond, name: photo, widget: image, required: false }
-              - { label: Étiquettes, name: etiquettes, widget: list, field: { label: Texte, name: texte, widget: string } }
+              - { label: Étiquettes, name: etiquettes, widget: list, label_singular: étiquette, field: { label: Texte, name: texte, widget: string } }
 
       - name: contact
         label: Contact
+        icon: mail
         file: contenu/contact.json
-        editor:
-          preview: false
+        preview_path: contact.html
         fields:
           - { label: Petite ligne au-dessus du titre, name: eyebrow, widget: string }
           - { label: Titre (ligne 1), name: titre1, widget: string }
@@ -307,33 +390,39 @@ collections:
 
       - name: kits
         label: Kits pédagogiques
+        icon: inventory_2
         file: contenu/kits.json
-        editor:
-          preview: false
+        preview_path: kits/index.html
         fields:
           - label: Page d’accueil des kits
             name: index
             widget: object
+            collapsed: false
+            summary: "{{titre}} {{titreAccent}}"
             fields:
               - { label: Titre, name: titre, widget: string }
               - { label: Mot en couleur, name: titreAccent, widget: string }
               - { label: Intro, name: intro, widget: text }
               - { label: Texte d’info, name: info, widget: text }
-              - { label: Pastilles, name: pastilles, widget: list, field: { label: Texte, name: texte, widget: string } }
+              - { label: Pastilles, name: pastilles, widget: list, label_singular: pastille, field: { label: Texte, name: texte, widget: string } }
               - { label: Bouton, name: bouton, widget: string }
           - label: Fiches kits
             name: fiches
             widget: list
+            label_singular: kit
             summary: "{{titre}}"
+            thumbnail: photo
+            collapsed: auto
+            comment: "Ne change l’identifiant que si tu sais à quelle page il est relié (couveuse, mante, phasmes)."
             fields:
-              - { label: Identifiant (couveuse, mante, phasmes), name: id, widget: string }
+              - { label: Identifiant, name: id, widget: string, hint: "couveuse, mante ou phasmes — à ne pas modifier." }
               - { label: Titre, name: titre, widget: string }
               - { label: Mot en couleur, name: titreAccent, widget: string }
               - { label: Sous-titre, name: sousTitre, widget: string }
               - { label: Photo carte, name: photo, widget: image }
               - { label: Texte carte, name: texteCarte, widget: text }
-              - { label: Description (un paragraphe par ligne), name: description, widget: text }
-              - { label: Contenu du kit (une ligne = un point), name: contenu, widget: text }
+              - { label: Description, name: description, widget: text, hint: "Un paragraphe par ligne." }
+              - { label: Contenu du kit, name: contenu, widget: text, hint: "Une ligne = un point de la liste." }
               - { label: Durée, name: duree, widget: string }
               - { label: Public, name: public, widget: string }
               - { label: Zone, name: zone, widget: string }
